@@ -92,6 +92,7 @@ public class DayOne {
 
     private static void replaceLettersNineWithNumeric9(List<String> wordList, int i) {
         while (wordList.get(i).contains("nine")) {
+            replaceLettersEightWithNumeric8(wordList, i);
             wordList.set(i, wordList.get(i).replace("nine", "9"));
         }
     }
@@ -133,12 +134,8 @@ public class DayOne {
 
     private static void replaceLettersThreeWithNumeric3(List<String> wordList, int i) {
         while (wordList.get(i).contains("three")) {
-            if (wordList.get(i).indexOf("eight") < wordList.get(i).indexOf("three")) {
-                wordList.set(i, wordList.get(i).replace("eight", "8"));
-            }
-            if (wordList.get(i).contains("three")) {
-                wordList.set(i, wordList.get(i).replace("three", "3"));
-            }
+            replaceLettersEightWithNumeric8(wordList, i);
+            wordList.set(i, wordList.get(i).replace("three", "3"));
         }
     }
 

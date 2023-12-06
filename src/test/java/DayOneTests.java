@@ -40,7 +40,7 @@ public class DayOneTests {
 //                "6nineight1",
 //                "8sevenine3",
 //                "threeighthree",
-//                "nineighthree",
+                "nineighthree",
                 "seightwoone8qxcfgszninesvfcnxc68"
         ));
 
@@ -58,8 +58,8 @@ public class DayOneTests {
 //        assertEquals("69ight1", listOfStrings.get(9));
 //        assertEquals("87ine3", listOfStrings.get(10));
 //        assertEquals("3igh3", listOfStrings.get(11));
-//        assertEquals("9igh3", listOfStrings.get(12));
-        assertEquals("s8wo18qxcfgsz9svfcnxc68", listOfStrings.get(0));
+        assertEquals("9igh3", listOfStrings.get(0));
+        assertEquals("s8wo18qxcfgsz9svfcnxc68", listOfStrings.get(1));
     }
 
     @Test
