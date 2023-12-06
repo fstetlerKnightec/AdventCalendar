@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class DayOne {
@@ -54,28 +53,6 @@ public class DayOne {
         return wordList;
     }
 
-//    public void replaceNumbersAsWordsWithNumbersAsNumericInString(List<String> wordList) {
-//
-//
-//        List<List<String>> newList = new ArrayList<>();
-//        List<String> dividedString = new ArrayList<>();
-//        for (int i = 0; i < wordList.size(); i++) {
-//
-//            for (int j = 0; j < wordList.get(i).length(); j++) {
-//
-//                dividedString.add(String.valueOf(wordList.get(i).charAt(j)));
-//
-//                System.out.print(dividedString);
-//                newList.add(dividedString);
-//
-//                dividedString.clear();
-//            }
-//        }
-//        System.out.println(newList.get(0));
-//    }
-//}
-
-
     public void replaceNumbersAsWordsWithNumbersAsNumericInString(List<String> wordList) {
         for (int i = 0; i < wordList.size(); i++) {
             replaceLettersOneWithNumeric1(wordList, i);
@@ -99,8 +76,17 @@ public class DayOne {
 
     private static void replaceLettersEightWithNumeric8(List<String> wordList, int i) {
         while (wordList.get(i).contains("eight")) {
+            if (wordList.get(i).indexOf("three") < wordList.get(i).indexOf("eight")) {
+                wordList.set(i, wordList.get(i).replace("three", "3"));
+            }
+            if (wordList.get(i).indexOf("two") < wordList.get(i).indexOf("eight")) {
+                wordList.set(i, wordList.get(i).replace("two", "2"));
+            }
             if (wordList.get(i).indexOf("nine") < wordList.get(i).indexOf("eight")) {
                 wordList.set(i, wordList.get(i).replace("nine", "9"));
+            }
+            if (wordList.get(i).indexOf("five") < wordList.get(i).indexOf("eight")) {
+                wordList.set(i, wordList.get(i).replace("five", "5"));
             }
             if (wordList.get(i).contains("eight")) {
                 wordList.set(i, wordList.get(i).replace("eight", "8"));
