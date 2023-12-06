@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DayOne {
@@ -48,38 +49,110 @@ public class DayOne {
             e.printStackTrace();
         }
 
-        for (int i = 0; i < wordList.size(); i++) {
+        replaceNumbersAsWordsWithNumbersAsNumericInString(wordList);
 
-            if (wordList.get(i).contains("one")) {
-                wordList.set(i, wordList.get(i).replace("one", "1"));
-            }
-            if (wordList.get(i).contains("two")) {
-                wordList.set(i, wordList.get(i).replace("two", "2"));
-            }
-            if (wordList.get(i).contains("three")) {
-                wordList.set(i, wordList.get(i).replace("three", "3"));
-            }
-            if (wordList.get(i).contains("four")) {
-                wordList.set(i, wordList.get(i).replace("four", "4"));
-            }
-            if (wordList.get(i).contains("five")) {
-                wordList.set(i, wordList.get(i).replace("five", "5"));
-            }
-            if (wordList.get(i).contains("six")) {
-                wordList.set(i, wordList.get(i).replace("six", "6"));
-            }
-            if (wordList.get(i).contains("seven")) {
-                wordList.set(i, wordList.get(i).replace("seven", "7"));
+        return wordList;
+    }
+
+//    public void replaceNumbersAsWordsWithNumbersAsNumericInString(List<String> wordList) {
+//
+//
+//        List<List<String>> newList = new ArrayList<>();
+//        List<String> dividedString = new ArrayList<>();
+//        for (int i = 0; i < wordList.size(); i++) {
+//
+//            for (int j = 0; j < wordList.get(i).length(); j++) {
+//
+//                dividedString.add(String.valueOf(wordList.get(i).charAt(j)));
+//
+//                System.out.print(dividedString);
+//                newList.add(dividedString);
+//
+//                dividedString.clear();
+//            }
+//        }
+//        System.out.println(newList.get(0));
+//    }
+//}
+
+
+    public void replaceNumbersAsWordsWithNumbersAsNumericInString(List<String> wordList) {
+        for (int i = 0; i < wordList.size(); i++) {
+            replaceLettersOneWithNumeric1(wordList, i);
+            replaceLettersTwoWithNumeric2(wordList, i);
+            replaceLettersThreeWithNumeric3(wordList, i);
+            replaceLettersFourWithNumeric4(wordList, i);
+            replaceLettersFiveWithNumeric5(wordList, i);
+            replaceLettersSixWithNumeric6(wordList, i);
+            replaceLettersSevenWithNumeric7(wordList, i);
+            replaceLettersEightWithNumeric8(wordList, i);
+            replaceLettersNineWithNumeric9(wordList, i);
+        }
+    }
+
+    private static void replaceLettersNineWithNumeric9(List<String> wordList, int i) {
+        while (wordList.get(i).contains("nine")) {
+            wordList.set(i, wordList.get(i).replace("nine", "9"));
+        }
+    }
+
+    private static void replaceLettersEightWithNumeric8(List<String> wordList, int i) {
+        while (wordList.get(i).contains("eight")) {
+            if (wordList.get(i).indexOf("nine") < wordList.get(i).indexOf("eight")) {
+                wordList.set(i, wordList.get(i).replace("nine", "9"));
             }
             if (wordList.get(i).contains("eight")) {
                 wordList.set(i, wordList.get(i).replace("eight", "8"));
             }
-            if (wordList.get(i).contains("nine")) {
-                wordList.set(i, wordList.get(i).replace("nine", "9"));
+        }
+    }
+
+    private static void replaceLettersSevenWithNumeric7(List<String> wordList, int i) {
+        while (wordList.get(i).contains("seven")) {
+            wordList.set(i, wordList.get(i).replace("seven", "7"));
+        }
+    }
+
+    private static void replaceLettersSixWithNumeric6(List<String> wordList, int i) {
+        while (wordList.get(i).contains("six")) {
+            wordList.set(i, wordList.get(i).replace("six", "6"));
+        }
+    }
+
+    private static void replaceLettersFiveWithNumeric5(List<String> wordList, int i) {
+        while (wordList.get(i).contains("five")) {
+            wordList.set(i, wordList.get(i).replace("five", "5"));
+        }
+    }
+
+    private static void replaceLettersFourWithNumeric4(List<String> wordList, int i) {
+        while (wordList.get(i).contains("four")) {
+            wordList.set(i, wordList.get(i).replace("four", "4"));
+        }
+    }
+
+    private static void replaceLettersThreeWithNumeric3(List<String> wordList, int i) {
+        while (wordList.get(i).contains("three")) {
+            if (wordList.get(i).indexOf("eight") < wordList.get(i).indexOf("three")) {
+                wordList.set(i, wordList.get(i).replace("eight", "8"));
+            }
+            if (wordList.get(i).contains("three")) {
+                wordList.set(i, wordList.get(i).replace("three", "3"));
             }
         }
+    }
 
-        System.out.println(wordList.get(12));
-        return wordList;
+    private static void replaceLettersTwoWithNumeric2(List<String> wordList, int i) {
+        while (wordList.get(i).contains("two")) {
+            replaceLettersEightWithNumeric8(wordList, i);
+            wordList.set(i, wordList.get(i).replace("two", "2"));
+        }
+    }
+
+    private static void replaceLettersOneWithNumeric1(List<String> wordList, int i) {
+        while (wordList.get(i).contains("one")) {
+            replaceLettersTwoWithNumeric2(wordList, i);
+            wordList.set(i, wordList.get(i).replace("one", "1"));
+        }
     }
 }
