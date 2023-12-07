@@ -5,7 +5,7 @@ public class Main {
         DayTwo dayTwo = new DayTwo();
 
 
-        System.out.println(dayTwo.numberOfAllAddedGames());
+        System.out.println(dayTwo.totalSumOfPowerValues(dayTwo.listOfGames));
 
     }
 }

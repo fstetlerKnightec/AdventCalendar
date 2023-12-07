@@ -12,23 +12,37 @@ public class DayTwo {
     public static Integer ALLOWED_BLUE = 14;
     List<String> listOfGames = readSentencesFromFile("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayTwo.txt");
 
-    public Integer numberOfAllAddedGames() {
-        int totalGameNumber = 0;
+
+    public Integer totalSumOfPowerValues(List<String> listOfGames) {
+
+        int totalValue = 0;
         for (int i = 0; i < listOfGames.size(); i++) {
-            if (isAllowedGame(listOfGames.get(i))) {
-                totalGameNumber += (i+1);
-            }
+            totalValue += powerOfCurrentGame(listOfGames.get(i));
         }
-        return totalGameNumber;
+        return totalValue;
     }
 
-    public boolean isAllowedGame(String currentGame) {
+//    public Integer numberOfAllAddedGames() {
+//        int totalGameNumber = 0;
+//        for (int i = 0; i < listOfGames.size(); i++) {
+//            if (isAllowedGame(listOfGames.get(i))) {
+//                totalGameNumber += (i+1);
+//            }
+//        }
+//        return totalGameNumber;
+//    }
+
+    public Integer powerOfCurrentGame(String currentGame) {
 
         currentGame = currentGame + ";";
         System.out.println(currentGame);
         int totalRedPerGame = 0;
         int totalBluePerGame = 0;
         int totalGreenPerGame = 0;
+
+        int maxRedPerGame = 0;
+        int maxBluePerGame = 0;
+        int maxGreenPerGame = 0;
 
         boolean allowedGame = true;
 
@@ -39,11 +53,18 @@ public class DayTwo {
                 if (!String.valueOf(currentGame.charAt(i - 3)).isBlank()) {
                     totalGreenPerGame += Integer.parseInt(String.valueOf(currentGame.charAt(i - 3))) * 10;
                 }
+
+                if (totalGreenPerGame > maxGreenPerGame) {
+                    maxGreenPerGame = totalGreenPerGame;
+                }
             }
             if (currentGame.startsWith("red", i)) {
                 totalRedPerGame += Integer.parseInt(String.valueOf(currentGame.charAt(i - 2)));
                 if (!String.valueOf(currentGame.charAt(i - 3)).isBlank()) {
                     totalRedPerGame += Integer.parseInt(String.valueOf(currentGame.charAt(i - 3))) * 10;
+                }
+                if (totalRedPerGame > maxRedPerGame) {
+                    maxRedPerGame = totalRedPerGame;
                 }
             }
             if (currentGame.startsWith("blue", i)) {
@@ -51,18 +72,28 @@ public class DayTwo {
                 if (!String.valueOf(currentGame.charAt(i - 3)).isBlank()) {
                     totalBluePerGame += Integer.parseInt(String.valueOf(currentGame.charAt(i - 3))) * 10;
                 }
+                if (totalBluePerGame > maxBluePerGame) {
+                    maxBluePerGame = totalBluePerGame;
+                }
             }
 
             if (String.valueOf(currentGame.charAt(i)).equals(";")) {
-                if (totalGreenPerGame > ALLOWED_GREEN || totalBluePerGame > ALLOWED_BLUE || totalRedPerGame > ALLOWED_RED) {
-                    allowedGame = false;
-                }
                 totalRedPerGame = 0;
                 totalBluePerGame = 0;
                 totalGreenPerGame = 0;
             }
+
         }
-        return allowedGame;
+        System.out.println("maxgreenpergame = " + maxGreenPerGame);
+        System.out.println("maxredpergame = " + maxRedPerGame);
+        System.out.println("maxbluepergame = " + maxBluePerGame);
+
+
+
+        int powerValue = maxGreenPerGame * maxBluePerGame * maxRedPerGame;
+
+        System.out.println("powered value = " + powerValue);
+        return powerValue;
     }
 
     private static List<String> readSentencesFromFile(String filePath) {
