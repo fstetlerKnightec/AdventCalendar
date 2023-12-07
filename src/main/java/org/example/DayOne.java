@@ -18,7 +18,7 @@ public class DayOne {
     }
 
     public List<String> addBothNumbersFromList(List<String> listOfStrings) {
-        String combinedNumber = null;
+        String combinedNumber;
         List<String> combinedNumberList = new ArrayList<>();
         for (int i = 0; i < listOfStrings.size(); i++) {
             String firstNumber = returnFirstNumberFromLeft(listOfStrings).get(i);
@@ -89,11 +89,6 @@ public class DayOne {
             firstNumberList.add(String.valueOf(firstNumber));
         }
         return firstNumberList;
-    }
-
-    private static String reverseString(String input) {
-        StringBuilder reversed = new StringBuilder(input).reverse();
-        return reversed.toString();
     }
 
     public List<String> returnFirstNumberFromRight(List<String> listOfStrings) {
@@ -177,5 +172,10 @@ public class DayOne {
             e.printStackTrace();
         }
         return wordList;
+    }
+
+    private static String reverseString(String input) {
+        StringBuilder reversed = new StringBuilder(input).reverse();
+        return reversed.toString();
     }
 }
