@@ -1,5 +1,4 @@
 import org.example.DayOne;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
