@@ -5,11 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class DayOne {
-
 
     public Integer addAllNumbersTogether(List<String> listOfStrings) {
         int totalNumber = 0;
@@ -17,7 +14,6 @@ public class DayOne {
         for (int i = 0; i < listOfAddedNumbers.size(); i++) {
             totalNumber += Integer.parseInt(listOfAddedNumbers.get(i));
         }
-
         return totalNumber;
     }
 
@@ -27,23 +23,16 @@ public class DayOne {
         for (int i = 0; i < listOfStrings.size(); i++) {
             String firstNumber = returnFirstNumberFromLeft(listOfStrings).get(i);
             String secondNumber = returnFirstNumberFromRight(listOfStrings).get(i);
-
             combinedNumber = firstNumber + secondNumber;
-
             combinedNumberList.add(combinedNumber);
-
         }
-
         return combinedNumberList;
     }
 
     public List<String> returnFirstNumberFromLeft(List<String> listOfStrings) {
         Integer firstNumber = null;
         List<String> firstNumberList = new ArrayList<>();
-
         for (int i = 0; i < listOfStrings.size(); i++) {
-
-//            String currentString = listOfStrings.get(i);
             String currentString = listOfStrings.get(i);
             for (int j = 0; j < currentString.length(); j++) {
 
@@ -98,16 +87,11 @@ public class DayOne {
                 }
             }
             firstNumberList.add(String.valueOf(firstNumber));
-
         }
-
         return firstNumberList;
-
-
     }
 
     private static String reverseString(String input) {
-        // Use StringBuilder to reverse the string
         StringBuilder reversed = new StringBuilder(input).reverse();
         return reversed.toString();
     }
@@ -173,36 +157,10 @@ public class DayOne {
             }
             firstNumberList.add(String.valueOf(firstNumber));
         }
-
         return firstNumberList;
-
-
     }
 
-//    public Integer calculateSumOfAllValues(List<String> listOfStrings) {
-//        int totalValue = 0;
-//        for (int i = 0; i < listOfStrings.size(); i++) {
-//            String stringNumber = "";
-//            for (int j = 0; j < listOfStrings.get(i).charAt(j); j++) {
-//                if (Character.isDigit(listOfStrings.get(i).charAt(j))) {
-//                    stringNumber += listOfStrings.get(i).charAt(j);
-//                    break;
-//                }
-//            }
-//
-//            for (int j = 0; j <listOfStrings.size(); j++) {
-//                if (Character.isDigit(listOfStrings.get(i).charAt(j))) {
-//                    stringNumber += listOfStrings.get(i).charAt(j);
-//                    break;
-//                }
-//            }
-//            totalValue += Integer.parseInt(stringNumber);
-//        }
-//        return totalValue;
-//    }
-
     public List<String> readFileAndReturnList(String filePath) {
-
         ArrayList<String> wordList = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -218,17 +176,9 @@ public class DayOne {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return wordList;
     }
 
-
-    public void replaceNumbersAsWordsWithNumbersAsNumericInString(List<String> stringList) {
-
-
-
-
-    }
 
 
 
