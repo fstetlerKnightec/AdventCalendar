@@ -7,30 +7,22 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class DayTwo {
-
     public static Integer ALLOWED_RED = 12;
     public static Integer ALLOWED_GREEN = 13;
     public static Integer ALLOWED_BLUE = 14;
-
     List<String> listOfGames = readSentencesFromFile("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayTwo.txt");
-
 
     public Integer numberOfAllAddedGames() {
         int totalGameNumber = 0;
         for (int i = 0; i < listOfGames.size(); i++) {
-
             if (isAllowedGame(listOfGames.get(i))) {
                 totalGameNumber += (i+1);
             }
-
         }
         return totalGameNumber;
     }
 
-
     public boolean isAllowedGame(String currentGame) {
-
-        int numberOfHandsAllowed = 0;
 
         currentGame = currentGame + ";";
         System.out.println(currentGame);
@@ -62,9 +54,7 @@ public class DayTwo {
             }
 
             if (String.valueOf(currentGame.charAt(i)).equals(";")) {
-                if (totalGreenPerGame <= ALLOWED_GREEN && totalBluePerGame <= ALLOWED_BLUE && totalRedPerGame <= ALLOWED_RED) {
-                    numberOfHandsAllowed += 1;
-                } else {
+                if (totalGreenPerGame > ALLOWED_GREEN || totalBluePerGame > ALLOWED_BLUE || totalRedPerGame > ALLOWED_RED) {
                     allowedGame = false;
                 }
                 totalRedPerGame = 0;
