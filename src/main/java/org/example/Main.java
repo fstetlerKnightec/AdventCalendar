@@ -1,9 +1,7 @@
 package org.example;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Main {
@@ -13,9 +11,9 @@ public class Main {
         List<String> listOfStrings = dayOneClean.readFileAndReturnList("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayOne.txt");
 
         List<String> listOfFirstNumbersFromLeft = listOfStrings.stream()
-                .map(s -> dayOneClean.returnFirstNumberFromString(String.valueOf(s), false)).toList();
+                .map(s -> dayOneClean.returnFirstNumberFromString(String.valueOf(s), false, true)).toList();
         List<String> listOfFirstNumbersFromRight = listOfStrings.stream()
-                .map(s -> dayOneClean.returnFirstNumberFromString(String.valueOf(s), true)).toList();
+                .map(s -> dayOneClean.returnFirstNumberFromString(String.valueOf(s), true, true)).toList();
 
 
         List<String> listOfCombinedNumbersFromLeftAndRight =
@@ -23,6 +21,7 @@ public class Main {
                         .mapToObj(i -> listOfFirstNumbersFromLeft.get(i) + listOfFirstNumbersFromRight.get(i)).toList();
 
         int totalSum = dayOneClean.addAllNumbersTogether(listOfCombinedNumbersFromLeftAndRight);
+        System.out.println(totalSum);
 
     }
 }

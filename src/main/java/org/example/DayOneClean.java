@@ -10,7 +10,7 @@ import java.util.List;
 
 public class DayOneClean {
 
-    public String returnFirstNumberFromString(String currentString, boolean reversed) {
+    public String returnFirstNumberFromString(String currentString, boolean reversed, boolean partOne) {
 
         List<String> listOfNumbersAsWords;
         if (reversed) {
@@ -28,7 +28,7 @@ public class DayOneClean {
                 found = true;
             }
             for (int j = 0; j < listOfNumbersAsWords.size(); j++) {
-                if (currentString.startsWith(listOfNumbersAsWords.get(j), i) && !found) {
+                if (currentString.startsWith(listOfNumbersAsWords.get(j), i) && !found && !partOne) {
                     firstNumber = (j+1);
                     found = true;
                 }
