@@ -20,25 +20,18 @@ public class DayOneClean {
             listOfNumbersAsWords = new ArrayList<>(Arrays.asList("one", "two", "three", "four", "five", "six", "seven", "eight", "nine" ));
         }
 
-        Integer firstNumber = null;
         for (int i = 0; i < currentString.length(); i++) {
             boolean found = false;
             if (Character.isDigit(currentString.charAt(i))) {
-                firstNumber = Integer.parseInt(String.valueOf(currentString.charAt(i)));
-                found = true; //return
+                return String.valueOf(currentString.charAt(i));
             }
             for (int j = 0; j < listOfNumbersAsWords.size(); j++) {
                 if (currentString.startsWith(listOfNumbersAsWords.get(j), i) && !found && !partOne) {
-                    firstNumber = (j+1);
-                    found = true; //return
+                    return String.valueOf(j+1);
                 }
             }
-            if (found) {
-                break;
-            }
         }
-
-        return String.valueOf(firstNumber);
+        return null;
     }
 
     public Integer addAllNumbersTogether(List<String> listOfCombinedNumbers) {
