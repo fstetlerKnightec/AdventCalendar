@@ -25,6 +25,22 @@ public class DayTwoClean {
         return totalSumOfIndexFromAllowedGames;
     }
 
+
+    public Integer maxNumberOfBallsPerGame(String currentGame, String color) {
+        int maxBallsPerGame = 0;
+        for (int i = 0; i < currentGame.length(); i++) {
+            maxBallsPerGame += numberOfBallsPerHand(currentGame, color, i);
+        }
+        return maxBallsPerGame;
+    }
+
+    public Integer multiplyNumberOfEachColorBalls(int blueBallsPerGame, int redBallsPerGame, int greenBallsPerGame) {
+        return blueBallsPerGame * redBallsPerGame * greenBallsPerGame;
+    }
+
+
+
+
     public static boolean isAllowedGame(String currentGame) {
         int numberOfGreenBalls = 0;
         int numberOfBlueBalls = 0;
