@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DayOne {
 
@@ -30,6 +32,8 @@ public class DayOne {
     }
 
     public List<String> returnFirstNumberFromLeft(List<String> listOfStrings) {
+
+
         Integer firstNumber = null;
         List<String> firstNumberList = new ArrayList<>();
         for (int i = 0; i < listOfStrings.size(); i++) {
@@ -40,6 +44,7 @@ public class DayOne {
                     firstNumber = Integer.parseInt(String.valueOf(currentString.charAt(j)));
                     break;
                 }
+
 
                 if (currentString.startsWith("one", j)) {
                     firstNumber = 1;
