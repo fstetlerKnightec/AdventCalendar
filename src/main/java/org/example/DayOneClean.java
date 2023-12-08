@@ -25,12 +25,12 @@ public class DayOneClean {
             boolean found = false;
             if (Character.isDigit(currentString.charAt(i))) {
                 firstNumber = Integer.parseInt(String.valueOf(currentString.charAt(i)));
-                found = true;
+                found = true; //return
             }
             for (int j = 0; j < listOfNumbersAsWords.size(); j++) {
                 if (currentString.startsWith(listOfNumbersAsWords.get(j), i) && !found && !partOne) {
                     firstNumber = (j+1);
-                    found = true;
+                    found = true; //return
                 }
             }
             if (found) {
