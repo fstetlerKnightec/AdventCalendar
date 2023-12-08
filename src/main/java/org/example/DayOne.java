@@ -33,7 +33,6 @@ public class DayOne {
 
     public List<String> returnFirstNumberFromLeft(List<String> listOfStrings) {
 
-
         Integer firstNumber = null;
         List<String> firstNumberList = new ArrayList<>();
         for (int i = 0; i < listOfStrings.size(); i++) {
