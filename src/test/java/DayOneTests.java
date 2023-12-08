@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DayOneTests {
 
     @Test
-    public void testTotalSumOfCalculationOfEntireListPartOne() {
+    public void testTotalSumOfEntireListPartOne() {
         List<String> listOfStrings = new ArrayList<>(Arrays.asList(
                 "1abc2",
                 "pqr3stu8vwx",
@@ -35,7 +35,7 @@ public class DayOneTests {
     }
 
     @Test
-    public void testTotalSumOfCalculationOfEntireListPartTwo() {
+    public void testTotalSumOfEntireListPartTwo() {
         List<String> listOfStrings = new ArrayList<>(Arrays.asList(
                 "two1nine",
                 "eightwothree",
