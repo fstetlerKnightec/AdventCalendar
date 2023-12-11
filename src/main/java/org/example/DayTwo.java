@@ -84,15 +84,15 @@ public class DayTwo {
             }
 
         }
-        System.out.println("maxgreenpergame = " + maxGreenPerGame);
-        System.out.println("maxredpergame = " + maxRedPerGame);
-        System.out.println("maxbluepergame = " + maxBluePerGame);
+//        System.out.println("maxgreenpergame = " + maxGreenPerGame);
+//        System.out.println("maxredpergame = " + maxRedPerGame);
+//        System.out.println("maxbluepergame = " + maxBluePerGame);
 
 
 
         int powerValue = maxGreenPerGame * maxBluePerGame * maxRedPerGame;
 
-        System.out.println("powered value = " + powerValue);
+//        System.out.println("powered value = " + powerValue);
         return powerValue;
     }
 

@@ -25,21 +25,38 @@ public class DayTwoClean {
         return totalSumOfIndexFromAllowedGames;
     }
 
+    public Integer powerOfCurrentGame(String currentGame) {
 
-    public Integer maxNumberOfBallsPerGame(String currentGame, String color) {
-        int maxBallsPerGame = 0;
+        int totalRedPerGame = 0;
+        int totalBluePerGame = 0;
+        int totalGreenPerGame = 0;
+
+        int maxRedPerGame = 0;
+        int maxBluePerGame = 0;
+        int maxGreenPerGame = 0;
+
         for (int i = 0; i < currentGame.length(); i++) {
-            maxBallsPerGame += numberOfBallsPerHand(currentGame, color, i);
+            maxGreenPerGame = maxNumberOfBallPerGame(currentGame, "green", i, totalGreenPerGame, maxGreenPerGame);
+            maxRedPerGame = maxNumberOfBallPerGame(currentGame, "red", i, totalRedPerGame, maxRedPerGame);
+            maxBluePerGame = maxNumberOfBallPerGame(currentGame, "blue", i, totalBluePerGame, maxBluePerGame);
         }
-        return maxBallsPerGame;
+
+        return maxGreenPerGame * maxBluePerGame * maxRedPerGame;
     }
 
-    public Integer multiplyNumberOfEachColorBalls(int blueBallsPerGame, int redBallsPerGame, int greenBallsPerGame) {
-        return blueBallsPerGame * redBallsPerGame * greenBallsPerGame;
+    public Integer maxNumberOfBallPerGame(String currentGame, String color, int index, int totalBallPerGame, int maxBallPerGame) {
+        if (currentGame.startsWith(color, index)) {
+            totalBallPerGame += Integer.parseInt(String.valueOf(currentGame.charAt(index - 2)));
+            if (!String.valueOf(currentGame.charAt(index - 3)).isBlank()) {
+                totalBallPerGame += Integer.parseInt(String.valueOf(currentGame.charAt(index - 3))) * 10;
+            }
+
+            if (totalBallPerGame > maxBallPerGame) {
+                maxBallPerGame = totalBallPerGame;
+            }
+        }
+        return maxBallPerGame;
     }
-
-
-
 
     public static boolean isAllowedGame(String currentGame) {
         int numberOfGreenBalls = 0;
@@ -52,6 +69,7 @@ public class DayTwoClean {
             if (String.valueOf(currentGame.charAt(i)).equals(";")) {
                 if (numberOfGreenBalls > ALLOWED_GREEN || numberOfBlueBalls > ALLOWED_BLUE || numberOfRedBalls > ALLOWED_RED) {
                     allowedGame = false;
+                    break;
                 }
                 numberOfGreenBalls = 0;
                 numberOfRedBalls = 0;
@@ -75,9 +93,7 @@ public class DayTwoClean {
             throw new FileNotFoundException("Could not find a file under path " + filePath);
         }
 
-        List<String> sentecesWithAddedSemicolon = sentences.stream().map(s -> s + ";").toList();
-
-        return sentecesWithAddedSemicolon;
+        return sentences.stream().map(s -> s + ";").toList();
     }
 
     public static Integer numberOfBallsPerHand(String currentGame, String color, int index) { //Make an enum for color

@@ -1,35 +1,16 @@
 package org.example;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
 
-        DayTwoClean dayTwoClean = new DayTwoClean();
-        DayOneClean dayOneClean = new DayOneClean();
-
-        List<String> listOfGames = dayTwoClean.readGamesFromFileAndPutInList("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayTwo.txt");
-        System.out.println(listOfGames.get(5));
-
-        System.out.println(dayTwoClean.maxNumberOfBallsPerGame(listOfGames.get(5), "blue"));
-        System.out.println(dayTwoClean.maxNumberOfBallsPerGame(listOfGames.get(5), "Green"));
-        System.out.println(dayTwoClean.maxNumberOfBallsPerGame(listOfGames.get(5), "red"));
-
-//        int totalValue = 0;
-//        for (int i = 0; i < listOfGames.size(); i++) {
-//            blueBalls = dayTwoClean.maxNumberOfBallsPerGame(listOfGames.get(5), "blue");
-//            redBalls = dayTwoClean.maxNumberOfBallsPerGame(listOfGames.get(5), "red");
-//            greenBalls = dayTwoClean.maxNumberOfBallsPerGame(listOfGames.get(5), "green");
-//            totalValue += dayTwoClean.multiplyNumberOfEachColorBalls(blueBalls, redBalls, greenBalls);
-//        }
+        // DAY ONE OUTPUT
+//        DayOneClean dayOneClean = new DayOneClean();
 //
-//
-//        System.out.println(totalValue);
-
-
-
 //        List<String> listOfStrings = dayOneClean.readFileAndReturnList("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayOne.txt");
 //
 //        List<String> listOfFirstNumbersFromLeft = listOfStrings.stream()
@@ -44,6 +25,22 @@ public class Main {
 //
 //        int totalSum = dayOneClean.addAllNumbersTogether(listOfCombinedNumbersFromLeftAndRight);
 //        System.out.println(totalSum);
+
+
+        // DAY TWO OUTPUT
+        DayTwoClean dayTwoClean = new DayTwoClean();
+
+        List<String> listOfGames = dayTwoClean.readGamesFromFileAndPutInList("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayTwo.txt");
+
+        System.out.println(dayTwoClean.sumOfAllIDsFromAllowedGames(listOfGames));
+
+        int totalValue = 0;
+        for (String s : listOfGames) {
+            totalValue += dayTwoClean.powerOfCurrentGame(s);
+        }
+        System.out.println(totalValue);
+
+
 
     }
 }
