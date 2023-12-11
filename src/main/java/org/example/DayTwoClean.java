@@ -63,13 +63,11 @@ public class DayTwoClean {
         int numberOfBlueBalls = 0;
         int numberOfRedBalls = 0;
 
-        boolean allowedGame = true;
 
         for (int i = 0; i < currentGame.length(); i++) {
             if (String.valueOf(currentGame.charAt(i)).equals(";")) {
                 if (numberOfGreenBalls > ALLOWED_GREEN || numberOfBlueBalls > ALLOWED_BLUE || numberOfRedBalls > ALLOWED_RED) {
-                    allowedGame = false;
-                    break;
+                    return false;
                 }
                 numberOfGreenBalls = 0;
                 numberOfRedBalls = 0;
@@ -81,7 +79,7 @@ public class DayTwoClean {
             numberOfRedBalls += numberOfBallsPerHand(currentGame, "red", i);
         }
 
-        return allowedGame;
+        return true;
     }
 
     public List<String> readGamesFromFileAndPutInList(String filePath) throws FileNotFoundException {
