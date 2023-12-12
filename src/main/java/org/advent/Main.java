@@ -1,6 +1,6 @@
 package org.advent;
 
-import org.advent.daythree.DayThree;
+import org.advent.daytwo.DayTwoReworked;
 
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -9,17 +9,26 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException {
 
 
+        DayTwoReworked dayTwoReworked = new DayTwoReworked();
 
-        // DAY THREE OUTPUT
+        List<String> listOfGames = dayTwoReworked.readGamesFromFileAndPutInList("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayTwo.txt");
 
-        DayThree dayThree = new DayThree();
+        String currentGame = listOfGames.get(0);
+        System.out.println(currentGame);
 
-        List<String> listOfStrings = dayThree.readFileAndReturnList("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayThree.txt");
 
-
-        System.out.println(DayThree.eachNumberAndItsRowAndColumnIndexFromList(listOfStrings).get(0).size());
-
-        dayThree.numberHasAdjacantWeirdSymbol(listOfStrings);
+        System.out.println(dayTwoReworked.getListOfRoundsFromCurrentGame(currentGame, 0).get(0).getRoundString());
+        System.out.println(dayTwoReworked.getGameObjectFromGameString(currentGame, 0).getMaxNumberOfGreenNeeded());
+//        // DAY THREE OUTPUT
+//
+//        DayThree dayThree = new DayThree();
+//
+//        List<String> listOfStrings = dayThree.readFileAndReturnList("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayThree.txt");
+//
+//
+//        System.out.println(DayThree.eachNumberAndItsRowAndColumnIndexFromList(listOfStrings).get(0).size());
+//
+//        dayThree.numberHasAdjacantWeirdSymbol(listOfStrings);
 
 
 //        // DAY ONE OUTPUT

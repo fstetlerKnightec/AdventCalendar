@@ -5,82 +5,84 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DayTwoReworked {
 
 
+    List<Game> allGames = new ArrayList<>();
 
-    public Integer sumOfAllIDsFromAllowedGames(List<String> listOfGames) {
+    List<Round> allRounds = new ArrayList<>();
 
-        int totalSumOfIndexFromAllowedGames = 0;
 
-        for (int i = 0; i < listOfGames.size(); i++) {
-            if (isAllowedGame(listOfGames.get(i))) {
-                totalSumOfIndexFromAllowedGames += i+1;
-            }
+    public String getCutString(String currentGame) {
+        return " " + currentGame.substring(currentGame.indexOf(": ") + 2);
+    }
+    public List<Round> getListOfRoundsFromCurrentGame(String currentGame, int gameIndex) {
+
+        Round round;
+        String cutString = getCutString(currentGame);
+        List<String> listOfStringsForGame = new ArrayList<>(Arrays.asList(cutString.split(";")));
+        List<Round> listOfRounds = new ArrayList<>();
+
+        for (int i = 0; i < listOfStringsForGame.size(); i++) {
+            round = new Round();
+            round.setRoundNumber(i);
+            round.setGameNumber(gameIndex);
+            round.setRoundString(listOfStringsForGame.get(i));
+            round.setNumberOfGreen(getNumberOfBall(listOfStringsForGame.get(i), "green"));
+            round.setNumberOfBlue(getNumberOfBall(listOfStringsForGame.get(i), "blue"));
+            round.setNumberOfRed(getNumberOfBall(listOfStringsForGame.get(i), "red"));
+            listOfRounds.add(round);
+
         }
-        return totalSumOfIndexFromAllowedGames;
+        return listOfRounds;
+
     }
 
-    public Integer powerOfCurrentGame(String currentGame) {
+    public Game getGameObjectFromGameString(String currentGameAsString, int index) {
 
-        int totalRedPerGame = 0;
-        int totalBluePerGame = 0;
-        int totalGreenPerGame = 0;
+        Game game = new Game();
+        List<Round> rounds = getListOfRoundsFromCurrentGame(currentGameAsString, index);
 
-        int maxRedPerGame = 0;
-        int maxBluePerGame = 0;
-        int maxGreenPerGame = 0;
+        int totalBlue = 0;
+        int totalGreen = 0;
+        int totalRed = 0;
+        Round currentRound = null;
+        for (int i = 0; i < rounds.size(); i++) {
+            currentRound = rounds.get(i);
+            totalBlue += currentRound.getNumberOfBlue();
+            totalGreen += currentRound.getNumberOfGreen();
+            totalRed += currentRound.getNumberOfRed();
 
-        for (int i = 0; i < currentGame.length(); i++) {
-            maxGreenPerGame = maxNumberOfBallPerGame(currentGame, "green", i, totalGreenPerGame, maxGreenPerGame);
-            maxRedPerGame = maxNumberOfBallPerGame(currentGame, "red", i, totalRedPerGame, maxRedPerGame);
-            maxBluePerGame = maxNumberOfBallPerGame(currentGame, "blue", i, totalBluePerGame, maxBluePerGame);
+            game.maxNumberOfBall(currentRound, "green");
+            game.maxNumberOfBall(currentRound, "blue");
+            game.maxNumberOfBall(currentRound, "red");
         }
 
-        return maxGreenPerGame * maxBluePerGame * maxRedPerGame;
+        game.setGameIndex(currentRound.getGameNumber());
+        game.setTotalNumberOfBlue(totalBlue);
+        game.setTotalNumberOfGreen(totalGreen);
+        game.setTotalNumberOfRed(totalRed);
+        game.setNumberOfRounds(rounds.size());
+
+        return game;
     }
 
-    public Integer maxNumberOfBallPerGame(String currentGame, String color, int index, int totalBallPerGame, int maxBallPerGame) {
-        if (currentGame.startsWith(color, index)) {
-            totalBallPerGame += Integer.parseInt(String.valueOf(currentGame.charAt(index - 2)));
-            if (!String.valueOf(currentGame.charAt(index - 3)).isBlank()) {
-                totalBallPerGame += Integer.parseInt(String.valueOf(currentGame.charAt(index - 3))) * 10;
-            }
 
-            if (totalBallPerGame > maxBallPerGame) {
-                maxBallPerGame = totalBallPerGame;
-            }
-        }
-        return maxBallPerGame;
-    }
-
-    public static boolean isAllowedGame(String currentGame) {
-        final Integer allowedRed = 12;
-        final Integer allowedGreen = 13;
-        final Integer allowedBlue  = 14;
-        int numberOfGreenBalls = 0;
-        int numberOfBlueBalls = 0;
-        int numberOfRedBalls = 0;
-
-
-        for (int i = 0; i < currentGame.length(); i++) {
-            if (String.valueOf(currentGame.charAt(i)).equals(";")) {
-                if (numberOfGreenBalls > ALLOWED_GREEN || numberOfBlueBalls > ALLOWED_BLUE || numberOfRedBalls > ALLOWED_RED) {
-                    return false;
+    public static int getNumberOfBall(String currentRound, String color) {
+        for (int i = 0; i < currentRound.length(); i++) {
+            if (currentRound.startsWith(color, i)) {
+                if (characterAtIndexNotBlank(currentRound, i)) {
+                    return 10 * convertCharacterAtIndexToInt(currentRound, i, 3) + convertCharacterAtIndexToInt(currentRound, i, 2);
+                } else {
+                    return convertCharacterAtIndexToInt(currentRound, i, 2);
                 }
-                numberOfGreenBalls = 0;
-                numberOfRedBalls = 0;
-                numberOfBlueBalls = 0;
             }
-
-            numberOfGreenBalls += numberOfBallsPerHand(currentGame, "green", i);
-            numberOfBlueBalls += numberOfBallsPerHand(currentGame, "blue", i);
-            numberOfRedBalls += numberOfBallsPerHand(currentGame, "red", i);
         }
-
-        return true;
+        return 0;
     }
 
     public List<String> readGamesFromFileAndPutInList(String filePath) throws FileNotFoundException {
@@ -92,18 +94,15 @@ public class DayTwoReworked {
             throw new FileNotFoundException("Could not find a file under path " + filePath);
         }
 
-        return sentences.stream().map(s -> s + ";").toList();
+        return sentences;
     }
 
-    public static Integer numberOfBallsPerHand(String currentGame, String color, int index) { //Make an enum for color
-        int totalBallsPerHand = 0;
-        if (currentGame.startsWith(color, index)) {
-            totalBallsPerHand += Integer.parseInt(String.valueOf(currentGame.charAt(index - 2)));
-            if (!String.valueOf(currentGame.charAt(index - 3)).isBlank()) {
-                totalBallsPerHand += Integer.parseInt(String.valueOf(currentGame.charAt(index - 3))) * 10;
-            }
-        }
-
-        return totalBallsPerHand;
+    public static boolean characterAtIndexNotBlank(String currentGame, int index) {
+        return !String.valueOf(currentGame.charAt(index - 3)).isBlank();
     }
+
+    public static int convertCharacterAtIndexToInt(String currentGame, int index, int offset) {
+        return Integer.parseInt(String.valueOf(currentGame.charAt(index - offset)));
+    }
+
 }
