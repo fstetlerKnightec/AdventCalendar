@@ -1,4 +1,4 @@
-package org.advent.dayone;
+package org.advent.dayone.oldStuff;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

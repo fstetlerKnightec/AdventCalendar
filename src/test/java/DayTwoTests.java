@@ -1,4 +1,4 @@
-import org.advent.daytwo.DayTwoClean;
+import org.advent.daytwo.oldStuff.DayTwoClean;
 import org.junit.Test;
 
 import java.util.ArrayList;
