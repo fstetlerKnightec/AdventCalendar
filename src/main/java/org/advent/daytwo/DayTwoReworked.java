@@ -11,12 +11,6 @@ import java.util.List;
 
 public class DayTwoReworked {
 
-
-    List<Game> allGames = new ArrayList<>();
-
-    List<Round> allRounds = new ArrayList<>();
-
-
     public String getCutString(String currentGame) {
         return " " + currentGame.substring(currentGame.indexOf(": ") + 2);
     }
@@ -28,13 +22,14 @@ public class DayTwoReworked {
         List<Round> listOfRounds = new ArrayList<>();
 
         for (int i = 0; i < listOfStringsForGame.size(); i++) {
-            round = new Round();
-            round.setRoundNumber(i);
-            round.setGameNumber(gameIndex);
-            round.setRoundString(listOfStringsForGame.get(i));
-            round.setNumberOfGreen(getNumberOfBall(listOfStringsForGame.get(i), "green"));
-            round.setNumberOfBlue(getNumberOfBall(listOfStringsForGame.get(i), "blue"));
-            round.setNumberOfRed(getNumberOfBall(listOfStringsForGame.get(i), "red"));
+            round = new Round(
+                    cutString,
+                    i,
+                    gameIndex,
+                    getNumberOfBall(listOfStringsForGame.get(i), "green"),
+                    getNumberOfBall(listOfStringsForGame.get(i), "red"),
+                    getNumberOfBall(listOfStringsForGame.get(i), "blue"));
+
             listOfRounds.add(round);
 
         }

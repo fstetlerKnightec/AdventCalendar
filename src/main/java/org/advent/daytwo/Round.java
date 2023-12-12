@@ -2,6 +2,15 @@ package org.advent.daytwo;
 
 public class Round {
 
+    public Round(String roundString, int roundNumber, int gameNumber, int numberOfGreen, int numberOfRed, int numberOfBlue) {
+        this.roundString = roundString;
+        this.roundNumber = roundNumber;
+        this.gameNumber = gameNumber;
+        this.numberOfGreen = numberOfGreen;
+        this.numberOfRed = numberOfRed;
+        this.numberOfBlue = numberOfBlue;
+    }
+
     public String roundString;
     public int roundNumber;
     public int gameNumber;
@@ -23,13 +32,6 @@ public class Round {
 
     public void setGameNumber(int gameNumber) {
         this.gameNumber = gameNumber;
-    }
-
-
-    public Round(int numberOfRed, int numberOfBlue, int numberOfGreen) {
-        this.numberOfRed = numberOfRed;
-        this.numberOfBlue = numberOfBlue;
-        this.numberOfGreen = numberOfGreen;
     }
 
     public Round() {
