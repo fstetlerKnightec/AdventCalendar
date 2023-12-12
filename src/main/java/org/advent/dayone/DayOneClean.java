@@ -1,4 +1,4 @@
-package org.example;
+package org.advent.dayone;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

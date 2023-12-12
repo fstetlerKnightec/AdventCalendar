@@ -1,4 +1,4 @@
-package org.example;
+package org.advent.daytwo;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class DayTwo {
+public class DayTwoOld {
     public static Integer ALLOWED_RED = 12;
     public static Integer ALLOWED_GREEN = 13;
     public static Integer ALLOWED_BLUE = 14;

@@ -1,4 +1,4 @@
-package org.example;
+package org.advent.daytwo;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

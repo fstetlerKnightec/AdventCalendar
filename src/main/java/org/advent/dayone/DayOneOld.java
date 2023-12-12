@@ -1,14 +1,12 @@
-package org.example;
+package org.advent.dayone;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class DayOne {
+public class DayOneOld {
 
     public Integer addAllNumbersTogether(List<String> listOfStrings) {
         int totalNumber = 0;

@@ -1,4 +1,6 @@
-package org.example;
+package org.advent;
+
+import org.advent.daythree.DayThree;
 
 import java.io.FileNotFoundException;
 import java.util.List;

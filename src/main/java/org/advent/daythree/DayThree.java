@@ -1,4 +1,4 @@
-package org.example;
+package org.advent.daythree;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
