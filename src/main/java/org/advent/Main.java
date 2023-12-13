@@ -10,10 +10,13 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
 
+
+        // DAY TWO REWORKED OUTPUT
         DayTwoReworked dayTwoReworked = new DayTwoReworked();
         List<String> listOfGames = dayTwoReworked.readGamesFromFileAndPutInList("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayTwo.txt");
-        System.out.println(dayTwoReworked.sumOfAllValidIDs(listOfGames, 13, 14, 12));
-        System.out.println(dayTwoReworked.totalPowerOfAllGames(listOfGames));
+        System.out.println("Sum of all valid IDs for day two = " + dayTwoReworked.sumOfAllValidIDs(listOfGames, 13, 14, 12));
+        System.out.println("Total power of all games for day two = " + dayTwoReworked.totalPowerOfAllGames(listOfGames));
+
 
 //        // DAY THREE OUTPUT
 //
