@@ -62,11 +62,27 @@ public class Main {
         String currentLine = list3.get(1);
         System.out.println(currentLine);
 
-        List<Number> numbers = dayThree.numbersOnCurrentLine(currentLine, 1);
+        List<Number> listOfAllNumbers = new ArrayList<>();
+        for (int i = 0; i < list3.size(); i++) {
 
-        for (int i = 0; i < numbers.size(); i++) {
-            System.out.println(numbers.get(i).getNumberValue());
+            List<Number> numbers = dayThree.numbersOnCurrentLine(list3, list3.get(i), i);
+            listOfAllNumbers.addAll(numbers);
         }
+
+        System.out.println(listOfAllNumbers.get(11).getColumn());
+
+
+
+
+//        for (int i = 0; i < numbers.size(); i++) {
+//            System.out.println(numbers.get(i).getNumberValue());
+////            System.out.println(numbers.get(i).getRow());
+////            System.out.println(numbers.get(i).getColumn());
+//            System.out.println(numbers.get(i).getHasAdjacentToSymbol());
+//        }
+
+//        Number number = numbers.get(11);
+//        System.out.println(number.doesNumberHasAdjacantSymbol(list3, "*", number.getRow(), number.getColumn(), String.valueOf(number.getNumberValue()).length()));
 
 
 

@@ -14,7 +14,7 @@ public class DayThree {
     // then sum it all
 
 
-    public List<Number> numbersOnCurrentLine(String currentLine, int rowIndex) {
+    public List<Number> numbersOnCurrentLine(List<String> listOfStrings, String currentLine, int rowIndex) {
         List<Number> numbers = new ArrayList<>();
 
         for (int i = 0; i < currentLine.length(); i++) {
@@ -33,10 +33,10 @@ public class DayThree {
     }
 
     public int numberAtIndexOnRow(String currentLine, int columnIndex) {
-        if (!isCharDigitOnIndex(currentLine, columnIndex, 1)) {
+        if (isCharNotDigitOnIndex(currentLine, columnIndex, 1)) {
             return Integer.parseInt(String.valueOf(currentLine.charAt(columnIndex)));
         }
-        if (!isCharDigitOnIndex(currentLine, columnIndex, 2)) {
+        if (isCharNotDigitOnIndex(currentLine, columnIndex, 2)) {
             return Integer.parseInt(currentLine.charAt(columnIndex) + String.valueOf(currentLine.charAt(columnIndex + 1)));
         }
 
@@ -44,9 +44,14 @@ public class DayThree {
 
     }
 
-    public boolean isCharDigitOnIndex(String currentLine, int index, int offset) {
-        return Character.isDigit(currentLine.charAt(index + offset));
+//    public int charToInt(String currentLine, int columnIndex, int offset) {
+//        return Integer.parseInt(String.valueOf(currentLine.charAt(columnIndex + offset)))
+//    }
+
+    public boolean isCharNotDigitOnIndex(String currentLine, int index, int offset) {
+        return !Character.isDigit(currentLine.charAt(index + offset));
     }
+
 
 
 
