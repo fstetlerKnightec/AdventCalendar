@@ -14,17 +14,44 @@ public class DayThree {
     // then sum it all
 
 
+    public List<Number> numbersOnCurrentLine(String currentLine, int rowIndex) {
+        List<Number> numbers = new ArrayList<>();
 
-    public void numberHasAdjacantWeirdSymbol(List<String> listOfStrings) {
+        for (int i = 0; i < currentLine.length(); i++) {
+            if (Character.isDigit(currentLine.charAt(i))) {
+                numbers.add(new Number());
+                numbers.get(i).setRow(rowIndex);
+                numbers.get(i).setColumn(i);
+                numbers.get(i).setNumberValue(numberAtIndexOnRow(currentLine, i));
+                numbers.get(i).setHasAdjacentToSymbol(false);
+            }
+        }
 
+        return numbers;
+    }
 
-
-
-
-
+    public int numberAtIndexOnRow(String currentLine, int columnIndex) {
+        int totalValue;
+        int currentValueOnIndex;
+        if (!isCharDigitOnIndex(currentLine, columnIndex, 1)) {
+            return currentLine.charAt(columnIndex);
+        }
+        if (!isCharDigitOnIndex(currentLine, columnIndex, 2)) {
+            return 10 * currentLine.charAt(columnIndex) + currentLine.charAt(columnIndex + 1);
+        }
+        return 100 * currentLine.charAt(columnIndex) + 10 * currentLine.charAt(columnIndex) + currentLine.charAt(columnIndex);
 
 
     }
+
+    public boolean isCharDigitOnIndex(String currentLine, int index, int offset) {
+        return Character.isDigit(currentLine.charAt(index + offset));
+    }
+
+
+
+
+
 
 
 
@@ -109,10 +136,7 @@ public class DayThree {
         }
 
         listOfStrings.add(0, ".".repeat(141));
-
         listOfStrings.add(".".repeat(141));
-
-//        String stringOfDots = "." * 140;
 
         return listOfStrings;
     }
