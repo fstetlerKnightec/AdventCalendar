@@ -19,11 +19,13 @@ public class DayThree {
 
         for (int i = 0; i < currentLine.length(); i++) {
             if (Character.isDigit(currentLine.charAt(i))) {
-                numbers.add(new Number());
-                numbers.get(i).setRow(rowIndex);
-                numbers.get(i).setColumn(i);
-                numbers.get(i).setNumberValue(numberAtIndexOnRow(currentLine, i));
-                numbers.get(i).setHasAdjacentToSymbol(false);
+                Number number = new Number();
+                number.setRow(rowIndex);
+                number.setColumn(i);
+                number.setNumberValue(numberAtIndexOnRow(currentLine, i));
+                number.setHasAdjacentToSymbol(false);
+                numbers.add(number);
+                i = i + String.valueOf(number.getNumberValue()).length();
             }
         }
 
@@ -31,16 +33,14 @@ public class DayThree {
     }
 
     public int numberAtIndexOnRow(String currentLine, int columnIndex) {
-        int totalValue;
-        int currentValueOnIndex;
         if (!isCharDigitOnIndex(currentLine, columnIndex, 1)) {
-            return currentLine.charAt(columnIndex);
+            return Integer.parseInt(String.valueOf(currentLine.charAt(columnIndex)));
         }
         if (!isCharDigitOnIndex(currentLine, columnIndex, 2)) {
-            return 10 * currentLine.charAt(columnIndex) + currentLine.charAt(columnIndex + 1);
+            return Integer.parseInt(currentLine.charAt(columnIndex) + String.valueOf(currentLine.charAt(columnIndex + 1)));
         }
-        return 100 * currentLine.charAt(columnIndex) + 10 * currentLine.charAt(columnIndex) + currentLine.charAt(columnIndex);
 
+        return Integer.parseInt(currentLine.charAt(columnIndex) + String.valueOf(currentLine.charAt(columnIndex + 1)) + currentLine.charAt(columnIndex + 2));
 
     }
 
