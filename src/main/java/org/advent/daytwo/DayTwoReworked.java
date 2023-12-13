@@ -16,15 +16,13 @@ public class DayTwoReworked {
     }
     public List<Round> getListOfRoundsFromCurrentGame(String currentGame, int gameIndex) {
 
-        Round round;
         String cutString = getCutString(currentGame);
         List<String> listOfStringsForGame = new ArrayList<>(Arrays.asList(cutString.split(";")));
-        String roundString;
         List<Round> listOfRounds = new ArrayList<>();
 
         for (int i = 0; i < listOfStringsForGame.size(); i++) {
-            roundString = listOfStringsForGame.get(i);
-            round = new Round(
+            String roundString = listOfStringsForGame.get(i);
+            Round round = new Round(
                     roundString,
                     i,
                     gameIndex,
@@ -34,7 +32,6 @@ public class DayTwoReworked {
             listOfRounds.add(round);
         }
         return listOfRounds;
-
     }
 
     public int sumOfAllValidIDs(List<String> gameStrings, int allowedGreen, int allowedBlue, int allowedRed) {
@@ -42,9 +39,9 @@ public class DayTwoReworked {
 
         List<Game> gameObjects = getListOfAllGames(gameStrings);
 
-        for (int i = 0; i < gameObjects.size(); i++) {
-            if (gameObjects.get(i).canGameBePlayedWithFollowingBalls(allowedGreen, allowedBlue, allowedRed)) {
-                totalSum += gameObjects.get(i).gameIndex + 1;
+        for (Game gameObject : gameObjects) {
+            if (gameObject.canGameBePlayedWithFollowingBalls(allowedGreen, allowedBlue, allowedRed)) {
+                totalSum += gameObject.getGameIndex() + 1;
             }
         }
         return totalSum;
@@ -55,8 +52,8 @@ public class DayTwoReworked {
 
         List<Game> gameObjects = getListOfAllGames(gameStrings);
 
-        for (int i = 0; i < gameObjects.size(); i++) {
-            totalPower += gameObjects.get(i).getMaxNumberOfBlueNeeded() * gameObjects.get(i).getMaxNumberOfRedNeeded() * gameObjects.get(i).getMaxNumberOfGreenNeeded();
+        for (Game gameObject : gameObjects) {
+            totalPower += gameObject.getMaxNumberOfBlueNeeded() * gameObject.getMaxNumberOfRedNeeded() * gameObject.getMaxNumberOfGreenNeeded();
         }
         return totalPower;
 
@@ -74,30 +71,13 @@ public class DayTwoReworked {
     public Game getGameObjectFromGameString(String currentGameAsString, int index) {
 
         List<Round> rounds = getListOfRoundsFromCurrentGame(currentGameAsString, index);
-        Game game = new Game(index, rounds);
-        game.setGameString(currentGameAsString);
+        Game game = new Game(index);
 
-        int totalBlue = 0;
-        int totalGreen = 0;
-        int totalRed = 0;
-        Round currentRound;
-        for (int i = 0; i < rounds.size(); i++) {
-            currentRound = rounds.get(i);
-            totalBlue += currentRound.getNumberOfBlue();
-            totalGreen += currentRound.getNumberOfGreen();
-            totalRed += currentRound.getNumberOfRed();
-
-
-            game.maxNumberOfBall(currentRound, "green");
-            game.maxNumberOfBall(currentRound, "blue");
-            game.maxNumberOfBall(currentRound, "red");
+        for (Round round : rounds) {
+            game.maxNumberOfBall(round, "green");
+            game.maxNumberOfBall(round, "blue");
+            game.maxNumberOfBall(round, "red");
         }
-
-        game.setTotalNumberOfBlue(totalBlue);
-        game.setTotalNumberOfGreen(totalGreen);
-        game.setTotalNumberOfRed(totalRed);
-        game.setNumberOfRounds(rounds.size());
-
         return game;
     }
 
