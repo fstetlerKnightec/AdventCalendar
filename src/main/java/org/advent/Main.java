@@ -38,8 +38,7 @@ public class Main {
         int totalSum2 = dayOneClean.addAllNumbersTogether(listOfCombinedNumbersFromLeftAndRight2);
         System.out.println("Day One ----------------------------------");
         System.out.println("Total sum of all values in list = " + totalSum);
-        System.out.println("Total sum of all numbers, even the text ones, in list = " + totalSum2
-        );
+        System.out.println("Total sum of all numbers, even the text ones, in list = " + totalSum2);
 
         // DAY TWO REWORKED OUTPUT
         DayTwoReworked dayTwoReworked = new DayTwoReworked();
