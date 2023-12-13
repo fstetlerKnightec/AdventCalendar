@@ -2,10 +2,8 @@ package org.advent;
 
 import org.advent.dayone.DayOneClean;
 import org.advent.daytwo.DayTwoReworked;
-import org.advent.daytwo.Game;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
