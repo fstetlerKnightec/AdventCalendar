@@ -3,29 +3,22 @@ package org.advent.daytwo;
 import java.util.List;
 
 public class Game {
-
-    public int gameIndex;
     public int numberOfRounds;
+    public String gameString;
+
     public int totalNumberOfRed;
+
     public int totalNumberOfGreen;
     public int totalNumberOfBlue;
     public int maxNumberOfGreenNeeded;
     public int maxNumberOfBlueNeeded;
     public int maxNumberOfRedNeeded;
-
-    public Game() {
-
+    public int gameIndex;
+    public List<Round> listOfRoundsInGame;
+    public Game(int gameIndex, List<Round> listOfRoundsInGame) {
+        this.gameIndex = gameIndex;
+        this.listOfRoundsInGame = listOfRoundsInGame;
     }
-
-//    public Game(int id, List<Round> rounds){
-//
-//    }
-
-//    game.canIplayWithballs(int red, int green, int blue){
-//        for(var round : rounds){
-//
-//        }
-//    }
 
     public Game(int numberOfRed, int numberOfGreen, int numberOfBlue, int maxNumberOfGreenNeeded, int maxNumberOfBlueNeeded, int maxNumberOfRedNeeded, int numberOfRounds) {
         this.totalNumberOfRed = numberOfRed;
@@ -35,6 +28,10 @@ public class Game {
         this.maxNumberOfBlueNeeded = maxNumberOfBlueNeeded;
         this.maxNumberOfRedNeeded = maxNumberOfRedNeeded;
         this.numberOfRounds = numberOfRounds;
+    }
+
+    public boolean canGameBePlayedWithFollowingBalls(int allowedGreen, int allowedBlue, int allowedRed) {
+        return maxNumberOfGreenNeeded <= allowedGreen && maxNumberOfBlueNeeded <= allowedBlue && maxNumberOfRedNeeded <= allowedRed;
     }
 
     public void maxNumberOfBall(Round currentRound, String color) {
@@ -53,6 +50,22 @@ public class Game {
                 this.maxNumberOfRedNeeded = currentRound.getNumberOfRed();
             }
         }
+    }
+
+    public String getGameString() {
+        return gameString;
+    }
+
+    public void setGameString(String gameString) {
+        this.gameString = gameString;
+    }
+
+    public List<Round> getListOfRoundsInGame() {
+        return listOfRoundsInGame;
+    }
+
+    public void setListOfRoundsInGame(List<Round> listOfRoundsInGame) {
+        this.listOfRoundsInGame = listOfRoundsInGame;
     }
 
     public int getGameIndex() {

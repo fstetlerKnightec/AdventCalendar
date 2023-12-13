@@ -1,24 +1,20 @@
 package org.advent;
 
 import org.advent.daytwo.DayTwoReworked;
+import org.advent.daytwo.Game;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
 
-
         DayTwoReworked dayTwoReworked = new DayTwoReworked();
-
         List<String> listOfGames = dayTwoReworked.readGamesFromFileAndPutInList("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayTwo.txt");
+        System.out.println(dayTwoReworked.sumOfAllValidIDs(listOfGames, 13, 14, 12));
+        System.out.println(dayTwoReworked.totalPowerOfAllGames(listOfGames));
 
-        String currentGame = listOfGames.get(0);
-        System.out.println(currentGame);
-
-
-        System.out.println(dayTwoReworked.getListOfRoundsFromCurrentGame(currentGame, 0).get(0).getRoundString());
-        System.out.println(dayTwoReworked.getGameObjectFromGameString(currentGame, 0).getMaxNumberOfGreenNeeded());
 //        // DAY THREE OUTPUT
 //
 //        DayThree dayThree = new DayThree();
