@@ -67,7 +67,7 @@ public class Main {
             listOfAllNumbers.addAll(numbers);
         }
 
-        List<String> symbols = new ArrayList<>(Arrays.asList("*", "#", "+", "$", "@", "/", "=", "-", "&"));
+        List<String> symbols = new ArrayList<>(Arrays.asList("*", "#", "+", "$", "@", "/", "=", "-", "&", "%"));
 
         for (int i = 0; i < listOfAllNumbers.size(); i++) {
             Number currentNumber = listOfAllNumbers.get(i);
