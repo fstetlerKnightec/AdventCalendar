@@ -44,7 +44,7 @@ public class Number {
     public boolean doesNumberHasAdjacantSymbol(List<String> listOfStrings, String symbol, int rowIndex, int columnIndex, int numberLength) {
         for (int rowOffset = -1; rowOffset < 2; rowOffset++) {
             for (int colOffset = -1; colOffset < numberLength + 1; colOffset++ ) {
-                if (String.valueOf(listOfStrings.get(rowIndex + rowIndex).charAt(columnIndex + colOffset)).equals(symbol)) {
+                if (String.valueOf(listOfStrings.get(rowIndex + rowOffset).charAt(columnIndex + colOffset)).equals(symbol)) {
                     return true;
                 }
             }

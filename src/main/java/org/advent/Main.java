@@ -7,6 +7,7 @@ import org.advent.daytwo.DayTwoReworked;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -59,9 +60,6 @@ public class Main {
         List<String> list3 = DayThree.readFileAndReturnList("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayThree.txt");
 
 
-        String currentLine = list3.get(1);
-        System.out.println(currentLine);
-
         List<Number> listOfAllNumbers = new ArrayList<>();
         for (int i = 0; i < list3.size(); i++) {
 
@@ -69,7 +67,39 @@ public class Main {
             listOfAllNumbers.addAll(numbers);
         }
 
-        System.out.println(listOfAllNumbers.get(11).getColumn());
+        List<String> symbols = new ArrayList<>(Arrays.asList("*", "#", "+", "$", "@", "/", "=", "-", "&"));
+
+        for (int i = 0; i < listOfAllNumbers.size(); i++) {
+            Number currentNumber = listOfAllNumbers.get(i);
+            for (String s : symbols) {
+                if (currentNumber.doesNumberHasAdjacantSymbol(list3, s, currentNumber.getRow(), currentNumber.getColumn(), String.valueOf(currentNumber.getNumberValue()).length())) {
+                    currentNumber.setHasAdjacentToSymbol(true);
+                    break;
+                }
+            }
+        }
+
+
+//        for (int i = 0; i < list3.size(); i++) {
+//            System.out.println(list3.get(i));
+//        }
+
+
+        int totalValue = 0;
+
+//        System.out.println(list3.size());
+//        System.out.println(list3.get(141));
+
+        for (int i = 0; i < listOfAllNumbers.size(); i++) {
+            Number currentNumber = listOfAllNumbers.get(i);
+            System.out.println(currentNumber.getNumberValue());
+            System.out.println(currentNumber.getHasAdjacentToSymbol());
+            System.out.println("");
+            if (currentNumber.getHasAdjacentToSymbol()) {
+                totalValue += currentNumber.getNumberValue();
+            }
+        }
+        System.out.println(totalValue);
 
 
 

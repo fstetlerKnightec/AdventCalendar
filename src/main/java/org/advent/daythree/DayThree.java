@@ -136,12 +136,15 @@ public class DayThree {
             throw new FileNotFoundException("Could not find the file located at " + filePath);
         }
 
+
+
         for (int i = 0; i < listOfStrings.size(); i++) {
-            listOfStrings.set(i, listOfStrings.get(i) + "..");
+            listOfStrings.set(i, "." + listOfStrings.get(i));
+            listOfStrings.set(i, listOfStrings.get(i) + "...");
         }
 
-        listOfStrings.add(0, ".".repeat(141));
-        listOfStrings.add(".".repeat(141));
+        listOfStrings.add(0, ".".repeat(143));
+        listOfStrings.add(".".repeat(143));
 
         return listOfStrings;
     }
