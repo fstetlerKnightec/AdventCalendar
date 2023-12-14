@@ -59,13 +59,6 @@ public class Main {
 
         List<String> list3 = DayThree.readFileAndReturnList("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayThree.txt");
 
-
-//        List<Number> listOfAllNumbers = new ArrayList<>();
-//        for (int i = 0; i < list3.size(); i++) {
-//            List<Number> numbers = dayThree.numbersOnCurrentLine(list3.get(i), i);
-//            listOfAllNumbers.addAll(numbers);
-//        }
-
         List<Number> listOfAllNumbers = dayThree.listOfAllNumbers(list3);
 
         List<String> symbols = new ArrayList<>(Arrays.asList("*", "#", "+", "$", "@", "/", "=", "-", "&", "%"));
@@ -90,33 +83,6 @@ public class Main {
             }
         }
         System.out.println(totalValue);
-
-
-
-
-
-
-
-
-//
-//
-//        // DAY TWO OUTPUT
-//        DayTwoClean dayTwoClean = new DayTwoClean();
-//
-//        List<String> listOfGames = dayTwoClean.readGamesFromFileAndPutInList("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayTwo.txt");
-//
-//        System.out.println("Total sum of all acceptable IDs from day two = " + dayTwoClean.sumOfAllIDsFromAllowedGames(listOfGames));
-//
-//        int totalValue = 0;
-//        for (String s : listOfGames) {
-//            totalValue += dayTwoClean.powerOfCurrentGame(s);
-//        }
-//        System.out.println("Total value of all powered values from day two = " + totalValue);
-
-
-
-
-
 
 
 
