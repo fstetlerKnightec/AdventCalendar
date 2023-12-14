@@ -11,7 +11,7 @@ public class Game {
     }
 
     public boolean canGameBePlayedWithFollowingBalls(int allowedGreen, int allowedBlue, int allowedRed) {
-        return getMaxNumberOfBlueNeeded() <= allowedGreen && getMaxNumberOfBlueNeeded() <= allowedBlue && getMaxNumberOfRedNeeded() <= allowedRed;
+        return getMaxNumberOfGreenNeeded() <= allowedGreen && getMaxNumberOfBlueNeeded() <= allowedBlue && getMaxNumberOfRedNeeded() <= allowedRed;
     }
 
     public void maxNumberOfBall(Round currentRound, String color) {
