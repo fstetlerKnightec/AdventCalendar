@@ -44,24 +44,12 @@ public class Number {
         return numberValue;
     }
 
-    public void setNumberValue(int numberValue) {
-        this.numberValue = numberValue;
-    }
-
     public int getRow() {
         return row;
     }
 
-    public void setRow(int row) {
-        this.row = row;
-    }
-
     public int getColumn() {
         return column;
-    }
-
-    public void setColumn(int column) {
-        this.column = column;
     }
 
     public boolean getHasAdjacentToSymbol() {

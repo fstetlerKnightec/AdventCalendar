@@ -52,27 +52,13 @@ public class Main {
 //        System.out.println("Sum of all valid IDs for day two = " + dayTwoReworked.sumOfAllValidIDs(listOfGames, 13, 14, 12));
 //        System.out.println("Total power of all games for day two = " + dayTwoReworked.totalPowerOfAllGames(listOfGames));
 
-
         // DAY THREE OUTPUT
 
         DayThree dayThree = new DayThree();
-
         List<String> list3 = DayThree.readFileAndReturnList("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayThree.txt");
-
         List<Number> listOfAllNumbers = dayThree.listOfAllNumbers(list3);
-
         dayThree.setAdjacentToSymbolForNumber(listOfAllNumbers, list3);
-
-
-        int totalValue = 0;
-
-        for (int i = 0; i < listOfAllNumbers.size(); i++) {
-            Number currentNumber = listOfAllNumbers.get(i);
-            if (currentNumber.getHasAdjacentToSymbol()) {
-                totalValue += currentNumber.getNumberValue();
-            }
-        }
-        System.out.println(totalValue);
+        System.out.println(dayThree.getTotalAddedNumbersAdjacantToSymbol(listOfAllNumbers));
 
 
 

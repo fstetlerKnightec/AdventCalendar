@@ -72,6 +72,17 @@ public class DayThree {
 
     }
 
+    public int getTotalAddedNumbersAdjacantToSymbol(List<Number> listOfAllNumbers) {
+        int totalValue = 0;
+        for (int i = 0; i < listOfAllNumbers.size(); i++) {
+            Number currentNumber = listOfAllNumbers.get(i);
+            if (currentNumber.getHasAdjacentToSymbol()) {
+                totalValue += currentNumber.getNumberValue();
+            }
+        }
+        return totalValue;
+    }
+
     public boolean isCharNotDigitOnIndex(String currentLine, int index, int offset) {
         return !Character.isDigit(currentLine.charAt(index + offset));
     }
