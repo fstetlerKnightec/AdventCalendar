@@ -21,6 +21,13 @@ public class Number {
         this.hasAdjacentToSymbol = adjacentToSymbol;
     }
 
+    public Number(int numberValue, int row, int column) {
+        this.numberValue = numberValue;
+        this.row = row;
+        this.column = column;
+    }
+
+
     public boolean doesNumberHasAdjacantSymbol(List<String> listOfStrings, String symbol, int rowIndex, int columnIndex, int numberLength) {
         for (int rowOffset = -1; rowOffset < 2; rowOffset++) {
             for (int colOffset = -1; colOffset < numberLength + 1; colOffset++ ) {

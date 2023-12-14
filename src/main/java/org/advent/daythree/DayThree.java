@@ -13,10 +13,20 @@ public class DayThree {
 
         for (int i = 0; i < currentLine.length(); i++) {
             if (Character.isDigit(currentLine.charAt(i))) {
-                Number number = new Number();
-                number.setRow(rowIndex);
-                number.setColumn(i);
-                number.setNumberValue(numberAtIndexOnRow(currentLine, i));
+                // How do I do this? how do I get doesNumberHasAdj in here
+//                Number number = new Number(
+//                        numberAtIndexOnRow(currentLine, i),
+//                        rowIndex,
+//                        i,
+//                        number.doesNumberHasAdjacantSymbol());
+
+                Number number = new Number(
+                        numberAtIndexOnRow(currentLine, i),
+                        rowIndex,
+                        i);
+//                number.setRow(rowIndex);
+//                number.setColumn(i);
+//                number.setNumberValue(numberAtIndexOnRow(currentLine, i));
                 number.setHasAdjacentToSymbol(false);
                 numbers.add(number);
                 i = i + String.valueOf(number.getNumberValue()).length();
@@ -25,6 +35,20 @@ public class DayThree {
 
         return numbers;
     }
+
+    public void setAdjacentToSymbolForNumber(List<Number> listOfAllNumbers, List<String> listOfStrings) {
+        List<String> symbols = new ArrayList<>(Arrays.asList("*", "#", "+", "$", "@", "/", "=", "-", "&", "%"));
+        for (int i = 0; i < listOfAllNumbers.size(); i++) {
+            Number currentNumber = listOfAllNumbers.get(i);
+            for (String s : symbols) {
+                if (currentNumber.doesNumberHasAdjacantSymbol(listOfStrings, s, currentNumber.getRow(), currentNumber.getColumn(), String.valueOf(currentNumber.getNumberValue()).length())) {
+                    currentNumber.setHasAdjacentToSymbol(true);
+                    break;
+                }
+            }
+        }
+    }
+
 
     public List<Number> listOfAllNumbers(List<String> listOfCutStrings) {
         List<Number> numbersFromAllStrings = new ArrayList<>();

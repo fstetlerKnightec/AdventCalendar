@@ -61,17 +61,7 @@ public class Main {
 
         List<Number> listOfAllNumbers = dayThree.listOfAllNumbers(list3);
 
-        List<String> symbols = new ArrayList<>(Arrays.asList("*", "#", "+", "$", "@", "/", "=", "-", "&", "%"));
-
-        for (int i = 0; i < listOfAllNumbers.size(); i++) {
-            Number currentNumber = listOfAllNumbers.get(i);
-            for (String s : symbols) {
-                if (currentNumber.doesNumberHasAdjacantSymbol(list3, s, currentNumber.getRow(), currentNumber.getColumn(), String.valueOf(currentNumber.getNumberValue()).length())) {
-                    currentNumber.setHasAdjacentToSymbol(true);
-                    break;
-                }
-            }
-        }
+        dayThree.setAdjacentToSymbolForNumber(listOfAllNumbers, list3);
 
 
         int totalValue = 0;
