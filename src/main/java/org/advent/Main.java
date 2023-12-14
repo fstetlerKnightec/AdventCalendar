@@ -57,8 +57,49 @@ public class Main {
         DayThree dayThree = new DayThree();
         List<String> list3 = DayThree.readFileAndReturnList("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayThree.txt");
         List<Number> listOfAllNumbers = dayThree.listOfAllNumbers(list3);
+
         dayThree.setAdjacentToSymbolForNumber(listOfAllNumbers, list3);
-        System.out.println(dayThree.getTotalAddedNumbersAdjacantToSymbol(listOfAllNumbers));
+
+//        for (int i = 0; i < listOfAllNumbers.size(); i++) {
+//            Number currentNumber = listOfAllNumbers.get(i);
+//            System.out.println(currentNumber.getNumberValue());
+//            System.out.println(currentNumber.getHasAdjacentToSymbol());
+//
+//            if (currentNumber.getAdjacantStarCoordinates() != null) {
+//                System.out.print(currentNumber.getAdjacantStarCoordinates().getRowIndex() + ",");
+//                System.out.print(currentNumber.getAdjacantStarCoordinates().getColumnIndex());
+//            }
+//            System.out.println(" ");
+//            System.out.println("");
+//        }
+
+
+
+        int totalValue = 0;
+        for (int i = 0; i < listOfAllNumbers.size(); i++) {
+            Number currentNumber = listOfAllNumbers.get(i);
+            for (int j = 0; j < listOfAllNumbers.size(); j++) {
+                Number secondNumber = listOfAllNumbers.get(j);
+                if (currentNumber != secondNumber) {
+                    if (currentNumber.getAdjacantStarCoordinates() != null && secondNumber.getAdjacantStarCoordinates() != null) {
+                        if (currentNumber.getAdjacantStarCoordinates().getColumnIndex() == secondNumber.getAdjacantStarCoordinates().getColumnIndex() && currentNumber.getAdjacantStarCoordinates().getRowIndex() == secondNumber.getAdjacantStarCoordinates().getRowIndex()) {
+                            if (!currentNumber.isHasBeenUsed() || !secondNumber.isHasBeenUsed()) {
+                                System.out.println(currentNumber.getNumberValue());
+                                totalValue += currentNumber.getNumberValue() * secondNumber.getNumberValue();
+                                currentNumber.setHasBeenUsed(true);
+                                secondNumber.setHasBeenUsed(true);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        System.out.println("TotalValue for two values adjacant to a star = " + totalValue);
+
+
+//        System.out.println(dayThree.getTotalAddedNumbersAdjacantToSymbol(listOfAllNumbers));
+
 
 
 

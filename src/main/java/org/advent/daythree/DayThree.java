@@ -50,6 +50,17 @@ public class DayThree {
     }
 
 
+//    public void setAdjacentToStarCoordinatesForNumber(List<Number> listOfAllNumbers, List<String> listOfStrings) {
+//        for (int i = 0; i < listOfAllNumbers.size(); i++) {
+//            Number currentNumber = listOfAllNumbers.get(i);
+//            if (currentNumber.doesNumberHasAdjacantSymbol(listOfStrings, "*", currentNumber.getRow(), currentNumber.getColumn(), String.valueOf(currentNumber.getNumberValue()).length())) {
+//                StarCoordinates starCoordinates = new StarCoordinates(currentNumber.getRow(), currentNumber.getColumn());
+//                currentNumber.setAdjacantStarCoordinates(starCoordinates);
+//                break;
+//            }
+//        }
+//    }
+
     public List<Number> listOfAllNumbers(List<String> listOfCutStrings) {
         List<Number> numbersFromAllStrings = new ArrayList<>();
         for (int i = 0; i < listOfCutStrings.size(); i++) {

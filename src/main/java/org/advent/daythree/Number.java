@@ -1,6 +1,7 @@
 package org.advent.daythree;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Number {
@@ -9,6 +10,36 @@ public class Number {
     int row;
     int column;
     boolean hasAdjacentToSymbol;
+
+    public boolean isHasBeenUsed() {
+        return hasBeenUsed;
+    }
+
+    public void setHasBeenUsed(boolean hasBeenUsed) {
+        this.hasBeenUsed = hasBeenUsed;
+    }
+
+    boolean hasBeenUsed;
+
+    public StarCoordinates getAdjacantSymbolCoordinates() {
+        return adjacantSymbolCoordinates;
+    }
+
+    public void setAdjacantSymbolCoordinates(StarCoordinates adjacantSymbolCoordinates) {
+        this.adjacantSymbolCoordinates = adjacantSymbolCoordinates;
+    }
+
+    StarCoordinates adjacantSymbolCoordinates;
+
+    public StarCoordinates getAdjacantStarCoordinates() {
+        return adjacantStarCoordinates;
+    }
+
+    public void setAdjacantStarCoordinates(StarCoordinates adjacantStarCoordinates) {
+        this.adjacantStarCoordinates = adjacantStarCoordinates;
+    }
+
+    StarCoordinates adjacantStarCoordinates;
 
     public Number() {
 
@@ -32,13 +63,15 @@ public class Number {
         for (int rowOffset = -1; rowOffset < 2; rowOffset++) {
             for (int colOffset = -1; colOffset < numberLength + 1; colOffset++ ) {
                 if (String.valueOf(listOfStrings.get(rowIndex + rowOffset).charAt(columnIndex + colOffset)).equals(symbol)) {
+                    if (String.valueOf(listOfStrings.get(rowIndex + rowOffset).charAt(columnIndex + colOffset)).equals("*")) {
+                        setAdjacantStarCoordinates(new StarCoordinates(rowIndex + rowOffset, columnIndex + colOffset));
+                    }
                     return true;
                 }
             }
         }
         return false;
     }
-
 
     public int getNumberValue() {
         return numberValue;
