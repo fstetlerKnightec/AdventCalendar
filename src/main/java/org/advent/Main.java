@@ -50,30 +50,9 @@ public class Main {
         List<Number> listOfAllNumbers = dayThree.listOfAllNumbers(list3);
         dayThree.setAdjacentToSymbolForNumber(listOfAllNumbers, list3);
 
-        int totalValue = 0;
-        for (int i = 0; i < listOfAllNumbers.size(); i++) {
-            Number currentNumber = listOfAllNumbers.get(i);
-            for (int j = 0; j < listOfAllNumbers.size(); j++) {
-                Number secondNumber = listOfAllNumbers.get(j);
-                if (currentNumber != secondNumber) {
-                    if (currentNumber.getAdjacentStarCoordinates() != null && secondNumber.getAdjacentStarCoordinates() != null) {
-                        if (currentNumber.getAdjacentStarCoordinates().getColumnIndex() == secondNumber.getAdjacentStarCoordinates().getColumnIndex() && currentNumber.getAdjacentStarCoordinates().getRowIndex() == secondNumber.getAdjacentStarCoordinates().getRowIndex()) {
-                            if (currentNumber.isHasBeenUsed() || secondNumber.isHasBeenUsed()) {
-                                totalValue += currentNumber.getNumberValue() * secondNumber.getNumberValue();
-                                currentNumber.setHasBeenUsed(true);
-                                secondNumber.setHasBeenUsed(true);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
         System.out.println(" ");
         System.out.println("Day Three ----------------------------------");
         System.out.println("Total value of numbers adjacant to symbol = " + dayThree.getTotalAddedNumbersAdjacentToSymbol(listOfAllNumbers));
-        System.out.println("TotalValue for two values adjacant to a star = " + totalValue);
-
-
+        System.out.println("TotalValue for two values adjacant to a star = " + dayThree.calculateTotalValueOfAllAdjacentValuesToStar(listOfAllNumbers));
     }
 }

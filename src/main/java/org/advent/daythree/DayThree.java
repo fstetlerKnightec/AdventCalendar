@@ -13,26 +13,14 @@ public class DayThree {
 
         for (int i = 0; i < currentLine.length(); i++) {
             if (Character.isDigit(currentLine.charAt(i))) {
-                // How do I do this? how do I get doesNumberHasAdj in here
-//                Number number = new Number(
-//                        numberAtIndexOnRow(currentLine, i),
-//                        rowIndex,
-//                        i,
-//                        number.doesNumberHasAdjacantSymbol());
-
                 Number number = new Number(
                         numberAtIndexOnRow(currentLine, i),
                         rowIndex,
                         i);
-//                number.setRow(rowIndex);
-//                number.setColumn(i);
-//                number.setNumberValue(numberAtIndexOnRow(currentLine, i));
-                number.setIsAdjacentToSymbol(false);
                 numbers.add(number);
                 i = i + String.valueOf(number.getNumberValue()).length();
             }
         }
-
         return numbers;
     }
 
@@ -48,6 +36,27 @@ public class DayThree {
         }
     }
 
+    public int calculateTotalValueOfAllAdjacentValuesToStar(List<Number> listOfAllNumbers) {
+        int totalValue = 0;
+        for (int i = 0; i < listOfAllNumbers.size(); i++) {
+            Number currentNumber = listOfAllNumbers.get(i);
+            for (int j = 0; j < listOfAllNumbers.size(); j++) {
+                Number secondNumber = listOfAllNumbers.get(j);
+                if (currentNumber != secondNumber) {
+                    if (currentNumber.getAdjacentStarCoordinates() != null && secondNumber.getAdjacentStarCoordinates() != null) {
+                        if (currentNumber.getAdjacentStarCoordinates().getColumnIndex() == secondNumber.getAdjacentStarCoordinates().getColumnIndex() && currentNumber.getAdjacentStarCoordinates().getRowIndex() == secondNumber.getAdjacentStarCoordinates().getRowIndex()) {
+                            if (currentNumber.isHasBeenUsed() || secondNumber.isHasBeenUsed()) {
+                                totalValue += currentNumber.getNumberValue() * secondNumber.getNumberValue();
+                                currentNumber.setHasBeenUsed(true);
+                                secondNumber.setHasBeenUsed(true);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return totalValue;
+    }
 
     public List<Number> listOfAllNumbers(List<String> listOfCutStrings) {
         List<Number> numbersFromAllStrings = new ArrayList<>();
@@ -55,26 +64,34 @@ public class DayThree {
             List<Number> numbers = numbersOnCurrentLine(listOfCutStrings.get(i), i);
             numbersFromAllStrings.addAll(numbers);
         }
-
         return numbersFromAllStrings;
     }
 
     public int numberAtIndexOnRow(String currentLine, int columnIndex) {
         if (isCharNotDigitOnIndex(currentLine, columnIndex, 1)) {
-            return Integer.parseInt(String.valueOf(currentLine.charAt(columnIndex)));
+            return returnOneDigitNumber(currentLine, columnIndex);
         }
         if (isCharNotDigitOnIndex(currentLine, columnIndex, 2)) {
-            return Integer.parseInt(currentLine.charAt(columnIndex) + String.valueOf(currentLine.charAt(columnIndex + 1)));
+            return returnTwoDigitNumber(currentLine, columnIndex);
         }
+        return returnThreeDigitNumber(currentLine, columnIndex);
+    }
 
+    public int returnTwoDigitNumber(String currentLine, int columnIndex) {
+        return Integer.parseInt(currentLine.charAt(columnIndex) + String.valueOf(currentLine.charAt(columnIndex + 1)));
+    }
+
+    public int returnOneDigitNumber(String currentLine, int columnIndex) {
+        return Integer.parseInt(String.valueOf(currentLine.charAt(columnIndex)));
+    }
+
+    public int returnThreeDigitNumber(String currentLine, int columnIndex) {
         return Integer.parseInt(currentLine.charAt(columnIndex) + String.valueOf(currentLine.charAt(columnIndex + 1)) + currentLine.charAt(columnIndex + 2));
-
     }
 
     public int getTotalAddedNumbersAdjacentToSymbol(List<Number> listOfAllNumbers) {
         int totalValue = 0;
-        for (int i = 0; i < listOfAllNumbers.size(); i++) {
-            Number currentNumber = listOfAllNumbers.get(i);
+        for (Number currentNumber : listOfAllNumbers) {
             if (currentNumber.getIsAdjacentToSymbol()) {
                 totalValue += currentNumber.getNumberValue();
             }
