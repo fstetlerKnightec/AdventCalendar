@@ -27,7 +27,7 @@ public class DayThree {
 //                number.setRow(rowIndex);
 //                number.setColumn(i);
 //                number.setNumberValue(numberAtIndexOnRow(currentLine, i));
-                number.setHasAdjacentToSymbol(false);
+                number.setIsAdjacentToSymbol(false);
                 numbers.add(number);
                 i = i + String.valueOf(number.getNumberValue()).length();
             }
@@ -38,28 +38,16 @@ public class DayThree {
 
     public void setAdjacentToSymbolForNumber(List<Number> listOfAllNumbers, List<String> listOfStrings) {
         List<String> symbols = new ArrayList<>(Arrays.asList("*", "#", "+", "$", "@", "/", "=", "-", "&", "%"));
-        for (int i = 0; i < listOfAllNumbers.size(); i++) {
-            Number currentNumber = listOfAllNumbers.get(i);
+        for (Number currentNumber : listOfAllNumbers) {
             for (String s : symbols) {
-                if (currentNumber.doesNumberHasAdjacantSymbol(listOfStrings, s, currentNumber.getRow(), currentNumber.getColumn(), String.valueOf(currentNumber.getNumberValue()).length())) {
-                    currentNumber.setHasAdjacentToSymbol(true);
+                if (currentNumber.doesNumberHasAdjacentSymbol(listOfStrings, s, currentNumber.getRow(), currentNumber.getColumn(), String.valueOf(currentNumber.getNumberValue()).length())) {
+                    currentNumber.setIsAdjacentToSymbol(true);
                     break;
                 }
             }
         }
     }
 
-
-//    public void setAdjacentToStarCoordinatesForNumber(List<Number> listOfAllNumbers, List<String> listOfStrings) {
-//        for (int i = 0; i < listOfAllNumbers.size(); i++) {
-//            Number currentNumber = listOfAllNumbers.get(i);
-//            if (currentNumber.doesNumberHasAdjacantSymbol(listOfStrings, "*", currentNumber.getRow(), currentNumber.getColumn(), String.valueOf(currentNumber.getNumberValue()).length())) {
-//                StarCoordinates starCoordinates = new StarCoordinates(currentNumber.getRow(), currentNumber.getColumn());
-//                currentNumber.setAdjacantStarCoordinates(starCoordinates);
-//                break;
-//            }
-//        }
-//    }
 
     public List<Number> listOfAllNumbers(List<String> listOfCutStrings) {
         List<Number> numbersFromAllStrings = new ArrayList<>();
@@ -83,11 +71,11 @@ public class DayThree {
 
     }
 
-    public int getTotalAddedNumbersAdjacantToSymbol(List<Number> listOfAllNumbers) {
+    public int getTotalAddedNumbersAdjacentToSymbol(List<Number> listOfAllNumbers) {
         int totalValue = 0;
         for (int i = 0; i < listOfAllNumbers.size(); i++) {
             Number currentNumber = listOfAllNumbers.get(i);
-            if (currentNumber.getHasAdjacentToSymbol()) {
+            if (currentNumber.getIsAdjacentToSymbol()) {
                 totalValue += currentNumber.getNumberValue();
             }
         }

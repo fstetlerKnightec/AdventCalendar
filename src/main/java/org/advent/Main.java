@@ -6,8 +6,6 @@ import org.advent.daythree.Number;
 import org.advent.daytwo.DayTwoReworked;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -16,24 +14,18 @@ public class Main {
 
         // DAY ONE OUTPUT
         DayOneClean dayOneClean = new DayOneClean();
-
         List<String> listOfStrings = dayOneClean.readFileAndReturnList("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayOne.txt");
-
         List<String> listOfFirstNumbersFromLeft = listOfStrings.stream()
                 .map(s -> dayOneClean.returnFirstNumberFromString(String.valueOf(s), false, true)).toList();
         List<String> listOfFirstNumbersFromRight = listOfStrings.stream()
                 .map(s -> dayOneClean.returnFirstNumberFromString(String.valueOf(s), true, true)).toList();
-
         List<String> listOfFirstNumbersFromLeft2 = listOfStrings.stream()
                 .map(s -> dayOneClean.returnFirstNumberFromString(String.valueOf(s), false, false)).toList();
         List<String> listOfFirstNumbersFromRight2 = listOfStrings.stream()
                 .map(s -> dayOneClean.returnFirstNumberFromString(String.valueOf(s), true, false)).toList();
-
-
         List<String> listOfCombinedNumbersFromLeftAndRight =
                 IntStream.range(0, listOfFirstNumbersFromLeft.size())
                         .mapToObj(i -> listOfFirstNumbersFromLeft.get(i) + listOfFirstNumbersFromRight.get(i)).toList();
-
         List<String> listOfCombinedNumbersFromLeftAndRight2 =
                 IntStream.range(0, listOfFirstNumbersFromLeft.size())
                         .mapToObj(i -> listOfFirstNumbersFromLeft2.get(i) + listOfFirstNumbersFromRight2.get(i)).toList();
@@ -53,11 +45,9 @@ public class Main {
         System.out.println("Total power of all games for day two = " + dayTwoReworked.totalPowerOfAllGames(listOfGames));
 
         // DAY THREE OUTPUT
-
         DayThree dayThree = new DayThree();
         List<String> list3 = DayThree.readFileAndReturnList("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayThree.txt");
         List<Number> listOfAllNumbers = dayThree.listOfAllNumbers(list3);
-
         dayThree.setAdjacentToSymbolForNumber(listOfAllNumbers, list3);
 
         int totalValue = 0;
@@ -66,9 +56,9 @@ public class Main {
             for (int j = 0; j < listOfAllNumbers.size(); j++) {
                 Number secondNumber = listOfAllNumbers.get(j);
                 if (currentNumber != secondNumber) {
-                    if (currentNumber.getAdjacantStarCoordinates() != null && secondNumber.getAdjacantStarCoordinates() != null) {
-                        if (currentNumber.getAdjacantStarCoordinates().getColumnIndex() == secondNumber.getAdjacantStarCoordinates().getColumnIndex() && currentNumber.getAdjacantStarCoordinates().getRowIndex() == secondNumber.getAdjacantStarCoordinates().getRowIndex()) {
-                            if (!currentNumber.isHasBeenUsed() || !secondNumber.isHasBeenUsed()) {
+                    if (currentNumber.getAdjacentStarCoordinates() != null && secondNumber.getAdjacentStarCoordinates() != null) {
+                        if (currentNumber.getAdjacentStarCoordinates().getColumnIndex() == secondNumber.getAdjacentStarCoordinates().getColumnIndex() && currentNumber.getAdjacentStarCoordinates().getRowIndex() == secondNumber.getAdjacentStarCoordinates().getRowIndex()) {
+                            if (currentNumber.isHasBeenUsed() || secondNumber.isHasBeenUsed()) {
                                 totalValue += currentNumber.getNumberValue() * secondNumber.getNumberValue();
                                 currentNumber.setHasBeenUsed(true);
                                 secondNumber.setHasBeenUsed(true);
@@ -81,12 +71,8 @@ public class Main {
 
         System.out.println(" ");
         System.out.println("Day Three ----------------------------------");
-        System.out.println("Total value of numbers adjacant to symbol = " + dayThree.getTotalAddedNumbersAdjacantToSymbol(listOfAllNumbers));
+        System.out.println("Total value of numbers adjacant to symbol = " + dayThree.getTotalAddedNumbersAdjacentToSymbol(listOfAllNumbers));
         System.out.println("TotalValue for two values adjacant to a star = " + totalValue);
-
-
-
-
 
 
     }
