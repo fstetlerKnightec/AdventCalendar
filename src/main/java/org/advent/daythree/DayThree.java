@@ -8,7 +8,7 @@ import java.util.*;
 
 public class DayThree {
 
-    public List<Number> numbersOnCurrentLine(List<String> listOfStrings, String currentLine, int rowIndex) {
+    public List<Number> numbersOnCurrentLine(String currentLine, int rowIndex) {
         List<Number> numbers = new ArrayList<>();
 
         for (int i = 0; i < currentLine.length(); i++) {
@@ -24,6 +24,16 @@ public class DayThree {
         }
 
         return numbers;
+    }
+
+    public List<Number> listOfAllNumbers(List<String> listOfCutStrings) {
+        List<Number> numbersFromAllStrings = new ArrayList<>();
+        for (int i = 0; i < listOfCutStrings.size(); i++) {
+            List<Number> numbers = numbersOnCurrentLine(listOfCutStrings.get(i), i);
+            numbersFromAllStrings.addAll(numbers);
+        }
+
+        return numbersFromAllStrings;
     }
 
     public int numberAtIndexOnRow(String currentLine, int columnIndex) {
