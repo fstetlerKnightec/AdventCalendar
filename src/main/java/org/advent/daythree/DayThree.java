@@ -40,8 +40,7 @@ public class DayThree {
         int totalValue = 0;
         for (int i = 0; i < listOfAllNumbers.size(); i++) {
             Number currentNumber = listOfAllNumbers.get(i);
-            for (int j = 0; j < listOfAllNumbers.size(); j++) {
-                Number secondNumber = listOfAllNumbers.get(j);
+            for (Number secondNumber : listOfAllNumbers) {
                 if (currentNumber != secondNumber) {
                     if (currentNumber.getAdjacentStarCoordinates() != null && secondNumber.getAdjacentStarCoordinates() != null) {
                         if (currentNumber.getAdjacentStarCoordinates().getColumnIndex() == secondNumber.getAdjacentStarCoordinates().getColumnIndex() && currentNumber.getAdjacentStarCoordinates().getRowIndex() == secondNumber.getAdjacentStarCoordinates().getRowIndex()) {
@@ -58,10 +57,10 @@ public class DayThree {
         return totalValue;
     }
 
-    public List<Number> listOfAllNumbers(List<String> listOfCutStrings) {
+    public List<Number> listOfAllNumbers(List<String> listOfStrings) {
         List<Number> numbersFromAllStrings = new ArrayList<>();
-        for (int i = 0; i < listOfCutStrings.size(); i++) {
-            List<Number> numbers = numbersOnCurrentLine(listOfCutStrings.get(i), i);
+        for (int i = 0; i < listOfStrings.size(); i++) {
+            List<Number> numbers = numbersOnCurrentLine(listOfStrings.get(i), i);
             numbersFromAllStrings.addAll(numbers);
         }
         return numbersFromAllStrings;
