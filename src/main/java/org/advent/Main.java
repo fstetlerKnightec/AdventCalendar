@@ -58,7 +58,10 @@ public class Main {
         List<String> listOfCards = dayFour.readStringsFromFile("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayFour.txt");
         List<String> listOfCutStrings = dayFour.removeFrontPartOfStringAndReturnList(listOfCards);
         List<NumbersPerCard> listOfAllNumbersPerCard = dayFour.listOfAllNumbersPerCard(listOfCutStrings);
-        System.out.println(dayFour.totalSumOfAllExponentialValues(listOfAllNumbersPerCard));
+
+        System.out.println(" ");
+        System.out.println("Day Four -------------------------------------");
+        System.out.println("Total value of all exponential values is = " + dayFour.totalSumOfAllExponentialValues(listOfAllNumbersPerCard));
 
 
 
