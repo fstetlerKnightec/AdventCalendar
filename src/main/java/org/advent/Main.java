@@ -39,7 +39,7 @@ public class Main {
         // DAY TWO REWORKED OUTPUT
         DayTwoReworked dayTwoReworked = new DayTwoReworked();
         List<String> listOfGames = dayTwoReworked.readGamesFromFileAndPutInList("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayTwo.txt");
-        System.out.println("");
+        System.out.println(" ");
         System.out.println("Day Two ----------------------------------");
         System.out.println("Sum of all valid IDs for day two = " + dayTwoReworked.sumOfAllValidIDs(listOfGames, 13, 14, 12));
         System.out.println("Total power of all games for day two = " + dayTwoReworked.totalPowerOfAllGames(listOfGames));
