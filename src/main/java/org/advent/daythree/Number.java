@@ -55,11 +55,11 @@ public class Number {
     }
 
     public boolean hasBeenUsed() {
-        return !hasBeenUsed;
+        return hasBeenUsed;
     }
 
-    public void setHasBeenUsed(boolean hasNotBeenUsed) {
-        this.hasBeenUsed = hasNotBeenUsed;
+    public void setHasBeenUsed(boolean hasBeenUsed) {
+        this.hasBeenUsed = hasBeenUsed;
     }
 
     public StarCoordinates getAdjacentStarCoordinates() {
