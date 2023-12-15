@@ -25,9 +25,9 @@ public class DayThree {
     }
 
     public void setAdjacentToSymbolForNumber(List<Number> listOfAllNumbers, List<String> listOfStrings) {
-        List<String> symbols = new ArrayList<>(Arrays.asList("*", "#", "+", "$", "@", "/", "=", "-", "&", "%"));
+        List<Character> symbols = new ArrayList<>(Arrays.asList('*', '#', '+', '$', '@', '/', '=', '-', '&', '%'));
         for (Number currentNumber : listOfAllNumbers) {
-            for (String s : symbols) {
+            for (char s : symbols) {
                 if (currentNumber.doesNumberHasAdjacentSymbol(listOfStrings, s, currentNumber.getRow(), currentNumber.getColumn(), String.valueOf(currentNumber.getNumberValue()).length())) {
                     currentNumber.setIsAdjacentToSymbol(true);
                     break;
