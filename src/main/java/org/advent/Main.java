@@ -1,17 +1,10 @@
 package org.advent;
 
 import org.advent.dayfour.DayFour;
-import org.advent.dayfour.NumbersYouHave;
-import org.advent.dayfour.WinningNumbers;
-import org.advent.dayone.DayOneClean;
-import org.advent.daythree.DayThree;
-import org.advent.daythree.Number;
-import org.advent.daytwo.DayTwoReworked;
+import org.advent.dayfour.NumbersPerCard;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -64,19 +57,8 @@ public class Main {
         DayFour dayFour = new DayFour();
         List<String> listOfCards = dayFour.readStringsFromFile("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayFour.txt");
         List<String> listOfCutStrings = dayFour.removeFrontPartOfStringAndReturnList(listOfCards);
-
-        List<WinningNumbers> listOfWinningNumbers = dayFour.listOfWinningNumbers(listOfCutStrings);
-        List<NumbersYouHave> listOfNumbersYouHave = dayFour.listOfNumbersYouHave(listOfCutStrings);
-
-        System.out.println("Total value of exponentially added matching numbers are = " + dayFour.totalSum(listOfWinningNumbers, listOfNumbersYouHave));
-
-
-
-
-
-
-
-
+        List<NumbersPerCard> listOfAllNumbersPerCard = dayFour.listOfAllNumbersPerCard(listOfCutStrings);
+        System.out.println(dayFour.totalSumOfAllExponentialValues(listOfAllNumbersPerCard));
 
 
 

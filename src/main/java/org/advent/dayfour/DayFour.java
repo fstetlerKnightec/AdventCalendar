@@ -9,12 +9,12 @@ import java.util.List;
 public class DayFour {
 
 
-    public int exponentialSumOfNumbersMatchingBetweenOnHandAndWinningPerGame(WinningNumbers winningNumbers, NumbersYouHave numbersYouHave) {
+    public int exponentialSumOfNumbersMatchingBetweenOnHandAndWinningPerGame(NumbersPerCard numbersPerCard) {
 
         int numberOfMatchingNumbers = 0;
-        for (int i = 0; i < winningNumbers.getWinningNumbers().size(); i++) {
-            for (int j = 0; j < numbersYouHave.getNumbersYouHave().size(); j++) {
-                if (winningNumbers.getWinningNumbers().get(i).equals(numbersYouHave.getNumbersYouHave().get(j))) {
+        for (int i = 0; i < numbersPerCard.getWinningNumbers().size(); i++) {
+            for (int j = 0; j < numbersPerCard.getNumbersYouHave().size(); j++) {
+                if (numbersPerCard.getWinningNumbers().get(i).equals(numbersPerCard.getNumbersYouHave().get(j))) {
                     numberOfMatchingNumbers += 1;
                 }
             }
@@ -22,50 +22,46 @@ public class DayFour {
         return (int) Math.pow(2, numberOfMatchingNumbers - 1);
     }
 
-    public int totalSum(List<WinningNumbers> winningNumbersList, List<NumbersYouHave> numbersYouHaveList) {
-        int totalSum = 0;
-        for (int i = 0; i < winningNumbersList.size(); i++) {
-            WinningNumbers winningNumbers = winningNumbersList.get(i);
-            NumbersYouHave numbersYouHave = numbersYouHaveList.get(i);
-            totalSum += exponentialSumOfNumbersMatchingBetweenOnHandAndWinningPerGame(winningNumbers, numbersYouHave);
+
+    public int totalSumOfAllExponentialValues(List<NumbersPerCard> listOfNumbersPerCard) {
+        int totalValue = 0;
+        for (int i = 0; i < listOfNumbersPerCard.size(); i++) {
+            totalValue += exponentialSumOfNumbersMatchingBetweenOnHandAndWinningPerGame(listOfNumbersPerCard.get(i));
         }
-        return totalSum;
+        return totalValue;
     }
 
-    public List<WinningNumbers> listOfWinningNumbers(List<String> listOfCutString) {
-        List<WinningNumbers> winningNumbersList = new ArrayList<>();
-        for (String s : listOfCutString) {
-            String currentWinningString = s.split("\\|")[0];
-            String[] numberStrings = currentWinningString.trim().split("\\s+");
-            List<Integer> integerList = new ArrayList<>();
-            for (String numberString : numberStrings) {
-                int number = Integer.parseInt(numberString);
-                integerList.add(number);
-            }
-            WinningNumbers winningNumbers = new WinningNumbers(integerList);
-            winningNumbersList.add(winningNumbers);
+    public List<NumbersPerCard> listOfAllNumbersPerCard(List<String> listOfCutStrings) {
+        List<NumbersPerCard> listOfNumbersPerCard= new ArrayList<>();
+        for (String listOfCutString : listOfCutStrings) {
+            listOfNumbersPerCard.add(numbersPerCard(listOfCutString));
         }
-        return winningNumbersList;
-
+        return listOfNumbersPerCard;
     }
 
-    public List<NumbersYouHave> listOfNumbersYouHave(List<String> listOfCutString) {
-        List<NumbersYouHave> numbersYouHaveList = new ArrayList<>();
-        for (String s : listOfCutString) {
-            String currentNumbersYouHaveString = s.split("\\|")[1];
-            String[] numberStrings = currentNumbersYouHaveString.trim().split("\\s+");
-            List<Integer> integerList = new ArrayList<>();
-            for (String numberString : numberStrings) {
-                int number = Integer.parseInt(numberString);
-                integerList.add(number);
-            }
-            NumbersYouHave numbersYouHave = new NumbersYouHave(integerList);
-            numbersYouHaveList.add(numbersYouHave);
-        }
-        return numbersYouHaveList;
+    public NumbersPerCard numbersPerCard(String cutString) {
+        NumbersPerCard numbers = new NumbersPerCard();
 
+        String winningString = cutString.split("\\|")[0];
+        String numbersYouHaveString = cutString.split("\\|")[1];
+        List<Integer> listOfWinningNumbers = listOfNumbers(winningString);
+        List<Integer> listOfNumbersYouHave = listOfNumbers(numbersYouHaveString);
+        numbers.setWinningNumbers(listOfWinningNumbers);
+        numbers.setNumbersYouHave(listOfNumbersYouHave);
+
+        return numbers;
     }
 
+    public List<Integer> listOfNumbers(String numbersString) {
+        String[] numberStrings = numbersString.trim().split("\\s+");
+        List<Integer> integerList = new ArrayList<>();
+        for (String numberString : numberStrings) {
+            int number = Integer.parseInt(numberString);
+            integerList.add(number);
+        }
+
+        return integerList;
+    }
 
     public List<String> removeFrontPartOfStringAndReturnList(List<String> stringList) {
         return stringList.stream().map(s -> s.replaceAll(".*:", "")).toList();
