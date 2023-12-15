@@ -43,7 +43,7 @@ public class DayThree {
             for (Number secondNumber : listOfAllNumbers) {
                 if (currentNumber != secondNumber) {
                     if (currentNumber.getAdjacentStarCoordinates() != null && secondNumber.getAdjacentStarCoordinates() != null) {
-                        if (currentNumber.getAdjacentStarCoordinates().getColumnIndex() == secondNumber.getAdjacentStarCoordinates().getColumnIndex() && currentNumber.getAdjacentStarCoordinates().getRowIndex() == secondNumber.getAdjacentStarCoordinates().getRowIndex()) {
+                        if (currentNumber.getAdjacentStarCoordinates().columnIndex() == secondNumber.getAdjacentStarCoordinates().columnIndex() && currentNumber.getAdjacentStarCoordinates().rowIndex() == secondNumber.getAdjacentStarCoordinates().rowIndex()) {
                             if (!currentNumber.hasBeenUsed() && !secondNumber.hasBeenUsed()) {
                                 totalValue += currentNumber.getNumberValue() * secondNumber.getNumberValue();
                                 currentNumber.setHasBeenUsed(true);
