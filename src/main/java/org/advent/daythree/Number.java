@@ -20,9 +20,6 @@ public class Number {
         for (int rowOffset = -1; rowOffset < 2; rowOffset++) {
             for (int colOffset = -1; colOffset < numberLength + 1; colOffset++ ) {
                 if (doesCharacterEqualSymbol(listOfStrings, rowIndex + rowOffset, columnIndex + colOffset, symbol)) {
-                    if (doesCharacterEqualSymbol(listOfStrings, rowIndex + rowOffset, columnIndex + colOffset, '*')) {
-                        setAdjacentStarCoordinates(new StarCoordinates(rowIndex + rowOffset, columnIndex + colOffset));
-                    }
                     return true;
                 }
             }
@@ -31,6 +28,9 @@ public class Number {
     }
 
     public boolean doesCharacterEqualSymbol(List<String> listOfStrings, int row, int column, char symbol) {
+        if (symbol == '*') {
+            setAdjacentStarCoordinates(new StarCoordinates(row, column));
+        }
         return listOfStrings.get(row).charAt(column) == symbol;
     }
 
