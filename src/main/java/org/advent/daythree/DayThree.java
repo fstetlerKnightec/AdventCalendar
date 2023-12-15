@@ -44,7 +44,7 @@ public class DayThree {
                 if (currentNumber != secondNumber) {
                     if (currentNumber.getAdjacentStarCoordinates() != null && secondNumber.getAdjacentStarCoordinates() != null) {
                         if (currentNumber.getAdjacentStarCoordinates().getColumnIndex() == secondNumber.getAdjacentStarCoordinates().getColumnIndex() && currentNumber.getAdjacentStarCoordinates().getRowIndex() == secondNumber.getAdjacentStarCoordinates().getRowIndex()) {
-                            if (currentNumber.isHasBeenUsed() || secondNumber.isHasBeenUsed()) {
+                            if (currentNumber.hasBeenUsed() && secondNumber.hasBeenUsed()) {
                                 totalValue += currentNumber.getNumberValue() * secondNumber.getNumberValue();
                                 currentNumber.setHasBeenUsed(true);
                                 secondNumber.setHasBeenUsed(true);

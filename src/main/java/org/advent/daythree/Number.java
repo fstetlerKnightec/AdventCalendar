@@ -3,13 +3,12 @@ package org.advent.daythree;
 import java.util.List;
 
 public class Number {
-
-    int numberValue;
-    int row;
-    int column;
-    boolean isAdjacentToSymbol;
-    StarCoordinates adjacentStarCoordinates;
-    boolean hasBeenUsed;
+    private final int numberValue;
+    private final int row;
+    private final int column;
+    private boolean isAdjacentToSymbol;
+    private StarCoordinates adjacentStarCoordinates;
+    private boolean hasBeenUsed;
 
     public Number(int numberValue, int row, int column) {
         this.numberValue = numberValue;
@@ -20,8 +19,8 @@ public class Number {
     public boolean doesNumberHasAdjacentSymbol(List<String> listOfStrings, String symbol, int rowIndex, int columnIndex, int numberLength) {
         for (int rowOffset = -1; rowOffset < 2; rowOffset++) {
             for (int colOffset = -1; colOffset < numberLength + 1; colOffset++ ) {
-                if (String.valueOf(listOfStrings.get(rowIndex + rowOffset).charAt(columnIndex + colOffset)).equals(symbol)) {
-                    if (String.valueOf(listOfStrings.get(rowIndex + rowOffset).charAt(columnIndex + colOffset)).equals("*")) {
+                if (doesCharacterEqualSymbol(listOfStrings, rowIndex + rowOffset, columnIndex + colOffset, symbol)) {
+                    if (doesCharacterEqualSymbol(listOfStrings, rowIndex + rowOffset, columnIndex + colOffset, "*")) {
                         setAdjacentStarCoordinates(new StarCoordinates(rowIndex + rowOffset, columnIndex + colOffset));
                     }
                     return true;
@@ -29,6 +28,10 @@ public class Number {
             }
         }
         return false;
+    }
+
+    public boolean doesCharacterEqualSymbol(List<String> listOfStrings, int row, int column, String symbol) {
+        return String.valueOf(listOfStrings.get(row).charAt(column)).equals(symbol);
     }
 
     public int getNumberValue() {
@@ -51,12 +54,12 @@ public class Number {
         this.isAdjacentToSymbol = isAdjacentToSymbol;
     }
 
-    public boolean isHasBeenUsed() {
+    public boolean hasBeenUsed() {
         return !hasBeenUsed;
     }
 
-    public void setHasBeenUsed(boolean hasBeenUsed) {
-        this.hasBeenUsed = hasBeenUsed;
+    public void setHasBeenUsed(boolean hasNotBeenUsed) {
+        this.hasBeenUsed = hasNotBeenUsed;
     }
 
     public StarCoordinates getAdjacentStarCoordinates() {

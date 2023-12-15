@@ -1,6 +1,8 @@
 package org.advent.daythree;
 
 public class StarCoordinates {
+    private final int rowIndex;
+    private final int columnIndex;
 
     public StarCoordinates(int rowIndex, int columnIndex) {
         this.rowIndex = rowIndex;
@@ -14,8 +16,4 @@ public class StarCoordinates {
     public int getColumnIndex() {
         return columnIndex;
     }
-
-    int rowIndex;
-
-    int columnIndex;
 }
