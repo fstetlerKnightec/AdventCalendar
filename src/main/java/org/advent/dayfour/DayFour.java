@@ -60,8 +60,8 @@ public class DayFour {
 
     public int totalSumOfAllExponentialValues(List<NumbersPerCard> listOfNumbersPerCard) {
         int totalValue = 0;
-        for (int i = 0; i < listOfNumbersPerCard.size(); i++) {
-            totalValue += exponentialSumOfNumbersMatchingBetweenOnHandAndWinningPerGame(listOfNumbersPerCard.get(i));
+        for (NumbersPerCard numbersPerCard : listOfNumbersPerCard) {
+            totalValue += exponentialSumOfNumbersMatchingBetweenOnHandAndWinningPerGame(numbersPerCard);
         }
         return totalValue;
     }
