@@ -4,17 +4,9 @@ import java.util.List;
 
 public class NumbersPerCard {
     private List<Integer> numbersYouHave;
-
     private List<Integer> winningNumbers;
-
     private int matchingNumbers;
-
     private int numberOfTotalCards;
-
-    public NumbersPerCard(List<Integer> winningNumbers, List<Integer> numbersYouHave) {
-        this.winningNumbers = winningNumbers;
-        this.numbersYouHave = numbersYouHave;
-    }
 
     public NumbersPerCard() {
     }
