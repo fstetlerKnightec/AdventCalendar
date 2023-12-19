@@ -1,5 +1,7 @@
 package org.advent.dayfour;
 
+import org.advent.daythree.Number;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,7 +12,10 @@ public class DayFour {
 
 
     public int exponentialSumOfNumbersMatchingBetweenOnHandAndWinningPerGame(NumbersPerCard numbersPerCard) {
+        return (int) Math.pow(2, matchingNumbersPerCard(numbersPerCard) - 1);
+    }
 
+    public int matchingNumbersPerCard(NumbersPerCard numbersPerCard) {
         int numberOfMatchingNumbers = 0;
         for (int i = 0; i < numbersPerCard.getWinningNumbers().size(); i++) {
             for (int j = 0; j < numbersPerCard.getNumbersYouHave().size(); j++) {
@@ -19,9 +24,39 @@ public class DayFour {
                 }
             }
         }
-        return (int) Math.pow(2, numberOfMatchingNumbers - 1);
+        return numberOfMatchingNumbers;
     }
 
+    public void setMatchingNumberPerCard(List<NumbersPerCard> listOfNumbersPerCard) {
+        for (int i = 0; i < listOfNumbersPerCard.size(); i++) {
+            int matchingNumber = matchingNumbersPerCard(listOfNumbersPerCard.get(i));
+            listOfNumbersPerCard.get(i).setMatchingNumbers(matchingNumber);
+        }
+    }
+
+    public void setNumberOfTotalPerCard(List<NumbersPerCard> listOfNumbersPerCard) {
+
+
+        for (NumbersPerCard numbersPerCard : listOfNumbersPerCard) {
+            numbersPerCard.addNumberOfTotalCards(1);
+        }
+
+        for (int i = 0; i < listOfNumbersPerCard.size(); i++) {
+            for (int j = i + 1; j <= i + listOfNumbersPerCard.get(i).getMatchingNumbers(); j++) {
+                listOfNumbersPerCard.get(j).addNumberOfTotalCards(listOfNumbersPerCard.get(i).getNumberOfTotalCards());
+            }
+        }
+    }
+
+    public int totalSumOfNumbersOfTotalPerCard(List<NumbersPerCard> listOfNumbersPerCard) {
+        int totalSum = 0;
+
+        for (int i = 0; i < listOfNumbersPerCard.size(); i++) {
+            totalSum += listOfNumbersPerCard.get(i).getNumberOfTotalCards();
+        }
+
+        return totalSum;
+    }
 
     public int totalSumOfAllExponentialValues(List<NumbersPerCard> listOfNumbersPerCard) {
         int totalValue = 0;
