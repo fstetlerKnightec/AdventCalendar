@@ -49,13 +49,11 @@ public class DayThree {
 
     public int returnTotalValueIfNumbersAreValid(Number currentNumber, Number secondNumber, int totalValue) {
         if (currentNumber != secondNumber) {
-            if (currentNumber.getAdjacentStarCoordinates() != null && secondNumber.getAdjacentStarCoordinates() != null) {
-                if (currentNumber.getAdjacentStarCoordinates().columnIndex() == secondNumber.getAdjacentStarCoordinates().columnIndex() && currentNumber.getAdjacentStarCoordinates().rowIndex() == secondNumber.getAdjacentStarCoordinates().rowIndex()) {
-                    if (!currentNumber.hasBeenUsed() && !secondNumber.hasBeenUsed()) {
-                        totalValue += currentNumber.getNumberValue() * secondNumber.getNumberValue();
-                        currentNumber.setHasBeenUsed(true);
-                        secondNumber.setHasBeenUsed(true);
-                    }
+            if (currentNumber.getAdjacentStarCoordinates().equals(secondNumber.getAdjacentStarCoordinates())) {
+                if (!currentNumber.hasBeenUsed() && !secondNumber.hasBeenUsed()) {
+                    totalValue += currentNumber.getNumberValue() * secondNumber.getNumberValue();
+                    currentNumber.setHasBeenUsed(true);
+                    secondNumber.setHasBeenUsed(true);
                 }
             }
         }
