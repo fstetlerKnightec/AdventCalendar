@@ -28,7 +28,7 @@ public class Number {
     }
 
     public boolean doesCharacterEqualSymbol(List<String> listOfStrings, int row, int column, char symbol) {
-        if (symbol == '*') {
+        if (listOfStrings.get(row).charAt(column) == '*') {
             setAdjacentStarCoordinates(new StarCoordinates(row, column));
         }
         return listOfStrings.get(row).charAt(column) == symbol;
