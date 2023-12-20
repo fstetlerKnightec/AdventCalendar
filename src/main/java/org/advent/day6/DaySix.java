@@ -5,7 +5,6 @@ import java.util.List;
 
 public class DaySix {
 
-
     public int distanceTraveledPerRace(int buttonTime, int totalTimeDuration) {
         return buttonTime*(totalTimeDuration - buttonTime);
     }
@@ -30,8 +29,6 @@ public class DaySix {
         }
         return totalNumber;
     }
-
-
 
     public List<TimeDistance> listOfTimeAndDistances(List<String> stringsWithoutLabels) {
         List<TimeDistance> listOfTimeAndDistance = new ArrayList<>();
