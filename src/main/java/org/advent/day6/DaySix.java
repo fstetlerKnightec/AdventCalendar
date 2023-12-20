@@ -11,10 +11,8 @@ public class DaySix {
 
         List<TimeDistance> listOfTimeAndDistance = new ArrayList<>();
 
-        List<String> listOfTimes = new ArrayList<>(List.of(listOfStrings.get(0).split("\\s+")));
-        listOfTimes.remove(0);
-        List<String> listOfDistance = new ArrayList<>(List.of(listOfStrings.get(1).split("\\s+")));
-        listOfDistance.remove(0);
+        List<String> listOfTimes = splitStringIntoNumbers(listOfStrings, 0);
+        List<String> listOfDistance = splitStringIntoNumbers(listOfStrings, 1);
 
         for (int i = 0; i < listOfTimes.size(); i++) {
             listOfTimeAndDistance.add(
@@ -26,6 +24,13 @@ public class DaySix {
         return listOfTimeAndDistance;
 
     }
+
+    public List<String> splitStringIntoNumbers(List<String> listOfStrings, int index) {
+        List<String> list = new ArrayList<>(List.of(listOfStrings.get(index).split("\\s+")));
+        list.remove(0);
+        return list;
+    }
+
 
     public List<String> removeLabels(List<String> listOfStrings) {
         List<String> cutString = new ArrayList<>();
