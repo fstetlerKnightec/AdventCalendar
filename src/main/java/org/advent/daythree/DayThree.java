@@ -72,13 +72,12 @@ public class DayThree {
     }
 
     public int numberAtIndexOnRow(String currentLine, int columnIndex) {
-        if (isCharNotDigitOnIndex(currentLine, columnIndex, 1)) {
-            return Integer.parseInt(currentLine.substring(columnIndex, columnIndex + 1));
+        for (int i = 1; i < 4; i++) {
+            if (isCharNotDigitOnIndex(currentLine, columnIndex, i)) {
+                return Integer.parseInt(currentLine.substring(columnIndex, columnIndex + i));
+            }
         }
-        if (isCharNotDigitOnIndex(currentLine, columnIndex, 2)) {
-            return Integer.parseInt(currentLine.substring(columnIndex, columnIndex + 2));
-        }
-        return Integer.parseInt(currentLine.substring(columnIndex, columnIndex + 3));
+        return 0;
     }
 
     public int getTotalAddedNumbersAdjacentToSymbol(List<Number> listOfAllNumbers) {
