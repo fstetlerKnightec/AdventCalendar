@@ -7,8 +7,7 @@ public class DaySix {
 
 
     public int distanceTraveledPerRace(int buttonTime, int totalTimeDuration) {
-        int timeToActuallyDrive = totalTimeDuration - buttonTime;
-        return buttonTime*timeToActuallyDrive;
+        return buttonTime*(totalTimeDuration - buttonTime);
     }
 
     public int numberOfButtonHoldsBeatRecord(TimeDistance timeDistance) {
