@@ -87,7 +87,7 @@ public class DayThree {
         return !Character.isDigit(currentLine.charAt(index + offset));
     }
 
-    public List<String> addCushionLinesAndColumnsOnStringsInList(List<String> listOfStrings) throws FileNotFoundException {
+    public List<String> addCushionLinesAndColumnsOnStringsInList(List<String> listOfStrings) {
 
         for (int i = 0; i < listOfStrings.size(); i++) {
             listOfStrings.set(i, "." + listOfStrings.get(i));
