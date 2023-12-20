@@ -95,18 +95,6 @@ public class DayTwo {
         return 0;
     }
 
-    public List<String> readGamesFromFileAndPutInList(String filePath) throws FileNotFoundException {
-        List<String> sentences;
-        try {
-            Path path = Paths.get(filePath);
-            sentences = Files.readAllLines(path);
-        } catch (IOException e) {
-            throw new FileNotFoundException("Could not find a file under path " + filePath);
-        }
-
-        return sentences;
-    }
-
     public static boolean characterAtIndexNotBlank(String currentGame, int index) {
         return !String.valueOf(currentGame.charAt(index - 3)).isBlank();
     }

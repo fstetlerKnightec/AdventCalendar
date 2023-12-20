@@ -1,4 +1,4 @@
-import org.advent.daytwo.oldStuff.DayTwoClean;
+import org.advent.daytwo.DayTwo;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -19,8 +19,8 @@ public class DayTwoTests {
                 "Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green;"
         ));
 
-        DayTwoClean dayTwoClean = new DayTwoClean();
-        int totalSum = dayTwoClean.sumOfAllIDsFromAllowedGames(listOfGames);
+        DayTwo dayTwo = new DayTwo();
+        int totalSum = dayTwo.sumOfAllValidIDs(listOfGames, 13, 14, 12);
         assertEquals(8, totalSum);
     }
 
@@ -34,12 +34,7 @@ public class DayTwoTests {
                 "Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green;"
         ));
 
-        DayTwoClean dayTwoClean = new DayTwoClean();
-
-        int totalValue = 0;
-        for (String s : listOfGames) {
-            totalValue += dayTwoClean.powerOfCurrentGame(s);
-        }
-        assertEquals(2286, totalValue);
+        DayTwo dayTwo = new DayTwo();
+        assertEquals(2286, dayTwo.totalPowerOfAllGames(listOfGames));
     }
 }
