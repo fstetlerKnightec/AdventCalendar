@@ -55,17 +55,6 @@ public class DayFour {
         return stringList.stream().map(s -> s.replaceAll(".*:", "")).toList();
     }
 
-    public List<String> readStringsFromFile(String filePath) throws IOException {
-        List<String> stringList = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                stringList.add(line);
-            }
-        }
-        return stringList;
-    }
-
     private int exponentialSumOfNumbersMatchingBetweenOnHandAndWinningPerGame(NumbersPerCard numbersPerCard) {
         return (int) Math.pow(2, totalNumberOfMatchingNumbersPerCard(numbersPerCard) - 1);
     }

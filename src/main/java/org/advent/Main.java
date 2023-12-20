@@ -2,31 +2,32 @@ package org.advent;
 
 import org.advent.dayfour.DayFour;
 import org.advent.dayfour.NumbersPerCard;
-import org.advent.dayone.DayOneClean;
+import org.advent.dayone.DayOne;
 import org.advent.daythree.DayThree;
 import org.advent.daythree.Number;
-import org.advent.daytwo.DayTwoReworked;
+import org.advent.daytwo.DayTwo;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
 public class Main {
+
     public static void main(String[] args) throws IOException {
 
+        Util util = new Util();
+
         // DAY ONE OUTPUT
-        DayOneClean dayOneClean = new DayOneClean();
-        List<String> listOfStrings = dayOneClean.readFileAndReturnList("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayOne.txt");
+        DayOne dayOne = new DayOne();
+        List<String> listOfStrings = util.readStringsFromFile("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayOne.txt");
         List<String> listOfFirstNumbersFromLeft = listOfStrings.stream()
-                .map(s -> dayOneClean.returnFirstNumberFromString(String.valueOf(s), false, true)).toList();
+                .map(s -> dayOne.returnFirstNumberFromString(String.valueOf(s), false, true)).toList();
         List<String> listOfFirstNumbersFromRight = listOfStrings.stream()
-                .map(s -> dayOneClean.returnFirstNumberFromString(String.valueOf(s), true, true)).toList();
+                .map(s -> dayOne.returnFirstNumberFromString(String.valueOf(s), true, true)).toList();
         List<String> listOfFirstNumbersFromLeft2 = listOfStrings.stream()
-                .map(s -> dayOneClean.returnFirstNumberFromString(String.valueOf(s), false, false)).toList();
+                .map(s -> dayOne.returnFirstNumberFromString(String.valueOf(s), false, false)).toList();
         List<String> listOfFirstNumbersFromRight2 = listOfStrings.stream()
-                .map(s -> dayOneClean.returnFirstNumberFromString(String.valueOf(s), true, false)).toList();
+                .map(s -> dayOne.returnFirstNumberFromString(String.valueOf(s), true, false)).toList();
         List<String> listOfCombinedNumbersFromLeftAndRight =
                 IntStream.range(0, listOfFirstNumbersFromLeft.size())
                         .mapToObj(i -> listOfFirstNumbersFromLeft.get(i) + listOfFirstNumbersFromRight.get(i)).toList();
@@ -34,23 +35,24 @@ public class Main {
                 IntStream.range(0, listOfFirstNumbersFromLeft.size())
                         .mapToObj(i -> listOfFirstNumbersFromLeft2.get(i) + listOfFirstNumbersFromRight2.get(i)).toList();
 
-        int totalSum = dayOneClean.addAllNumbersTogether(listOfCombinedNumbersFromLeftAndRight);
-        int totalSum2 = dayOneClean.addAllNumbersTogether(listOfCombinedNumbersFromLeftAndRight2);
+        int totalSum = dayOne.addAllNumbersTogether(listOfCombinedNumbersFromLeftAndRight);
+        int totalSum2 = dayOne.addAllNumbersTogether(listOfCombinedNumbersFromLeftAndRight2);
         System.out.println("Day One ----------------------------------");
         System.out.println("Total sum of all values in list = " + totalSum);
         System.out.println("Total sum of all numbers, even the text ones, in list = " + totalSum2);
 
-        // DAY TWO REWORKED OUTPUT
-        DayTwoReworked dayTwoReworked = new DayTwoReworked();
-        List<String> listOfGames = dayTwoReworked.readGamesFromFileAndPutInList("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayTwo.txt");
+        // DAY TWO OUTPUT
+        DayTwo dayTwo = new DayTwo();
+        List<String> listOfGames = util.readStringsFromFile("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayTwo.txt");
         System.out.println("");
         System.out.println("Day Two ----------------------------------");
-        System.out.println("Sum of all valid IDs for day two = " + dayTwoReworked.sumOfAllValidIDs(listOfGames, 13, 14, 12));
-        System.out.println("Total power of all games for day two = " + dayTwoReworked.totalPowerOfAllGames(listOfGames));
+        System.out.println("Sum of all valid IDs for day two = " + dayTwo.sumOfAllValidIDs(listOfGames, 13, 14, 12));
+        System.out.println("Total power of all games for day two = " + dayTwo.totalPowerOfAllGames(listOfGames));
 
         // DAY THREE OUTPUT
         DayThree dayThree = new DayThree();
-        List<String> list3 = DayThree.readFileAndReturnList("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayThree.txt");
+        List<String> readList = util.readStringsFromFile("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayThree.txt");
+        List<String> list3 = dayThree.addCushionLinesAndColumnsOnStringsInList(readList);
         List<Number> listOfAllNumbers = dayThree.listOfAllNumbers(list3);
         dayThree.setAdjacentToSymbolForNumber(listOfAllNumbers, list3);
 
@@ -61,7 +63,7 @@ public class Main {
 
         // DAY FOUR OUTPUT
         DayFour dayFour = new DayFour();
-        List<String> listOfCards = dayFour.readStringsFromFile("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayFour.txt");
+        List<String> listOfCards = util.readStringsFromFile("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\dayFour.txt");
         List<String> listOfCutStrings = dayFour.removeFrontPartOfStringAndReturnList(listOfCards);
         List<NumbersPerCard> listOfAllNumbersPerCard = dayFour.listOfAllNumbersPerCard(listOfCutStrings);
         dayFour.setMatchingNumberPerCard(listOfAllNumbersPerCard);

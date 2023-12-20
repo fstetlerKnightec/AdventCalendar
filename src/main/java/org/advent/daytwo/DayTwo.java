@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class DayTwoReworked {
+public class DayTwo {
 
     public String getCutString(String currentGame) {
         return " " + currentGame.substring(currentGame.indexOf(": ") + 2);

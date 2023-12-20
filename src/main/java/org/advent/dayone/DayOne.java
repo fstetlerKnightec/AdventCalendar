@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class DayOneClean {
+public class DayOne {
 
     public String returnFirstNumberFromString(String currentString, boolean reversed, boolean partOne) {
 
