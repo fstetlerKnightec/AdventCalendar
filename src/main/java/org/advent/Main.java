@@ -75,8 +75,10 @@ public class Main {
 
         List<String> removedLabelString = daySix.removeLabelsFromFrontPartOfString(list6);
         List<TimeDistance> listOfTimeAndDistances = daySix.listOfTimeAndDistances(removedLabelString);
-        System.out.println(listOfTimeAndDistances.get(0).getTimeRaceLasts());
-        System.out.println(listOfTimeAndDistances.get(0).getTotalDistanceTraveled());
+
+        System.out.println(" ");
+        System.out.println("Day Six -------------------------------------");
+        System.out.println("Total multiplied number of all possible settings is = " + daySix.totalNumberOfButtonHoldsThatBeatRecord(listOfTimeAndDistances));
 
 
 

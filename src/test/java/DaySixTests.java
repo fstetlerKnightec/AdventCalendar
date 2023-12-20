@@ -2,7 +2,6 @@ import org.advent.day6.DaySix;
 import org.advent.day6.TimeDistance;
 import org.junit.Test;
 
-import java.nio.file.AccessDeniedException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,5 +41,37 @@ public class DaySixTests {
         for (int buttonTime = 0; buttonTime < totalTimeDuration; buttonTime++) {
             assertEquals(expectedValues.get(buttonTime), daySix.distanceTraveledPerRace(buttonTime, totalTimeDuration));
         }
+    }
+
+    @Test
+    public void numberOfSettingsAbleToBeatCurrentRecordForOneRace() {
+        List<String> listOfStrings = new ArrayList<>(Arrays.asList(
+                "Time:      7  15   30",
+                "Distance:  9  40  200"
+        ));
+
+        DaySix daySix = new DaySix();
+
+        List<String> listWithoutLabels = daySix.removeLabelsFromFrontPartOfString(listOfStrings);
+        List<TimeDistance> timeDistances = daySix.listOfTimeAndDistances(listWithoutLabels);
+
+        assertEquals(4, daySix.numberOfButtonHoldsBeatRecord(timeDistances.get(0)));
+
+    }
+
+    @Test
+    public void totalNumberOfSettingsAbleToBeatCurrentRecord() {
+        List<String> listOfStrings = new ArrayList<>(Arrays.asList(
+                "Time:      7  15   30",
+                "Distance:  9  40  200"
+        ));
+
+        DaySix daySix = new DaySix();
+
+        List<String> listWithoutLabels = daySix.removeLabelsFromFrontPartOfString(listOfStrings);
+        List<TimeDistance> timeDistances = daySix.listOfTimeAndDistances(listWithoutLabels);
+
+        assertEquals(288, daySix.totalNumberOfButtonHoldsThatBeatRecord(timeDistances));
+
     }
 }

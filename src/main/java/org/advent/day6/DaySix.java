@@ -11,6 +11,26 @@ public class DaySix {
         return buttonTime*timeToActuallyDrive;
     }
 
+    public int numberOfButtonHoldsBeatRecord(TimeDistance timeDistance) {
+        int totalNumberOfSettingsAbleToBeatRecord = 0;
+
+        int totalTimeDuration = timeDistance.getTimeRaceLasts();
+        for (int buttonTime = 0; buttonTime < totalTimeDuration; buttonTime++) {
+            int distanceTraveled = distanceTraveledPerRace(buttonTime, totalTimeDuration);
+            if (timeDistance.getTotalDistanceTraveled() < distanceTraveled) {
+                totalNumberOfSettingsAbleToBeatRecord += 1;
+            }
+        }
+        return totalNumberOfSettingsAbleToBeatRecord;
+    }
+
+    public int totalNumberOfButtonHoldsThatBeatRecord(List<TimeDistance> timeDistances) {
+        int totalNumber = 1;
+        for (TimeDistance timeDistance : timeDistances) {
+            totalNumber *= numberOfButtonHoldsBeatRecord(timeDistance);
+        }
+        return totalNumber;
+    }
 
 
 
