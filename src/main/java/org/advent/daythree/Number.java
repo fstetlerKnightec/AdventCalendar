@@ -16,13 +16,10 @@ public class Number {
         this.column = column;
     }
 
-    public boolean doesNumberHasAdjacentSymbol(List<String> listOfStrings, String symbol, int rowIndex, int columnIndex, int numberLength) {
+    public boolean doesNumberHasAdjacentSymbol(List<String> listOfStrings, int rowIndex, int columnIndex, int numberLength) {
         for (int rowOffset = -1; rowOffset < 2; rowOffset++) {
             for (int colOffset = -1; colOffset < numberLength + 1; colOffset++ ) {
-                if (doesCharacterEqualSymbol(listOfStrings, rowIndex + rowOffset, columnIndex + colOffset, symbol)) {
-                    if (doesCharacterEqualSymbol(listOfStrings, rowIndex + rowOffset, columnIndex + colOffset, "*")) {
-                        setAdjacentStarCoordinates(new StarCoordinates(rowIndex + rowOffset, columnIndex + colOffset));
-                    }
+                if (doesCharacterEqualSymbol(listOfStrings, rowIndex + rowOffset, columnIndex + colOffset)) {
                     return true;
                 }
             }
@@ -30,8 +27,11 @@ public class Number {
         return false;
     }
 
-    public boolean doesCharacterEqualSymbol(List<String> listOfStrings, int row, int column, String symbol) {
-        return String.valueOf(listOfStrings.get(row).charAt(column)).equals(symbol);
+    public boolean doesCharacterEqualSymbol(List<String> listOfStrings, int row, int column) {
+        if (listOfStrings.get(row).charAt(column) == '*') {
+            setAdjacentStarCoordinates(new StarCoordinates(row, column));
+        }
+        return listOfStrings.get(row).charAt(column) != '.' && !Character.isDigit(listOfStrings.get(row).charAt(column));
     }
 
     public int getNumberValue() {
@@ -54,8 +54,8 @@ public class Number {
         this.isAdjacentToSymbol = isAdjacentToSymbol;
     }
 
-    public boolean hasBeenUsed() {
-        return hasBeenUsed;
+    public boolean hasNotBeenUsed() {
+        return !hasBeenUsed;
     }
 
     public void setHasBeenUsed(boolean hasBeenUsed) {

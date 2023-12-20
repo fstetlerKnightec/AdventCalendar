@@ -25,13 +25,9 @@ public class DayThree {
     }
 
     public void setAdjacentToSymbolForNumber(List<Number> listOfAllNumbers, List<String> listOfStrings) {
-        List<String> symbols = new ArrayList<>(Arrays.asList("*", "#", "+", "$", "@", "/", "=", "-", "&", "%"));
         for (Number currentNumber : listOfAllNumbers) {
-            for (String s : symbols) {
-                if (currentNumber.doesNumberHasAdjacentSymbol(listOfStrings, s, currentNumber.getRow(), currentNumber.getColumn(), String.valueOf(currentNumber.getNumberValue()).length())) {
-                    currentNumber.setIsAdjacentToSymbol(true);
-                    break;
-                }
+            if (currentNumber.doesNumberHasAdjacentSymbol(listOfStrings, currentNumber.getRow(), currentNumber.getColumn(), String.valueOf(currentNumber.getNumberValue()).length())) {
+                currentNumber.setIsAdjacentToSymbol(true);
             }
         }
     }
@@ -41,15 +37,20 @@ public class DayThree {
         for (int i = 0; i < listOfAllNumbers.size(); i++) {
             Number currentNumber = listOfAllNumbers.get(i);
             for (Number secondNumber : listOfAllNumbers) {
-                if (currentNumber != secondNumber) {
-                    if (currentNumber.getAdjacentStarCoordinates() != null && secondNumber.getAdjacentStarCoordinates() != null) {
-                        if (currentNumber.getAdjacentStarCoordinates().columnIndex() == secondNumber.getAdjacentStarCoordinates().columnIndex() && currentNumber.getAdjacentStarCoordinates().rowIndex() == secondNumber.getAdjacentStarCoordinates().rowIndex()) {
-                            if (!currentNumber.hasBeenUsed() && !secondNumber.hasBeenUsed()) {
-                                totalValue += currentNumber.getNumberValue() * secondNumber.getNumberValue();
-                                currentNumber.setHasBeenUsed(true);
-                                secondNumber.setHasBeenUsed(true);
-                            }
-                        }
+                totalValue = returnTotalValueIfNumbersAreValid(currentNumber, secondNumber, totalValue);
+            }
+        }
+        return totalValue;
+    }
+
+    public int returnTotalValueIfNumbersAreValid(Number currentNumber, Number secondNumber, int totalValue) {
+        if (currentNumber != secondNumber) {
+            if (currentNumber.getAdjacentStarCoordinates() != null && secondNumber.getAdjacentStarCoordinates() != null) {
+                if (currentNumber.getAdjacentStarCoordinates().equals(secondNumber.getAdjacentStarCoordinates())) {
+                    if (currentNumber.hasNotBeenUsed() && secondNumber.hasNotBeenUsed()) {
+                        totalValue += currentNumber.getNumberValue() * secondNumber.getNumberValue();
+                        currentNumber.setHasBeenUsed(true);
+                        secondNumber.setHasBeenUsed(true);
                     }
                 }
             }
@@ -67,25 +68,12 @@ public class DayThree {
     }
 
     public int numberAtIndexOnRow(String currentLine, int columnIndex) {
-        if (isCharNotDigitOnIndex(currentLine, columnIndex, 1)) {
-            return returnOneDigitNumber(currentLine, columnIndex);
+        for (int i = 1; i < 4; i++) {
+            if (isCharNotDigitOnIndex(currentLine, columnIndex, i)) {
+                return Integer.parseInt(currentLine.substring(columnIndex, columnIndex + i));
+            }
         }
-        if (isCharNotDigitOnIndex(currentLine, columnIndex, 2)) {
-            return returnTwoDigitNumber(currentLine, columnIndex);
-        }
-        return returnThreeDigitNumber(currentLine, columnIndex);
-    }
-
-    public int returnTwoDigitNumber(String currentLine, int columnIndex) {
-        return Integer.parseInt(currentLine.charAt(columnIndex) + String.valueOf(currentLine.charAt(columnIndex + 1)));
-    }
-
-    public int returnOneDigitNumber(String currentLine, int columnIndex) {
-        return Integer.parseInt(String.valueOf(currentLine.charAt(columnIndex)));
-    }
-
-    public int returnThreeDigitNumber(String currentLine, int columnIndex) {
-        return Integer.parseInt(currentLine.charAt(columnIndex) + String.valueOf(currentLine.charAt(columnIndex + 1)) + currentLine.charAt(columnIndex + 2));
+        return 0;
     }
 
     public int getTotalAddedNumbersAdjacentToSymbol(List<Number> listOfAllNumbers) {
