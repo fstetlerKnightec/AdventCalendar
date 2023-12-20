@@ -54,8 +54,8 @@ public class Number {
         this.isAdjacentToSymbol = isAdjacentToSymbol;
     }
 
-    public boolean hasBeenUsed() {
-        return hasBeenUsed;
+    public boolean hasNotBeenUsed() {
+        return !hasBeenUsed;
     }
 
     public void setHasBeenUsed(boolean hasBeenUsed) {

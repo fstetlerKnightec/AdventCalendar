@@ -51,7 +51,7 @@ public class DayThree {
         if (currentNumber != secondNumber) {
             if (currentNumber.getAdjacentStarCoordinates() != null && secondNumber.getAdjacentStarCoordinates() != null) {
                 if (currentNumber.getAdjacentStarCoordinates().equals(secondNumber.getAdjacentStarCoordinates())) {
-                    if (!currentNumber.hasBeenUsed() && !secondNumber.hasBeenUsed()) {
+                    if (currentNumber.hasNotBeenUsed() && secondNumber.hasNotBeenUsed()) {
                         totalValue += currentNumber.getNumberValue() * secondNumber.getNumberValue();
                         currentNumber.setHasBeenUsed(true);
                         secondNumber.setHasBeenUsed(true);
