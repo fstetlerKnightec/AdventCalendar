@@ -1,7 +1,7 @@
 package org.advent.daythree;
 
-import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DayThree {
 
