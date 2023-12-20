@@ -2,16 +2,9 @@ package org.advent;
 
 import org.advent.day6.DaySix;
 import org.advent.day6.TimeDistance;
-import org.advent.dayfour.DayFour;
-import org.advent.dayfour.NumbersPerCard;
-import org.advent.dayone.DayOne;
-import org.advent.daythree.DayThree;
-import org.advent.daythree.Number;
-import org.advent.daytwo.DayTwo;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Main {
 
@@ -80,7 +73,7 @@ public class Main {
 
         List<String> list6 = util.readStringsFromFile("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\daySix.txt");
 
-        List<String> removedLabelString = daySix.removeLabels(list6);
+        List<String> removedLabelString = daySix.removeLabelsFromFrontPartOfString(list6);
         List<TimeDistance> listOfTimeAndDistances = daySix.listOfTimeAndDistances(removedLabelString);
         System.out.println(listOfTimeAndDistances.get(0).getTimeRaceLasts());
         System.out.println(listOfTimeAndDistances.get(0).getTotalDistanceTraveled());

@@ -1,18 +1,24 @@
 package org.advent.day6;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class DaySix {
 
 
-    public List<TimeDistance> listOfTimeAndDistances(List<String> listOfStrings) {
+    public int distanceTraveledPerRace(int buttonTime, int totalTimeDuration) {
+        int timeToActuallyDrive = totalTimeDuration - buttonTime;
+        return buttonTime*timeToActuallyDrive;
+    }
 
+
+
+
+    public List<TimeDistance> listOfTimeAndDistances(List<String> stringsWithoutLabels) {
         List<TimeDistance> listOfTimeAndDistance = new ArrayList<>();
 
-        List<String> listOfTimes = splitStringIntoNumbers(listOfStrings, 0);
-        List<String> listOfDistance = splitStringIntoNumbers(listOfStrings, 1);
+        List<String> listOfTimes = splitStringIntoNumbers(stringsWithoutLabels, 0);
+        List<String> listOfDistance = splitStringIntoNumbers(stringsWithoutLabels, 1);
 
         for (int i = 0; i < listOfTimes.size(); i++) {
             listOfTimeAndDistance.add(
@@ -22,7 +28,6 @@ public class DaySix {
         }
 
         return listOfTimeAndDistance;
-
     }
 
     public List<String> splitStringIntoNumbers(List<String> listOfStrings, int index) {
@@ -31,8 +36,7 @@ public class DaySix {
         return list;
     }
 
-
-    public List<String> removeLabels(List<String> listOfStrings) {
+    public List<String> removeLabelsFromFrontPartOfString(List<String> listOfStrings) {
         List<String> cutString = new ArrayList<>();
         for (String s : listOfStrings) {
             int colonIndex = s.indexOf(":");
@@ -41,5 +45,4 @@ public class DaySix {
         }
         return cutString;
     }
-
 }
