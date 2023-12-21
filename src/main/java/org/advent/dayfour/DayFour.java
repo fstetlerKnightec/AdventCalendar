@@ -4,12 +4,16 @@ import org.advent.PrintSolution;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class DayFour implements PrintSolution {
 
+
+    public int totalSumOfAllExponentialValues(List<NumbersPerCard> listOfNumbersPerCard) {
+        return listOfNumbersPerCard.stream().mapToInt(npc -> npc.exponentialSumOfNumbersMatchingBetweenOnHandAndWinningPerGame(npc)).sum();
+    }
+
     public void setMatchingNumberPerCard(List<NumbersPerCard> listOfNumbersPerCard) {
-        listOfNumbersPerCard.forEach(n -> n.setMatchingNumbers(totalNumberOfMatchingNumbersPerCard(n)));
+        listOfNumbersPerCard.forEach(n -> n.setMatchingNumbers(n.totalNumberOfMatchingNumbersPerCard(n)));
     }
 
     public void setNumberOfTotalPerCard(List<NumbersPerCard> listOfNumbersPerCard) {
@@ -25,16 +29,10 @@ public class DayFour implements PrintSolution {
     }
 
     public int totalSumOfNumbersOfTotalPerCard(List<NumbersPerCard> listOfNumbersPerCard) {
-        AtomicInteger totalSum = new AtomicInteger();
-        listOfNumbersPerCard.forEach(n -> totalSum.addAndGet(n.getNumberOfTotalCards()));
-        return totalSum.get();
+        return listOfNumbersPerCard.stream().mapToInt(NumbersPerCard::getNumberOfTotalCards).sum();
     }
 
-    public int totalSumOfAllExponentialValues(List<NumbersPerCard> listOfNumbersPerCard) {
-        AtomicInteger totalValue = new AtomicInteger();
-        listOfNumbersPerCard.forEach(n -> totalValue.addAndGet(exponentialSumOfNumbersMatchingBetweenOnHandAndWinningPerGame(n)));
-        return totalValue.get();
-    }
+
 
     public List<NumbersPerCard> listOfAllNumbersPerCard(List<String> listOfCutStrings) {
         List<NumbersPerCard> listOfNumbersPerCard= new ArrayList<>();
@@ -46,19 +44,9 @@ public class DayFour implements PrintSolution {
         return stringList.stream().map(s -> s.replaceAll(".*:", "")).toList();
     }
 
-    private int exponentialSumOfNumbersMatchingBetweenOnHandAndWinningPerGame(NumbersPerCard numbersPerCard) {
-        return (int) Math.pow(2, totalNumberOfMatchingNumbersPerCard(numbersPerCard) - 1);
-    }
 
-    private int totalNumberOfMatchingNumbersPerCard(NumbersPerCard numbersPerCard) {
-        AtomicInteger numbersOfMatchingNumbers = new AtomicInteger();
-        List<Integer> listOfWinning = numbersPerCard.getWinningNumbers();
-        List<Integer> listOfNumbers = numbersPerCard.getNumbersYouHave();
 
-        listOfWinning.forEach(wn -> { if (listOfNumbers.contains(wn)) {numbersOfMatchingNumbers.addAndGet(1);}});
-        return numbersOfMatchingNumbers.get();
 
-    }
 
     private NumbersPerCard numbersPerCard(String cutString) {
         NumbersPerCard numbers = new NumbersPerCard();

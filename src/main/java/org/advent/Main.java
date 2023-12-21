@@ -74,7 +74,5 @@ public class Main {
         dayFour.printPartOne(totalSumOfAllExponentialValues);
         dayFour.printPartTwo(totalSumOfTotalNumberOfCards);
 
-
-
     }
 }
