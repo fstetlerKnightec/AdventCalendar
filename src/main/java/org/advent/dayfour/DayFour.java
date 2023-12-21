@@ -42,7 +42,7 @@ public class DayFour implements PrintSolution {
 
     private NumbersPerCard numbersPerCard(String cutString) {
         String winningString = cutString.split("\\|")[0];
-        String numbersYouHaveString = cutString.split("\\|")[1];;
+        String numbersYouHaveString = cutString.split("\\|")[1];
         return new NumbersPerCard(listOfNumbers(winningString), listOfNumbers(numbersYouHaveString));
     }
 
