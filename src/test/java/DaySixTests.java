@@ -42,7 +42,7 @@ public class DaySixTests {
         List<Integer> expectedValues = new ArrayList<>(Arrays.asList(0, 6, 10, 12, 12, 10, 6, 0));
         int totalTimeDuration = timeDistances.get(0).getTimeRaceLasts();
         for (int buttonTime = 0; buttonTime < timeDistances.get(0).getTimeRaceLasts(); buttonTime++) {
-            assertEquals(expectedValues.get(buttonTime), daySix.distanceTraveledPerRace(buttonTime, totalTimeDuration));
+            assertEquals(expectedValues.get(buttonTime), timeDistances.get(0).distanceTraveledPerRace(buttonTime, totalTimeDuration));
         }
     }
 
@@ -58,7 +58,7 @@ public class DaySixTests {
         List<String> listWithoutLabels = daySix.removeLabelsFromFrontPartOfString(listOfStrings);
         List<TimeDistance> timeDistances = daySix.listOfTimeAndDistances(listWithoutLabels);
 
-        assertEquals(4, daySix.numberOfButtonHoldsBeatRecord(timeDistances.get(0)));
+        assertEquals(4, timeDistances.get(0).numberOfButtonHoldsBeatRecord());
 
     }
 
