@@ -90,22 +90,7 @@ public class DayThree {
         return !Character.isDigit(currentLine.charAt(index + offset));
     }
 
-    public static List<String> readFileAndReturnList(String filePath) throws FileNotFoundException {
-        ArrayList<String> listOfStrings = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] words = line.split("\\s+");
-                for (String word : words) {
-                    word = word.trim();
-                    if (!word.isEmpty()) {
-                        listOfStrings.add(word);
-                    }
-                }
-            }
-        } catch (IOException e) {
-            throw new FileNotFoundException("Could not find the file located at " + filePath);
-        }
+    public List<String> addCushionLinesAndColumnsOnStringsInList(List<String> listOfStrings) {
 
         for (int i = 0; i < listOfStrings.size(); i++) {
             listOfStrings.set(i, "." + listOfStrings.get(i));
