@@ -1,9 +1,11 @@
 package org.advent;
 
 import org.advent.dayone.DayOne;
+import org.advent.daysix.TimeDistance;
 import org.advent.daythree.DayThree;
 import org.advent.daythree.Number;
 import org.advent.daytwo.DayTwo;
+import org.advent.daysix.DaySix;
 
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -58,6 +60,17 @@ public class Main {
         int totalValueOfAllAdjacantToStar = dayThree.calculateTotalValueOfAllAdjacentValuesToStar(listOfAllNumbers);
         dayThree.printPartOne(totalAddedNumbersAdjacentToSymbol);
         dayThree.printPartTwo(totalValueOfAllAdjacantToStar);
+
+        DaySix daySix = new DaySix();
+
+        List<String> list6 = util.readStringsFromFile("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\daySix.txt");
+
+        List<String> removedLabelString = daySix.removeLabelsFromFrontPartOfString(list6);
+        List<TimeDistance> listOfTimeAndDistances = daySix.listOfTimeAndDistances(removedLabelString);
+
+        System.out.println(" ");
+        System.out.println("Day Six -------------------------------------");
+        System.out.println("Total multiplied number of all possible settings is = " + daySix.totalNumberOfButtonHoldsThatBeatRecord(listOfTimeAndDistances));
 
 
     }
