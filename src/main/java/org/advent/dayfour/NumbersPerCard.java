@@ -1,7 +1,6 @@
 package org.advent.dayfour;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class NumbersPerCard {
     private List<Integer> numbersYouHave;
@@ -15,10 +14,7 @@ public class NumbersPerCard {
     }
 
     public int totalNumberOfMatchingNumbersPerCard() {
-        AtomicInteger numbersOfMatchingNumbers = new AtomicInteger();
-        getWinningNumbers().forEach(wn -> { if (getNumbersYouHave().contains(wn)) {numbersOfMatchingNumbers.addAndGet(1);}});
-        return numbersOfMatchingNumbers.get();
-
+        return winningNumbers.stream().filter(wn -> numbersYouHave.contains(wn)).toList().size();
     }
 
     public int exponentialSumOfNumbersMatchingBetweenOnHandAndWinningPerGame() {
