@@ -8,84 +8,87 @@ import java.util.*;
 
 public class DayThree {
 
-    // Check each character, check if its a number. If its a number, check in a 360 grid around it, one index row above, 1 2 3, left right, then under 1 2 3
-    // If its a special character in any place, that number is tagged now find the value after and the one after that, see if its a dot, or the one before, see if dot
-    // then add the number to a int with multiplier either 1, 10, or 100
-    // then sum it all
+    public List<Number> numbersOnCurrentLine(String currentLine, int rowIndex) {
+        List<Number> numbers = new ArrayList<>();
 
-
-
-    public void numberHasAdjacantWeirdSymbol(List<String> listOfStrings) {
-
-
-
-
-
-
-
-
+        for (int i = 0; i < currentLine.length(); i++) {
+            if (Character.isDigit(currentLine.charAt(i))) {
+                Number number = new Number(
+                        numberAtIndexOnRow(currentLine, i),
+                        rowIndex,
+                        i);
+                numbers.add(number);
+                i = i + String.valueOf(number.getNumberValue()).length();
+            }
+        }
+        return numbers;
     }
 
+    public void setAdjacentToSymbolForNumber(List<Number> listOfAllNumbers, List<String> listOfStrings) {
+        for (Number currentNumber : listOfAllNumbers) {
+            if (currentNumber.doesNumberHasAdjacentSymbol(listOfStrings, currentNumber.getRow(), currentNumber.getColumn(), String.valueOf(currentNumber.getNumberValue()).length())) {
+                currentNumber.setIsAdjacentToSymbol(true);
+            }
+        }
+    }
 
+    public int calculateTotalValueOfAllAdjacentValuesToStar(List<Number> listOfAllNumbers) {
+        int totalValue = 0;
+        for (int i = 0; i < listOfAllNumbers.size(); i++) {
+            Number currentNumber = listOfAllNumbers.get(i);
+            for (Number secondNumber : listOfAllNumbers) {
+                totalValue = returnTotalValueIfNumbersAreValid(currentNumber, secondNumber, totalValue);
+            }
+        }
+        return totalValue;
+    }
 
-    public static List<List<Integer>> eachNumberAndItsRowAndColumnIndexFromList(List<String> listOfStrings) {
-
-        List<Integer> numberAndRowAndColumnIndex = new ArrayList<>();
-        List<List<Integer>> listOfNumberAndRowAndColumnIndex = new ArrayList<>();
-
-        for (int i = 0; i < listOfStrings.size(); i++) {
-            String currentString = listOfStrings.get(i);
-            for (int j = 0; j < currentString.length() - 2; j++) {
-                int value;
-                int firstValue;
-                if (Character.isDigit(currentString.charAt(j))) {
-                    int columnValue = j;
-                    int rowValue = i;
-                    firstValue = Integer.parseInt(String.valueOf(currentString.charAt(j)));
-                    int skipValue = 0;
-                    boolean cont = true;
-
-                    if (!Character.isDigit(currentString.charAt(j+1))) {
-                        numberAndRowAndColumnIndex.add(firstValue);
-                        numberAndRowAndColumnIndex.add(rowValue);
-                        numberAndRowAndColumnIndex.add(columnValue);
-
-                        listOfNumberAndRowAndColumnIndex.add(numberAndRowAndColumnIndex);
-                        cont = false;
+    public int returnTotalValueIfNumbersAreValid(Number currentNumber, Number secondNumber, int totalValue) {
+        if (currentNumber != secondNumber) {
+            if (currentNumber.getAdjacentStarCoordinates() != null && secondNumber.getAdjacentStarCoordinates() != null) {
+                if (currentNumber.getAdjacentStarCoordinates().equals(secondNumber.getAdjacentStarCoordinates())) {
+                    if (currentNumber.hasNotBeenUsed() && secondNumber.hasNotBeenUsed()) {
+                        totalValue += currentNumber.getNumberValue() * secondNumber.getNumberValue();
+                        currentNumber.setHasBeenUsed(true);
+                        secondNumber.setHasBeenUsed(true);
                     }
-
-                    if (cont && !Character.isDigit(currentString.charAt(j+2))) {
-                        value = 10 * Integer.parseInt(String.valueOf(currentString.charAt(j)))
-                                + Integer.parseInt(String.valueOf(currentString.charAt(j+1)));
-                        numberAndRowAndColumnIndex.add(value);
-                        numberAndRowAndColumnIndex.add(rowValue);
-                        numberAndRowAndColumnIndex.add(columnValue);
-
-                        listOfNumberAndRowAndColumnIndex.add(numberAndRowAndColumnIndex);
-                        skipValue = 1;
-                        cont = false;
-                    }
-
-                    if (cont && !Character.isDigit(currentString.charAt(j+3))) {
-                        value = 100 * Integer.parseInt(String.valueOf(currentString.charAt(j)))
-                                + 10 * Integer.parseInt(String.valueOf(currentString.charAt(j+1)))
-                                + Integer.parseInt(String.valueOf(currentString.charAt(j+2)));
-                        numberAndRowAndColumnIndex.add(value);
-                        numberAndRowAndColumnIndex.add(rowValue);
-                        numberAndRowAndColumnIndex.add(columnValue);
-
-                        listOfNumberAndRowAndColumnIndex.add(numberAndRowAndColumnIndex);
-                        skipValue = 2;
-                    }
-                    j += skipValue;
                 }
             }
         }
-
-        return listOfNumberAndRowAndColumnIndex;
-
+        return totalValue;
     }
 
+    public List<Number> listOfAllNumbers(List<String> listOfStrings) {
+        List<Number> numbersFromAllStrings = new ArrayList<>();
+        for (int i = 0; i < listOfStrings.size(); i++) {
+            List<Number> numbers = numbersOnCurrentLine(listOfStrings.get(i), i);
+            numbersFromAllStrings.addAll(numbers);
+        }
+        return numbersFromAllStrings;
+    }
+
+    public int numberAtIndexOnRow(String currentLine, int columnIndex) {
+        for (int i = 1; i < 4; i++) {
+            if (isCharNotDigitOnIndex(currentLine, columnIndex, i)) {
+                return Integer.parseInt(currentLine.substring(columnIndex, columnIndex + i));
+            }
+        }
+        return 0;
+    }
+
+    public int getTotalAddedNumbersAdjacentToSymbol(List<Number> listOfAllNumbers) {
+        int totalValue = 0;
+        for (Number currentNumber : listOfAllNumbers) {
+            if (currentNumber.getIsAdjacentToSymbol()) {
+                totalValue += currentNumber.getNumberValue();
+            }
+        }
+        return totalValue;
+    }
+
+    public boolean isCharNotDigitOnIndex(String currentLine, int index, int offset) {
+        return !Character.isDigit(currentLine.charAt(index + offset));
+    }
 
     public static List<String> readFileAndReturnList(String filePath) throws FileNotFoundException {
         ArrayList<String> listOfStrings = new ArrayList<>();
@@ -105,17 +108,13 @@ public class DayThree {
         }
 
         for (int i = 0; i < listOfStrings.size(); i++) {
-            listOfStrings.set(i, listOfStrings.get(i) + "..");
+            listOfStrings.set(i, "." + listOfStrings.get(i));
+            listOfStrings.set(i, listOfStrings.get(i) + "...");
         }
 
-        listOfStrings.add(0, ".".repeat(141));
-
-        listOfStrings.add(".".repeat(141));
-
-//        String stringOfDots = "." * 140;
+        listOfStrings.add(0, ".".repeat(143));
+        listOfStrings.add(".".repeat(143));
 
         return listOfStrings;
     }
-
-
 }
