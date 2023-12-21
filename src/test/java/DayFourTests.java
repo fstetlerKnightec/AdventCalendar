@@ -26,7 +26,6 @@ public class DayFourTests {
         assertEquals(numberOfNumbersOnHand, number.getNumbersYouHave().size());
     }
 
-
     @Test
     public void assertCorrectNumbersOnCard() {
 

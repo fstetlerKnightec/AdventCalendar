@@ -14,18 +14,15 @@ public class NumbersPerCard {
         this.setNumbersYouHave(listOfNumbersYouHave);
     }
 
-    public int totalNumberOfMatchingNumbersPerCard(NumbersPerCard numbersPerCard) {
+    public int totalNumberOfMatchingNumbersPerCard() {
         AtomicInteger numbersOfMatchingNumbers = new AtomicInteger();
-        List<Integer> listOfWinning = numbersPerCard.getWinningNumbers();
-        List<Integer> listOfNumbers = numbersPerCard.getNumbersYouHave();
-
-        listOfWinning.forEach(wn -> { if (listOfNumbers.contains(wn)) {numbersOfMatchingNumbers.addAndGet(1);}});
+        getWinningNumbers().forEach(wn -> { if (getNumbersYouHave().contains(wn)) {numbersOfMatchingNumbers.addAndGet(1);}});
         return numbersOfMatchingNumbers.get();
 
     }
 
-    public int exponentialSumOfNumbersMatchingBetweenOnHandAndWinningPerGame(NumbersPerCard numbersPerCard) {
-        return (int) Math.pow(2, totalNumberOfMatchingNumbersPerCard(numbersPerCard) - 1);
+    public int exponentialSumOfNumbersMatchingBetweenOnHandAndWinningPerGame() {
+        return (int) Math.pow(2, totalNumberOfMatchingNumbersPerCard() - 1);
     }
 
     public int getMatchingNumbers() {

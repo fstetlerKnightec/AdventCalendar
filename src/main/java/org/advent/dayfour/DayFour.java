@@ -7,11 +7,11 @@ import java.util.List;
 public class DayFour implements PrintSolution {
 
     public int totalSumOfAllExponentialValues(List<NumbersPerCard> listOfNumbersPerCard) {
-        return listOfNumbersPerCard.stream().mapToInt(npc -> npc.exponentialSumOfNumbersMatchingBetweenOnHandAndWinningPerGame(npc)).sum();
+        return listOfNumbersPerCard.stream().mapToInt(NumbersPerCard::exponentialSumOfNumbersMatchingBetweenOnHandAndWinningPerGame).sum();
     }
 
     public void setMatchingNumberPerCard(List<NumbersPerCard> listOfNumbersPerCard) {
-        listOfNumbersPerCard.forEach(n -> n.setMatchingNumbers(n.totalNumberOfMatchingNumbersPerCard(n)));
+        listOfNumbersPerCard.forEach(n -> n.setMatchingNumbers(n.totalNumberOfMatchingNumbersPerCard()));
     }
 
     public void setNumberOfTotalPerCard(List<NumbersPerCard> listOfNumbersPerCard) {
