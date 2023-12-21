@@ -1,5 +1,7 @@
 package org.advent;
 
+import org.advent.dayfour.DayFour;
+import org.advent.dayfour.NumbersPerCard;
 import org.advent.dayone.DayOne;
 import org.advent.daythree.DayThree;
 import org.advent.daythree.Number;
@@ -58,6 +60,20 @@ public class Main {
         int totalValueOfAllAdjacantToStar = dayThree.calculateTotalValueOfAllAdjacentValuesToStar(listOfAllNumbers);
         dayThree.printPartOne(totalAddedNumbersAdjacentToSymbol);
         dayThree.printPartTwo(totalValueOfAllAdjacantToStar);
+
+        // DAY FOUR OUTPUT
+        DayFour dayFour = new DayFour();
+        List<String> listOfCards = util.readStringsFromFile(Paths.get("src/main/resources/dayFour.txt").toString());
+        List<String> listOfCutStrings = dayFour.removeFrontPartOfStringAndReturnList(listOfCards);
+        List<NumbersPerCard> listOfAllNumbersPerCard = dayFour.listOfAllNumbersPerCard(listOfCutStrings);
+        dayFour.setMatchingNumberPerCard(listOfAllNumbersPerCard);
+        dayFour.setNumberOfTotalPerCard(listOfAllNumbersPerCard);
+
+        int totalSumOfAllExponentialValues = dayFour.totalSumOfAllExponentialValues(listOfAllNumbersPerCard);
+        int totalSumOfTotalNumberOfCards = dayFour.totalSumOfNumbersOfTotalPerCard(listOfAllNumbersPerCard);
+        dayFour.printPartOne(totalSumOfAllExponentialValues);
+        dayFour.printPartTwo(totalSumOfTotalNumberOfCards);
+
 
 
     }
