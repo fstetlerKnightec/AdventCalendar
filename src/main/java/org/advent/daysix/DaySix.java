@@ -1,9 +1,11 @@
 package org.advent.daysix;
 
+import org.advent.PrintSolution;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class DaySix {
+public class DaySix implements PrintSolution {
 
     public int totalNumberOfButtonHoldsThatBeatRecord(List<TimeDistance> timeDistances) {
         int totalNumber = 1;
@@ -43,5 +45,18 @@ public class DaySix {
             cutString.add(resultString);
         }
         return cutString;
+    }
+
+    @Override
+    public void printPartOne(int result) {
+        System.out.println(" ");
+        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
+        System.out.println("Total multiplied number of all possible settings is = " + result);
+
+    }
+
+    @Override
+    public void printPartTwo(int result) {
+
     }
 }
