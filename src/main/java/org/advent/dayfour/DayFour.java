@@ -1,12 +1,10 @@
 package org.advent.dayfour;
 
 import org.advent.PrintSolution;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class DayFour implements PrintSolution {
-
 
     public int totalSumOfAllExponentialValues(List<NumbersPerCard> listOfNumbersPerCard) {
         return listOfNumbersPerCard.stream().mapToInt(npc -> npc.exponentialSumOfNumbersMatchingBetweenOnHandAndWinningPerGame(npc)).sum();
@@ -32,10 +30,8 @@ public class DayFour implements PrintSolution {
         return listOfNumbersPerCard.stream().mapToInt(NumbersPerCard::getNumberOfTotalCards).sum();
     }
 
-
-
     public List<NumbersPerCard> listOfAllNumbersPerCard(List<String> listOfCutStrings) {
-        List<NumbersPerCard> listOfNumbersPerCard= new ArrayList<>();
+        List<NumbersPerCard> listOfNumbersPerCard = new ArrayList<>();
         listOfCutStrings.forEach(s -> listOfNumbersPerCard.add(numbersPerCard(s)));
         return listOfNumbersPerCard;
     }
@@ -44,21 +40,10 @@ public class DayFour implements PrintSolution {
         return stringList.stream().map(s -> s.replaceAll(".*:", "")).toList();
     }
 
-
-
-
-
     private NumbersPerCard numbersPerCard(String cutString) {
-        NumbersPerCard numbers = new NumbersPerCard();
-
         String winningString = cutString.split("\\|")[0];
-        String numbersYouHaveString = cutString.split("\\|")[1];
-        List<Integer> listOfWinningNumbers = listOfNumbers(winningString);
-        List<Integer> listOfNumbersYouHave = listOfNumbers(numbersYouHaveString);
-        numbers.setWinningNumbers(listOfWinningNumbers);
-        numbers.setNumbersYouHave(listOfNumbersYouHave);
-
-        return numbers;
+        String numbersYouHaveString = cutString.split("\\|")[1];;
+        return new NumbersPerCard(listOfNumbers(winningString), listOfNumbers(numbersYouHaveString));
     }
 
     private List<Integer> listOfNumbers(String numbersString) {
@@ -77,7 +62,6 @@ public class DayFour implements PrintSolution {
         System.out.println(" ");
         System.out.println(this.getClass().getSimpleName() + " ---------------------------");
         System.out.println("Total value of all exponential values is = " + result);
-
     }
 
     @Override

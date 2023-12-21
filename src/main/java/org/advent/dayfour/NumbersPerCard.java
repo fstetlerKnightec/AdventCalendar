@@ -9,6 +9,11 @@ public class NumbersPerCard {
     private int matchingNumbers;
     private int numberOfTotalCards;
 
+    public NumbersPerCard(List<Integer> listOfWinningNumbers, List<Integer> listOfNumbersYouHave) {
+        this.setWinningNumbers(listOfWinningNumbers);
+        this.setNumbersYouHave(listOfNumbersYouHave);
+    }
+
     public int totalNumberOfMatchingNumbersPerCard(NumbersPerCard numbersPerCard) {
         AtomicInteger numbersOfMatchingNumbers = new AtomicInteger();
         List<Integer> listOfWinning = numbersPerCard.getWinningNumbers();
