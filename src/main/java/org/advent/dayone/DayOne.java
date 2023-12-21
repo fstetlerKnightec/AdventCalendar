@@ -1,5 +1,7 @@
 package org.advent.dayone;
 
+import org.advent.PrintSolution;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -8,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class DayOneClean {
+public class DayOne implements PrintSolution {
 
     public String returnFirstNumberFromString(String currentString, boolean reversed, boolean partOne) {
 
@@ -60,5 +62,18 @@ public class DayOneClean {
     private static String reverseString(String input) {
         StringBuilder reversed = new StringBuilder(input).reverse();
         return reversed.toString();
+    }
+
+    @Override
+    public void printPartOne(int result) {
+        System.out.println(" ");
+        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
+        System.out.println("Total sum of all values in list = " + result);
+
+    }
+
+    @Override
+    public void printPartTwo(int result) {
+        System.out.println("Total sum of all numbers, even the text ones, in list = " + result);
     }
 }

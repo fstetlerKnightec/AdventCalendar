@@ -1,4 +1,4 @@
-import org.advent.dayone.DayOneClean;
+import org.advent.dayone.DayOne;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class DayOneTests {
                 "a1b2c3d4e5f",
                 "treb7uchet"));
 
-        DayOneClean dayOneClean = new DayOneClean();
+        DayOne dayOneClean = new DayOne();
 
         List<String> listOfFirstNumbersFromLeft = listOfStrings.stream()
                 .map(s -> dayOneClean.returnFirstNumberFromString(String.valueOf(s), false, true)).toList();
@@ -45,7 +45,7 @@ public class DayOneTests {
                 "zoneight234",
                 "7pqrstsixteen"));
 
-        DayOneClean dayOneClean = new DayOneClean();
+        DayOne dayOneClean = new DayOne();
 
         List<String> listOfFirstNumbersFromLeft = listOfStrings.stream()
                 .map(s -> dayOneClean.returnFirstNumberFromString(String.valueOf(s), false, false)).toList();
@@ -76,7 +76,7 @@ public class DayOneTests {
                 "seightwoone8qxcfgszninesvfcnxc68"
         ));
 
-        DayOneClean dayOneClean = new DayOneClean();
+        DayOne dayOneClean = new DayOne();
         List<String> firstNumberFromLeftList = listOfStrings.stream().map(s -> dayOneClean.returnFirstNumberFromString(s, false, false)).toList();
         assertEquals("2", firstNumberFromLeftList.get(0));
         assertEquals("8", firstNumberFromLeftList.get(1));
@@ -105,7 +105,7 @@ public class DayOneTests {
                 "seightwoone8qxcfgszninesvfcnxc68"
         ));
 
-        DayOneClean dayOneClean = new DayOneClean();
+        DayOne dayOneClean = new DayOne();
         List<String> firstNumberFromLeftList = listOfStrings.stream().map(s -> dayOneClean.returnFirstNumberFromString(s, true, false)).toList();
         assertEquals("9", firstNumberFromLeftList.get(0));
         assertEquals("3", firstNumberFromLeftList.get(1));
@@ -131,7 +131,7 @@ public class DayOneTests {
                 "seightwoone8qxcfgszninesvfcnxc68"
         ));
 
-        DayOneClean dayOneClean = new DayOneClean();
+        DayOne dayOneClean = new DayOne();
         List<String> firstNumberFromLeftList = listOfStrings.stream().map(s -> dayOneClean.returnFirstNumberFromString(s, false, true)).toList();
         assertEquals("1", firstNumberFromLeftList.get(0));
         assertEquals("2", firstNumberFromLeftList.get(1));
@@ -154,7 +154,7 @@ public class DayOneTests {
                 "seightwoone8qxcfgszninesvfcnxc68"
         ));
 
-        DayOneClean dayOneClean = new DayOneClean();
+        DayOne dayOneClean = new DayOne();
         List<String> firstNumberFromLeftList = listOfStrings.stream().map(s -> dayOneClean.returnFirstNumberFromString(s, true, true)).toList();
         assertEquals("1", firstNumberFromLeftList.get(0));
         assertEquals("2", firstNumberFromLeftList.get(1));

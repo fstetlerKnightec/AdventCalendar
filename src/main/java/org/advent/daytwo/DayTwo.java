@@ -1,5 +1,7 @@
 package org.advent.daytwo;
 
+import org.advent.PrintSolution;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class DayTwoReworked {
+public class DayTwo implements PrintSolution {
 
     public String getCutString(String currentGame) {
         return " " + currentGame.substring(currentGame.indexOf(": ") + 2);
@@ -95,24 +97,25 @@ public class DayTwoReworked {
         return 0;
     }
 
-    public List<String> readGamesFromFileAndPutInList(String filePath) throws FileNotFoundException {
-        List<String> sentences;
-        try {
-            Path path = Paths.get(filePath);
-            sentences = Files.readAllLines(path);
-        } catch (IOException e) {
-            throw new FileNotFoundException("Could not find a file under path " + filePath);
-        }
-
-        return sentences;
-    }
-
     public static boolean characterAtIndexNotBlank(String currentGame, int index) {
         return !String.valueOf(currentGame.charAt(index - 3)).isBlank();
     }
 
     public static int convertCharacterAtIndexToInt(String currentGame, int index, int offset) {
         return Integer.parseInt(String.valueOf(currentGame.charAt(index - offset)));
+    }
+
+    @Override
+    public void printPartOne(int result) {
+        System.out.println(" ");
+        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
+        System.out.println("Sum of all valid IDs for day two = " + result);
+
+    }
+
+    @Override
+    public void printPartTwo(int result) {
+        System.out.println("Total power of all games for day two = " + result);
     }
 
 }
