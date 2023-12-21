@@ -36,17 +36,16 @@ public class Main {
 
         int totalSum = dayOne.addAllNumbersTogether(listOfCombinedNumbersFromLeftAndRight);
         int totalSum2 = dayOne.addAllNumbersTogether(listOfCombinedNumbersFromLeftAndRight2);
-        System.out.println("Day One ----------------------------------");
-        System.out.println("Total sum of all values in list = " + totalSum);
-        System.out.println("Total sum of all numbers, even the text ones, in list = " + totalSum2);
+        dayOne.printPartOne(totalSum);
+        dayOne.printPartTwo(totalSum2);
 
         // DAY TWO OUTPUT
         DayTwo dayTwo = new DayTwo();
         List<String> listOfGames = util.readStringsFromFile(Paths.get("src/main/resources/dayTwo.txt").toString());
-        System.out.println(" ");
-        System.out.println("Day Two ----------------------------------");
-        System.out.println("Sum of all valid IDs for day two = " + dayTwo.sumOfAllValidIDs(listOfGames, 13, 14, 12));
-        System.out.println("Total power of all games for day two = " + dayTwo.totalPowerOfAllGames(listOfGames));
+        int sumOfAllValidIds = dayTwo.sumOfAllValidIDs(listOfGames, 13, 14, 12);
+        int totalPower = dayTwo.totalPowerOfAllGames(listOfGames);
+        dayTwo.printPartOne(sumOfAllValidIds);
+        dayTwo.printPartTwo(totalPower);
 
         // DAY THREE OUTPUT
         DayThree dayThree = new DayThree();
@@ -55,10 +54,10 @@ public class Main {
         List<Number> listOfAllNumbers = dayThree.listOfAllNumbers(list3);
         dayThree.setAdjacentToSymbolForNumber(listOfAllNumbers, list3);
 
-        System.out.println(" ");
-        System.out.println("Day Three ----------------------------------");
-        System.out.println("Total value of numbers adjacent to symbol = " + dayThree.getTotalAddedNumbersAdjacentToSymbol(listOfAllNumbers));
-        System.out.println("TotalValue for two values adjacent to a star = " + dayThree.calculateTotalValueOfAllAdjacentValuesToStar(listOfAllNumbers));
+        int totalAddedNumbersAdjacentToSymbol = dayThree.getTotalAddedNumbersAdjacentToSymbol(listOfAllNumbers);
+        int totalValueOfAllAdjacantToStar = dayThree.calculateTotalValueOfAllAdjacentValuesToStar(listOfAllNumbers);
+        dayThree.printPartOne(totalAddedNumbersAdjacentToSymbol);
+        dayThree.printPartTwo(totalValueOfAllAdjacantToStar);
 
 
     }
