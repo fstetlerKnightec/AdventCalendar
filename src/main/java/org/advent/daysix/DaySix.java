@@ -38,13 +38,7 @@ public class DaySix implements PrintSolution {
     }
 
     public List<String> removeLabelsFromFrontPartOfString(List<String> listOfStrings) {
-        List<String> cutString = new ArrayList<>();
-        for (String s : listOfStrings) {
-            int colonIndex = s.indexOf(":");
-            String resultString = s.substring(colonIndex + 1);
-            cutString.add(resultString);
-        }
-        return cutString;
+        return listOfStrings.stream().map(s -> s.substring(s.indexOf(":") + 1)).toList();
     }
 
     @Override
