@@ -57,9 +57,9 @@ public class Main {
         dayThree.setAdjacentToSymbolForNumber(listOfAllNumbers, list3);
 
         int totalAddedNumbersAdjacentToSymbol = dayThree.getTotalAddedNumbersAdjacentToSymbol(listOfAllNumbers);
-        int totalValueOfAllAdjacantToStar = dayThree.calculateTotalValueOfAllAdjacentValuesToStar(listOfAllNumbers);
+        int totalValueOfAllAdjacentToStar = dayThree.calculateTotalValueOfAllAdjacentValuesToStar(listOfAllNumbers);
         dayThree.printPartOne(totalAddedNumbersAdjacentToSymbol);
-        dayThree.printPartTwo(totalValueOfAllAdjacantToStar);
+        dayThree.printPartTwo(totalValueOfAllAdjacentToStar);
 
         // DAY FOUR OUTPUT
         DayFour dayFour = new DayFour();
