@@ -12,8 +12,7 @@ public class TimeDistance {
     public int numberOfButtonHoldsBeatRecord() {
         int totalNumberOfSettingsAbleToBeatRecord = 0;
 
-        long totalTimeDuration = timeRaceLasts;
-        for (int buttonTime = 0; buttonTime < totalTimeDuration; buttonTime++) {
+        for (int buttonTime = 0; buttonTime < timeRaceLasts; buttonTime++) {
             long distanceTraveled = distanceTraveledPerRace(buttonTime);
             if (totalDistanceTraveled < distanceTraveled) {
                 totalNumberOfSettingsAbleToBeatRecord += 1;
