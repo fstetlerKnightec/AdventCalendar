@@ -8,11 +8,7 @@ import java.util.List;
 public class DaySix implements PrintSolution {
 
     public int totalNumberOfButtonHoldsThatBeatRecord(List<TimeDistance> timeDistances) {
-        int totalNumber = 1;
-        for (TimeDistance timeDistance : timeDistances) {
-            totalNumber *= timeDistance.numberOfButtonHoldsBeatRecord();
-        }
-        return totalNumber;
+        return timeDistances.stream().map(TimeDistance::numberOfButtonHoldsBeatRecord).reduce(1, (a, b) -> a * b);
     }
 
     public List<TimeDistance> listOfTimeAndDistances(List<String> stringsWithoutLabels) {
