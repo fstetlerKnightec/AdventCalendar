@@ -3,6 +3,7 @@ package org.advent.dayfour;
 import org.advent.PrintSolution;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DayFour implements PrintSolution {
 
@@ -31,9 +32,7 @@ public class DayFour implements PrintSolution {
     }
 
     public List<NumbersPerCard> listOfAllNumbersPerCard(List<String> listOfCutStrings) {
-        List<NumbersPerCard> listOfNumbersPerCard = new ArrayList<>();
-        listOfCutStrings.forEach(s -> listOfNumbersPerCard.add(numbersPerCard(s)));
-        return listOfNumbersPerCard;
+        return listOfCutStrings.stream().map(this::numbersPerCard).collect(Collectors.toList());
     }
 
     public List<String> removeFrontPartOfStringAndReturnList(List<String> stringList) {
