@@ -7,7 +7,7 @@ import java.util.List;
 
 public class DaySix implements PrintSolution {
 
-    public int totalNumberOfButtonHoldsThatBeatRecord(List<TimeDistance> timeDistances) {
+    public int totalNumberOfButtonHoldsThatBeatRecordMultiplied(List<TimeDistance> timeDistances) {
         return timeDistances.stream().map(TimeDistance::numberOfButtonHoldsBeatRecord).reduce(1, (a, b) -> a * b);
     }
 

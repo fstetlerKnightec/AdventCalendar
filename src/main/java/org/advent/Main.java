@@ -69,8 +69,8 @@ public class Main {
         List<TimeDistance> listOfTimeAndDistances = daySix.listOfTimeAndDistances(removedLabelString);
         List<TimeDistance> combinedRaceTimeDistance = daySix.listOfTimeAndDistances(allNumbersCombined);
 
-        int totalNumberOfButtonHoldsBeatingRecords = daySix.totalNumberOfButtonHoldsThatBeatRecord(listOfTimeAndDistances);
-        int totalNumberWithOnlyCombinedRace = daySix.totalNumberOfButtonHoldsThatBeatRecord(combinedRaceTimeDistance);
+        int totalNumberOfButtonHoldsBeatingRecords = daySix.totalNumberOfButtonHoldsThatBeatRecordMultiplied(listOfTimeAndDistances);
+        int totalNumberWithOnlyCombinedRace = daySix.totalNumberOfButtonHoldsThatBeatRecordMultiplied(combinedRaceTimeDistance);
         daySix.printPartOne(totalNumberOfButtonHoldsBeatingRecords);
         daySix.printPartTwo(totalNumberWithOnlyCombinedRace);
 

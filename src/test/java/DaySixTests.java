@@ -71,7 +71,7 @@ public class DaySixTests {
         List<String> listWithoutLabels = daySix.removeLabelsFromFrontPartOfString(listOfStrings);
         List<TimeDistance> timeDistances = daySix.listOfTimeAndDistances(listWithoutLabels);
 
-        assertEquals(288, daySix.totalNumberOfButtonHoldsThatBeatRecord(timeDistances));
+        assertEquals(288, daySix.totalNumberOfButtonHoldsThatBeatRecordMultiplied(timeDistances));
     }
 
     @Test
@@ -87,6 +87,6 @@ public class DaySixTests {
         List<String> listCombinedNumbers = daySix.stringOfAllNumbersCombined(listWithoutLabels);
         List<TimeDistance> timeDistances = daySix.listOfTimeAndDistances(listCombinedNumbers);
 
-        assertEquals(71503, daySix.totalNumberOfButtonHoldsThatBeatRecord(timeDistances));
+        assertEquals(71503, daySix.totalNumberOfButtonHoldsThatBeatRecordMultiplied(timeDistances));
     }
 }
