@@ -24,7 +24,6 @@ public class DaySixTests {
 
         assertEquals(7, listOfTimeDistances.get(0).getTimeRaceLasts());
         assertEquals(9, listOfTimeDistances.get(0).getTotalDistanceTraveled());
-
     }
 
     @Test
@@ -59,7 +58,6 @@ public class DaySixTests {
         List<TimeDistance> timeDistances = daySix.listOfTimeAndDistances(listWithoutLabels);
 
         assertEquals(4, timeDistances.get(0).numberOfButtonHoldsBeatRecord());
-
     }
 
     @Test
@@ -75,9 +73,7 @@ public class DaySixTests {
         List<TimeDistance> timeDistances = daySix.listOfTimeAndDistances(listWithoutLabels);
 
         assertEquals(288, daySix.totalNumberOfButtonHoldsThatBeatRecord(timeDistances));
-
     }
-
 
     @Test
     public void numberOfWaysWithOneCombinedRace() {
@@ -92,7 +88,5 @@ public class DaySixTests {
         List<TimeDistance> timeDistances = daySix.listOfTimeAndDistances(listWithoutLabels);
 
         assertEquals(71503, daySix.totalNumberOfButtonHoldsThatBeatRecord(timeDistances));
-
-
     }
 }

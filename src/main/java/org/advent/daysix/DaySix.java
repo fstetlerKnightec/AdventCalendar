@@ -27,16 +27,16 @@ public class DaySix implements PrintSolution {
         return listOfTimeAndDistance;
     }
 
-    public List<String> splitStringIntoNumbers(List<String> listOfStrings, int index) {
-        return new ArrayList<>(List.of(listOfStrings.get(index).trim().split("\\s+")));
-    }
-
     public List<String> stringOfAllNumbersCombined(List<String> listOfStrings) {
         return listOfStrings.stream().map(s -> s.trim().replaceAll("\\s+", "")).toList();
     }
 
     public List<String> removeLabelsFromFrontPartOfString(List<String> listOfStrings) {
         return listOfStrings.stream().map(s -> s.substring(s.indexOf(":") + 1)).toList();
+    }
+
+    private List<String> splitStringIntoNumbers(List<String> listOfStrings, int index) {
+        return new ArrayList<>(List.of(listOfStrings.get(index).trim().split("\\s+")));
     }
 
     @Override
