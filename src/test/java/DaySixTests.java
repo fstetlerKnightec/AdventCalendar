@@ -78,14 +78,15 @@ public class DaySixTests {
     @Test
     public void numberOfWaysWithOneCombinedRace() {
         List<String> listOfStrings = new ArrayList<>(Arrays.asList(
-                "Time:      71530",
-                "Distance:  940200"
+                "Time:      7  15   30",
+                "Distance:  9  40  200"
         ));
 
         DaySix daySix = new DaySix();
 
         List<String> listWithoutLabels = daySix.removeLabelsFromFrontPartOfString(listOfStrings);
-        List<TimeDistance> timeDistances = daySix.listOfTimeAndDistances(listWithoutLabels);
+        List<String> listCombinedNumbers = daySix.stringOfAllNumbersCombined(listWithoutLabels);
+        List<TimeDistance> timeDistances = daySix.listOfTimeAndDistances(listCombinedNumbers);
 
         assertEquals(71503, daySix.totalNumberOfButtonHoldsThatBeatRecord(timeDistances));
     }
