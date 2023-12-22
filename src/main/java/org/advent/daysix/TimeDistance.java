@@ -10,15 +10,15 @@ public class TimeDistance {
     }
 
     public int numberOfButtonHoldsBeatRecord() {
-        int totalNumberOfSettingsAbleToBeatRecord = 0;
+        int totalNumberOfButtonHoldsAbleToBeatRecord = 0;
 
         for (int buttonTime = 0; buttonTime < timeRaceLasts; buttonTime++) {
             long distanceTraveled = distanceTraveledPerRace(buttonTime);
             if (totalDistanceTraveled < distanceTraveled) {
-                totalNumberOfSettingsAbleToBeatRecord += 1;
+                totalNumberOfButtonHoldsAbleToBeatRecord += 1;
             }
         }
-        return totalNumberOfSettingsAbleToBeatRecord;
+        return totalNumberOfButtonHoldsAbleToBeatRecord;
     }
 
     public long distanceTraveledPerRace(long buttonTime) {
