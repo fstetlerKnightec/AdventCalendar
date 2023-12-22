@@ -39,8 +39,8 @@ public class DaySixTests {
         List<String> listWithoutLabels = daySix.removeLabelsFromFrontPartOfString(listOfStrings);
         List<TimeDistance> timeDistances = daySix.listOfTimeAndDistances(listWithoutLabels);
 
-        List<Integer> expectedValues = new ArrayList<>(Arrays.asList(0, 6, 10, 12, 12, 10, 6, 0));
-        int totalTimeDuration = timeDistances.get(0).getTimeRaceLasts();
+        List<Long> expectedValues = new ArrayList<>(Arrays.asList(0L, 6L, 10L, 12L, 12L, 10L, 6L, 0L));
+        long totalTimeDuration = timeDistances.get(0).getTimeRaceLasts();
         for (int buttonTime = 0; buttonTime < timeDistances.get(0).getTimeRaceLasts(); buttonTime++) {
             assertEquals(expectedValues.get(buttonTime), timeDistances.get(0).distanceTraveledPerRace(buttonTime, totalTimeDuration));
         }
@@ -75,6 +75,24 @@ public class DaySixTests {
         List<TimeDistance> timeDistances = daySix.listOfTimeAndDistances(listWithoutLabels);
 
         assertEquals(288, daySix.totalNumberOfButtonHoldsThatBeatRecord(timeDistances));
+
+    }
+
+
+    @Test
+    public void numberOfWaysWithOneCombinedRace() {
+        List<String> listOfStrings = new ArrayList<>(Arrays.asList(
+                "Time:      71530",
+                "Distance:  940200"
+        ));
+
+        DaySix daySix = new DaySix();
+
+        List<String> listWithoutLabels = daySix.removeLabelsFromFrontPartOfString(listOfStrings);
+        List<TimeDistance> timeDistances = daySix.listOfTimeAndDistances(listWithoutLabels);
+
+        assertEquals(71503, daySix.totalNumberOfButtonHoldsThatBeatRecord(timeDistances));
+
 
     }
 }

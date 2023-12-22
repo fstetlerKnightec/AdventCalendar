@@ -63,14 +63,16 @@ public class Main {
 
         DaySix daySix = new DaySix();
 
-        List<String> list6 = util.readStringsFromFile("C:\\Programming\\Java\\AdventCalendar\\src\\main\\resources\\daySix.txt");
-
+        List<String> list6 = util.readStringsFromFile(Paths.get("src/main/resources/daySix.txt").toString());
         List<String> removedLabelString = daySix.removeLabelsFromFrontPartOfString(list6);
+        List<String> allNumbersCombined = daySix.stringOfAllNumbersCombined(removedLabelString);
         List<TimeDistance> listOfTimeAndDistances = daySix.listOfTimeAndDistances(removedLabelString);
+        List<TimeDistance> combinedRaceTimeDistance = daySix.listOfTimeAndDistances(allNumbersCombined);
 
-        System.out.println(" ");
-        System.out.println("Day Six -------------------------------------");
-        System.out.println("Total multiplied number of all possible settings is = " + daySix.totalNumberOfButtonHoldsThatBeatRecord(listOfTimeAndDistances));
+        int totalNumberOfButtonHoldsBeatingRecords = daySix.totalNumberOfButtonHoldsThatBeatRecord(listOfTimeAndDistances);
+        int totalNumberWithOnlyCombinedRace = daySix.totalNumberOfButtonHoldsThatBeatRecord(combinedRaceTimeDistance);
+        daySix.printPartOne(totalNumberOfButtonHoldsBeatingRecords);
+        daySix.printPartTwo(totalNumberWithOnlyCombinedRace);
 
 
     }

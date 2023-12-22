@@ -24,17 +24,19 @@ public class DaySix implements PrintSolution {
         for (int i = 0; i < listOfTimes.size(); i++) {
             listOfTimeAndDistance.add(
                     new TimeDistance(
-                            Integer.parseInt(listOfTimes.get(i)),
-                            Integer.parseInt(listOfDistance.get(i))));
+                            Long.parseLong(listOfTimes.get(i)),
+                            Long.parseLong(listOfDistance.get(i))));
         }
 
         return listOfTimeAndDistance;
     }
 
     public List<String> splitStringIntoNumbers(List<String> listOfStrings, int index) {
-        List<String> list = new ArrayList<>(List.of(listOfStrings.get(index).split("\\s+")));
-        list.remove(0);
-        return list;
+        return new ArrayList<>(List.of(listOfStrings.get(index).trim().split("\\s+")));
+    }
+
+    public List<String> stringOfAllNumbersCombined(List<String> listOfStrings) {
+        return listOfStrings.stream().map(s -> s.trim().replaceAll("\\s+", "")).toList();
     }
 
     public List<String> removeLabelsFromFrontPartOfString(List<String> listOfStrings) {
@@ -46,11 +48,10 @@ public class DaySix implements PrintSolution {
         System.out.println(" ");
         System.out.println(this.getClass().getSimpleName() + " ---------------------------");
         System.out.println("Total multiplied number of all possible settings is = " + result);
-
     }
 
     @Override
     public void printPartTwo(int result) {
-
+        System.out.println("Total number of ways to beat the record with a combined race = " + result);
     }
 }

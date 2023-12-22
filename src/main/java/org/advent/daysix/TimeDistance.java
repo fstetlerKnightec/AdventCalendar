@@ -1,10 +1,10 @@
 package org.advent.daysix;
 
 public class TimeDistance {
-    private final int timeRaceLasts;
-    private final int totalDistanceTraveled;
+    private final long timeRaceLasts;
+    private final long totalDistanceTraveled;
 
-    public TimeDistance(int time, int distance) {
+    public TimeDistance(long time, long distance) {
         this.timeRaceLasts = time;
         this.totalDistanceTraveled = distance;
     }
@@ -12,9 +12,9 @@ public class TimeDistance {
     public int numberOfButtonHoldsBeatRecord() {
         int totalNumberOfSettingsAbleToBeatRecord = 0;
 
-        int totalTimeDuration = timeRaceLasts;
+        long totalTimeDuration = timeRaceLasts;
         for (int buttonTime = 0; buttonTime < totalTimeDuration; buttonTime++) {
-            int distanceTraveled = distanceTraveledPerRace(buttonTime, totalTimeDuration);
+            long distanceTraveled = distanceTraveledPerRace(buttonTime, totalTimeDuration);
             if (totalDistanceTraveled < distanceTraveled) {
                 totalNumberOfSettingsAbleToBeatRecord += 1;
             }
@@ -22,15 +22,15 @@ public class TimeDistance {
         return totalNumberOfSettingsAbleToBeatRecord;
     }
 
-    public int distanceTraveledPerRace(int buttonTime, int totalTimeDuration) {
+    public long distanceTraveledPerRace(long buttonTime, long totalTimeDuration) {
         return buttonTime*(totalTimeDuration - buttonTime);
     }
 
-    public int getTimeRaceLasts() {
+    public long getTimeRaceLasts() {
         return timeRaceLasts;
     }
 
-    public int getTotalDistanceTraveled() {
+    public long getTotalDistanceTraveled() {
         return totalDistanceTraveled;
     }
 
