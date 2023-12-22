@@ -14,7 +14,7 @@ public class TimeDistance {
 
         long totalTimeDuration = timeRaceLasts;
         for (int buttonTime = 0; buttonTime < totalTimeDuration; buttonTime++) {
-            long distanceTraveled = distanceTraveledPerRace(buttonTime, totalTimeDuration);
+            long distanceTraveled = distanceTraveledPerRace(buttonTime);
             if (totalDistanceTraveled < distanceTraveled) {
                 totalNumberOfSettingsAbleToBeatRecord += 1;
             }
@@ -22,8 +22,8 @@ public class TimeDistance {
         return totalNumberOfSettingsAbleToBeatRecord;
     }
 
-    public long distanceTraveledPerRace(long buttonTime, long totalTimeDuration) {
-        return buttonTime*(totalTimeDuration - buttonTime);
+    public long distanceTraveledPerRace(long buttonTime) {
+        return buttonTime*(timeRaceLasts - buttonTime);
     }
 
     public long getTimeRaceLasts() {

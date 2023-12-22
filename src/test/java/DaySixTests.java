@@ -39,9 +39,8 @@ public class DaySixTests {
         List<TimeDistance> timeDistances = daySix.listOfTimeAndDistances(listWithoutLabels);
 
         List<Long> expectedValues = new ArrayList<>(Arrays.asList(0L, 6L, 10L, 12L, 12L, 10L, 6L, 0L));
-        long totalTimeDuration = timeDistances.get(0).getTimeRaceLasts();
         for (int buttonTime = 0; buttonTime < timeDistances.get(0).getTimeRaceLasts(); buttonTime++) {
-            assertEquals(expectedValues.get(buttonTime), timeDistances.get(0).distanceTraveledPerRace(buttonTime, totalTimeDuration));
+            assertEquals(expectedValues.get(buttonTime), timeDistances.get(0).distanceTraveledPerRace(buttonTime));
         }
     }
 
