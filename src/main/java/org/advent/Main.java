@@ -67,9 +67,15 @@ public class Main {
         DaySeven daySeven = new DaySeven();
 //        List<String> listOfHands = util.readStringsFromFile(Paths.get("src/main/resources/daySeven.txt").toString());
 
-        List<String> listOfHands = new ArrayList<>(List.of("55555 513", "AAAAA 35", "AK364 163", "K553Q 563", "K6663 12", "38888 153"));
+        List<String> listOfHands = new ArrayList<>(List.of("55555 513", "AK364 163", "K553Q 563", "K6663 12", "83888 153", "83838 561", "A64A4 613"));
 
+        System.out.println(daySeven.typeOfHand(listOfHands.get(0)));
+        System.out.println(daySeven.typeOfHand(listOfHands.get(1)));
+        System.out.println(daySeven.typeOfHand(listOfHands.get(2)));
+        System.out.println(daySeven.typeOfHand(listOfHands.get(3)));
+        System.out.println(daySeven.typeOfHand(listOfHands.get(4)));
         System.out.println(daySeven.typeOfHand(listOfHands.get(5)));
+        System.out.println(daySeven.typeOfHand(listOfHands.get(6)));
 
     }
 }
