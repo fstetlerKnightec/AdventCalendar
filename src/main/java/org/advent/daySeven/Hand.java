@@ -15,7 +15,7 @@ public class Hand {
         this.fullString = fullString;
         this.handString = handOfString(fullString);
         this.type = typeOfHand(fullString);
-        this.bid = bidOfHand(fullString)
+        this.bid = bidOfHand(fullString);
     }
 
     public int bidOfHand(String string) {
