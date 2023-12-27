@@ -77,6 +77,7 @@ public class Main {
         dayFour.printPartOne(totalSumOfAllExponentialValues);
         dayFour.printPartTwo(totalSumOfTotalNumberOfCards);
 
+        // DAY SIX OUTPUT
         DaySix daySix = new DaySix();
 
         List<String> list6 = util.readStringsFromFile(Paths.get("src/main/resources/daySix.txt").toString());
