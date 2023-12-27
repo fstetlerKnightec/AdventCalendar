@@ -1,21 +1,12 @@
 package org.advent;
 
 import org.advent.daySeven.DaySeven;
-import org.advent.dayfour.DayFour;
-import org.advent.dayfour.NumbersPerCard;
-import org.advent.dayone.DayOne;
-import org.advent.daysix.TimeDistance;
-import org.advent.daythree.DayThree;
-import org.advent.daythree.Number;
-import org.advent.daytwo.DayTwo;
-import org.advent.daysix.DaySix;
+import org.advent.daySeven.Hand;
 
 
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Main {
 
@@ -95,17 +86,24 @@ public class Main {
 
         // DAY SEVEN OUTPUT
         DaySeven daySeven = new DaySeven();
-//        List<String> listOfHands = util.readStringsFromFile(Paths.get("src/main/resources/daySeven.txt").toString());
+        List<String> listOfStrings = util.readStringsFromFile(Paths.get("src/main/resources/daySeven.txt").toString());
 
-        List<String> listOfHands = new ArrayList<>(List.of("55555 513", "AK364 163", "K553Q 563", "K6663 12", "83888 153", "83838 561", "A64A4 613"));
+        List<Hand> listOfHands = daySeven.getListOfHands(listOfStrings);
 
-        System.out.println(daySeven.typeOfHand(listOfHands.get(0)));
-        System.out.println(daySeven.typeOfHand(listOfHands.get(1)));
-        System.out.println(daySeven.typeOfHand(listOfHands.get(2)));
-        System.out.println(daySeven.typeOfHand(listOfHands.get(3)));
-        System.out.println(daySeven.typeOfHand(listOfHands.get(4)));
-        System.out.println(daySeven.typeOfHand(listOfHands.get(5)));
-        System.out.println(daySeven.typeOfHand(listOfHands.get(6)));
+        System.out.println(listOfHands.get(0).getHandString());
+        System.out.println(listOfHands.get(0).getType());
+        System.out.println(listOfHands.get(0).getBid());
+
+
+//        List<String> listOfStrings = new ArrayList<>(List.of("55555 513", "AK364 163", "K553Q 563", "K6663 12", "83888 153", "83838 561", "A64A4 613"));
+//
+//        System.out.println(daySeven.typeOfHand(listOfStrings.get(0)));
+//        System.out.println(daySeven.typeOfHand(listOfStrings.get(1)));
+//        System.out.println(daySeven.typeOfHand(listOfStrings.get(2)));
+//        System.out.println(daySeven.typeOfHand(listOfStrings.get(3)));
+//        System.out.println(daySeven.typeOfHand(listOfStrings.get(4)));
+//        System.out.println(daySeven.typeOfHand(listOfStrings.get(5)));
+//        System.out.println(daySeven.typeOfHand(listOfStrings.get(6)));
 
 
     }
