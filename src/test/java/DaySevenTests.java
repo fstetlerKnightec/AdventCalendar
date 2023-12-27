@@ -4,7 +4,6 @@ import org.advent.daySeven.Type;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -41,6 +40,27 @@ public class DaySevenTests {
         for (int i = 0; i < listOfSortedHands.size(); i++) {
             assertEquals(listOfHandsInOrderOfRank.get(i), listOfSortedHands.get(i).getHandString());
         }
+        System.out.println(daySeven.totalWinnings((ArrayList<Hand>) listOfSortedHands));
+    }
+
+
+    @Test
+    public void verifyTotalWinnings() {
+
+        List<String> listOfStrings = new ArrayList<>(List.of(
+                "32T3K 765",
+                "T55J5 684",
+                "KK677 28",
+                "KTJJT 220",
+                "QQQJA 483"
+        ));
+
+        DaySeven daySeven = new DaySeven();
+
+        ArrayList<Hand> listOfHands = daySeven.getListOfHands(listOfStrings);
+        List<Hand> listOfSortedHands = daySeven.sortedHandsByRank(listOfHands);
+
+        assertEquals(6440, daySeven.totalWinnings((ArrayList<Hand>) listOfSortedHands));
     }
 
 }

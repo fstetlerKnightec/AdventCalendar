@@ -6,6 +6,7 @@ import org.advent.daySeven.Hand;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -86,24 +87,12 @@ public class Main {
 
         // DAY SEVEN OUTPUT
         DaySeven daySeven = new DaySeven();
+
         List<String> listOfStrings = util.readStringsFromFile(Paths.get("src/main/resources/daySeven.txt").toString());
+        ArrayList<Hand> listOfHands = daySeven.getListOfHands(listOfStrings);
+        List<Hand> listOfSortedHands = daySeven.sortedHandsByRank(listOfHands);
+        daySeven.printPartOne(daySeven.totalWinnings((ArrayList<Hand>) listOfSortedHands));
 
-        List<Hand> listOfHands = daySeven.getListOfHands(listOfStrings);
-
-        System.out.println(listOfHands.get(0).getHandString());
-        System.out.println(listOfHands.get(0).getType());
-        System.out.println(listOfHands.get(0).getBid());
-
-
-//        List<String> listOfStrings = new ArrayList<>(List.of("55555 513", "AK364 163", "K553Q 563", "K6663 12", "83888 153", "83838 561", "A64A4 613"));
-//
-//        System.out.println(daySeven.typeOfHand(listOfStrings.get(0)));
-//        System.out.println(daySeven.typeOfHand(listOfStrings.get(1)));
-//        System.out.println(daySeven.typeOfHand(listOfStrings.get(2)));
-//        System.out.println(daySeven.typeOfHand(listOfStrings.get(3)));
-//        System.out.println(daySeven.typeOfHand(listOfStrings.get(4)));
-//        System.out.println(daySeven.typeOfHand(listOfStrings.get(5)));
-//        System.out.println(daySeven.typeOfHand(listOfStrings.get(6)));
 
 
     }
