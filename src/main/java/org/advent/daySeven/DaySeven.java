@@ -1,20 +1,13 @@
 package org.advent.daySeven;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class DaySeven {
 
-//    public List<Hand> createListOfHands(List<String> listOfStrings) {
-//        List<Hand> listOfHands = new ArrayList<>();
-//
-//        for (int i = 0; i < listOfStrings.size(); i++) {
-//
-//
-//
-//            Hand hand = new Hand()
-//        }
-//    }
 
 
     public boolean isNumberOfUniqueCards(String handOfString, int uniqueCards) {
@@ -63,6 +56,11 @@ public class DaySeven {
             return charCounts.containsValue(3L) && charCounts.containsValue(2L);
         }
     }
+//
+//    public int setCardValue(char card) {
+//        List<Character> listOfCards = new ArrayList<>(Arrays.asList('2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'));
+//        ))
+//    }
 
 
 
