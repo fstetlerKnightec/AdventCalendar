@@ -10,11 +10,6 @@ public class DaySeven {
 
 
 
-    public boolean isNumberOfUniqueCards(String handOfString, int uniqueCards) {
-        return handOfString.chars().mapToObj(c -> (char) c).collect(Collectors.toSet()).size() == uniqueCards;
-    }
-
-
     public Type typeOfHand(String string) {
         String handOfString = string.substring(0, string.indexOf(" "));
         Map<Character, Long> charCounts = handOfString.chars().mapToObj(c -> (char) c).collect(Collectors.groupingBy(c -> c, Collectors.counting()));
@@ -27,23 +22,23 @@ public class DaySeven {
             return Type.FULL_HOUSE;
         }
 
-        if (isNumberOfUniqueCards(handOfString, 1)) {
+        if (charCounts.containsValue(5L)) {
             return Type.FIVE_OF_A_KIND;
         }
 
-        if (isNumberOfUniqueCards(handOfString, 2)) {
+        if (charCounts.containsValue(4L) && charCounts.containsValue(1L)) {
             return Type.FOUR_OF_A_KIND;
         }
 
-        if (isNumberOfUniqueCards(handOfString, 3)) {
+        if (charCounts.containsValue(3L) && charCounts.size() == 3) {
             return Type.THREE_OF_A_KIND;
         }
 
-        if (isNumberOfUniqueCards(handOfString, 4)) {
+        if (charCounts.containsValue(2L) && charCounts.size() == 4) {
             return Type.ONE_PAIR;
         }
 
-        if (isNumberOfUniqueCards(handOfString, 5)) {
+        if (charCounts.containsValue(1L) && charCounts.size() == 5) {
             return Type.HIGH_CARD;
         }
 
