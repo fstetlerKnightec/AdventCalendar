@@ -37,11 +37,6 @@ public class DaySevenTests {
         DaySeven daySeven = new DaySeven();
         ArrayList<Hand> listOfHands = daySeven.getListOfHands(listOfStrings);
         List<Hand> listOfSortedHands = daySeven.sortedHandsByRank(listOfHands);
-//        System.out.println(listOfSortedHands.get(0).getHandString() + " " + listOfSortedHands.get(0).getBid());
-//        System.out.println(listOfSortedHands.get(1).getHandString() + " " + listOfSortedHands.get(1).getBid());
-//        System.out.println(listOfSortedHands.get(2).getHandString() + " " + listOfSortedHands.get(2).getBid());
-//        System.out.println(listOfSortedHands.get(3).getHandString() + " " + listOfSortedHands.get(3).getBid());
-//        System.out.println(listOfSortedHands.get(4).getHandString() + " " + listOfSortedHands.get(4).getBid());
 
         for (int i = 0; i < listOfSortedHands.size(); i++) {
             assertEquals(listOfHandsInOrderOfRank.get(i), listOfSortedHands.get(i).getHandString());
