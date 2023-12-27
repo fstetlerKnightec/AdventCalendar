@@ -1,5 +1,7 @@
 package org.advent;
 
+import org.advent.dayfour.DayFour;
+import org.advent.dayfour.NumbersPerCard;
 import org.advent.dayone.DayOne;
 import org.advent.daysix.TimeDistance;
 import org.advent.daythree.DayThree;
