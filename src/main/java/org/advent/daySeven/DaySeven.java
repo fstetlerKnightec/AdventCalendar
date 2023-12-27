@@ -6,9 +6,6 @@ import java.util.stream.Collectors;
 public class DaySeven {
 
 
-
-
-
     public Type typeOfHand(String string) {
         String handOfString = string.substring(0, string.indexOf(" "));
         Map<Character, Long> charCounts = handOfString.chars().mapToObj(c -> (char) c).collect(Collectors.groupingBy(c -> c, Collectors.counting()));
@@ -22,11 +19,11 @@ public class DaySeven {
             return Type.FULL_HOUSE;
         }
 
-        if (charCounts.containsValue(5L)) {
+        if (charCounts.containsValue(5L) && charCounts.size() == 1) {
             return Type.FIVE_OF_A_KIND;
         }
 
-        if (charCounts.containsValue(4L) && charCounts.containsValue(1L)) {
+        if (charCounts.containsValue(4L) && charCounts.size() == 2) {
             return Type.FOUR_OF_A_KIND;
         }
 
