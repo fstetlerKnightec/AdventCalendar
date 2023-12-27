@@ -14,14 +14,16 @@ public class DaySeven {
         return handOfString.chars().mapToObj(c -> (char) c).collect(Collectors.toSet()).size() == uniqueCards;
     }
 
+
     public Type typeOfHand(String string) {
         String handOfString = string.substring(0, string.indexOf(" "));
+        Map<Character, Long> charCounts = handOfString.chars().mapToObj(c -> (char) c).collect(Collectors.groupingBy(c -> c, Collectors.counting()));
 
-        if (hasTwoPairsOrFullHouse(handOfString, TwoPairsOrFullHouse.TWO_PAIRS)) {
+        if (charCounts.containsValue(1L) && charCounts.containsValue(2L) && charCounts.size() == 3) {
             return Type.TWO_PAIR;
         }
 
-        if (hasTwoPairsOrFullHouse(handOfString, TwoPairsOrFullHouse.FULL_HOUSE)) {
+        if (charCounts.containsValue(3L) && charCounts.containsValue(2L)) {
             return Type.FULL_HOUSE;
         }
 
@@ -48,14 +50,7 @@ public class DaySeven {
         return null;
     }
 
-    public boolean hasTwoPairsOrFullHouse(String handOfString, TwoPairsOrFullHouse twoPairsOrFullHouse) {
-        Map<Character, Long> charCounts = handOfString.chars().mapToObj(c -> (char) c).collect(Collectors.groupingBy(c -> c, Collectors.counting()));
-        if (twoPairsOrFullHouse == TwoPairsOrFullHouse.TWO_PAIRS) {
-            return charCounts.containsValue(1L) && charCounts.containsValue(2L) && charCounts.size() == 3;
-        } else {
-            return charCounts.containsValue(3L) && charCounts.containsValue(2L);
-        }
-    }
+
 //
 //    public int setCardValue(char card) {
 //        List<Character> listOfCards = new ArrayList<>(Arrays.asList('2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'));
