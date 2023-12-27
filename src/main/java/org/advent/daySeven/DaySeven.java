@@ -1,8 +1,5 @@
 package org.advent.daySeven;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -10,9 +7,12 @@ public class DaySeven {
 
 
 
+
+
     public Type typeOfHand(String string) {
         String handOfString = string.substring(0, string.indexOf(" "));
         Map<Character, Long> charCounts = handOfString.chars().mapToObj(c -> (char) c).collect(Collectors.groupingBy(c -> c, Collectors.counting()));
+
 
         if (charCounts.containsValue(1L) && charCounts.containsValue(2L) && charCounts.size() == 3) {
             return Type.TWO_PAIR;
