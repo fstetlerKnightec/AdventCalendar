@@ -36,7 +36,7 @@ public class DaySix implements PrintSolution {
     }
 
     private List<String> splitStringIntoNumbers(List<String> listOfStrings, int index) {
-        return new ArrayList<>(List.of(listOfStrings.get(index).trim().split("\\s+")));
+        return List.of(listOfStrings.get(index).trim().split("\\s+"));
     }
 
     @Override
