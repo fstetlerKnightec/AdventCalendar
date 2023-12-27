@@ -21,8 +21,8 @@ public class DaySeven implements PrintSolution {
         return arrayList;
     }
 
-    public List<Hand> sortedHandsByRank(ArrayList<Hand> listOfHands) {
-        listOfHands.sort(new HandComparatorByRank());
+    public List<Hand> sortedHandsByRank(ArrayList<Hand> listOfHands, boolean isPartOne) {
+        listOfHands.sort(new HandComparatorByRank(isPartOne));
         return listOfHands;
     }
 

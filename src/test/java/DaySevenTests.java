@@ -35,7 +35,7 @@ public class DaySevenTests {
 
         DaySeven daySeven = new DaySeven();
         ArrayList<Hand> listOfHands = daySeven.getListOfHands(listOfStrings);
-        List<Hand> listOfSortedHands = daySeven.sortedHandsByRank(listOfHands);
+        List<Hand> listOfSortedHands = daySeven.sortedHandsByRank(listOfHands, true);
 
         for (int i = 0; i < listOfSortedHands.size(); i++) {
             assertEquals(listOfHandsInOrderOfRank.get(i), listOfSortedHands.get(i).getHandString());
@@ -58,7 +58,7 @@ public class DaySevenTests {
         DaySeven daySeven = new DaySeven();
 
         ArrayList<Hand> listOfHands = daySeven.getListOfHands(listOfStrings);
-        List<Hand> listOfSortedHands = daySeven.sortedHandsByRank(listOfHands);
+        List<Hand> listOfSortedHands = daySeven.sortedHandsByRank(listOfHands, true);
 
         assertEquals(6440, daySeven.totalWinnings((ArrayList<Hand>) listOfSortedHands));
     }

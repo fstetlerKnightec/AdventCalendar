@@ -10,6 +10,7 @@ public class Hand implements Comparable {
     int bid;
     Type type;
     int rank;
+    boolean partOne;
 
     public Hand(String fullString) {
         this.fullString = fullString;
