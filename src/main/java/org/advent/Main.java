@@ -1,11 +1,12 @@
 package org.advent;
 
-import org.advent.dayfour.DayFour;
-import org.advent.dayfour.NumbersPerCard;
 import org.advent.dayone.DayOne;
+import org.advent.daysix.TimeDistance;
 import org.advent.daythree.DayThree;
 import org.advent.daythree.Number;
 import org.advent.daytwo.DayTwo;
+import org.advent.daysix.DaySix;
+
 
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -57,9 +58,9 @@ public class Main {
         dayThree.setAdjacentToSymbolForNumber(listOfAllNumbers, list3);
 
         int totalAddedNumbersAdjacentToSymbol = dayThree.getTotalAddedNumbersAdjacentToSymbol(listOfAllNumbers);
-        int totalValueOfAllAdjacentToStar = dayThree.calculateTotalValueOfAllAdjacentValuesToStar(listOfAllNumbers);
+        int totalValueOfAllAdjacantToStar = dayThree.calculateTotalValueOfAllAdjacentValuesToStar(listOfAllNumbers);
         dayThree.printPartOne(totalAddedNumbersAdjacentToSymbol);
-        dayThree.printPartTwo(totalValueOfAllAdjacentToStar);
+        dayThree.printPartTwo(totalValueOfAllAdjacantToStar);
 
         // DAY FOUR OUTPUT
         DayFour dayFour = new DayFour();
@@ -73,6 +74,20 @@ public class Main {
         int totalSumOfTotalNumberOfCards = dayFour.totalSumOfNumbersOfTotalPerCard(listOfAllNumbersPerCard);
         dayFour.printPartOne(totalSumOfAllExponentialValues);
         dayFour.printPartTwo(totalSumOfTotalNumberOfCards);
+
+        DaySix daySix = new DaySix();
+
+        List<String> list6 = util.readStringsFromFile(Paths.get("src/main/resources/daySix.txt").toString());
+        List<String> removedLabelString = daySix.removeLabelsFromFrontPartOfString(list6);
+        List<String> allNumbersCombined = daySix.stringOfAllNumbersCombined(removedLabelString);
+        List<TimeDistance> listOfTimeAndDistances = daySix.listOfTimeAndDistances(removedLabelString);
+        List<TimeDistance> combinedRaceTimeDistance = daySix.listOfTimeAndDistances(allNumbersCombined);
+
+        int totalNumberOfButtonHoldsBeatingRecords = daySix.totalNumberOfButtonHoldsThatBeatRecordMultiplied(listOfTimeAndDistances);
+        int totalNumberWithOnlyCombinedRace = daySix.totalNumberOfButtonHoldsThatBeatRecordMultiplied(combinedRaceTimeDistance);
+        daySix.printPartOne(totalNumberOfButtonHoldsBeatingRecords);
+        daySix.printPartTwo(totalNumberWithOnlyCombinedRace);
+
 
     }
 }
