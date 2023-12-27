@@ -3,7 +3,7 @@ package org.advent.daySeven;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Hand {
+public class Hand implements Comparable {
 
     String fullString;
     String handString;
@@ -22,9 +22,15 @@ public class Hand {
         return Integer.parseInt(string.substring(string.indexOf(" ") + 1));
     }
 
+    public static Hand getHandFromString(String string) {
+        return new Hand(string);
+    }
+
     public String handOfString(String string) {
         return string.substring(0, string.indexOf(" "));
     }
+
+
 
     public Type typeOfHand(String string) {
         Map<Character, Long> charCounts = handOfString(string).chars().mapToObj(c -> (char) c).collect(Collectors.groupingBy(c -> c, Collectors.counting()));
@@ -73,10 +79,6 @@ public class Hand {
         return handString;
     }
 
-    public void setHandString(String handString) {
-        this.handString = handString;
-    }
-
     public int getBid() {
         return bid;
     }
@@ -94,5 +96,10 @@ public class Hand {
 
     public void setRank(int rank) {
         this.rank = rank;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }
