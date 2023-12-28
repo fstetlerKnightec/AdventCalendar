@@ -3,7 +3,7 @@ package org.advent.daySeven;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Hand implements Comparable {
+public class Hand {
 
     String fullString;
     String handString;
@@ -99,8 +99,4 @@ public class Hand implements Comparable {
         this.rank = rank;
     }
 
-    @Override
-    public int compareTo(Object o) {
-        return 0;
-    }
 }

@@ -3,12 +3,9 @@ package org.advent.daySeven;
 import org.advent.PrintSolution;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
-import static org.advent.daySeven.Hand.*;
+import static org.advent.daySeven.Hand.getHandFromString;
 
 public class DaySeven implements PrintSolution {
 
@@ -22,6 +19,22 @@ public class DaySeven implements PrintSolution {
     }
 
     public List<Hand> sortedHandsByRank(ArrayList<Hand> listOfHands, boolean isPartOne) {
+
+        if (!isPartOne) {
+            for (Hand currentHand : listOfHands) {
+                int increaseValue = (int) currentHand.getHandString().chars().filter(c -> c == 'J').count();
+                if (increaseValue > 0) {
+                    for (int i = 0; i < increaseValue; i++) {
+                        currentHand.setType(currentHand.getType().next());
+                    }
+                    if (currentHand.getType().getValue() == 3 || currentHand.getType().getValue() == 5) {
+                        currentHand.setType(currentHand.getType().next());
+                    }
+                }
+                System.out.println("string = " + currentHand.getHandString() + " " + currentHand.getType());
+            }
+        }
+
         listOfHands.sort(new HandComparatorByRank(isPartOne));
         return listOfHands;
     }

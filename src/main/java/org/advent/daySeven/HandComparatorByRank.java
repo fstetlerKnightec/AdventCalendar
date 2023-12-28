@@ -11,10 +11,17 @@ public class HandComparatorByRank implements Comparator<Hand> {
         this.isPartOne = partOne;
     }
 
+
     @Override
     public int compare(Hand hand1, Hand hand2) {
+
         if (hand1.getType().getValue() != hand2.getType().getValue()) {
-            return hand1.getType().getValue() - hand2.getType().getValue();
+            if (hand1.getType().getValue() < hand2.getType().getValue()) {
+                return -1;
+            }
+            if (hand1.getType().getValue() > hand2.getType().getValue()) {
+                return 1;
+            }
         } else {
             List<Character> listOfCards;
             if (isPartOne) {

@@ -40,7 +40,6 @@ public class DaySevenTests {
         for (int i = 0; i < listOfSortedHands.size(); i++) {
             assertEquals(listOfHandsInOrderOfRank.get(i), listOfSortedHands.get(i).getHandString());
         }
-        System.out.println(daySeven.totalWinnings((ArrayList<Hand>) listOfSortedHands));
     }
 
 
@@ -61,6 +60,26 @@ public class DaySevenTests {
         List<Hand> listOfSortedHands = daySeven.sortedHandsByRank(listOfHands, true);
 
         assertEquals(6440, daySeven.totalWinnings((ArrayList<Hand>) listOfSortedHands));
+    }
+
+    @Test
+    public void verifyRankOfHandForPartTwo() {
+        ArrayList<String> listOfStrings = new ArrayList<>();
+        listOfStrings.add("32T3K 765");
+        listOfStrings.add("T55J5 684");
+        listOfStrings.add("KK677 28");
+        listOfStrings.add("KTJJT 220");
+        listOfStrings.add("QQQJA 483");
+
+        List<String> listOfHandsInOrderOfRank = List.of("32T3K", "KK677", "T55J5", "QQQJA", "KTJJT");
+
+        DaySeven daySeven = new DaySeven();
+        ArrayList<Hand> listOfHands = daySeven.getListOfHands(listOfStrings);
+        List<Hand> listOfSortedHands = daySeven.sortedHandsByRank(listOfHands, false);
+
+        for (int i = 0; i < listOfSortedHands.size(); i++) {
+            assertEquals(listOfHandsInOrderOfRank.get(i), listOfSortedHands.get(i).getHandString());
+        }
     }
 
 }
