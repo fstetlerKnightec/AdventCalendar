@@ -2,17 +2,17 @@ package org.advent.dayeight;
 
 public class Node {
 
-    public Node(int index, String guideAddress, String leftAddress, String rightAddress) {
+    public Node(int index, String adress, String leftPointer, String rightPointer) {
         this.index = index;
-        this.guideAddress = guideAddress;
-        this.leftAddress = leftAddress;
-        this.rightAddress = rightAddress;
+        this.address = adress;
+        this.leftPointer = leftPointer;
+        this.rightPointer = rightPointer;
     }
 
     int index;
-    String guideAddress;
-    String leftAddress;
-    String rightAddress;
+    String address;
+    String leftPointer;
+    String rightPointer;
 
     public int getIndex() {
         return index;
@@ -22,27 +22,27 @@ public class Node {
         this.index = index;
     }
 
-    public String getGuideAddress() {
-        return guideAddress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setGuideAddress(String guideAddress) {
-        this.guideAddress = guideAddress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getLeftAddress() {
-        return leftAddress;
+    public String getLeftPointer() {
+        return leftPointer;
     }
 
-    public void setLeftAddress(String leftAddress) {
-        this.leftAddress = leftAddress;
+    public void setLeftPointer(String leftPointer) {
+        this.leftPointer = leftPointer;
     }
 
-    public String getRightAddress() {
-        return rightAddress;
+    public String getRightPointer() {
+        return rightPointer;
     }
 
-    public void setRightAddress(String rightAddress) {
-        this.rightAddress = rightAddress;
+    public void setRightPointer(String rightPointer) {
+        this.rightPointer = rightPointer;
     }
 }

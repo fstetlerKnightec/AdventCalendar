@@ -1,13 +1,10 @@
 package org.advent;
 
 import org.advent.dayeight.DayEight;
-import org.advent.dayfour.DayFour;
-import org.advent.dayone.DayOne;
-import org.advent.daysix.DaySix;
-import org.advent.daythree.DayThree;
-import org.advent.daytwo.DayTwo;
+import org.advent.dayeight.Node;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class Main {
@@ -41,11 +38,13 @@ public class Main {
 
         // DAY EIGHT OUTPUT
         DayEight dayEight = new DayEight();
-        List<String> leftRightNodeStrings = dayEight.allLeftRightNodes();
-        System.out.println(dayEight.nodeList(leftRightNodeStrings).get(0).getIndex());
-        System.out.println(dayEight.nodeList(leftRightNodeStrings).get(0).getGuideAddress());
-        System.out.println(dayEight.nodeList(leftRightNodeStrings).get(0).getLeftAddress());
-        System.out.println(dayEight.nodeList(leftRightNodeStrings).get(0).getRightAddress());
+        List<String> allStrings = Util.readStringsFromFile(Paths.get("src/main/resources/dayEight.txt").toString());
+        List<String> leftRightNodeStrings = dayEight.allLeftRightNodes(allStrings);
+        String directions = dayEight.rightLeftDirectionFromFile();
+
+        List<Node> listOfNodes = dayEight.nodeList(leftRightNodeStrings);
+        System.out.println(listOfNodes.get(listOfNodes.size() - 1).getAddress());
+
 
     }
 }
