@@ -1,11 +1,9 @@
 package org.advent.daytwo;
 
 import org.advent.PrintSolution;
+import org.advent.Util;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -105,17 +103,25 @@ public class DayTwo implements PrintSolution {
         return Integer.parseInt(String.valueOf(currentGame.charAt(index - offset)));
     }
 
+    public int results(boolean isPartOne) throws IOException {
+        List<String> listOfGames = Util.readStringsFromFile(Paths.get("src/main/resources/dayTwo.txt").toString());
+        if (isPartOne) {
+            return sumOfAllValidIDs(listOfGames, 13, 14, 12);
+        }
+        return totalPowerOfAllGames(listOfGames);
+    }
+
     @Override
-    public void printPartOne(int result) {
+    public void printPartOne() throws IOException {
         System.out.println(" ");
         System.out.println(this.getClass().getSimpleName() + " ---------------------------");
-        System.out.println("Sum of all valid IDs for day two = " + result);
+        System.out.println("Sum of all valid IDs for day two = " + results(true));
 
     }
 
     @Override
-    public void printPartTwo(int result) {
-        System.out.println("Total power of all games for day two = " + result);
+    public void printPartTwo() throws IOException {
+        System.out.println("Total power of all games for day two = " + results(false));
     }
 
 }
