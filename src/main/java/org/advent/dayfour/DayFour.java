@@ -1,11 +1,15 @@
 package org.advent.dayfour;
 
 import org.advent.PrintSolution;
+import org.advent.Util;
+
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class DayFour {
+public class DayFour implements PrintSolution {
 
     public int totalSumOfAllExponentialValues(List<NumbersPerCard> listOfNumbersPerCard) {
         return listOfNumbersPerCard.stream().mapToInt(NumbersPerCard::exponentialSumOfNumbersMatchingBetweenOnHandAndWinningPerGame).sum();
@@ -56,15 +60,29 @@ public class DayFour {
         return integerList;
     }
 
-//    @Override
-//    public void printPartOne() {
-//        System.out.println(" ");
-//        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
-//        System.out.println("Total value of all exponential values is = " + result);
-//    }
+    public int results(boolean isPartOne) throws IOException {
+        List<String> listOfCards = Util.readStringsFromFile(Paths.get("src/main/resources/dayFour.txt").toString());
+        List<String> listOfCutStrings = removeFrontPartOfStringAndReturnList(listOfCards);
+        List<NumbersPerCard> listOfAllNumbersPerCard = listOfAllNumbersPerCard(listOfCutStrings);
+        setMatchingNumberPerCard(listOfAllNumbersPerCard);
+        setNumberOfTotalPerCard(listOfAllNumbersPerCard);
 
-//    @Override
-//    public void printPartTwo() {
-//        System.out.println("Total sum of all added extra cards are = " + result);
-//    }
+        if (isPartOne) {
+            return totalSumOfAllExponentialValues(listOfAllNumbersPerCard);
+        }
+        return totalSumOfNumbersOfTotalPerCard(listOfAllNumbersPerCard);
+
+    }
+
+    @Override
+    public void printPartOne() throws IOException {
+        System.out.println(" ");
+        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
+        System.out.println("Total value of all exponential values is = " + results(true));
+    }
+
+    @Override
+    public void printPartTwo() throws IOException {
+        System.out.println("Total sum of all added extra cards are = " + results(false));
+    }
 }

@@ -3,10 +3,7 @@ package org.advent.daytwo;
 import org.advent.PrintSolution;
 import org.advent.Util;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -107,8 +104,7 @@ public class DayTwo implements PrintSolution {
     }
 
     public int results(boolean isPartOne) throws IOException {
-        Util util = new Util();
-        List<String> listOfGames = util.readStringsFromFile(Paths.get("src/main/resources/dayTwo.txt").toString());
+        List<String> listOfGames = Util.readStringsFromFile(Paths.get("src/main/resources/dayTwo.txt").toString());
         if (isPartOne) {
             return sumOfAllValidIDs(listOfGames, 13, 14, 12);
         }

@@ -3,12 +3,10 @@ package org.advent.daythree;
 import org.advent.PrintSolution;
 import org.advent.Util;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DayThree implements PrintSolution {
 
@@ -108,8 +106,7 @@ public class DayThree implements PrintSolution {
     }
 
     public int results(boolean isPartOne) throws IOException {
-        Util util = new Util();
-        List<String> readList = util.readStringsFromFile(Paths.get("src/main/resources/dayThree.txt").toString());
+        List<String> readList = Util.readStringsFromFile(Paths.get("src/main/resources/dayThree.txt").toString());
         List<String> list3 = addCushionLinesAndColumnsOnStringsInList(readList);
         List<Number> listOfAllNumbers = listOfAllNumbers(list3);
         setAdjacentToSymbolForNumber(listOfAllNumbers, list3);

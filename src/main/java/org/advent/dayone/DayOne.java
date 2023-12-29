@@ -83,8 +83,7 @@ public class DayOne implements PrintSolution {
 
     public int results(boolean isPartOne) throws IOException {
 
-        Util util = new Util();
-        List<String> listOfStrings = util.readStringsFromFile(Paths.get("src/main/resources/dayOne.txt").toString());
+        List<String> listOfStrings = Util.readStringsFromFile(Paths.get("src/main/resources/dayOne.txt").toString());
         List<String> listOfFirstNumbersFromLeft = listOfStrings.stream()
                 .map(s -> returnFirstNumberFromString(String.valueOf(s), false, isPartOne)).toList();
         List<String> listOfFirstNumbersFromRight = listOfStrings.stream()
