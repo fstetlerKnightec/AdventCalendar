@@ -1,14 +1,17 @@
 package org.advent.dayone;
 
 import org.advent.PrintSolution;
+import org.advent.Util;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class DayOne implements PrintSolution {
 
@@ -65,15 +68,31 @@ public class DayOne implements PrintSolution {
     }
 
     @Override
-    public void printPartOne(int result) {
+    public void printPartOne() throws IOException {
         System.out.println(" ");
         System.out.println(this.getClass().getSimpleName() + " ---------------------------");
-        System.out.println("Total sum of all values in list = " + result);
+        System.out.println("Total sum of all values in list = " + results(true));
 
     }
 
     @Override
-    public void printPartTwo(int result) {
-        System.out.println("Total sum of all numbers, even the text ones, in list = " + result);
+    public void printPartTwo() throws IOException {
+        System.out.println("Total sum of all numbers, even the text ones, in list = " + results(false));
+    }
+
+
+    public int results(boolean isPartOne) throws IOException {
+
+        List<String> listOfStrings = Util.readStringsFromFile(Paths.get("src/main/resources/dayOne.txt").toString());
+        List<String> listOfFirstNumbersFromLeft = listOfStrings.stream()
+                .map(s -> returnFirstNumberFromString(String.valueOf(s), false, isPartOne)).toList();
+        List<String> listOfFirstNumbersFromRight = listOfStrings.stream()
+                .map(s -> returnFirstNumberFromString(String.valueOf(s), true, isPartOne)).toList();
+
+        List<String> listOfCombinedNumbersFromLeftAndRight =
+                IntStream.range(0, listOfFirstNumbersFromLeft.size())
+                        .mapToObj(i -> listOfFirstNumbersFromLeft.get(i) + listOfFirstNumbersFromRight.get(i)).toList();
+
+        return addAllNumbersTogether(listOfCombinedNumbersFromLeftAndRight);
     }
 }
