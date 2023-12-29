@@ -4,6 +4,8 @@ import org.advent.PrintSolution;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import static org.advent.daySeven.Hand.getHandFromString;
 
@@ -20,8 +22,30 @@ public class DaySeven implements PrintSolution {
 
     public List<Hand> sortedHandsByRank(ArrayList<Hand> listOfHands, boolean isPartOne) {
 
+
+
         if (!isPartOne) {
             for (Hand currentHand : listOfHands) {
+
+                Map<Character, Long> charCounts = currentHand.handString
+                        .chars().mapToObj(c -> (char) c).collect(Collectors.groupingBy(c -> c, Collectors.counting()));
+
+
+                boolean hasThreeJsAndTwoIdentical = charCounts.getOrDefault('J', 0L) == 3
+                        && charCounts.values().stream().anyMatch(count -> count == 2);
+
+                if (charCounts.getOrDefault('J', 0L) == 5
+                        || charCounts.getOrDefault('J', 0L) == 4
+                        || hasThreeJsAndTwoIdentical) {
+                    currentHand.setType(Type.FIVE_OF_A_KIND);
+                    continue;
+                }
+
+                if (charCounts.getOrDefault('J', 0L) == 3) {
+                    currentHand.setType(Type.FOUR_OF_A_KIND);
+                    continue;
+                }
+
                 int increaseValue = (int) currentHand.getHandString().chars().filter(c -> c == 'J').count();
                 if (increaseValue > 0) {
                     for (int i = 0; i < increaseValue; i++) {
@@ -58,7 +82,9 @@ public class DaySeven implements PrintSolution {
 
     @Override
     public void printPartTwo(int result) {
-
+        System.out.println(" ");
+        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
+        System.out.println("Total winnings from part two are = " + result);
     }
 
 
