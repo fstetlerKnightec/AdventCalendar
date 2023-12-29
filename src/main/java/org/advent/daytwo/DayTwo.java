@@ -1,6 +1,7 @@
 package org.advent.daytwo;
 
 import org.advent.PrintSolution;
+import org.advent.Util;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class DayTwo {
+public class DayTwo implements PrintSolution {
 
     public String getCutString(String currentGame) {
         return " " + currentGame.substring(currentGame.indexOf(": ") + 2);
@@ -105,17 +106,26 @@ public class DayTwo {
         return Integer.parseInt(String.valueOf(currentGame.charAt(index - offset)));
     }
 
-//    @Override
-//    public void printPartOne(int result) {
-//        System.out.println(" ");
-//        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
-//        System.out.println("Sum of all valid IDs for day two = " + result);
-//
-//    }
-//
-//    @Override
-//    public void printPartTwo(int result) {
-//        System.out.println("Total power of all games for day two = " + result);
-//    }
+    public int results(boolean isPartOne) throws IOException {
+        Util util = new Util();
+        List<String> listOfGames = util.readStringsFromFile(Paths.get("src/main/resources/dayTwo.txt").toString());
+        if (isPartOne) {
+            return sumOfAllValidIDs(listOfGames, 13, 14, 12);
+        }
+        return totalPowerOfAllGames(listOfGames);
+    }
+
+    @Override
+    public void printPartOne() throws IOException {
+        System.out.println(" ");
+        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
+        System.out.println("Sum of all valid IDs for day two = " + results(true));
+
+    }
+
+    @Override
+    public void printPartTwo() throws IOException {
+        System.out.println("Total power of all games for day two = " + results(false));
+    }
 
 }

@@ -26,14 +26,10 @@ public class Main {
         dayOne.printPartOne();
         dayOne.printPartTwo();
 
-
         // DAY TWO OUTPUT
-//        DayTwo dayTwo = new DayTwo();
-//        List<String> listOfGames = util.readStringsFromFile(Paths.get("src/main/resources/dayTwo.txt").toString());
-//        int sumOfAllValidIds = dayTwo.sumOfAllValidIDs(listOfGames, 13, 14, 12);
-//        int totalPower = dayTwo.totalPowerOfAllGames(listOfGames);
-//        dayTwo.printPartOne(sumOfAllValidIds);
-//        dayTwo.printPartTwo(totalPower);
+        DayTwo dayTwo = new DayTwo();
+        dayTwo.printPartOne();
+        dayTwo.printPartTwo();
 
         // DAY THREE OUTPUT
         DayThree dayThree = new DayThree();
