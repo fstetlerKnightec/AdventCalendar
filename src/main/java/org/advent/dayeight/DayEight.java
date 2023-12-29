@@ -4,6 +4,7 @@ import org.advent.Util;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DayEight {
@@ -17,4 +18,7 @@ public class DayEight {
         return allStrings.subList(2, allStrings.size());
     }
 
+    public List<Node> nodeList(List<String> listOfStrings) {
+        return listOfStrings.stream().map(s -> new Node(listOfStrings.indexOf(s), s.substring(0, 3), s.substring(7, 10), s.substring(12, 15))).toList();
+    }
 }
