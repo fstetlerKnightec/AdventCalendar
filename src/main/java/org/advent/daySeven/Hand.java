@@ -1,5 +1,6 @@
 package org.advent.daySeven;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -7,6 +8,8 @@ public class Hand {
 
     String fullString;
     String handString;
+    String partOfTypeString;
+    String restOfCardsString;
     int bid;
     Type type;
     int rank;
@@ -15,7 +18,9 @@ public class Hand {
     public Hand(String fullString) {
         this.fullString = fullString;
         this.handString = handOfString(fullString);
+
         this.type = typeOfHand(fullString);
+
         this.bid = bidOfHand(fullString);
     }
 
@@ -32,12 +37,31 @@ public class Hand {
     }
 
 
+    public Map<Character, Integer> findAllMatchingLetters(String string) {
+
+        Map<Character, Integer> charCounts = new HashMap<>();
+
+        // Count occurrences of each character
+        for (char c : string.toCharArray()) {
+            charCounts.put(c, charCounts.getOrDefault(c, 0) + 1);
+        }
+
+        // Print matching letters and their counts
+        for (Map.Entry<Character, Integer> entry : charCounts.entrySet()) {
+            if (entry.getValue() > 1) {
+                return charCounts;
+            }
+        }
+        return null;
+    }
 
     public Type typeOfHand(String string) {
         Map<Character, Long> charCounts = handOfString(string).chars().mapToObj(c -> (char) c).collect(Collectors.groupingBy(c -> c, Collectors.counting()));
 
+        Map<Character, Integer> charactersAndHowMany = findAllMatchingLetters(handOfString(string));
 
         if (charCounts.containsValue(1L) && charCounts.containsValue(2L) && charCounts.size() == 3) {
+
             return Type.TWO_PAIR;
         }
 
