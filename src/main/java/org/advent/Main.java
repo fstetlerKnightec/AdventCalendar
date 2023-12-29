@@ -33,15 +33,8 @@ public class Main {
 
         // DAY THREE OUTPUT
         DayThree dayThree = new DayThree();
-        List<String> readList = util.readStringsFromFile(Paths.get("src/main/resources/dayThree.txt").toString());
-        List<String> list3 = dayThree.addCushionLinesAndColumnsOnStringsInList(readList);
-        List<Number> listOfAllNumbers = dayThree.listOfAllNumbers(list3);
-        dayThree.setAdjacentToSymbolForNumber(listOfAllNumbers, list3);
-
-        int totalAddedNumbersAdjacentToSymbol = dayThree.getTotalAddedNumbersAdjacentToSymbol(listOfAllNumbers);
-        int totalValueOfAllAdjacantToStar = dayThree.calculateTotalValueOfAllAdjacentValuesToStar(listOfAllNumbers);
-//        dayThree.printPartOne(totalAddedNumbersAdjacentToSymbol);
-//        dayThree.printPartTwo(totalValueOfAllAdjacantToStar);
+        dayThree.printPartOne();
+        dayThree.printPartTwo();
 
         // DAY FOUR OUTPUT
         DayFour dayFour = new DayFour();
