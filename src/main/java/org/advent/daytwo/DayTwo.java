@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class DayTwo implements PrintSolution {
+public class DayTwo {
 
     public String getCutString(String currentGame) {
         return " " + currentGame.substring(currentGame.indexOf(": ") + 2);
@@ -105,17 +105,17 @@ public class DayTwo implements PrintSolution {
         return Integer.parseInt(String.valueOf(currentGame.charAt(index - offset)));
     }
 
-    @Override
-    public void printPartOne(int result) {
-        System.out.println(" ");
-        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
-        System.out.println("Sum of all valid IDs for day two = " + result);
-
-    }
-
-    @Override
-    public void printPartTwo(int result) {
-        System.out.println("Total power of all games for day two = " + result);
-    }
+//    @Override
+//    public void printPartOne(int result) {
+//        System.out.println(" ");
+//        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
+//        System.out.println("Sum of all valid IDs for day two = " + result);
+//
+//    }
+//
+//    @Override
+//    public void printPartTwo(int result) {
+//        System.out.println("Total power of all games for day two = " + result);
+//    }
 
 }

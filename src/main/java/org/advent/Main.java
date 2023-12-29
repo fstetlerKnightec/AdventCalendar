@@ -23,34 +23,17 @@ public class Main {
 
         // DAY ONE OUTPUT
         DayOne dayOne = new DayOne();
-        List<String> listOfStrings = util.readStringsFromFile(Paths.get("src/main/resources/dayOne.txt").toString());
-        List<String> listOfFirstNumbersFromLeft = listOfStrings.stream()
-                .map(s -> dayOne.returnFirstNumberFromString(String.valueOf(s), false, true)).toList();
-        List<String> listOfFirstNumbersFromRight = listOfStrings.stream()
-                .map(s -> dayOne.returnFirstNumberFromString(String.valueOf(s), true, true)).toList();
-        List<String> listOfFirstNumbersFromLeft2 = listOfStrings.stream()
-                .map(s -> dayOne.returnFirstNumberFromString(String.valueOf(s), false, false)).toList();
-        List<String> listOfFirstNumbersFromRight2 = listOfStrings.stream()
-                .map(s -> dayOne.returnFirstNumberFromString(String.valueOf(s), true, false)).toList();
-        List<String> listOfCombinedNumbersFromLeftAndRight =
-                IntStream.range(0, listOfFirstNumbersFromLeft.size())
-                        .mapToObj(i -> listOfFirstNumbersFromLeft.get(i) + listOfFirstNumbersFromRight.get(i)).toList();
-        List<String> listOfCombinedNumbersFromLeftAndRight2 =
-                IntStream.range(0, listOfFirstNumbersFromLeft.size())
-                        .mapToObj(i -> listOfFirstNumbersFromLeft2.get(i) + listOfFirstNumbersFromRight2.get(i)).toList();
+        dayOne.printPartOne();
+        dayOne.printPartTwo();
 
-        int totalSum = dayOne.addAllNumbersTogether(listOfCombinedNumbersFromLeftAndRight);
-        int totalSum2 = dayOne.addAllNumbersTogether(listOfCombinedNumbersFromLeftAndRight2);
-        dayOne.printPartOne(totalSum);
-        dayOne.printPartTwo(totalSum2);
 
         // DAY TWO OUTPUT
-        DayTwo dayTwo = new DayTwo();
-        List<String> listOfGames = util.readStringsFromFile(Paths.get("src/main/resources/dayTwo.txt").toString());
-        int sumOfAllValidIds = dayTwo.sumOfAllValidIDs(listOfGames, 13, 14, 12);
-        int totalPower = dayTwo.totalPowerOfAllGames(listOfGames);
-        dayTwo.printPartOne(sumOfAllValidIds);
-        dayTwo.printPartTwo(totalPower);
+//        DayTwo dayTwo = new DayTwo();
+//        List<String> listOfGames = util.readStringsFromFile(Paths.get("src/main/resources/dayTwo.txt").toString());
+//        int sumOfAllValidIds = dayTwo.sumOfAllValidIDs(listOfGames, 13, 14, 12);
+//        int totalPower = dayTwo.totalPowerOfAllGames(listOfGames);
+//        dayTwo.printPartOne(sumOfAllValidIds);
+//        dayTwo.printPartTwo(totalPower);
 
         // DAY THREE OUTPUT
         DayThree dayThree = new DayThree();
@@ -61,8 +44,8 @@ public class Main {
 
         int totalAddedNumbersAdjacentToSymbol = dayThree.getTotalAddedNumbersAdjacentToSymbol(listOfAllNumbers);
         int totalValueOfAllAdjacantToStar = dayThree.calculateTotalValueOfAllAdjacentValuesToStar(listOfAllNumbers);
-        dayThree.printPartOne(totalAddedNumbersAdjacentToSymbol);
-        dayThree.printPartTwo(totalValueOfAllAdjacantToStar);
+//        dayThree.printPartOne(totalAddedNumbersAdjacentToSymbol);
+//        dayThree.printPartTwo(totalValueOfAllAdjacantToStar);
 
         // DAY FOUR OUTPUT
         DayFour dayFour = new DayFour();
@@ -74,8 +57,8 @@ public class Main {
 
         int totalSumOfAllExponentialValues = dayFour.totalSumOfAllExponentialValues(listOfAllNumbersPerCard);
         int totalSumOfTotalNumberOfCards = dayFour.totalSumOfNumbersOfTotalPerCard(listOfAllNumbersPerCard);
-        dayFour.printPartOne(totalSumOfAllExponentialValues);
-        dayFour.printPartTwo(totalSumOfTotalNumberOfCards);
+//        dayFour.printPartOne(totalSumOfAllExponentialValues);
+//        dayFour.printPartTwo(totalSumOfTotalNumberOfCards);
 
         // DAY SIX OUTPUT
         DaySix daySix = new DaySix();
@@ -88,8 +71,8 @@ public class Main {
 
         int totalNumberOfButtonHoldsBeatingRecords = daySix.totalNumberOfButtonHoldsThatBeatRecordMultiplied(listOfTimeAndDistances);
         int totalNumberWithOnlyCombinedRace = daySix.totalNumberOfButtonHoldsThatBeatRecordMultiplied(combinedRaceTimeDistance);
-        daySix.printPartOne(totalNumberOfButtonHoldsBeatingRecords);
-        daySix.printPartTwo(totalNumberWithOnlyCombinedRace);
+//        daySix.printPartOne(totalNumberOfButtonHoldsBeatingRecords);
+//        daySix.printPartTwo(totalNumberWithOnlyCombinedRace);
 
 
     }

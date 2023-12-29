@@ -5,7 +5,7 @@ import org.advent.PrintSolution;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DaySix implements PrintSolution {
+public class DaySix {
 
     public int totalNumberOfButtonHoldsThatBeatRecordMultiplied(List<TimeDistance> timeDistances) {
         return timeDistances.stream().map(TimeDistance::numberOfButtonHoldsBeatRecord).reduce(1, (a, b) -> a * b);
@@ -39,15 +39,15 @@ public class DaySix implements PrintSolution {
         return List.of(listOfStrings.get(index).trim().split("\\s+"));
     }
 
-    @Override
-    public void printPartOne(int result) {
-        System.out.println(" ");
-        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
-        System.out.println("Total multiplied number of all possible settings is = " + result);
-    }
-
-    @Override
-    public void printPartTwo(int result) {
-        System.out.println("Total number of ways to beat the record with a combined race = " + result);
-    }
+//    @Override
+//    public void printPartOne(int result) {
+//        System.out.println(" ");
+//        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
+//        System.out.println("Total multiplied number of all possible settings is = " + result);
+//    }
+//
+//    @Override
+//    public void printPartTwo(int result) {
+//        System.out.println("Total number of ways to beat the record with a combined race = " + result);
+//    }
 }

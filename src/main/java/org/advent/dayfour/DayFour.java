@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class DayFour implements PrintSolution {
+public class DayFour {
 
     public int totalSumOfAllExponentialValues(List<NumbersPerCard> listOfNumbersPerCard) {
         return listOfNumbersPerCard.stream().mapToInt(NumbersPerCard::exponentialSumOfNumbersMatchingBetweenOnHandAndWinningPerGame).sum();
@@ -56,15 +56,15 @@ public class DayFour implements PrintSolution {
         return integerList;
     }
 
-    @Override
-    public void printPartOne(int result) {
-        System.out.println(" ");
-        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
-        System.out.println("Total value of all exponential values is = " + result);
-    }
+//    @Override
+//    public void printPartOne() {
+//        System.out.println(" ");
+//        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
+//        System.out.println("Total value of all exponential values is = " + result);
+//    }
 
-    @Override
-    public void printPartTwo(int result) {
-        System.out.println("Total sum of all added extra cards are = " + result);
-    }
+//    @Override
+//    public void printPartTwo() {
+//        System.out.println("Total sum of all added extra cards are = " + result);
+//    }
 }

@@ -8,7 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-public class DayThree implements PrintSolution {
+public class DayThree{
 
     public List<Number> numbersOnCurrentLine(String currentLine, int rowIndex) {
         List<Number> numbers = new ArrayList<>();
@@ -105,17 +105,17 @@ public class DayThree implements PrintSolution {
         return listOfStrings;
     }
 
-    @Override
-    public void printPartOne(int result) {
-        System.out.println(" ");
-        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
-        System.out.println("Total value of numbers adjacent to symbol = " + result);
-
-    }
-
-    @Override
-    public void printPartTwo(int result) {
-        System.out.println("TotalValue for two values adjacent to a star = " + result);
-    }
+//    @Override
+//    public void printPartOne(int result) {
+//        System.out.println(" ");
+//        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
+//        System.out.println("Total value of numbers adjacent to symbol = " + result);
+//
+//    }
+//
+//    @Override
+//    public void printPartTwo(int result) {
+//        System.out.println("TotalValue for two values adjacent to a star = " + result);
+//    }
 
 }
