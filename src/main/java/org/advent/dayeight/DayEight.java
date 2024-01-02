@@ -1,14 +1,16 @@
 package org.advent.dayeight;
 
+import org.advent.PrintSolution;
 import org.advent.Util;
 
+import javax.swing.event.ListDataEvent;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class DayEight {
+public class DayEight implements PrintSolution {
 
     public String rightLeftDirectionFromFile() throws IOException {
         return Util.readStringsFromFile(Paths.get("src/main/resources/dayEight.txt").toString()).get(0);
@@ -39,8 +41,8 @@ public class DayEight {
         Map<String, Node> nodeMap = nodeMap(listOfStrings);
         int finalIndex = nodeMap.get("ZZZ").getIndex();
         int numberOfSteps = 0;
-        String startingString = "AAA";
-        Node currentNode = nodeMap.get(startingString);
+        String startingAddress = "AAA";
+        Node currentNode = nodeMap.get(startingAddress);
 
         while (currentNode.getIndex() != finalIndex) {
             for (int i = 0; i < directions.length(); i++) {
@@ -53,5 +55,29 @@ public class DayEight {
         }
 
         return numberOfSteps;
+    }
+
+    private int results(boolean isPartOne) throws IOException {
+        List<String> allStrings = Util.readStringsFromFile(Paths.get("src/main/resources/dayEight.txt").toString());
+        List<String> leftRightNodeStrings = allLeftRightNodes(allStrings);
+        String directions = rightLeftDirectionFromFile();
+        if (isPartOne) {
+            return numberOfStepsToReachEnd(leftRightNodeStrings, directions);
+        }
+        return 0;
+    }
+
+    @Override
+    public void printPartOne() throws IOException {
+        System.out.println(" ");
+        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
+        System.out.println("Total number of steps for part one = " + results(true));
+    }
+
+    @Override
+    public void printPartTwo() throws IOException {
+        System.out.println(" ");
+        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
+        System.out.println("Total number of steps for part two = " + results(false));
     }
 }

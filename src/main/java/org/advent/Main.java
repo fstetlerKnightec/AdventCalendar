@@ -39,16 +39,9 @@ public class Main {
 
         // DAY EIGHT OUTPUT
         DayEight dayEight = new DayEight();
-        List<String> allStrings = Util.readStringsFromFile(Paths.get("src/main/resources/dayEight.txt").toString());
-        List<String> leftRightNodeStrings = dayEight.allLeftRightNodes(allStrings);
-        String directions = dayEight.rightLeftDirectionFromFile();
+        dayEight.printPartOne();
+        dayEight.printPartTwo();
 
-//        System.out.println(dayEight.findNodeMapFromPointer(nodeMap, nodeMap.get("BRR"), 'L').getLeftPointer());
-        System.out.println(dayEight.numberOfStepsToReachEnd(leftRightNodeStrings, directions));
-
-
-//        List<Node> listOfNodes = dayEight.nodeList(leftRightNodeStrings);
-//        System.out.println(listOfNodes.get(listOfNodes.size() - 1).getAddress());
 
 
     }
