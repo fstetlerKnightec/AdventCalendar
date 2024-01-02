@@ -6,6 +6,7 @@ import org.advent.dayeight.Node;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
 
@@ -42,8 +43,12 @@ public class Main {
         List<String> leftRightNodeStrings = dayEight.allLeftRightNodes(allStrings);
         String directions = dayEight.rightLeftDirectionFromFile();
 
-        List<Node> listOfNodes = dayEight.nodeList(leftRightNodeStrings);
-        System.out.println(listOfNodes.get(listOfNodes.size() - 1).getAddress());
+//        System.out.println(dayEight.findNodeMapFromPointer(nodeMap, nodeMap.get("BRR"), 'L').getLeftPointer());
+        System.out.println(dayEight.numberOfStepsToReachEnd(leftRightNodeStrings, directions));
+
+
+//        List<Node> listOfNodes = dayEight.nodeList(leftRightNodeStrings);
+//        System.out.println(listOfNodes.get(listOfNodes.size() - 1).getAddress());
 
 
     }

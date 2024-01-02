@@ -15,21 +15,15 @@ public class DayEightTests {
     public void verifyNode() {
 
         List<String> listOfStrings = new ArrayList<>(Arrays.asList(
-                "AAA = (BBB, CCC)",
-                "BBB = (DDD, EEE)",
-                "CCC = (ZZZ, GGG)",
-                "DDD = (DDD, DDD)",
-                "EEE = (EEE, EEE)",
-                "GGG = (GGG, GGG)",
-                "ZZZ = (ZZZ, ZZZ)"
+                "AAA = (BBB, CCC)"
         ));
 
         DayEight dayEight = new DayEight();
 
-        assertEquals(dayEight.nodeList(listOfStrings).get(0).getIndex(), 0);
-        assertEquals(dayEight.nodeList(listOfStrings).get(0).getAddress(), "AAA");
-        assertEquals(dayEight.nodeList(listOfStrings).get(0).getLeftPointer(), "BBB");
-        assertEquals(dayEight.nodeList(listOfStrings).get(0).getRightPointer(), "CCC");
+        assertEquals(dayEight.nodeMap(listOfStrings).get("AAA").getIndex(), 0);
+        assertEquals(dayEight.nodeMap(listOfStrings).get("AAA").getAddress(), "AAA");
+        assertEquals(dayEight.nodeMap(listOfStrings).get("AAA").getLeftPointer(), "BBB");
+        assertEquals(dayEight.nodeMap(listOfStrings).get("AAA").getRightPointer(), "CCC");
 
     }
 
