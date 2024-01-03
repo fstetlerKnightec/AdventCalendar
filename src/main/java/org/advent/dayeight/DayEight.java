@@ -5,6 +5,8 @@ import org.advent.Util;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -58,29 +60,38 @@ public class DayEight implements PrintSolution {
         return numberOfSteps;
     }
 
-    public int numberOfStepsToReachAddressesEndingInZ(List<String> listOfStrings, String directions) {
+    public Long numberOfStepsToReachAddressesEndingInZ(List<String> listOfStrings, String directions) {
         Map<String, Node> filteredMapStarting = getFilteredMap(nodeMap(listOfStrings), "A");
 
+        Map<String, Node> nodeMap = nodeMap(listOfStrings);
         List<Node> listOfNodes = new ArrayList<>(filteredMapStarting.values());
-        int numberOfSteps = 0;
-        while (!listOfNodes.stream().map(Node::getAddress).allMatch(s -> s.endsWith("Z"))) {
-            for (int j = 0; j < directions.length(); j++) {
-                if (listOfNodes.stream().allMatch(s -> s.getAddress().endsWith("Z"))) {
+        long numberOfSteps = 0L;
+
+        for (int j = 0; j < directions.length(); j++) {
+            boolean makeCalculation = false;
+            for (Node node : listOfNodes) {
+                if (!node.getAddress().endsWith("Z")) {
+                    makeCalculation = true;
                     break;
                 }
-                for (int i = 0; i < listOfNodes.size(); i++) {
-                    Node currentNode = listOfNodes.get(i);
-                    listOfNodes.set(i, findNodeMapFromPointer(nodeMap(listOfStrings), currentNode, directions.charAt(j)));
-
-                }
-
-                numberOfSteps += 1;
-
             }
 
+            if (makeCalculation) {
+                for (int i = 0; i < listOfNodes.size(); i++) {
+                    Node currentNode = listOfNodes.get(i);
+                    listOfNodes.set(i, findNodeMapFromPointer(nodeMap, currentNode, directions.charAt(j)));
+                }
+
+                if (j == directions.length() - 1) {
+                    j = -1;
+                }
+                numberOfSteps += 1;
+            }
         }
         return numberOfSteps;
     }
+
+
 
     public Map<String, Node> getFilteredMap(Map<String, Node> nodeMap, String letter) {
         return nodeMap.entrySet().stream().filter(entry -> entry.getValue().getAddress().endsWith(letter)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
@@ -88,16 +99,13 @@ public class DayEight implements PrintSolution {
 
 
 
-    private int results(boolean isPartOne) throws IOException {
+    private Long results(boolean isPartOne) throws IOException {
         List<String> allStrings = Util.readStringsFromFile(Paths.get("src/main/resources/dayEight.txt").toString());
         List<String> leftRightNodeStrings = allLeftRightNodes(allStrings);
         String directions = rightLeftDirectionFromFile();
 
-        List<String> listOfStrings = allLeftRightNodes(allStrings);
-        System.out.println(numberOfStepsToReachAddressesEndingInZ(listOfStrings, directions));
-
         if (isPartOne) {
-            return numberOfStepsToReachZZZ(leftRightNodeStrings, directions);
+            return (long) numberOfStepsToReachZZZ(leftRightNodeStrings, directions);
         }
         return numberOfStepsToReachAddressesEndingInZ(leftRightNodeStrings, directions);
     }
@@ -113,6 +121,8 @@ public class DayEight implements PrintSolution {
     public void printPartTwo() throws IOException {
         System.out.println(" ");
         System.out.println(this.getClass().getSimpleName() + " ---------------------------");
+        System.out.println("Current time is " + LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
         System.out.println("Total number of steps for part two = " + results(false));
+        System.out.println("After calculation the time is " + LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
     }
 }
