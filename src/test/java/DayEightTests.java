@@ -1,5 +1,4 @@
 import org.advent.dayeight.DayEight;
-import org.advent.dayeight.Node;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -14,7 +13,7 @@ public class DayEightTests {
     @Test
     public void verifyNode() {
 
-        List<String> listOfStrings = new ArrayList<>(Arrays.asList(
+        List<String> listOfStrings = new ArrayList<>(List.of(
                 "AAA = (BBB, CCC)"
         ));
 
@@ -40,10 +39,32 @@ public class DayEightTests {
         DayEight dayEight = new DayEight();
 
         try {
-            assertEquals(6, dayEight.numberOfStepsToReachEnd(listOfStrings, directions));
+            assertEquals(6, dayEight.numberOfStepsToReachZZZ(listOfStrings, directions));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Test
+    public void verifyNumberOfStepsToReachNodesThatAllEndInZ() {
+
+        List<String> listOfStrings = new ArrayList<>(Arrays.asList(
+                "11A = (11B, XXX)",
+                "11B = (XXX, 11Z)",
+                "11Z = (11B, XXX)",
+                "22A = (22B, XXX)",
+                "22B = (22C, 22C)",
+                "22C = (22Z, 22Z)",
+                "22Z = (22B, 22B)",
+                "XXX = (XXX, XXX)"
+        ));
+
+        String directions = "LR";
+
+        DayEight dayEight = new DayEight();
+
+        assertEquals(6, dayEight.numberOfStepsToReachAddressesEndingInZ(listOfStrings, directions));
 
     }
+
 }

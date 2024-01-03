@@ -38,9 +38,13 @@ public class Main {
 //        daySix.printPartTwo();
 
         // DAY EIGHT OUTPUT
+
         DayEight dayEight = new DayEight();
         dayEight.printPartOne();
         dayEight.printPartTwo();
+//        List<String> listOfStrings = dayEight.allLeftRightNodes()
+//        Map<String, Node> nodeMap = dayEight.nodeMap()
+//        System.out.println(dayEight.getFilteredMap());
 
 
 
