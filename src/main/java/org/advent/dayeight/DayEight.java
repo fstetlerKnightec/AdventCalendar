@@ -36,21 +36,6 @@ public class DayEight implements PrintSolution {
         return numberOfStepsToFindString(listOfStrings, currentNode, directions, "ZZZ");
     }
 
-    private long numberOfStepsToFindString(List<String> listOfStrings, Node currentNode, String directions, String stringToFind) {
-        int numberOfSteps = 0;
-        for (int i = 0; i < directions.length(); i++) {
-            if (currentNode.address().endsWith(stringToFind)) {
-                break;
-            }
-            currentNode = findNodeMapFromPointer(nodeMap(listOfStrings), currentNode, directions.charAt(i));
-            if (i == directions.length() - 1) {
-                i = -1;
-            }
-            numberOfSteps += 1;
-        }
-        return numberOfSteps;
-    }
-
     public Long LCMOfAllPaths(List<String> listOfStrings, String directions) {
         Map<String, Node> filteredMapStarting = getFilteredMap(nodeMap(listOfStrings));
         List<Node> listOfNodes = new ArrayList<>(filteredMapStarting.values());
@@ -80,6 +65,21 @@ public class DayEight implements PrintSolution {
         System.out.println(" ");
         System.out.println(this.getClass().getSimpleName() + " ---------------------------");
         System.out.println("Total number of steps for part two = " + results(false));
+    }
+
+    private long numberOfStepsToFindString(List<String> listOfStrings, Node currentNode, String directions, String stringToFind) {
+        int numberOfSteps = 0;
+        for (int i = 0; i < directions.length(); i++) {
+            if (currentNode.address().endsWith(stringToFind)) {
+                break;
+            }
+            currentNode = findNodeMapFromPointer(nodeMap(listOfStrings), currentNode, directions.charAt(i));
+            if (i == directions.length() - 1) {
+                i = -1;
+            }
+            numberOfSteps += 1;
+        }
+        return numberOfSteps;
     }
 
     private Map<String, Node> getFilteredMap(Map<String, Node> nodeMap) {
