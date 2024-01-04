@@ -19,10 +19,9 @@ public class DayEightTests {
 
         DayEight dayEight = new DayEight();
 
-        assertEquals(dayEight.nodeMap(listOfStrings).get("AAA").getIndex(), 0);
-        assertEquals(dayEight.nodeMap(listOfStrings).get("AAA").getAddress(), "AAA");
-        assertEquals(dayEight.nodeMap(listOfStrings).get("AAA").getLeftPointer(), "BBB");
-        assertEquals(dayEight.nodeMap(listOfStrings).get("AAA").getRightPointer(), "CCC");
+        assertEquals(dayEight.nodeMap(listOfStrings).get("AAA").address(), "AAA");
+        assertEquals(dayEight.nodeMap(listOfStrings).get("AAA").leftPointer(), "BBB");
+        assertEquals(dayEight.nodeMap(listOfStrings).get("AAA").rightPointer(), "CCC");
 
     }
 
@@ -63,7 +62,7 @@ public class DayEightTests {
 
         DayEight dayEight = new DayEight();
 
-        assertEquals(6, dayEight.numberOfStepsToReachAddressesEndingInZ(listOfStrings, directions));
+        assertEquals(6, dayEight.LCMOfAllPaths(listOfStrings, directions));
 
     }
 
