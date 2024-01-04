@@ -17,6 +17,7 @@ public class DaySeven implements PrintSolution {
         for (String listOfString : listOfStrings) {
             arrayList.add(getHandFromString(listOfString));
         }
+
         return arrayList;
     }
 

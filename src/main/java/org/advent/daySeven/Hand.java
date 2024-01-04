@@ -1,6 +1,8 @@
 package org.advent.daySeven;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -8,8 +10,8 @@ public class Hand {
 
     String fullString;
     String handString;
-    String partOfTypeString;
-    String restOfCardsString;
+    String relevantCards;
+    String restOfHand;
     int bid;
     Type type;
     int rank;
@@ -18,9 +20,9 @@ public class Hand {
     public Hand(String fullString) {
         this.fullString = fullString;
         this.handString = handOfString(fullString);
-
+        this.relevantCards = stringOfRelevantCards();
+//        this.restOfHand = findNonRelevantCardsInHand();
         this.type = typeOfHand(fullString);
-
         this.bid = bidOfHand(fullString);
     }
 
@@ -34,6 +36,20 @@ public class Hand {
 
     public String handOfString(String string) {
         return string.substring(0, string.indexOf(" "));
+    }
+
+    public String findNonRelevantCardsInHand() {
+        List<Character> listOfNonRelevantCards = new ArrayList<>(handString.chars().mapToObj(ch -> (char) ch).toList());
+        List<Character> listOfRelevantCards = stringOfRelevantCards().chars().mapToObj(ch -> (char) ch).toList();
+        System.out.println(listOfRelevantCards);
+
+
+        for (Character character : listOfRelevantCards) {
+            listOfNonRelevantCards.remove(character);
+        }
+
+        System.out.println(listOfNonRelevantCards);
+        return "hey";
     }
 
 
@@ -53,6 +69,32 @@ public class Hand {
             }
         }
         return null;
+    }
+
+    public String stringOfRelevantCards() {
+        List<Character> listOfCards = new ArrayList<>();
+
+        Map<Character, Integer> mapOfLettersAndHowMany = findMultipleLetters(handString);
+
+        for (Character character : mapOfLettersAndHowMany.keySet()) {
+            for (int i = 0; i < mapOfLettersAndHowMany.get(character); i++) {
+                listOfCards.add(character);
+            }
+        }
+        return listOfCards.stream().map(String::valueOf).collect(Collectors.joining());
+    }
+
+    private Map<Character, Integer> findMultipleLetters(String string) {
+        char[] charArray = string.toCharArray();
+
+        Map<Character, Integer> charCountMap = new HashMap<>();
+        for (char c : charArray) {
+            charCountMap.put(c, charCountMap.getOrDefault(c, 0) + 1);
+        }
+        return charCountMap.entrySet().stream()
+                .filter(entry -> entry.getValue() > 1)
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
     }
 
     public Type typeOfHand(String string) {

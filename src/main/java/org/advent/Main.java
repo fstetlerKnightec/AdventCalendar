@@ -90,10 +90,15 @@ public class Main {
 
         List<String> listOfStrings = util.readStringsFromFile(Paths.get("src/main/resources/daySeven.txt").toString());
         ArrayList<Hand> listOfHands = daySeven.getListOfHands(listOfStrings);
+        int index = 121;
+        String listOfCharacters = new Hand(listOfStrings.get(index)).stringOfRelevantCards();
+        String listOfNonRelevantCharacters = new Hand(listOfStrings.get(index)).findNonRelevantCardsInHand();
+        System.out.println(listOfCharacters);
+        System.out.println(listOfNonRelevantCharacters);
 //        List<Hand> listOfSortedHands = daySeven.sortedHandsByRank(listOfHands, true);
-        List<Hand> listOfSortedHandsPartTwo = daySeven.sortedHandsByRank(listOfHands, false);
-//        daySeven.printPartOne(daySeven.totalWinnings((ArrayList<Hand>) listOfSortedHands));
-        daySeven.printPartTwo(daySeven.totalWinnings((ArrayList<Hand>) listOfSortedHandsPartTwo));
+//        List<Hand> listOfSortedHandsPartTwo = daySeven.sortedHandsByRank(listOfHands, false);
+////        daySeven.printPartOne(daySeven.totalWinnings((ArrayList<Hand>) listOfSortedHands));
+//        daySeven.printPartTwo(daySeven.totalWinnings((ArrayList<Hand>) listOfSortedHandsPartTwo));
 
 
     }
