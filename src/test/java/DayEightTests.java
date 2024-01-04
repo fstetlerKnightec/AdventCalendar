@@ -13,9 +13,9 @@ public class DayEightTests {
     @Test
     public void verifyNode() {
 
-        List<String> listOfStrings = new ArrayList<>(List.of(
+        List<String> listOfStrings = List.of(
                 "AAA = (BBB, CCC)"
-        ));
+        );
 
         DayEight dayEight = new DayEight();
 
@@ -27,11 +27,11 @@ public class DayEightTests {
 
     @Test
     public void verifyNumberOfStepsToReachEnd() {
-        List<String> listOfStrings = new ArrayList<>(Arrays.asList(
+        List<String> listOfStrings = List.of(
                 "AAA = (BBB, BBB)",
                 "BBB = (AAA, ZZZ)",
                 "ZZZ = (ZZZ, ZZZ)"
-        ));
+        );
 
         String directions = "LLR";
 
@@ -44,7 +44,7 @@ public class DayEightTests {
     @Test
     public void verifyNumberOfStepsToReachNodesThatAllEndInZ() {
 
-        List<String> listOfStrings = new ArrayList<>(Arrays.asList(
+        List<String> listOfStrings = List.of(
                 "11A = (11B, XXX)",
                 "11B = (XXX, 11Z)",
                 "11Z = (11B, XXX)",
@@ -53,7 +53,7 @@ public class DayEightTests {
                 "22C = (22Z, 22Z)",
                 "22Z = (22B, 22B)",
                 "XXX = (XXX, XXX)"
-        ));
+        );
 
         String directions = "LR";
 
