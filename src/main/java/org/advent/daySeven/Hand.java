@@ -10,8 +10,8 @@ public class Hand {
 
     String fullString;
     String handString;
-    String relevantCards;
-    String restOfHand;
+    List<Character> relevantCards;
+    List<Character> restOfHand;
     int bid;
     Type type;
     int rank;
@@ -21,7 +21,7 @@ public class Hand {
         this.fullString = fullString;
         this.handString = handOfString(fullString);
         this.relevantCards = stringOfRelevantCards();
-//        this.restOfHand = findNonRelevantCardsInHand();
+        this.restOfHand = findNonRelevantCardsInHand();
         this.type = typeOfHand(fullString);
         this.bid = bidOfHand(fullString);
     }
@@ -38,18 +38,13 @@ public class Hand {
         return string.substring(0, string.indexOf(" "));
     }
 
-    public String findNonRelevantCardsInHand() {
+    public List<Character> findNonRelevantCardsInHand() {
         List<Character> listOfNonRelevantCards = new ArrayList<>(handString.chars().mapToObj(ch -> (char) ch).toList());
-        List<Character> listOfRelevantCards = stringOfRelevantCards().chars().mapToObj(ch -> (char) ch).toList();
-        System.out.println(listOfRelevantCards);
-
-
+        List<Character> listOfRelevantCards = stringOfRelevantCards();
         for (Character character : listOfRelevantCards) {
             listOfNonRelevantCards.remove(character);
         }
-
-        System.out.println(listOfNonRelevantCards);
-        return "hey";
+        return listOfNonRelevantCards;
     }
 
 
@@ -71,7 +66,7 @@ public class Hand {
         return null;
     }
 
-    public String stringOfRelevantCards() {
+    public List<Character> stringOfRelevantCards() {
         List<Character> listOfCards = new ArrayList<>();
 
         Map<Character, Integer> mapOfLettersAndHowMany = findMultipleLetters(handString);
@@ -81,7 +76,7 @@ public class Hand {
                 listOfCards.add(character);
             }
         }
-        return listOfCards.stream().map(String::valueOf).collect(Collectors.joining());
+        return listOfCards;
     }
 
     private Map<Character, Integer> findMultipleLetters(String string) {
@@ -135,7 +130,41 @@ public class Hand {
     }
 
 
+    public String getFullString() {
+        return fullString;
+    }
 
+    public void setFullString(String fullString) {
+        this.fullString = fullString;
+    }
+
+    public void setHandString(String handString) {
+        this.handString = handString;
+    }
+
+    public List<Character> getRelevantCards() {
+        return relevantCards;
+    }
+
+    public void setRelevantCards(List<Character> relevantCards) {
+        this.relevantCards = relevantCards;
+    }
+
+    public List<Character> getRestOfHand() {
+        return restOfHand;
+    }
+
+    public void setRestOfHand(List<Character> restOfHand) {
+        this.restOfHand = restOfHand;
+    }
+
+    public boolean isPartOne() {
+        return partOne;
+    }
+
+    public void setPartOne(boolean partOne) {
+        this.partOne = partOne;
+    }
 
 
     public Type getType() {
