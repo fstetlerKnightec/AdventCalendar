@@ -47,14 +47,18 @@ public class DayEight implements PrintSolution {
         String startingAddress = "AAA";
         Node currentNode = nodeMap.get(startingAddress);
 
-        while (currentNode.getIndex() != finalIndex) {
-            for (int i = 0; i < directions.length(); i++) {
-                if (currentNode.getIndex() == finalIndex) {
-                    break;
-                }
-                currentNode = findNodeMapFromPointer(nodeMap, currentNode, directions.charAt(i));
-                numberOfSteps += 1;
+        for (int i = 0; i < directions.length(); i++) {
+            if (currentNode.getIndex() == finalIndex) {
+                break;
             }
+
+            currentNode = findNodeMapFromPointer(nodeMap, currentNode, directions.charAt(i));
+
+            if (i == directions.length() - 1) {
+                i = -1;
+            }
+
+            numberOfSteps += 1;
         }
 
         return numberOfSteps;
