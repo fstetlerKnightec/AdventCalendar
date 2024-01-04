@@ -90,15 +90,12 @@ public class DayEight implements PrintSolution {
                 }
                 currentNode = findNodeMapFromPointer(nodeMap(listOfStrings), currentNode, directions.charAt(j));
                 number += 1;
-
                 if (j == directions.length() - 1) {
                     j = -1;
                 }
             }
             numberOfStepsList.add(number);
         }
-
-
 
         long lcm1 = lcm(numberOfStepsList.get(0), numberOfStepsList.get(1));
 
@@ -107,17 +104,12 @@ public class DayEight implements PrintSolution {
                 lcm1 = lcm(lcm1, numberOfStepsList.get(i));
             }
         }
-
         return lcm1;
     }
-
-
 
     public Map<String, Node> getFilteredMap(Map<String, Node> nodeMap, String letter) {
         return nodeMap.entrySet().stream().filter(entry -> entry.getValue().getAddress().endsWith(letter)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
-
-
 
     private Long results(boolean isPartOne) throws IOException {
         List<String> allStrings = Util.readStringsFromFile(Paths.get("src/main/resources/dayEight.txt").toString());
@@ -141,8 +133,6 @@ public class DayEight implements PrintSolution {
     public void printPartTwo() throws IOException {
         System.out.println(" ");
         System.out.println(this.getClass().getSimpleName() + " ---------------------------");
-        System.out.println("Current time is " + LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
         System.out.println("Total number of steps for part two = " + results(false));
-        System.out.println("After calculation the time is " + LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
     }
 }
