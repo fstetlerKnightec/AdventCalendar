@@ -28,27 +28,26 @@ public class DayEight implements PrintSolution {
         }
     }
 
-    public int numberOfStepsToReachZZZ(List<String> listOfStrings, String directions) throws IOException {
+    public long numberOfStepsToReachZZZ(List<String> listOfStrings, String directions) throws IOException {
         Map<String, Node> nodeMap = nodeMap(listOfStrings);
-        int finalIndex = nodeMap.get("ZZZ").getIndex();
-        int numberOfSteps = 0;
         String startingAddress = "AAA";
         Node currentNode = nodeMap.get(startingAddress);
 
+        return numberOfStepsToFindString(listOfStrings, currentNode, directions, "ZZZ");
+    }
+
+    private long numberOfStepsToFindString(List<String> listOfStrings, Node currentNode, String directions, String stringToFind) {
+        int numberOfSteps = 0;
         for (int i = 0; i < directions.length(); i++) {
-            if (currentNode.getIndex() == finalIndex) {
+            if (currentNode.getAddress().endsWith(stringToFind)) {
                 break;
             }
-
-            currentNode = findNodeMapFromPointer(nodeMap, currentNode, directions.charAt(i));
-
+            currentNode = findNodeMapFromPointer(nodeMap(listOfStrings), currentNode, directions.charAt(i));
             if (i == directions.length() - 1) {
                 i = -1;
             }
-
             numberOfSteps += 1;
         }
-
         return numberOfSteps;
     }
 
@@ -56,25 +55,12 @@ public class DayEight implements PrintSolution {
         Map<String, Node> filteredMapStarting = getFilteredMap(nodeMap(listOfStrings), "A");
 
         List<Node> listOfNodes = new ArrayList<>(filteredMapStarting.values());
-        List<Integer> numberOfStepsList = new ArrayList<>();
+        List<Long> numberOfStepsList = new ArrayList<>();
 
         for (Node currentNode : listOfNodes) {
-        int number = 0;
-            for (int j = 0; j < directions.length(); j++) {
-                if (currentNode.getAddress().endsWith("Z")) {
-                    break;
-                }
-                currentNode = findNodeMapFromPointer(nodeMap(listOfStrings), currentNode, directions.charAt(j));
-                number += 1;
-                if (j == directions.length() - 1) {
-                    j = -1;
-                }
-            }
-            numberOfStepsList.add(number);
+            numberOfStepsList.add(numberOfStepsToFindString(listOfStrings, currentNode, directions, "Z"));
         }
-
         long lcm1 = lcm(numberOfStepsList.get(0), numberOfStepsList.get(1));
-
         if (numberOfStepsList.size() > 2) {
             for (int i = 2; i < numberOfStepsList.size(); i++) {
                 lcm1 = lcm(lcm1, numberOfStepsList.get(i));
