@@ -89,12 +89,13 @@ public class Main {
         DaySeven daySeven = new DaySeven();
 
         List<String> listOfStrings = util.readStringsFromFile(Paths.get("src/main/resources/daySeven.txt").toString());
-        ArrayList<Hand> listOfHands = daySeven.getListOfHands(listOfStrings);
-        int index = 121;
+//        ArrayList<Hand> listOfHands = daySeven.getListOfHands(listOfStrings);
+        int index = 15;
         List<Character> listOfCharacters = new Hand(listOfStrings.get(index)).getRelevantCards();
         List<Character> listOfNonRelevantCharacters = new Hand(listOfStrings.get(index)).getRestOfHand();
         System.out.println(listOfCharacters);
         System.out.println(listOfNonRelevantCharacters);
+        System.out.println(new Hand(listOfStrings.get(index)).getType());
 //        List<Hand> listOfSortedHands = daySeven.sortedHandsByRank(listOfHands, true);
 //        List<Hand> listOfSortedHandsPartTwo = daySeven.sortedHandsByRank(listOfHands, false);
 ////        daySeven.printPartOne(daySeven.totalWinnings((ArrayList<Hand>) listOfSortedHands));

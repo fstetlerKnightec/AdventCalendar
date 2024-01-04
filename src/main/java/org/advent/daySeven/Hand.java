@@ -22,7 +22,7 @@ public class Hand {
         this.handString = handOfString(fullString);
         this.relevantCards = stringOfRelevantCards();
         this.restOfHand = findNonRelevantCardsInHand();
-        this.type = typeOfHand(fullString);
+        this.type = typeOfHand();
         this.bid = bidOfHand(fullString);
     }
 
@@ -47,24 +47,6 @@ public class Hand {
         return listOfNonRelevantCards;
     }
 
-
-    public Map<Character, Integer> findAllMatchingLetters(String string) {
-
-        Map<Character, Integer> charCounts = new HashMap<>();
-
-        // Count occurrences of each character
-        for (char c : string.toCharArray()) {
-            charCounts.put(c, charCounts.getOrDefault(c, 0) + 1);
-        }
-
-        // Print matching letters and their counts
-        for (Map.Entry<Character, Integer> entry : charCounts.entrySet()) {
-            if (entry.getValue() > 1) {
-                return charCounts;
-            }
-        }
-        return null;
-    }
 
     public List<Character> stringOfRelevantCards() {
         List<Character> listOfCards = new ArrayList<>();
@@ -92,40 +74,35 @@ public class Hand {
 
     }
 
-    public Type typeOfHand(String string) {
-        Map<Character, Long> charCounts = handOfString(string).chars().mapToObj(c -> (char) c).collect(Collectors.groupingBy(c -> c, Collectors.counting()));
-
-        Map<Character, Integer> charactersAndHowMany = findAllMatchingLetters(handOfString(string));
-
-        if (charCounts.containsValue(1L) && charCounts.containsValue(2L) && charCounts.size() == 3) {
+    public Type typeOfHand() {
+        if (!relevantCards.stream().allMatch(ch -> ch.equals(relevantCards.get(0))) && relevantCards.size() == 4) {
 
             return Type.TWO_PAIR;
         }
 
-        if (charCounts.containsValue(3L) && charCounts.containsValue(2L)) {
+        if (!relevantCards.stream().allMatch(ch -> ch.equals(relevantCards.get(0))) && relevantCards.size() == 5) {
             return Type.FULL_HOUSE;
         }
 
-        if (charCounts.containsValue(5L) && charCounts.size() == 1) {
+        if (relevantCards.stream().allMatch(ch -> ch.equals(relevantCards.get(0))) && relevantCards.size() == 5) {
             return Type.FIVE_OF_A_KIND;
         }
 
-        if (charCounts.containsValue(4L) && charCounts.size() == 2) {
+        if (relevantCards.stream().allMatch(ch -> ch.equals(relevantCards.get(0))) && relevantCards.size() == 4) {
             return Type.FOUR_OF_A_KIND;
         }
 
-        if (charCounts.containsValue(3L) && charCounts.size() == 3) {
+        if (relevantCards.stream().allMatch(ch -> ch.equals(relevantCards.get(0))) && relevantCards.size() == 3) {
             return Type.THREE_OF_A_KIND;
         }
 
-        if (charCounts.containsValue(2L) && charCounts.size() == 4) {
+        if (relevantCards.stream().allMatch(ch -> ch.equals(relevantCards.get(0))) && relevantCards.size() == 2) {
             return Type.ONE_PAIR;
         }
 
-        if (charCounts.containsValue(1L) && charCounts.size() == 5) {
+        if (relevantCards.isEmpty()) {
             return Type.HIGH_CARD;
         }
-
         return null;
     }
 
