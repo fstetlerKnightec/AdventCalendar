@@ -28,7 +28,7 @@ public class DayEight implements PrintSolution {
         }
     }
 
-    public long numberOfStepsToReachZZZ(List<String> listOfStrings, String directions) throws IOException {
+    public long numberOfStepsToReachZZZ(List<String> listOfStrings, String directions) {
         Map<String, Node> nodeMap = nodeMap(listOfStrings);
         String startingAddress = "AAA";
         Node currentNode = nodeMap.get(startingAddress);
@@ -54,14 +54,14 @@ public class DayEight implements PrintSolution {
     }
 
     @Override
-    public void printPartOne() throws IOException {
+    public void printPartOne() {
         System.out.println(" ");
         System.out.println(this.getClass().getSimpleName() + " ---------------------------");
         System.out.println("Total number of steps for part one = " + results(true));
     }
 
     @Override
-    public void printPartTwo() throws IOException {
+    public void printPartTwo() {
         System.out.println(" ");
         System.out.println(this.getClass().getSimpleName() + " ---------------------------");
         System.out.println("Total number of steps for part two = " + results(false));
@@ -86,18 +86,20 @@ public class DayEight implements PrintSolution {
         return nodeMap.entrySet().stream().filter(entry -> entry.getValue().address().endsWith("A")).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
-    private Long results(boolean isPartOne) throws IOException {
-        List<String> allStrings = Util.readStringsFromFile(Paths.get("src/main/resources/dayEight.txt").toString());
+    private Long results(boolean isPartOne) {
+        List<String> allStrings;
+        String directions;
+        try {
+            allStrings = Util.readStringsFromFile(Paths.get("src/main/resources/dayEight.txt").toString());
+            directions = allStrings.get(0);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         List<String> leftRightNodeStrings = allLeftRightNodes(allStrings);
-        String directions = rightLeftDirectionFromFile();
         if (isPartOne) {
             return numberOfStepsToReachZZZ(leftRightNodeStrings, directions);
         }
         return LCMOfAllPaths(leftRightNodeStrings, directions);
-    }
-
-    private String rightLeftDirectionFromFile() throws IOException {
-        return Util.readStringsFromFile(Paths.get("src/main/resources/dayEight.txt").toString()).get(0);
     }
 
     private List<String> allLeftRightNodes(List<String> listOfStrings) {

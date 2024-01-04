@@ -37,11 +37,8 @@ public class DayEightTests {
 
         DayEight dayEight = new DayEight();
 
-        try {
-            assertEquals(6, dayEight.numberOfStepsToReachZZZ(listOfStrings, directions));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        assertEquals(6, dayEight.numberOfStepsToReachZZZ(listOfStrings, directions));
+
     }
 
     @Test
