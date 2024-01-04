@@ -4,25 +4,13 @@ import org.advent.PrintSolution;
 import org.advent.Util;
 
 import java.io.IOException;
-import java.math.BigInteger;
 import java.nio.file.Paths;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class DayEight implements PrintSolution {
-
-    public String rightLeftDirectionFromFile() throws IOException {
-        return Util.readStringsFromFile(Paths.get("src/main/resources/dayEight.txt").toString()).get(0);
-    }
-
-    public List<String> allLeftRightNodes(List<String> listOfStrings) {
-        return listOfStrings.subList(2, listOfStrings.size());
-    }
 
     public Map<String, Node> nodeMap(List<String> listOfStrings) {
         return listOfStrings.stream()
@@ -31,7 +19,6 @@ public class DayEight implements PrintSolution {
                         s -> new Node(listOfStrings.indexOf(s), s.substring(0, 3), s.substring(7, 10), s.substring(12,15))
                         ));
     }
-
 
     public Node findNodeMapFromPointer(Map<String, Node> nodeMap, Node node, char direction) {
         if (direction == 'L') {
@@ -65,17 +52,6 @@ public class DayEight implements PrintSolution {
         return numberOfSteps;
     }
 
-    private static long lcm(long a, long b) {
-        return ((long) a * b) / gcd(a, b);
-    }
-
-    private static long gcd(long a, long b) {
-        if (b == 0) {
-            return a;
-        }
-        return gcd(b, a % b);
-    }
-
     public Long numberOfStepsToReachAddressesEndingInZ(List<String> listOfStrings, String directions) {
         Map<String, Node> filteredMapStarting = getFilteredMap(nodeMap(listOfStrings), "A");
 
@@ -107,7 +83,21 @@ public class DayEight implements PrintSolution {
         return lcm1;
     }
 
-    public Map<String, Node> getFilteredMap(Map<String, Node> nodeMap, String letter) {
+    @Override
+    public void printPartOne() throws IOException {
+        System.out.println(" ");
+        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
+        System.out.println("Total number of steps for part one = " + results(true));
+    }
+
+    @Override
+    public void printPartTwo() throws IOException {
+        System.out.println(" ");
+        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
+        System.out.println("Total number of steps for part two = " + results(false));
+    }
+
+    private Map<String, Node> getFilteredMap(Map<String, Node> nodeMap, String letter) {
         return nodeMap.entrySet().stream().filter(entry -> entry.getValue().getAddress().endsWith(letter)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
@@ -122,17 +112,22 @@ public class DayEight implements PrintSolution {
         return numberOfStepsToReachAddressesEndingInZ(leftRightNodeStrings, directions);
     }
 
-    @Override
-    public void printPartOne() throws IOException {
-        System.out.println(" ");
-        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
-        System.out.println("Total number of steps for part one = " + results(true));
+    private static long lcm(long a, long b) {
+        return ((long) a * b) / gcd(a, b);
     }
 
-    @Override
-    public void printPartTwo() throws IOException {
-        System.out.println(" ");
-        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
-        System.out.println("Total number of steps for part two = " + results(false));
+    private static long gcd(long a, long b) {
+        if (b == 0) {
+            return a;
+        }
+        return gcd(b, a % b);
+    }
+
+    private String rightLeftDirectionFromFile() throws IOException {
+        return Util.readStringsFromFile(Paths.get("src/main/resources/dayEight.txt").toString()).get(0);
+    }
+
+    private List<String> allLeftRightNodes(List<String> listOfStrings) {
+        return listOfStrings.subList(2, listOfStrings.size());
     }
 }
