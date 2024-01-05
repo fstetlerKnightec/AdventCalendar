@@ -15,7 +15,7 @@ public class Hand {
 
     public Hand(String fullString, boolean isPartTwo) {
         this.handString = handOfString(fullString);
-        this.relevantCards = stringOfRelevantCards();
+        this.relevantCards = listOfRelevantCards();
         this.restOfHand = findNonRelevantCardsInHand();
         this.type = typeOfHand(isPartTwo);
         this.bid = bidOfHand(fullString);
@@ -63,7 +63,6 @@ public class Hand {
                 }
             }
         }
-
 
         if (allCardsMatch() && listIsSize(3)) {
             type =  Type.THREE_OF_A_KIND;
@@ -123,11 +122,9 @@ public class Hand {
 
     }
 
-    private List<Character> stringOfRelevantCards() {
+    private List<Character> listOfRelevantCards() {
         List<Character> listOfCards = new ArrayList<>();
-
         Map<Character, Integer> mapOfLettersAndHowMany = findMultipleLetters(handString);
-
         for (Character character : mapOfLettersAndHowMany.keySet()) {
             for (int i = 0; i < mapOfLettersAndHowMany.get(character); i++) {
                 listOfCards.add(character);
@@ -147,7 +144,7 @@ public class Hand {
 
     private List<Character> findNonRelevantCardsInHand() {
         List<Character> listOfNonRelevantCards = new ArrayList<>(handString.chars().mapToObj(ch -> (char) ch).toList());
-        List<Character> listOfRelevantCards = stringOfRelevantCards();
+        List<Character> listOfRelevantCards = listOfRelevantCards();
         for (Character character : listOfRelevantCards) {
             listOfNonRelevantCards.remove(character);
         }
