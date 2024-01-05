@@ -1,9 +1,11 @@
 package org.advent;
 
+import java.io.IOException;
+
 public interface PrintSolution {
 
-    void printPartOne();
+    void printPartOne() throws IOException;
 
-    void printPartTwo();
+    void printPartTwo() throws IOException;
 
 }

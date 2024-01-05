@@ -1,12 +1,12 @@
 package org.advent.daythree;
 
 import org.advent.PrintSolution;
+import org.advent.Util;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DayThree implements PrintSolution {
 
@@ -105,17 +105,29 @@ public class DayThree implements PrintSolution {
         return listOfStrings;
     }
 
+    public int results(boolean isPartOne) throws IOException {
+        List<String> readList = Util.readStringsFromFile(Paths.get("src/main/resources/dayThree.txt").toString());
+        List<String> list3 = addCushionLinesAndColumnsOnStringsInList(readList);
+        List<Number> listOfAllNumbers = listOfAllNumbers(list3);
+        setAdjacentToSymbolForNumber(listOfAllNumbers, list3);
+
+        if (isPartOne) {
+            return getTotalAddedNumbersAdjacentToSymbol(listOfAllNumbers);
+        }
+        return calculateTotalValueOfAllAdjacentValuesToStar(listOfAllNumbers);
+    }
+
     @Override
-    public void printPartOne(int result) {
+    public void printPartOne() throws IOException {
         System.out.println(" ");
         System.out.println(this.getClass().getSimpleName() + " ---------------------------");
-        System.out.println("Total value of numbers adjacent to symbol = " + result);
+        System.out.println("Total value of numbers adjacent to symbol = " + results(true));
 
     }
 
     @Override
-    public void printPartTwo(int result) {
-        System.out.println("TotalValue for two values adjacent to a star = " + result);
+    public void printPartTwo() throws IOException {
+        System.out.println("TotalValue for two values adjacent to a star = " + results(false));
     }
 
 }

@@ -1,6 +1,10 @@
 package org.advent.dayfour;
 
 import org.advent.PrintSolution;
+import org.advent.Util;
+
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -56,15 +60,29 @@ public class DayFour implements PrintSolution {
         return integerList;
     }
 
-    @Override
-    public void printPartOne(int result) {
-        System.out.println(" ");
-        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
-        System.out.println("Total value of all exponential values is = " + result);
+    public int results(boolean isPartOne) throws IOException {
+        List<String> listOfCards = Util.readStringsFromFile(Paths.get("src/main/resources/dayFour.txt").toString());
+        List<String> listOfCutStrings = removeFrontPartOfStringAndReturnList(listOfCards);
+        List<NumbersPerCard> listOfAllNumbersPerCard = listOfAllNumbersPerCard(listOfCutStrings);
+        setMatchingNumberPerCard(listOfAllNumbersPerCard);
+        setNumberOfTotalPerCard(listOfAllNumbersPerCard);
+
+        if (isPartOne) {
+            return totalSumOfAllExponentialValues(listOfAllNumbersPerCard);
+        }
+        return totalSumOfNumbersOfTotalPerCard(listOfAllNumbersPerCard);
+
     }
 
     @Override
-    public void printPartTwo(int result) {
-        System.out.println("Total sum of all added extra cards are = " + result);
+    public void printPartOne() throws IOException {
+        System.out.println(" ");
+        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
+        System.out.println("Total value of all exponential values is = " + results(true));
+    }
+
+    @Override
+    public void printPartTwo() throws IOException {
+        System.out.println("Total sum of all added extra cards are = " + results(false));
     }
 }
