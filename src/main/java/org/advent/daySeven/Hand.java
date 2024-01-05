@@ -112,16 +112,10 @@ public class Hand {
         Type type = null;
         if (!allCardsMatch() && isListSize(4)) {
             type = Type.TWO_PAIR;
-            if (isPartTwo) {
-                type = includeJokers(type);
-            }
         }
 
         if (!allCardsMatch() && isListSize(5)) {
             type = Type.FULL_HOUSE;
-            if (isPartTwo) {
-                type = includeJokers(type);
-            }
         }
 
         if (allCardsMatch() && isListSize(5)) {
@@ -130,30 +124,22 @@ public class Hand {
 
         if (allCardsMatch() && isListSize(4)) {
             type = Type.FOUR_OF_A_KIND;
-            if (isPartTwo) {
-                type = includeJokers(type);
-            }
         }
 
         if (allCardsMatch() && isListSize(3)) {
             type = Type.THREE_OF_A_KIND;
-            if (isPartTwo) {
-                type = includeJokers(type);
-            }
         }
 
         if (allCardsMatch() && isListSize(2)) {
             type = Type.ONE_PAIR;
-            if (isPartTwo) {
-                type = includeJokers(type);
-            }
         }
 
         if (relevantCards.isEmpty()) {
             type = Type.HIGH_CARD;
-            if (isPartTwo) {
-                type = includeJokers(type);
-            }
+        }
+
+        if (isPartTwo) {
+            type = includeJokers(type);
         }
 
         return type;
