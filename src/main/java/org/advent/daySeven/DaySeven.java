@@ -13,11 +13,11 @@ import static org.advent.daySeven.Hand.getHandFromString;
 public class DaySeven implements PrintSolution {
 
     public List<Hand> getListOfHands(List<String> listOfStrings, boolean isPartTwo) {
-        ArrayList<Hand> arrayList = new ArrayList<>();
+        List<Hand> list = new ArrayList<>();
         for (String listOfString : listOfStrings) {
-            arrayList.add(getHandFromString(listOfString, isPartTwo));
+            list.add(getHandFromString(listOfString, isPartTwo));
         }
-        return arrayList;
+        return list;
     }
 
     public List<Hand> sortedHandsByRank(List<Hand> listOfHands, boolean isPartTwo) {
