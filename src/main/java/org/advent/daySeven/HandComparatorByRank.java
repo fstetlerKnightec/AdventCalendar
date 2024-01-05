@@ -11,7 +11,6 @@ public class HandComparatorByRank implements Comparator<Hand> {
         this.isPartTwo = partOne;
     }
 
-
     @Override
     public int compare(Hand hand1, Hand hand2) {
 

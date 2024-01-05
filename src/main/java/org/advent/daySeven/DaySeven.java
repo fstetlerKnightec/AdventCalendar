@@ -10,16 +10,13 @@ import java.util.List;
 
 import static org.advent.daySeven.Hand.getHandFromString;
 
-
 public class DaySeven implements PrintSolution {
-
 
     public ArrayList<Hand> getListOfHands(List<String> listOfStrings, boolean isPartTwo) {
         ArrayList<Hand> arrayList = new ArrayList<>();
         for (String listOfString : listOfStrings) {
             arrayList.add(getHandFromString(listOfString, isPartTwo));
         }
-
         return arrayList;
     }
 
@@ -30,11 +27,9 @@ public class DaySeven implements PrintSolution {
 
     public int totalWinnings(ArrayList<Hand> listOfSortedHands) {
         int value = 0;
-
         for (int i = 0; i < listOfSortedHands.size(); i++) {
             value += listOfSortedHands.get(i).getBid()*(i+1);
         }
-
         return value;
     }
 
@@ -47,16 +42,13 @@ public class DaySeven implements PrintSolution {
 
     @Override
     public void printPartTwo() {
-        System.out.println(" ");
-        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
         System.out.println("Total winnings from part two are = " + results(true));
     }
 
     public int results(boolean isPartTwo) {
-        Util util = new Util();
         List<String> listOfStrings;
         try {
-            listOfStrings = util.readStringsFromFile(Paths.get("src/main/resources/daySeven.txt").toString());
+            listOfStrings = Util.readStringsFromFile(Paths.get("src/main/resources/daySeven.txt").toString());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -69,7 +61,4 @@ public class DaySeven implements PrintSolution {
         listOfHands = getListOfHands(listOfStrings, true);
         return totalWinnings(sortedHandsByRank(listOfHands, true));
     }
-
-
-
 }
