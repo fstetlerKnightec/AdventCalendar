@@ -29,7 +29,7 @@ public class Hand {
         return new Hand(string, isPartTwo);
     }
 
-    public Type includeJokers(Type type, List<Character> relevantCards) {
+    public Type includeJokers(Type type) {
         if (type == Type.TWO_PAIR) {
             if (relevantCards.stream().anyMatch(ch -> ch.equals('J'))) {
                 return Type.FOUR_OF_A_KIND;
@@ -78,14 +78,14 @@ public class Hand {
         if (!allCardsMatch() && isListSize(4)) {
             type = Type.TWO_PAIR;
             if (isPartTwo) {
-                type = includeJokers(type, relevantCards);
+                type = includeJokers(type);
             }
         }
 
         if (!allCardsMatch() && isListSize(5)) {
             type = Type.FULL_HOUSE;
             if (isPartTwo) {
-                type = includeJokers(type, relevantCards);
+                type = includeJokers(type);
             }
         }
 
@@ -96,28 +96,28 @@ public class Hand {
         if (allCardsMatch() && isListSize(4)) {
             type = Type.FOUR_OF_A_KIND;
             if (isPartTwo) {
-                type = includeJokers(type, relevantCards);
+                type = includeJokers(type);
             }
         }
 
         if (allCardsMatch() && isListSize(3)) {
             type =  Type.THREE_OF_A_KIND;
             if (isPartTwo) {
-                type = includeJokers(type, relevantCards);
+                type = includeJokers(type);
             }
         }
 
         if (allCardsMatch() && isListSize(2)) {
             type =  Type.ONE_PAIR;
             if (isPartTwo) {
-                type = includeJokers(type, relevantCards);
+                type = includeJokers(type);
             }
         }
 
         if (relevantCards.isEmpty()) {
             type =  Type.HIGH_CARD;
             if (isPartTwo) {
-                type = includeJokers(type, relevantCards);
+                type = includeJokers(type);
             }
         }
 
