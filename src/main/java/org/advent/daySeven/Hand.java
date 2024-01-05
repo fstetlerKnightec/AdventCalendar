@@ -65,46 +65,51 @@ public class Hand {
     }
 
     private Type includeJokers(Type type) {
-        if (type == Type.TWO_PAIR) {
-            if (relevantCards.stream().anyMatch(ch -> ch.equals('J'))) {
-                return Type.FOUR_OF_A_KIND;
-            }
-            if (restOfHand.stream().anyMatch(ch -> ch.equals('J'))) {
-                return Type.FULL_HOUSE;
-            }
+
+        if (type == Type.TWO_PAIR
+                && anyEqualsJ(relevantCards)) {
+            return Type.FOUR_OF_A_KIND;
         }
 
-        if (type == Type.FULL_HOUSE) {
-            if (relevantCards.stream().anyMatch(ch -> ch.equals('J'))) {
-                return Type.FIVE_OF_A_KIND;
-            }
+        if (type == Type.TWO_PAIR
+                && anyEqualsJ(restOfHand)) {
+            return Type.FULL_HOUSE;
         }
 
-        if (type == Type.FOUR_OF_A_KIND) {
-            if (restOfHand.stream().anyMatch(ch -> ch.equals('J')) || relevantCards.stream().allMatch(ch -> ch.equals('J'))) {
-                return Type.FIVE_OF_A_KIND;
-            }
+        if (type == Type.FULL_HOUSE
+                && anyEqualsJ(relevantCards)) {
+            return Type.FIVE_OF_A_KIND;
         }
 
-        if (type == Type.THREE_OF_A_KIND) {
-            if (relevantCards.stream().allMatch(ch -> ch.equals('J')) || restOfHand.stream().filter(ch -> ch.equals('J')).count() == 1) {
-                return Type.FOUR_OF_A_KIND;
-            }
+        if (type == Type.FOUR_OF_A_KIND
+                && (anyEqualsJ(restOfHand) || allEqualsJ(relevantCards))) {
+            return Type.FIVE_OF_A_KIND;
         }
 
-        if (type == Type.ONE_PAIR) {
-            if (relevantCards.stream().allMatch(ch -> ch.equals('J')) || restOfHand.stream().anyMatch(ch -> ch.equals('J'))) {
-                return Type.THREE_OF_A_KIND;
-            }
+        if (type == Type.THREE_OF_A_KIND
+                && (allEqualsJ(relevantCards) || anyEqualsJ(restOfHand))) {
+            return Type.FOUR_OF_A_KIND;
         }
 
-        if (type == Type.HIGH_CARD) {
-            if (restOfHand.stream().anyMatch(ch -> ch.equals('J'))) {
-                return Type.ONE_PAIR;
-            }
+        if (type == Type.ONE_PAIR
+                && (allEqualsJ(relevantCards) || anyEqualsJ(restOfHand))) {
+            return Type.THREE_OF_A_KIND;
+        }
+
+        if (type == Type.HIGH_CARD
+                && anyEqualsJ(restOfHand)) {
+            return Type.ONE_PAIR;
         }
 
         return type;
+    }
+
+    private boolean anyEqualsJ(List<Character> chars) {
+        return chars.stream().anyMatch(ch -> ch.equals('J'));
+    }
+
+    private boolean allEqualsJ(List<Character> chars) {
+        return chars.stream().allMatch(ch -> ch.equals('J'));
     }
 
     private Type typeOfHand(boolean isPartTwo) {
