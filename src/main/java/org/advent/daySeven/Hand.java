@@ -7,8 +7,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Hand {
-
-    String fullString;
     String handString;
     List<Character> relevantCards;
     List<Character> restOfHand;
@@ -16,7 +14,6 @@ public class Hand {
     Type type;
 
     public Hand(String fullString, boolean isPartTwo) {
-        this.fullString = fullString;
         this.handString = handOfString(fullString);
         this.relevantCards = stringOfRelevantCards();
         this.restOfHand = findNonRelevantCardsInHand();
