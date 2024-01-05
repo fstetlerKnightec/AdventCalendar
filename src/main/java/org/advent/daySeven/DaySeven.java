@@ -21,6 +21,13 @@ public class DaySeven implements PrintSolution {
 
     public List<Hand> sortedHandsByRank(ArrayList<Hand> listOfHands, boolean isPartOne) {
 
+        for (int i = 0; i < listOfHands.size(); i++) {
+            System.out.println(listOfHands.get(i).getType());
+            System.out.println(listOfHands.get(i).getRelevantCards());
+            System.out.println(listOfHands.get(i).getRestOfHand());
+            System.out.println(" ");
+        }
+
         listOfHands.sort(new HandComparatorByRank(isPartOne));
         return listOfHands;
     }

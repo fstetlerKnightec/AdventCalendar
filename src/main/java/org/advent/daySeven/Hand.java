@@ -75,35 +75,39 @@ public class Hand {
     }
 
     public Type typeOfHand() {
-        if (!relevantCards.stream().allMatch(ch -> ch.equals(relevantCards.get(0))) && relevantCards.size() == 4) {
 
-            return Type.TWO_PAIR;
+        Type type = null;
+        if (!allCardsMatch() && listIsSize(4)) {
+            type = Type.TWO_PAIR;
         }
-
-        if (!relevantCards.stream().allMatch(ch -> ch.equals(relevantCards.get(0))) && relevantCards.size() == 5) {
-            return Type.FULL_HOUSE;
+        if (!allCardsMatch() && listIsSize(5)) {
+            type = Type.FULL_HOUSE;
         }
-
-        if (relevantCards.stream().allMatch(ch -> ch.equals(relevantCards.get(0))) && relevantCards.size() == 5) {
-            return Type.FIVE_OF_A_KIND;
+        if (allCardsMatch() && listIsSize(5)) {
+            type = Type.FIVE_OF_A_KIND;
         }
-
-        if (relevantCards.stream().allMatch(ch -> ch.equals(relevantCards.get(0))) && relevantCards.size() == 4) {
-            return Type.FOUR_OF_A_KIND;
+        if (allCardsMatch() && listIsSize(4)) {
+            type =  Type.FOUR_OF_A_KIND;
         }
-
-        if (relevantCards.stream().allMatch(ch -> ch.equals(relevantCards.get(0))) && relevantCards.size() == 3) {
-            return Type.THREE_OF_A_KIND;
+        if (allCardsMatch() && listIsSize(3)) {
+            type =  Type.THREE_OF_A_KIND;
         }
-
-        if (relevantCards.stream().allMatch(ch -> ch.equals(relevantCards.get(0))) && relevantCards.size() == 2) {
-            return Type.ONE_PAIR;
+        if (allCardsMatch() && listIsSize(2)) {
+            type =  Type.ONE_PAIR;
         }
-
         if (relevantCards.isEmpty()) {
-            return Type.HIGH_CARD;
+            type =  Type.HIGH_CARD;
         }
-        return null;
+
+        return type;
+    }
+
+    public boolean allCardsMatch() {
+        return relevantCards.stream().allMatch(ch -> ch.equals(relevantCards.get(0)));
+    }
+
+    public boolean listIsSize(int size) {
+        return relevantCards.size() == size;
     }
 
 
