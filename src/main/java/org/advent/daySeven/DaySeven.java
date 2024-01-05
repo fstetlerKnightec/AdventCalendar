@@ -28,7 +28,7 @@ public class DaySeven implements PrintSolution {
     public int totalWinnings(List<Hand> listOfSortedHands) {
         int value = 0;
         for (int i = 0; i < listOfSortedHands.size(); i++) {
-            value += listOfSortedHands.get(i).getBid()*(i+1);
+            value += listOfSortedHands.get(i).getBid() * (i + 1);
         }
         return value;
     }
