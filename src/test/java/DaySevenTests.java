@@ -57,9 +57,9 @@ public class DaySevenTests {
         DaySeven daySeven = new DaySeven();
 
         ArrayList<Hand> listOfHands = daySeven.getListOfHands(listOfStrings, false);
-        List<Hand> listOfSortedHands = daySeven.sortedHandsByRank(listOfHands, false);
+        ArrayList<Hand> listOfSortedHands = daySeven.sortedHandsByRank(listOfHands, false);
 
-        assertEquals(6440, daySeven.totalWinnings((ArrayList<Hand>) listOfSortedHands));
+        assertEquals(6440, daySeven.totalWinnings(listOfSortedHands));
     }
 
     @Test
