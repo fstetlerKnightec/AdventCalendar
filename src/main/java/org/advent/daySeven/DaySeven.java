@@ -12,7 +12,7 @@ import static org.advent.daySeven.Hand.getHandFromString;
 
 public class DaySeven implements PrintSolution {
 
-    public ArrayList<Hand> getListOfHands(List<String> listOfStrings, boolean isPartTwo) {
+    public List<Hand> getListOfHands(List<String> listOfStrings, boolean isPartTwo) {
         ArrayList<Hand> arrayList = new ArrayList<>();
         for (String listOfString : listOfStrings) {
             arrayList.add(getHandFromString(listOfString, isPartTwo));
@@ -20,12 +20,12 @@ public class DaySeven implements PrintSolution {
         return arrayList;
     }
 
-    public ArrayList<Hand> sortedHandsByRank(ArrayList<Hand> listOfHands, boolean isPartTwo) {
+    public List<Hand> sortedHandsByRank(List<Hand> listOfHands, boolean isPartTwo) {
         listOfHands.sort(new HandComparatorByRank(isPartTwo));
         return listOfHands;
     }
 
-    public int totalWinnings(ArrayList<Hand> listOfSortedHands) {
+    public int totalWinnings(List<Hand> listOfSortedHands) {
         int value = 0;
         for (int i = 0; i < listOfSortedHands.size(); i++) {
             value += listOfSortedHands.get(i).getBid()*(i+1);
@@ -53,7 +53,7 @@ public class DaySeven implements PrintSolution {
             throw new RuntimeException(e);
         }
 
-        ArrayList<Hand> listOfHands;
+        List<Hand> listOfHands;
         if (!isPartTwo) {
             listOfHands = getListOfHands(listOfStrings, false);
             return totalWinnings(sortedHandsByRank(listOfHands, false));

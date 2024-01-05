@@ -24,7 +24,7 @@ public class DaySevenTests {
 
     @Test
     public void verifyRankOfHand() {
-        ArrayList<String> listOfStrings = new ArrayList<>();
+        List<String> listOfStrings = new ArrayList<>();
         listOfStrings.add("32T3K 765");
         listOfStrings.add("T55J5 684");
         listOfStrings.add("KK677 28");
@@ -34,7 +34,7 @@ public class DaySevenTests {
         List<String> listOfHandsInOrderOfRank = List.of("32T3K", "KTJJT", "KK677", "T55J5", "QQQJA");
 
         DaySeven daySeven = new DaySeven();
-        ArrayList<Hand> listOfHands = daySeven.getListOfHands(listOfStrings, false);
+        List<Hand> listOfHands = daySeven.getListOfHands(listOfStrings, false);
         List<Hand> listOfSortedHands = daySeven.sortedHandsByRank(listOfHands, false);
 
         for (int i = 0; i < listOfSortedHands.size(); i++) {
@@ -56,8 +56,8 @@ public class DaySevenTests {
 
         DaySeven daySeven = new DaySeven();
 
-        ArrayList<Hand> listOfHands = daySeven.getListOfHands(listOfStrings, false);
-        ArrayList<Hand> listOfSortedHands = daySeven.sortedHandsByRank(listOfHands, false);
+        List<Hand> listOfHands = daySeven.getListOfHands(listOfStrings, false);
+        List<Hand> listOfSortedHands = daySeven.sortedHandsByRank(listOfHands, false);
 
         assertEquals(6440, daySeven.totalWinnings(listOfSortedHands));
     }
@@ -74,7 +74,7 @@ public class DaySevenTests {
         List<String> listOfHandsInOrderOfRank = List.of("32T3K", "KK677", "T55J5", "QQQJA", "KTJJT");
 
         DaySeven daySeven = new DaySeven();
-        ArrayList<Hand> listOfHands = daySeven.getListOfHands(listOfStrings, true);
+        List<Hand> listOfHands = daySeven.getListOfHands(listOfStrings, true);
         List<Hand> listOfSortedHands = daySeven.sortedHandsByRank(listOfHands, true);
         for (int i = 0; i < listOfSortedHands.size(); i++) {
             System.out.println(listOfSortedHands.get(i).getHandString());
