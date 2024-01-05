@@ -2,8 +2,8 @@ package org.advent;
 
 public interface PrintSolution {
 
-    void printPartOne(int result);
+    void printPartOne();
 
-    void printPartTwo(int result);
+    void printPartTwo();
 
 }

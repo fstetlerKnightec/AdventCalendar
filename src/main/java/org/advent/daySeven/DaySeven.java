@@ -1,34 +1,30 @@
 package org.advent.daySeven;
 
 import org.advent.PrintSolution;
+import org.advent.Util;
 
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.advent.daySeven.Hand.getHandFromString;
 
+
 public class DaySeven implements PrintSolution {
 
 
-    public ArrayList<Hand> getListOfHands(List<String> listOfStrings) {
+    public ArrayList<Hand> getListOfHands(List<String> listOfStrings, boolean isPartTwo) {
         ArrayList<Hand> arrayList = new ArrayList<>();
         for (String listOfString : listOfStrings) {
-            arrayList.add(getHandFromString(listOfString));
+            arrayList.add(getHandFromString(listOfString, isPartTwo));
         }
 
         return arrayList;
     }
 
-    public List<Hand> sortedHandsByRank(ArrayList<Hand> listOfHands, boolean isPartOne) {
-
-        for (int i = 0; i < listOfHands.size(); i++) {
-            System.out.println(listOfHands.get(i).getType());
-            System.out.println(listOfHands.get(i).getRelevantCards());
-            System.out.println(listOfHands.get(i).getRestOfHand());
-            System.out.println(" ");
-        }
-
-        listOfHands.sort(new HandComparatorByRank(isPartOne));
+    public ArrayList<Hand> sortedHandsByRank(ArrayList<Hand> listOfHands, boolean isPartTwo) {
+        listOfHands.sort(new HandComparatorByRank(isPartTwo));
         return listOfHands;
     }
 
@@ -43,19 +39,36 @@ public class DaySeven implements PrintSolution {
     }
 
     @Override
-    public void printPartOne(int result) {
+    public void printPartOne() {
         System.out.println(" ");
         System.out.println(this.getClass().getSimpleName() + " ---------------------------");
-        System.out.println("Total winnings are = " + result);
+        System.out.println("Total winnings are = " + results(false));
     }
 
     @Override
-    public void printPartTwo(int result) {
+    public void printPartTwo() {
         System.out.println(" ");
         System.out.println(this.getClass().getSimpleName() + " ---------------------------");
-        System.out.println("Total winnings from part two are = " + result);
+        System.out.println("Total winnings from part two are = " + results(true));
     }
 
+    public int results(boolean isPartTwo) {
+        Util util = new Util();
+        List<String> listOfStrings;
+        try {
+            listOfStrings = util.readStringsFromFile(Paths.get("src/main/resources/daySeven.txt").toString());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ArrayList<Hand> listOfHands;
+        if (!isPartTwo) {
+            listOfHands = getListOfHands(listOfStrings, false);
+            return totalWinnings(sortedHandsByRank(listOfHands, false));
+        }
+        listOfHands = getListOfHands(listOfStrings, true);
+        return totalWinnings(sortedHandsByRank(listOfHands, true));
+    }
 
 
 

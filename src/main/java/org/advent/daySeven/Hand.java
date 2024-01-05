@@ -15,14 +15,14 @@ public class Hand {
     int bid;
     Type type;
     int rank;
-    boolean partOne;
+    boolean isPartTwo;
 
-    public Hand(String fullString) {
+    public Hand(String fullString, boolean isPartTwo) {
         this.fullString = fullString;
         this.handString = handOfString(fullString);
         this.relevantCards = stringOfRelevantCards();
         this.restOfHand = findNonRelevantCardsInHand();
-        this.type = typeOfHand();
+        this.type = typeOfHand(isPartTwo);
         this.bid = bidOfHand(fullString);
     }
 
@@ -30,8 +30,8 @@ public class Hand {
         return Integer.parseInt(string.substring(string.indexOf(" ") + 1));
     }
 
-    public static Hand getHandFromString(String string) {
-        return new Hand(string);
+    public static Hand getHandFromString(String string, boolean isPartTwo) {
+        return new Hand(string, isPartTwo);
     }
 
     public String handOfString(String string) {
@@ -74,29 +74,72 @@ public class Hand {
 
     }
 
-    public Type typeOfHand() {
+    public Type typeOfHand(boolean isPartTwo) {
 
         Type type = null;
         if (!allCardsMatch() && listIsSize(4)) {
             type = Type.TWO_PAIR;
+            if (isPartTwo) {
+                if (relevantCards.stream().anyMatch(ch -> ch.equals('J'))) {
+                    type = Type.FOUR_OF_A_KIND;
+                }
+                else if (restOfHand.stream().anyMatch(ch -> ch.equals('J'))) {
+                    type = Type.FULL_HOUSE;
+                }
+            }
         }
+
         if (!allCardsMatch() && listIsSize(5)) {
             type = Type.FULL_HOUSE;
+            if (isPartTwo && relevantCards.stream().anyMatch(ch -> ch.equals('J'))) {
+                type = Type.FIVE_OF_A_KIND;
+            }
         }
+
+
         if (allCardsMatch() && listIsSize(5)) {
             type = Type.FIVE_OF_A_KIND;
         }
+
+
         if (allCardsMatch() && listIsSize(4)) {
-            type =  Type.FOUR_OF_A_KIND;
+            type = Type.FOUR_OF_A_KIND;
+            if (isPartTwo) {
+                if (restOfHand.stream().anyMatch(ch -> ch.equals('J')) || relevantCards.stream().allMatch(ch -> ch.equals('J'))) {
+                    type = Type.FIVE_OF_A_KIND;
+                }
+            }
         }
+
+
+
         if (allCardsMatch() && listIsSize(3)) {
             type =  Type.THREE_OF_A_KIND;
+            if (isPartTwo) {
+                if (relevantCards.stream().allMatch(ch -> ch.equals('J')) || restOfHand.stream().filter(ch -> ch.equals('J')).count() == 1) {
+                    type = Type.FOUR_OF_A_KIND;
+                }
+            }
         }
+
+
+
         if (allCardsMatch() && listIsSize(2)) {
             type =  Type.ONE_PAIR;
+            if (isPartTwo) {
+                if (relevantCards.stream().allMatch(ch -> ch.equals('J')) || restOfHand.stream().anyMatch(ch -> ch.equals('J'))) {
+                    type = Type.THREE_OF_A_KIND;
+                }
+            }
         }
+
+
         if (relevantCards.isEmpty()) {
             type =  Type.HIGH_CARD;
+            if (isPartTwo ) {
+                if (restOfHand.stream().anyMatch(ch -> ch.equals('J')))
+                    type = Type.ONE_PAIR;
+            }
         }
 
         return type;
@@ -139,12 +182,12 @@ public class Hand {
         this.restOfHand = restOfHand;
     }
 
-    public boolean isPartOne() {
-        return partOne;
+    public boolean isPartTwo() {
+        return isPartTwo;
     }
 
-    public void setPartOne(boolean partOne) {
-        this.partOne = partOne;
+    public void setPartTwo(boolean partTwo) {
+        this.isPartTwo = partTwo;
     }
 
 
