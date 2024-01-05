@@ -45,7 +45,7 @@ public class DaySeven implements PrintSolution {
         System.out.println("Total winnings from part two are = " + results(true));
     }
 
-    public int results(boolean isPartTwo) {
+    private int results(boolean isPartTwo) {
         List<String> listOfStrings;
         try {
             listOfStrings = Util.readStringsFromFile(Paths.get("src/main/resources/daySeven.txt").toString());
