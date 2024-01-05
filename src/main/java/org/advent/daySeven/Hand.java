@@ -30,14 +30,46 @@ public class Hand {
     }
 
     public Type includeJokers(Type type, List<Character> relevantCards) {
-        if (type == Type.TWO_PAIR && relevantCards.stream().anyMatch(ch -> ch.equals('J'))) {
-            return Type.FOUR_OF_A_KIND;
-        } else if (type == Type.TWO_PAIR && restOfHand.stream().anyMatch(ch -> ch.equals('J'))) {
-            return Type.FULL_HOUSE;
+        if (type == Type.TWO_PAIR) {
+            if (relevantCards.stream().anyMatch(ch -> ch.equals('J'))) {
+                return Type.FOUR_OF_A_KIND;
+            }
+            if (restOfHand.stream().anyMatch(ch -> ch.equals('J'))) {
+                return Type.FULL_HOUSE;
+            }
         }
 
-        return null;
+        if (type == Type.FULL_HOUSE) {
+            if (relevantCards.stream().anyMatch(ch -> ch.equals('J'))) {
+                return Type.FIVE_OF_A_KIND;
+            }
+        }
 
+        if (type == Type.FOUR_OF_A_KIND) {
+            if (restOfHand.stream().anyMatch(ch -> ch.equals('J')) || relevantCards.stream().allMatch(ch -> ch.equals('J'))) {
+                return Type.FIVE_OF_A_KIND;
+            }
+        }
+
+        if (type == Type.THREE_OF_A_KIND) {
+            if (relevantCards.stream().allMatch(ch -> ch.equals('J')) || restOfHand.stream().filter(ch -> ch.equals('J')).count() == 1) {
+                return Type.FOUR_OF_A_KIND;
+            }
+        }
+
+        if (type == Type.ONE_PAIR) {
+            if (relevantCards.stream().allMatch(ch -> ch.equals('J')) || restOfHand.stream().anyMatch(ch -> ch.equals('J'))) {
+                return Type.THREE_OF_A_KIND;
+            }
+        }
+
+        if (type == Type.HIGH_CARD) {
+            if (restOfHand.stream().anyMatch(ch -> ch.equals('J'))) {
+                return Type.ONE_PAIR;
+            }
+        }
+
+        return type;
     }
 
     public Type typeOfHand(boolean isPartTwo) {
@@ -46,19 +78,14 @@ public class Hand {
         if (!allCardsMatch() && isListSize(4)) {
             type = Type.TWO_PAIR;
             if (isPartTwo) {
-                if (relevantCards.stream().anyMatch(ch -> ch.equals('J'))) {
-                    type = Type.FOUR_OF_A_KIND;
-                }
-                else if (restOfHand.stream().anyMatch(ch -> ch.equals('J'))) {
-                    type = Type.FULL_HOUSE;
-                }
+                type = includeJokers(type, relevantCards);
             }
         }
 
         if (!allCardsMatch() && isListSize(5)) {
             type = Type.FULL_HOUSE;
-            if (isPartTwo && relevantCards.stream().anyMatch(ch -> ch.equals('J'))) {
-                type = Type.FIVE_OF_A_KIND;
+            if (isPartTwo) {
+                type = includeJokers(type, relevantCards);
             }
         }
 
@@ -69,38 +96,30 @@ public class Hand {
         if (allCardsMatch() && isListSize(4)) {
             type = Type.FOUR_OF_A_KIND;
             if (isPartTwo) {
-                if (restOfHand.stream().anyMatch(ch -> ch.equals('J')) || relevantCards.stream().allMatch(ch -> ch.equals('J'))) {
-                    type = Type.FIVE_OF_A_KIND;
-                }
+                type = includeJokers(type, relevantCards);
             }
         }
 
         if (allCardsMatch() && isListSize(3)) {
             type =  Type.THREE_OF_A_KIND;
             if (isPartTwo) {
-                if (relevantCards.stream().allMatch(ch -> ch.equals('J')) || restOfHand.stream().filter(ch -> ch.equals('J')).count() == 1) {
-                    type = Type.FOUR_OF_A_KIND;
-                }
+                type = includeJokers(type, relevantCards);
             }
         }
 
         if (allCardsMatch() && isListSize(2)) {
             type =  Type.ONE_PAIR;
             if (isPartTwo) {
-                if (relevantCards.stream().allMatch(ch -> ch.equals('J')) || restOfHand.stream().anyMatch(ch -> ch.equals('J'))) {
-                    type = Type.THREE_OF_A_KIND;
-                }
+                type = includeJokers(type, relevantCards);
             }
         }
 
         if (relevantCards.isEmpty()) {
             type =  Type.HIGH_CARD;
-            if (isPartTwo ) {
-                if (restOfHand.stream().anyMatch(ch -> ch.equals('J')))
-                    type = Type.ONE_PAIR;
+            if (isPartTwo) {
+                type = includeJokers(type, relevantCards);
             }
         }
-
 
         return type;
     }
