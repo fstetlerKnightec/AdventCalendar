@@ -4,7 +4,6 @@ import org.advent.daySeven.HandFactory;
 import org.advent.daySeven.Type;
 import org.junit.Test;
 
-import javax.imageio.plugins.jpeg.JPEGHuffmanTable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +43,7 @@ public class DaySevenTests {
         List<Hand> listOfSortedHands = daySeven.sortedHandsByRank(listOfHands);
 
         for (int i = 0; i < listOfSortedHands.size(); i++) {
-            assertEquals(listOfHandsInOrderOfRank.get(i), listOfSortedHands.get(i).handOfString(listOfSortedHands.get(i).getFullString().substring(0,6)));
+            assertEquals(listOfHandsInOrderOfRank.get(i), listOfSortedHands.get(i).handOfString(listOfSortedHands.get(i).fullString().substring(0,6)));
         }
     }
 
@@ -83,7 +82,7 @@ public class DaySevenTests {
         List<Hand> listOfHands = daySeven.getListOfHands(listOfStrings, true);
         List<Hand> listOfSortedHands = daySeven.sortedHandsByRank(listOfHands);
         for (int i = 0; i < listOfSortedHands.size(); i++) {
-            assertEquals(listOfHandsInOrderOfRank.get(i), listOfSortedHands.get(i).handOfString(listOfSortedHands.get(i).getFullString().substring(0,6)));
+            assertEquals(listOfHandsInOrderOfRank.get(i), listOfSortedHands.get(i).handOfString(listOfSortedHands.get(i).fullString().substring(0,6)));
         }
     }
 
