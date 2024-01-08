@@ -7,20 +7,24 @@ public class HandComparatorByRank implements Comparator<Hand> {
 
     private final boolean isPartTwo;
 
-    public HandComparatorByRank(boolean partOne) {
-        this.isPartTwo = partOne;
+    public HandComparatorByRank(boolean isPartTwo) {
+
+        this.isPartTwo = isPartTwo;
     }
 
     @Override
     public int compare(Hand hand1, Hand hand2) {
 
-        if (hand1.getType().getValue() != hand2.getType().getValue()) {
-            if (hand1.getType().getValue() < hand2.getType().getValue()) {
+        int value1 = hand1.getTypeOfHand(isPartTwo).getValue();
+        int value2 = hand2.getTypeOfHand(isPartTwo).getValue();
+
+        String handString1 = hand1.getFullString().substring(0,6);
+        String handString2 = hand2.getFullString().substring(0,6);
+        if (value1 != value2) {
+            if (value1 < value2) {
                 return -1;
             }
-            if (hand1.getType().getValue() > hand2.getType().getValue()) {
-                return 1;
-            }
+            return 1;
         } else {
             List<Character> listOfCards;
             if (isPartTwo) {
@@ -28,15 +32,16 @@ public class HandComparatorByRank implements Comparator<Hand> {
             } else {
                 listOfCards = List.of('2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A');
             }
-            for (int i = 0; i < hand1.getHandString().length(); i++) {
-                if (listOfCards.indexOf(hand1.getHandString().charAt(i)) > listOfCards.indexOf(hand2.getHandString().charAt(i))) {
+            for (int i = 0; i < handString1.length(); i++) {
+                if (listOfCards.indexOf(handString1.charAt(i)) > listOfCards.indexOf(handString2.charAt(i))) {
                     return 1;
                 }
-                if (listOfCards.indexOf(hand1.getHandString().charAt(i)) < listOfCards.indexOf(hand2.getHandString().charAt(i))) {
+                if (listOfCards.indexOf(handString1.charAt(i)) < listOfCards.indexOf(handString2.charAt(i))) {
                     return -1;
                 }
             }
         }
         return 0;
+
     }
 }

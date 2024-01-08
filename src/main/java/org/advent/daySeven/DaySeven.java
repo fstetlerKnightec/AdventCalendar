@@ -6,22 +6,27 @@ import org.advent.Util;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-import static org.advent.daySeven.Hand.getHandFromString;
 
 public class DaySeven implements PrintSolution {
+
+    HandFactory handFactory = new HandFactory();
 
     public List<Hand> getListOfHands(List<String> listOfStrings, boolean isPartTwo) {
         List<Hand> list = new ArrayList<>();
         for (String listOfString : listOfStrings) {
-            list.add(getHandFromString(listOfString, isPartTwo));
+            list.add(handFactory.createHand(listOfString, isPartTwo, Integer.parseInt(listOfString.substring(6))));
         }
         return list;
     }
 
     public List<Hand> sortedHandsByRank(List<Hand> listOfHands, boolean isPartTwo) {
+
         listOfHands.sort(new HandComparatorByRank(isPartTwo));
+
+//        listOfHands.sort(new HandComparatorByRank(isPartTwo));
         return listOfHands;
     }
 

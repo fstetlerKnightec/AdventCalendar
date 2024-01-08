@@ -1,31 +1,159 @@
 package org.advent.daySeven;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Hand {
-    private final String handString;
-    private final List<Character> typeCards;
-    private final List<Character> restOfHand;
-    private final int bid;
-    private final Type type;
+    private final String fullString;
 
-    public Hand(String fullString, boolean isPartTwo) {
-        this.handString = handOfString(fullString);
-        this.typeCards = listOfTypeCards();
-        this.restOfHand = findNonTypeCardsInHand();
-        this.type = typeOfHand(isPartTwo);
-        this.bid = bidOfHand(fullString);
+    private final boolean isPartTwo;
+    private final int bid;
+
+    public Hand(String fullString, boolean isPartTwo, int bid) {
+        this.fullString = fullString;
+        this.isPartTwo = isPartTwo;
+        this.bid = bid;
+
     }
 
-    private int bidOfHand(String string) {
+    public int getBid() {
+        return bid;
+    }
+
+
+    public String getFullString() {
+        return fullString;
+    }
+
+    public boolean isPartTwo() {
+        return isPartTwo;
+    }
+
+    public Type getTypeOfHand(boolean isPartTwo) {
+
+        Type type = null;
+        boolean allCardsMatch = allCardsMatch(fullString);
+        if (!allCardsMatch && isListSize(fullString,4)) {
+            type = Type.TWO_PAIR;
+        }
+
+        if (!allCardsMatch && isListSize(fullString,5)) {
+            type = Type.FULL_HOUSE;
+        }
+
+        if (allCardsMatch && isListSize(fullString,5)) {
+            type = Type.FIVE_OF_A_KIND;
+        }
+
+        if (allCardsMatch && isListSize(fullString,4)) {
+            type = Type.FOUR_OF_A_KIND;
+        }
+
+        if (allCardsMatch && isListSize(fullString,3)) {
+            type = Type.THREE_OF_A_KIND;
+        }
+
+        if (allCardsMatch && isListSize(fullString,2)) {
+            type = Type.ONE_PAIR;
+        }
+
+        if (typeCards(fullString).isEmpty()) {
+            type = Type.HIGH_CARD;
+        }
+
+        if (isPartTwo) {
+            type = includeJokers(fullString, type);
+        }
+
+        return type;
+    }
+
+    public boolean isListSize(String fullString, int size) {
+        return typeCards(fullString).size() == size;
+    }
+
+    public int bidOfHand(String string) {
         return Integer.parseInt(string.substring(string.indexOf(" ") + 1));
     }
 
-    private Map<Character, Integer> findMultipleLetters(String string) {
+    public boolean allCardsMatch(String fullString) {
+        return typeCards(fullString).stream().allMatch(ch -> ch.equals(typeCards(fullString).get(0)));
+    }
+
+
+
+    public Type includeJokers(String fullString, Type type) {
+
+        if (type == Type.TWO_PAIR
+                && anyEqualsJ(typeCards(fullString))) {
+            return Type.FOUR_OF_A_KIND;
+        }
+
+        if (type == Type.TWO_PAIR
+                && anyEqualsJ(nonTypeCardsInHand(fullString))) {
+            return Type.FULL_HOUSE;
+        }
+
+        if (type == Type.FULL_HOUSE
+                && anyEqualsJ(typeCards(fullString))) {
+            return Type.FIVE_OF_A_KIND;
+        }
+
+        if (type == Type.FOUR_OF_A_KIND
+                && (anyEqualsJ(nonTypeCardsInHand(fullString)) || allEqualsJ(typeCards(fullString)))) {
+            return Type.FIVE_OF_A_KIND;
+        }
+
+        if (type == Type.THREE_OF_A_KIND
+                && (allEqualsJ(typeCards(fullString)) || anyEqualsJ(nonTypeCardsInHand(fullString)))) {
+            return Type.FOUR_OF_A_KIND;
+        }
+
+        if (type == Type.ONE_PAIR
+                && (allEqualsJ(typeCards(fullString)) || anyEqualsJ(nonTypeCardsInHand(fullString)))) {
+            return Type.THREE_OF_A_KIND;
+        }
+
+        if (type == Type.HIGH_CARD
+                && anyEqualsJ(nonTypeCardsInHand(fullString))) {
+            return Type.ONE_PAIR;
+        }
+
+        return type;
+    }
+
+    public boolean anyEqualsJ(List<Character> chars) {
+        return chars.stream().anyMatch(ch -> ch.equals('J'));
+    }
+
+    public boolean allEqualsJ(List<Character> chars) {
+        return chars.stream().allMatch(ch -> ch.equals('J'));
+    }
+
+    public String handOfString(String string) {
+        return string.substring(0, string.indexOf(" "));
+    }
+
+    public List<Character> nonTypeCardsInHand(String fullString) {
+        List<Character> listOfNonTypeCards = new ArrayList<>(handOfString(fullString).chars().mapToObj(ch -> (char) ch).toList());
+        for (Character character : typeCards(fullString)) {
+            listOfNonTypeCards.remove(character);
+        }
+        return listOfNonTypeCards;
+    }
+
+    public List<Character> typeCards(String fullString) {
+        List<Character> listOfCards = new ArrayList<>();
+        Map<Character, Integer> mapOfLettersAndHowMany = findMultipleLetters(handOfString(fullString));
+        for (Character character : mapOfLettersAndHowMany.keySet()) {
+            for (int i = 0; i < mapOfLettersAndHowMany.get(character); i++) {
+                listOfCards.add(character);
+            }
+        }
+        return listOfCards;
+    }
+
+    public Map<Character, Integer> findMultipleLetters(String string) {
         char[] charArray = string.toCharArray();
 
         Map<Character, Integer> charCountMap = new HashMap<>();
@@ -35,139 +163,5 @@ public class Hand {
         return charCountMap.entrySet().stream()
                 .filter(entry -> entry.getValue() > 1)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-    }
-
-    private List<Character> listOfTypeCards() {
-        List<Character> listOfCards = new ArrayList<>();
-        Map<Character, Integer> mapOfLettersAndHowMany = findMultipleLetters(handString);
-        for (Character character : mapOfLettersAndHowMany.keySet()) {
-            for (int i = 0; i < mapOfLettersAndHowMany.get(character); i++) {
-                listOfCards.add(character);
-            }
-        }
-        return listOfCards;
-    }
-
-    private Type includeJokers(Type type) {
-
-        if (type == Type.TWO_PAIR
-                && anyEqualsJ(typeCards)) {
-            return Type.FOUR_OF_A_KIND;
-        }
-
-        if (type == Type.TWO_PAIR
-                && anyEqualsJ(restOfHand)) {
-            return Type.FULL_HOUSE;
-        }
-
-        if (type == Type.FULL_HOUSE
-                && anyEqualsJ(typeCards)) {
-            return Type.FIVE_OF_A_KIND;
-        }
-
-        if (type == Type.FOUR_OF_A_KIND
-                && (anyEqualsJ(restOfHand) || allEqualsJ(typeCards))) {
-            return Type.FIVE_OF_A_KIND;
-        }
-
-        if (type == Type.THREE_OF_A_KIND
-                && (allEqualsJ(typeCards) || anyEqualsJ(restOfHand))) {
-            return Type.FOUR_OF_A_KIND;
-        }
-
-        if (type == Type.ONE_PAIR
-                && (allEqualsJ(typeCards) || anyEqualsJ(restOfHand))) {
-            return Type.THREE_OF_A_KIND;
-        }
-
-        if (type == Type.HIGH_CARD
-                && anyEqualsJ(restOfHand)) {
-            return Type.ONE_PAIR;
-        }
-
-        return type;
-    }
-
-    private boolean anyEqualsJ(List<Character> chars) {
-        return chars.stream().anyMatch(ch -> ch.equals('J'));
-    }
-
-    private boolean allEqualsJ(List<Character> chars) {
-        return chars.stream().allMatch(ch -> ch.equals('J'));
-    }
-
-    private Type typeOfHand(boolean isPartTwo) {
-
-        Type type = null;
-        boolean allCardsMatch = allCardsMatch();
-        if (!allCardsMatch && isListSize(4)) {
-            type = Type.TWO_PAIR;
-        }
-
-        if (!allCardsMatch && isListSize(5)) {
-            type = Type.FULL_HOUSE;
-        }
-
-        if (allCardsMatch && isListSize(5)) {
-            type = Type.FIVE_OF_A_KIND;
-        }
-
-        if (allCardsMatch && isListSize(4)) {
-            type = Type.FOUR_OF_A_KIND;
-        }
-
-        if (allCardsMatch && isListSize(3)) {
-            type = Type.THREE_OF_A_KIND;
-        }
-
-        if (allCardsMatch && isListSize(2)) {
-            type = Type.ONE_PAIR;
-        }
-
-        if (typeCards.isEmpty()) {
-            type = Type.HIGH_CARD;
-        }
-
-        if (isPartTwo) {
-            type = includeJokers(type);
-        }
-
-        return type;
-    }
-
-    private boolean isListSize(int size) {
-        return typeCards.size() == size;
-    }
-
-    private boolean allCardsMatch() {
-        return typeCards.stream().allMatch(ch -> ch.equals(typeCards.get(0)));
-    }
-
-    private String handOfString(String string) {
-        return string.substring(0, string.indexOf(" "));
-    }
-
-    private List<Character> findNonTypeCardsInHand() {
-        List<Character> listOfNonTypeCards = new ArrayList<>(handString.chars().mapToObj(ch -> (char) ch).toList());
-        for (Character character : typeCards) {
-            listOfNonTypeCards.remove(character);
-        }
-        return listOfNonTypeCards;
-    }
-
-    public static Hand getHandFromString(String string, boolean isPartTwo) {
-        return new Hand(string, isPartTwo);
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public String getHandString() {
-        return handString;
-    }
-
-    public int getBid() {
-        return bid;
     }
 }
