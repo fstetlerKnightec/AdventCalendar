@@ -17,7 +17,7 @@ public class DaySeven implements PrintSolution {
     public List<Hand> getListOfHands(List<String> listOfStrings, boolean isPartTwo) {
         List<Hand> list = new ArrayList<>();
         for (String listOfString : listOfStrings) {
-            list.add(handFactory.createHand(listOfString, isPartTwo, Integer.parseInt(listOfString.substring(6))));
+            list.add(handFactory.createHand(listOfString, isPartTwo));
         }
         return list;
     }

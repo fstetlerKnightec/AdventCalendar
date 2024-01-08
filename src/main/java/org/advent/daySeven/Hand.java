@@ -10,17 +10,14 @@ public class Hand implements Comparable<Hand> {
     private final String fullString;
 
     private final boolean isPartTwo;
-    private final int bid;
 
-    public Hand(String fullString, boolean isPartTwo, int bid) {
+    public Hand(String fullString, boolean isPartTwo) {
         this.fullString = fullString;
         this.isPartTwo = isPartTwo;
-        this.bid = bid;
-
     }
 
     public int getBid() {
-        return bid;
+        return bidOfHand(fullString);
     }
 
 
