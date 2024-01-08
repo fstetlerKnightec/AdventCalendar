@@ -22,11 +22,8 @@ public class DaySeven implements PrintSolution {
         return list;
     }
 
-    public List<Hand> sortedHandsByRank(List<Hand> listOfHands, boolean isPartTwo) {
-
-        listOfHands.sort(new HandComparatorByRank(isPartTwo));
-
-//        listOfHands.sort(new HandComparatorByRank(isPartTwo));
+    public List<Hand> sortedHandsByRank(List<Hand> listOfHands) {
+        Collections.sort(listOfHands);
         return listOfHands;
     }
 
@@ -61,9 +58,9 @@ public class DaySeven implements PrintSolution {
         List<Hand> listOfHands;
         if (!isPartTwo) {
             listOfHands = getListOfHands(listOfStrings, false);
-            return totalWinnings(sortedHandsByRank(listOfHands, false));
+            return totalWinnings(sortedHandsByRank(listOfHands));
         }
         listOfHands = getListOfHands(listOfStrings, true);
-        return totalWinnings(sortedHandsByRank(listOfHands, true));
+        return totalWinnings(sortedHandsByRank(listOfHands));
     }
 }

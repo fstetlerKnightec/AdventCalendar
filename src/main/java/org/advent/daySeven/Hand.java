@@ -3,7 +3,7 @@ package org.advent.daySeven;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Hand {
+public class Hand implements Comparable<Hand> {
     private final String fullString;
 
     private final boolean isPartTwo;
@@ -29,7 +29,7 @@ public class Hand {
         return isPartTwo;
     }
 
-    public Type getTypeOfHand(boolean isPartTwo) {
+    public Type getTypeOfHand() {
 
         Type type = null;
         boolean allCardsMatch = allCardsMatch(fullString);
@@ -163,5 +163,40 @@ public class Hand {
         return charCountMap.entrySet().stream()
                 .filter(entry -> entry.getValue() > 1)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    }
+
+
+    @Override
+    public int compareTo(Hand other) {
+
+        if(other == null){
+            return 1;
+        }
+        String handString1 = this.fullString.substring(0,6);
+        String handString2 = other.fullString.substring(0,6);
+
+        if(this.getTypeOfHand().ordinal() > other.getTypeOfHand().ordinal()){
+            return 1;
+        }
+        if(this.getTypeOfHand().ordinal() < other.getTypeOfHand().ordinal()){
+            return -1;
+        }
+        else {
+            List<Character> listOfCards;
+            if (isPartTwo) {
+                listOfCards = List.of('J', '2', '3', '4', '5', '6', '7', '8', '9', 'T',  'Q', 'K', 'A');
+            } else {
+                listOfCards = List.of('2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A');
+            }
+            for (int i = 0; i < handString1.length(); i++) {
+                if (listOfCards.indexOf(handString1.charAt(i)) > listOfCards.indexOf(handString2.charAt(i))) {
+                    return 1;
+                }
+                if (listOfCards.indexOf(handString1.charAt(i)) < listOfCards.indexOf(handString2.charAt(i))) {
+                    return -1;
+                }
+            }
+        }
+        return 0;
     }
 }

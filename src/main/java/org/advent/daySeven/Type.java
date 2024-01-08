@@ -2,21 +2,13 @@ package org.advent.daySeven;
 
 public enum Type {
 
-    HIGH_CARD(1),
-    ONE_PAIR(2),
-    TWO_PAIR(3),
-    THREE_OF_A_KIND(4),
-    FULL_HOUSE(5),
-    FOUR_OF_A_KIND(6),
-    FIVE_OF_A_KIND(7);
+    HIGH_CARD,
+    ONE_PAIR,
+    TWO_PAIR,
+    THREE_OF_A_KIND,
+    FULL_HOUSE,
+    FOUR_OF_A_KIND,
+    FIVE_OF_A_KIND;
 
-    private final int value;
 
-    Type(int value) {
-        this.value = value;
-    }
-
-    public int getValue() {
-        return this.value;
-    }
 }

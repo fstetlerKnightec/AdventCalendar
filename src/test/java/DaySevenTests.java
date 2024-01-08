@@ -16,7 +16,6 @@ public class DaySevenTests {
     @Test
     public void verifyCorrectTypeOfHand() {
 
-        DaySeven daySeven = new DaySeven();
         HandFactory handFactory = new HandFactory();
 
         List<String> listOfStrings = new ArrayList<>(List.of("55555 513", "AK364 163", "K553Q 563", "K6663 12", "83888 153", "83838 561", "A64A4 613"));
@@ -25,7 +24,7 @@ public class DaySevenTests {
         for (int i = 0; i < listOfStrings.size(); i++) {
             Hand hand = handFactory.createHand(listOfStrings.get(i), false, Integer.parseInt(listOfStrings.get(i).substring(6)));
 
-            assertEquals(listOfTypes.get(i), hand.getTypeOfHand(false));
+            assertEquals(listOfTypes.get(i), hand.getTypeOfHand());
         }
     }
 
@@ -42,7 +41,7 @@ public class DaySevenTests {
 
         DaySeven daySeven = new DaySeven();
         List<Hand> listOfHands = daySeven.getListOfHands(listOfStrings, false);
-        List<Hand> listOfSortedHands = daySeven.sortedHandsByRank(listOfHands, false);
+        List<Hand> listOfSortedHands = daySeven.sortedHandsByRank(listOfHands);
 
         for (int i = 0; i < listOfSortedHands.size(); i++) {
             assertEquals(listOfHandsInOrderOfRank.get(i), listOfSortedHands.get(i).handOfString(listOfSortedHands.get(i).getFullString().substring(0,6)));
@@ -64,7 +63,7 @@ public class DaySevenTests {
         DaySeven daySeven = new DaySeven();
 
         List<Hand> listOfHands = daySeven.getListOfHands(listOfStrings, false);
-        List<Hand> listOfSortedHands = daySeven.sortedHandsByRank(listOfHands, false);
+        List<Hand> listOfSortedHands = daySeven.sortedHandsByRank(listOfHands);
 
         assertEquals(6440, daySeven.totalWinnings(listOfSortedHands));
     }
@@ -82,7 +81,7 @@ public class DaySevenTests {
 
         DaySeven daySeven = new DaySeven();
         List<Hand> listOfHands = daySeven.getListOfHands(listOfStrings, true);
-        List<Hand> listOfSortedHands = daySeven.sortedHandsByRank(listOfHands, true);
+        List<Hand> listOfSortedHands = daySeven.sortedHandsByRank(listOfHands);
         for (int i = 0; i < listOfSortedHands.size(); i++) {
             assertEquals(listOfHandsInOrderOfRank.get(i), listOfSortedHands.get(i).handOfString(listOfSortedHands.get(i).getFullString().substring(0,6)));
         }
