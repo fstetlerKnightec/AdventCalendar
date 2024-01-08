@@ -5,7 +5,7 @@ import java.util.List;
 
 public class HandComparatorByRank implements Comparator<Hand> {
 
-    private boolean isPartTwo;
+    private final boolean isPartTwo;
 
     public HandComparatorByRank(boolean partOne) {
         this.isPartTwo = partOne;
@@ -28,11 +28,11 @@ public class HandComparatorByRank implements Comparator<Hand> {
             } else {
                 listOfCards = List.of('2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A');
             }
-            for (int i = 0; i < hand1.handString.length(); i++) {
-                if (listOfCards.indexOf(hand1.handString.charAt(i)) > listOfCards.indexOf(hand2.handString.charAt(i))) {
+            for (int i = 0; i < hand1.getHandString().length(); i++) {
+                if (listOfCards.indexOf(hand1.getHandString().charAt(i)) > listOfCards.indexOf(hand2.getHandString().charAt(i))) {
                     return 1;
                 }
-                if (listOfCards.indexOf(hand1.handString.charAt(i)) < listOfCards.indexOf(hand2.handString.charAt(i))) {
+                if (listOfCards.indexOf(hand1.getHandString().charAt(i)) < listOfCards.indexOf(hand2.getHandString().charAt(i))) {
                     return -1;
                 }
             }

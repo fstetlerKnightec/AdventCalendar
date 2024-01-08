@@ -77,7 +77,6 @@ public class DaySevenTests {
         List<Hand> listOfHands = daySeven.getListOfHands(listOfStrings, true);
         List<Hand> listOfSortedHands = daySeven.sortedHandsByRank(listOfHands, true);
         for (int i = 0; i < listOfSortedHands.size(); i++) {
-            System.out.println(listOfSortedHands.get(i).getHandString());
             assertEquals(listOfHandsInOrderOfRank.get(i), listOfSortedHands.get(i).getHandString());
         }
     }
