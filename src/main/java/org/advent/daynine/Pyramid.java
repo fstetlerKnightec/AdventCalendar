@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Pyramid {
 
-    public final Row startRow;
-    public List<Row> listOfRows = new ArrayList<>(); //is it a bad idea to instantiate objects in the field?
+    private final Row startRow;
+    private final List<Row> listOfRows = new ArrayList<>(); //is it a bad idea to instantiate objects in the field?
 
     public Pyramid(Row startRow) {
         this.startRow = startRow;
@@ -16,11 +16,11 @@ public class Pyramid {
         Row row = startRow;
         listOfRows.add(row);
 
-        int stopValue = row.integerList.getLast();
+        int stopValue = row.integerList().getLast();
         while (stopValue != 0) {
-            row = new Row(differencesBetweenValuesInList(row.integerList));
+            row = new Row(differencesBetweenValuesInList(row.integerList()));
             listOfRows.add(row);
-            stopValue = row.integerList.getLast();
+            stopValue = row.integerList().getLast();
         }
     }
 
@@ -36,8 +36,11 @@ public class Pyramid {
         List<Integer> result = new ArrayList<>();
         result.add(0);
         for (int i = listOfRows.size() - 1; i > 0; i--) {
-            result.add(0, result.getFirst() + listOfRows.get(i - 1).integerList.getLast());
+            result.add(0, result.getFirst() + listOfRows.get(i - 1).integerList().getLast());
         }
         return result;
+    }
+    public List<Row> getListOfRows() {
+        return listOfRows;
     }
 }

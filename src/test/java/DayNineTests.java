@@ -1,7 +1,5 @@
-import org.advent.daynine.DayNine;
 import org.advent.daynine.Pyramid;
 import org.advent.daynine.PyramidFactory;
-import org.advent.daynine.Row;
 import org.junit.Test;
 
 import java.util.List;
@@ -9,8 +7,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DayNineTests {
-
-
     @Test
     public void verifyDifferenceBetweenList() {
         String startString = "0 3 6 9 12 15";
@@ -23,7 +19,6 @@ public class DayNineTests {
             assertEquals(listOfDifference.get(i), pyramid.differencesBetweenValuesInList(pyramidFactory.getListOfIntegerFromString(startString)).get(i));
         }
     }
-
 
     @Test
     public void verifyPyramidUntilZero() {
@@ -41,10 +36,8 @@ public class DayNineTests {
         for (int i = 0; i < pyramidListExpected.size(); i++) {
             List<Integer> currentListExpected = pyramidListExpected.get(i);
             for (int j = 0; j < currentListExpected.size(); j++) {
-                System.out.print(pyramid.listOfRows.get(i).integerList.get(j) + " ");
-                assertEquals(currentListExpected.get(j), pyramid.listOfRows.get(i).integerList.get(j));
+                assertEquals(currentListExpected.get(j), pyramid.getListOfRows().get(i).integerList().get(j));
             }
-            System.out.println(" ");
         }
     }
 
@@ -55,9 +48,6 @@ public class DayNineTests {
 
         PyramidFactory pyramidFactory = new PyramidFactory();
         Pyramid pyramid = pyramidFactory.createPyramid(startString);
-
-
-
 
         for (int i = 0; i < resultColumn.size(); i++) {
             assertEquals(resultColumn.get(i), pyramid.resultList().get(i));
