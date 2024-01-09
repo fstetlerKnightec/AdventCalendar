@@ -90,11 +90,11 @@ public class DayEight implements PrintSolution {
         return listOfStrings.subList(2, listOfStrings.size());
     }
 
-    private static long lcm(long a, long b) {
+    private long lcm(long a, long b) {
         return (a * b) / gcd(a, b);
     }
 
-    private static long gcd(long a, long b) {
+    private long gcd(long a, long b) {
         if (b == 0) {
             return a;
         }
