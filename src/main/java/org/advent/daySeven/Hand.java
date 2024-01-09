@@ -63,7 +63,6 @@ public record Hand(String fullString, boolean isPartTwo) implements Comparable<H
         return typeCards(fullString).stream().allMatch(ch -> ch.equals(typeCards(fullString).get(0)));
     }
 
-
     public Type includeJokers(String fullString, Type type) {
 
         if (type == Type.TWO_PAIR
@@ -153,7 +152,6 @@ public record Hand(String fullString, boolean isPartTwo) implements Comparable<H
         }
         return List.of('2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A');
     }
-
 
     @Override
     public int compareTo(Hand other) {

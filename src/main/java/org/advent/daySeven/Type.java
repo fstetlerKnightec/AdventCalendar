@@ -1,7 +1,6 @@
 package org.advent.daySeven;
 
 public enum Type {
-
     HIGH_CARD,
     ONE_PAIR,
     TWO_PAIR,
@@ -9,6 +8,4 @@ public enum Type {
     FULL_HOUSE,
     FOUR_OF_A_KIND,
     FIVE_OF_A_KIND;
-
-
 }
