@@ -1,9 +1,6 @@
 import org.advent.dayeight.DayEight;
 import org.junit.Test;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,9 +16,9 @@ public class DayEightTests {
 
         DayEight dayEight = new DayEight();
 
-        assertEquals(dayEight.nodeMap(listOfStrings).get("AAA").address(), "AAA");
-        assertEquals(dayEight.nodeMap(listOfStrings).get("AAA").leftPointer(), "BBB");
-        assertEquals(dayEight.nodeMap(listOfStrings).get("AAA").rightPointer(), "CCC");
+        assertEquals(dayEight.getNodeMap(listOfStrings).get("AAA").address(), "AAA");
+        assertEquals(dayEight.getNodeMap(listOfStrings).get("AAA").leftPointer(), "BBB");
+        assertEquals(dayEight.getNodeMap(listOfStrings).get("AAA").rightPointer(), "CCC");
 
     }
 

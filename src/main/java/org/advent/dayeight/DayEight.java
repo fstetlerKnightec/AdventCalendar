@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class DayEight implements PrintSolution {
 
-    public Map<String, Node> nodeMap(List<String> listOfStrings) {
+    public Map<String, Node> getNodeMap(List<String> listOfStrings) {
         return listOfStrings.stream()
                 .collect(Collectors.toMap(
                         s -> s.substring(0,3),
@@ -21,7 +21,7 @@ public class DayEight implements PrintSolution {
     }
 
     public long numberOfStepsToReachZZZ(List<String> listOfStrings, String directions) {
-        Map<String, Node> nodeMap = nodeMap(listOfStrings);
+        Map<String, Node> nodeMap = getNodeMap(listOfStrings);
         String startingAddress = "AAA";
         Node currentNode = nodeMap.get(startingAddress);
 
@@ -29,7 +29,7 @@ public class DayEight implements PrintSolution {
     }
 
     public Long LCMOfAllPaths(List<String> listOfStrings, String directions) {
-        Map<String, Node> filteredMapStarting = getFilteredMap(nodeMap(listOfStrings));
+        Map<String, Node> filteredMapStarting = getFilteredMap(getNodeMap(listOfStrings));
         List<Node> listOfNodes = new ArrayList<>(filteredMapStarting.values());
         List<Long> numberOfStepsList = new ArrayList<>();
 
@@ -61,11 +61,12 @@ public class DayEight implements PrintSolution {
 
     private long numberOfStepsToFindString(List<String> listOfStrings, Node currentNode, String directions, String stringToFind) {
         int numberOfSteps = 0;
+        Map<String, Node> nodeMap = getNodeMap(listOfStrings);
         for (int i = 0; i < directions.length(); i++) {
             if (currentNode.address().endsWith(stringToFind)) {
                 break;
             }
-            currentNode = currentNode.findNodeMapFromPointer(nodeMap(listOfStrings), directions.charAt(i));
+            currentNode = nodeMap.get(currentNode.findNodeMapFromPointer(directions.charAt(i)));
             if (i == directions.length() - 1) {
                 i = -1;
             }
