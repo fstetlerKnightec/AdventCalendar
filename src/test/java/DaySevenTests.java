@@ -21,7 +21,7 @@ public class DaySevenTests {
         List<Type> listOfTypes = List.of(Type.FIVE_OF_A_KIND, Type.HIGH_CARD, Type.ONE_PAIR, Type.THREE_OF_A_KIND, Type.FOUR_OF_A_KIND, Type.FULL_HOUSE, Type.TWO_PAIR);
 
         for (int i = 0; i < listOfStrings.size(); i++) {
-            Hand hand = handFactory.createHand(listOfStrings.get(i), false, Integer.parseInt(listOfStrings.get(i).substring(6)));
+            Hand hand = handFactory.createHand(listOfStrings.get(i), false);
 
             assertEquals(listOfTypes.get(i), hand.getTypeOfHand());
         }
