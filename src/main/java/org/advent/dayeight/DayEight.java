@@ -76,16 +76,20 @@ public class DayEight implements PrintSolution {
                 entry.getValue().address().endsWith("A")).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
-    private long results(boolean isPartOne) {
+    private List<String> getStringsFromFile() {
         List<String> allStrings;
-        String directions;
         try {
             allStrings = Util.readStringsFromFile(Paths.get("src/main/resources/dayEight.txt").toString());
-            directions = allStrings.get(0);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        List<String> leftRightNodeStrings = allLeftRightNodes(allStrings);
+        return allStrings;
+    }
+
+    private long results(boolean isPartOne) {
+        List<String> allStringsFromList = getStringsFromFile();
+        List<String> leftRightNodeStrings = allLeftRightNodes(allStringsFromList);
+        String directions = allStringsFromList.getFirst();
         setNodeMap(leftRightNodeStrings);
         if (isPartOne) {
             return numberOfStepsToReachZZZ(directions);
