@@ -6,18 +6,24 @@ import org.advent.Util;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DayNine implements PrintSolution {
 
 
-    public List<Integer> differencesBetweenValuesInList(List<Integer> listOfIntegers) {
-        List<Integer> newList = new ArrayList<>();
-        for (int i = 0; i < listOfIntegers.size() - 1; i++) {
-            newList.add(listOfIntegers.get(i+1) - listOfIntegers.get(i));
+    List<Pyramid> createPyramidClasses(List<String> listOfStrings) {
+        List<Pyramid> listOfPyramids = new ArrayList<>();
+        for (String listOfString : listOfStrings) {
+            listOfPyramids.add(new Pyramid(listOfString));
         }
-        return newList;
+        return listOfPyramids;
     }
+
+
+
+
 
     private int results() {
         try {
