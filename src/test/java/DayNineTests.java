@@ -47,4 +47,20 @@ public class DayNineTests {
             System.out.println(" ");
         }
     }
+
+    @Test
+    public void verifyResultColumnForPyramid() {
+        String startString = "1 3 6 10 15 21";
+        List<Integer> resultColumn = List.of(28, 7, 1, 0);
+
+        PyramidFactory pyramidFactory = new PyramidFactory();
+        Pyramid pyramid = pyramidFactory.createPyramid(startString);
+
+
+
+
+        for (int i = 0; i < resultColumn.size(); i++) {
+            assertEquals(resultColumn.get(i), pyramid.resultList().get(i));
+        }
+    }
 }

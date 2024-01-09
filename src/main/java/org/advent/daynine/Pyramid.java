@@ -6,7 +6,7 @@ import java.util.List;
 public class Pyramid {
 
     public final Row startRow;
-    public List<Row> listOfRows = new ArrayList<>();
+    public List<Row> listOfRows = new ArrayList<>(); //is it a bad idea to instantiate objects in the field?
 
     public Pyramid(Row startRow) {
         this.startRow = startRow;
@@ -30,5 +30,14 @@ public class Pyramid {
             newList.add(listOfIntegers.get(i + 1) - listOfIntegers.get(i));
         }
         return newList;
+    }
+
+    public List<Integer> resultList() {
+        List<Integer> result = new ArrayList<>();
+        result.add(0);
+        for (int i = listOfRows.size() - 1; i > 0; i--) {
+            result.add(0, result.getFirst() + listOfRows.get(i - 1).integerList.getLast());
+        }
+        return result;
     }
 }
