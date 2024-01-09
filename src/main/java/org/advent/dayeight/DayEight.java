@@ -16,9 +16,9 @@ public class DayEight implements PrintSolution {
     public void setNodeMap(List<String> listOfStrings) {
         nodeMap = listOfStrings.stream()
                 .collect(Collectors.toMap(
-                        s -> s.substring(0,3),
-                        s -> new Node(s.substring(0, 3), s.substring(7, 10), s.substring(12,15))
-                        ));
+                        s -> s.substring(0, 3),
+                        s -> new Node(s.substring(0, 3), s.substring(7, 10), s.substring(12, 15))
+                ));
     }
 
     public long numberOfStepsToReachZZZ(String directions) {
@@ -27,7 +27,7 @@ public class DayEight implements PrintSolution {
         return numberOfStepsToFindString(currentNode, directions, "ZZZ");
     }
 
-    public Long LCMOfAllPaths(String directions) {
+    public long LCMOfAllPaths(String directions) {
         Map<String, Node> filteredMapStarting = getFilteredMap(nodeMap);
         List<Node> listOfNodes = new ArrayList<>(filteredMapStarting.values());
         List<Long> numberOfStepsList = new ArrayList<>();
@@ -42,18 +42,6 @@ public class DayEight implements PrintSolution {
             }
         }
         return lcmOfAllValues;
-    }
-
-    @Override
-    public void printPartOne() {
-        System.out.println(" ");
-        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
-        System.out.println("Total number of steps for part one = " + results(true));
-    }
-
-    @Override
-    public void printPartTwo() {
-        System.out.println("Total number of steps for part two = " + results(false));
     }
 
     private long numberOfStepsToFindString(Node currentNode, String directions, String stringToFind) {
@@ -110,5 +98,17 @@ public class DayEight implements PrintSolution {
             return a;
         }
         return gcd(b, a % b);
+    }
+
+    @Override
+    public void printPartOne() {
+        System.out.println(" ");
+        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
+        System.out.println("Total number of steps for part one = " + results(true));
+    }
+
+    @Override
+    public void printPartTwo() {
+        System.out.println("Total number of steps for part two = " + results(false));
     }
 }
