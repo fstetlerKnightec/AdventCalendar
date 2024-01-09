@@ -20,14 +20,6 @@ public class DayEight implements PrintSolution {
                         ));
     }
 
-    public Node findNodeMapFromPointer(Map<String, Node> nodeMap, Node node, char direction) {
-        if (direction == 'L') {
-            return nodeMap.get(node.leftPointer());
-        } else {
-            return nodeMap.get(node.rightPointer());
-        }
-    }
-
     public long numberOfStepsToReachZZZ(List<String> listOfStrings, String directions) {
         Map<String, Node> nodeMap = nodeMap(listOfStrings);
         String startingAddress = "AAA";
@@ -73,7 +65,7 @@ public class DayEight implements PrintSolution {
             if (currentNode.address().endsWith(stringToFind)) {
                 break;
             }
-            currentNode = findNodeMapFromPointer(nodeMap(listOfStrings), currentNode, directions.charAt(i));
+            currentNode = currentNode.findNodeMapFromPointer(nodeMap(listOfStrings), directions.charAt(i));
             if (i == directions.length() - 1) {
                 i = -1;
             }
