@@ -50,7 +50,8 @@ public class DayEight implements PrintSolution {
             if (currentNode.address().endsWith(stringToFind)) {
                 break;
             }
-            currentNode = nodeMap.get(currentNode.findNodeMapFromPointer(directions.charAt(i)));
+            String foundNodeString = currentNode.findNodeMapFromPointer(directions.charAt(i));
+            currentNode = nodeMap.get(foundNodeString);
             if (i == directions.length() - 1) {
                 i = -1;
             }
