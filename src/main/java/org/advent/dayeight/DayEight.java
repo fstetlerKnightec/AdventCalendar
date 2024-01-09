@@ -53,13 +53,11 @@ public class DayEight implements PrintSolution {
 
     @Override
     public void printPartTwo() {
-        System.out.println(" ");
-        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
         System.out.println("Total number of steps for part two = " + results(false));
     }
 
     private long numberOfStepsToFindString(Node currentNode, String directions, String stringToFind) {
-        int numberOfSteps = 0;
+        long numberOfSteps = 0;
         for (int i = 0; i < directions.length(); i++) {
             if (currentNode.address().endsWith(stringToFind)) {
                 break;
