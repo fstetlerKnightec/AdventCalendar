@@ -16,9 +16,10 @@ public class DayEightTests {
 
         DayEight dayEight = new DayEight();
 
-        assertEquals(dayEight.getNodeMap(listOfStrings).get("AAA").address(), "AAA");
-        assertEquals(dayEight.getNodeMap(listOfStrings).get("AAA").leftPointer(), "BBB");
-        assertEquals(dayEight.getNodeMap(listOfStrings).get("AAA").rightPointer(), "CCC");
+        dayEight.setNodeMap(listOfStrings);
+        assertEquals(dayEight.nodeMap.get("AAA").address(), "AAA");
+        assertEquals(dayEight.nodeMap.get("AAA").leftPointer(), "BBB");
+        assertEquals(dayEight.nodeMap.get("AAA").rightPointer(), "CCC");
 
     }
 
@@ -33,8 +34,9 @@ public class DayEightTests {
         String directions = "LLR";
 
         DayEight dayEight = new DayEight();
+        dayEight.setNodeMap(listOfStrings);
 
-        assertEquals(6, dayEight.numberOfStepsToReachZZZ(listOfStrings, directions));
+        assertEquals(6, dayEight.numberOfStepsToReachZZZ(directions));
 
     }
 
@@ -56,7 +58,8 @@ public class DayEightTests {
 
         DayEight dayEight = new DayEight();
 
-        assertEquals(6, dayEight.LCMOfAllPaths(listOfStrings, directions));
+        dayEight.setNodeMap(listOfStrings);
+        assertEquals(6, dayEight.LCMOfAllPaths(directions));
 
     }
 

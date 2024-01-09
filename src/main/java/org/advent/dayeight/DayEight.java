@@ -11,30 +11,29 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class DayEight implements PrintSolution {
+    public Map<String, Node> nodeMap;
 
-    public Map<String, Node> getNodeMap(List<String> listOfStrings) {
-        return listOfStrings.stream()
+    public void setNodeMap(List<String> listOfStrings) {
+        nodeMap = listOfStrings.stream()
                 .collect(Collectors.toMap(
                         s -> s.substring(0,3),
                         s -> new Node(s.substring(0, 3), s.substring(7, 10), s.substring(12,15))
                         ));
     }
 
-    public long numberOfStepsToReachZZZ(List<String> listOfStrings, String directions) {
-        Map<String, Node> nodeMap = getNodeMap(listOfStrings);
+    public long numberOfStepsToReachZZZ(String directions) {
         String startingAddress = "AAA";
         Node currentNode = nodeMap.get(startingAddress);
-
-        return numberOfStepsToFindString(listOfStrings, currentNode, directions, "ZZZ");
+        return numberOfStepsToFindString(currentNode, directions, "ZZZ");
     }
 
-    public Long LCMOfAllPaths(List<String> listOfStrings, String directions) {
-        Map<String, Node> filteredMapStarting = getFilteredMap(getNodeMap(listOfStrings));
+    public Long LCMOfAllPaths(String directions) {
+        Map<String, Node> filteredMapStarting = getFilteredMap(nodeMap);
         List<Node> listOfNodes = new ArrayList<>(filteredMapStarting.values());
         List<Long> numberOfStepsList = new ArrayList<>();
 
         for (Node currentNode : listOfNodes) {
-            numberOfStepsList.add(numberOfStepsToFindString(listOfStrings, currentNode, directions, "Z"));
+            numberOfStepsList.add(numberOfStepsToFindString(currentNode, directions, "Z"));
         }
         long lcmOfAllValues = lcm(numberOfStepsList.get(0), numberOfStepsList.get(1));
         if (numberOfStepsList.size() > 2) {
@@ -59,9 +58,8 @@ public class DayEight implements PrintSolution {
         System.out.println("Total number of steps for part two = " + results(false));
     }
 
-    private long numberOfStepsToFindString(List<String> listOfStrings, Node currentNode, String directions, String stringToFind) {
+    private long numberOfStepsToFindString(Node currentNode, String directions, String stringToFind) {
         int numberOfSteps = 0;
-        Map<String, Node> nodeMap = getNodeMap(listOfStrings);
         for (int i = 0; i < directions.length(); i++) {
             if (currentNode.address().endsWith(stringToFind)) {
                 break;
@@ -76,7 +74,8 @@ public class DayEight implements PrintSolution {
     }
 
     private Map<String, Node> getFilteredMap(Map<String, Node> nodeMap) {
-        return nodeMap.entrySet().stream().filter(entry -> entry.getValue().address().endsWith("A")).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        return nodeMap.entrySet().stream().filter(entry ->
+                entry.getValue().address().endsWith("A")).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
     private Long results(boolean isPartOne) {
@@ -89,10 +88,11 @@ public class DayEight implements PrintSolution {
             throw new RuntimeException(e);
         }
         List<String> leftRightNodeStrings = allLeftRightNodes(allStrings);
+        setNodeMap(leftRightNodeStrings);
         if (isPartOne) {
-            return numberOfStepsToReachZZZ(leftRightNodeStrings, directions);
+            return numberOfStepsToReachZZZ(directions);
         }
-        return LCMOfAllPaths(leftRightNodeStrings, directions);
+        return LCMOfAllPaths(directions);
     }
 
     private List<String> allLeftRightNodes(List<String> listOfStrings) {
