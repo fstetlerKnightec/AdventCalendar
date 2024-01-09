@@ -41,10 +41,8 @@ public class DayEight implements PrintSolution {
 
     private long calculateLCMForValues(List<Long> numberOfValues) {
         long lcmOfAllValues = lcm(numberOfValues.get(0), numberOfValues.get(1));
-        if (numberOfValues.size() > 2) {
-            for (int i = 2; i < numberOfValues.size(); i++) {
-                lcmOfAllValues = lcm(lcmOfAllValues, numberOfValues.get(i));
-            }
+        for (int i = 2; i < numberOfValues.size(); i++) {
+            lcmOfAllValues = lcm(lcmOfAllValues, numberOfValues.get(i));
         }
         return lcmOfAllValues;
     }
