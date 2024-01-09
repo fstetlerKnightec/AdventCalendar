@@ -76,7 +76,7 @@ public class DayEight implements PrintSolution {
                 entry.getValue().address().endsWith("A")).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
-    private Long results(boolean isPartOne) {
+    private long results(boolean isPartOne) {
         List<String> allStrings;
         String directions;
         try {
