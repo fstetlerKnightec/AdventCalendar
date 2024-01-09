@@ -35,10 +35,15 @@ public class DayEight implements PrintSolution {
         for (Node currentNode : listOfNodes) {
             numberOfStepsList.add(numberOfStepsToFindString(currentNode, directions, "Z"));
         }
-        long lcmOfAllValues = lcm(numberOfStepsList.get(0), numberOfStepsList.get(1));
-        if (numberOfStepsList.size() > 2) {
-            for (int i = 2; i < numberOfStepsList.size(); i++) {
-                lcmOfAllValues = lcm(lcmOfAllValues, numberOfStepsList.get(i));
+
+        return calculateLCMForValues(numberOfStepsList);
+    }
+
+    private long calculateLCMForValues(List<Long> numberOfValues) {
+        long lcmOfAllValues = lcm(numberOfValues.get(0), numberOfValues.get(1));
+        if (numberOfValues.size() > 2) {
+            for (int i = 2; i < numberOfValues.size(); i++) {
+                lcmOfAllValues = lcm(lcmOfAllValues, numberOfValues.get(i));
             }
         }
         return lcmOfAllValues;
