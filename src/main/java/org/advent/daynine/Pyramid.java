@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Pyramid {
 
-
     public final Row startRow;
     public List<Row> listOfRows = new ArrayList<>();
 
@@ -32,6 +31,4 @@ public class Pyramid {
         }
         return newList;
     }
-
-
 }
