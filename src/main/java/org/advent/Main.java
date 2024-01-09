@@ -1,6 +1,7 @@
 package org.advent;
 
 import org.advent.daySeven.DaySeven;
+import org.advent.dayeight.DayEight;
 import org.advent.dayfour.DayFour;
 import org.advent.dayone.DayOne;
 import org.advent.daysix.DaySix;
@@ -42,6 +43,11 @@ public class Main {
         DaySeven daySeven = new DaySeven();
         daySeven.printPartOne();
         daySeven.printPartTwo();
+
+        // DAY EIGHT OUTPUT
+        DayEight dayEight = new DayEight();
+        dayEight.printPartOne();
+        dayEight.printPartTwo();
 
     }
 }
