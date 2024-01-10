@@ -39,7 +39,7 @@ public class DayNine implements PrintSolution {
         System.out.println(" ");
         System.out.println(this.getClass().getSimpleName() + " ---------------------------");
         System.out.println();
-        System.out.println(sumOfHighestValueFromEachPyramid(listOfStringsFromFile()));
+        System.out.println("The total sum of all highest values from each pyramid in part one is " + sumOfHighestValueFromEachPyramid(listOfStringsFromFile()));
     }
 
     @Override
