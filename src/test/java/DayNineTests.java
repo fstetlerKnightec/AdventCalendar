@@ -35,14 +35,9 @@ public class DayNineTests {
         for (int i = 0; i < pyramid.getListOfRows().size(); i++) {
             List<Integer> currentListExpected = pyramid.getListOfRows().get(i).integerList();
             for (int j = 0; j < currentListExpected.size(); j++) {
-                System.out.print(pyramid.getListOfRows().get(i).integerList().get(j) + " ");
-                assertEquals(currentListExpected.get(j), pyramid.getListOfRows().get(i).integerList().get(j));
+                assertEquals(pyramidListExpected.get(i).get(j), pyramid.getListOfRows().get(i).integerList().get(j));
             }
-            System.out.println(" ");
         }
-        System.out.println(" ");
-        System.out.println(" ");
-        System.out.println(pyramid.resultList());
     }
 
     @Test
@@ -65,8 +60,6 @@ public class DayNineTests {
                 "10 13 16 21 30 45");
 
         DayNine dayNine = new DayNine();
-
         assertEquals(114, dayNine.sumOfHighestValueFromEachPyramid(list));
-
     }
 }

@@ -15,12 +15,9 @@ public class Pyramid {
     public void setListOfRowsUntilZero() {
         Row row = startRow;
         listOfRows.add(row);
-
-        int stopValue = row.integerList().getLast();
-        while (stopValue != 0) {
+        while (!listOfRows.getLast().integerList().stream().allMatch(value -> value == 0)) {
             row = new Row(differencesBetweenValuesInList(row.integerList()));
             listOfRows.add(row);
-            stopValue = row.integerList().getLast();
         }
     }
 

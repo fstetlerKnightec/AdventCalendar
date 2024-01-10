@@ -7,13 +7,12 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class DayNine implements PrintSolution {
 
     PyramidFactory pyramidFactory = new PyramidFactory();
 
-    public int sumOfHighestValueFromEachPyramid(List<String> listOfStrings) {
+    public long sumOfHighestValueFromEachPyramid(List<String> listOfStrings) {
         List<Pyramid> listOfPyramids = new ArrayList<>();
         List<Integer> listOfAllHighestValues = new ArrayList<>();
 
@@ -21,7 +20,7 @@ public class DayNine implements PrintSolution {
             listOfPyramids.add(pyramidFactory.createPyramid(listOfStrings.get(i)));
             listOfAllHighestValues.add(listOfPyramids.get(i).resultList().getFirst());
         }
-        return listOfAllHighestValues.stream().mapToInt(Integer::intValue).sum();
+        return listOfAllHighestValues.stream().mapToLong(Integer::longValue).sum();
 
     }
 
@@ -39,11 +38,8 @@ public class DayNine implements PrintSolution {
     public void printPartOne() throws IOException {
         System.out.println(" ");
         System.out.println(this.getClass().getSimpleName() + " ---------------------------");
-        List<String> list = List.of("0 3 6 9 12 15",
-                                    "1 3 6 10 15 21",
-                                    "10 13 16 21 30 45");
         System.out.println();
-        System.out.println(sumOfHighestValueFromEachPyramid(list));
+        System.out.println(sumOfHighestValueFromEachPyramid(listOfStringsFromFile()));
     }
 
     @Override
