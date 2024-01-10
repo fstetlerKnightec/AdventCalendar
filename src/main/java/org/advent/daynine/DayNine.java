@@ -13,7 +13,7 @@ public class DayNine implements PrintSolution {
 
     PyramidFactory pyramidFactory = new PyramidFactory();
 
-    private int sumOfHighestValueFromEachPyramid(List<String> listOfStrings) {
+    public int sumOfHighestValueFromEachPyramid(List<String> listOfStrings) {
         List<Pyramid> listOfPyramids = new ArrayList<>();
         List<Integer> listOfAllHighestValues = new ArrayList<>();
 
@@ -39,7 +39,10 @@ public class DayNine implements PrintSolution {
     public void printPartOne() throws IOException {
         System.out.println(" ");
         System.out.println(this.getClass().getSimpleName() + " ---------------------------");
-        List<String> list = List.of("4 3 2 1 0 -1 -2 -3 -4 -5 -6 -7 -8 -9 -10 -11 -12 -13 -14 -15 -16");
+        List<String> list = List.of("0 3 6 9 12 15",
+                                    "1 3 6 10 15 21",
+                                    "10 13 16 21 30 45");
+        System.out.println();
         System.out.println(sumOfHighestValueFromEachPyramid(list));
     }
 

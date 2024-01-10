@@ -1,3 +1,4 @@
+import org.advent.daynine.DayNine;
 import org.advent.daynine.Pyramid;
 import org.advent.daynine.PyramidFactory;
 import org.junit.Test;
@@ -14,7 +15,6 @@ public class DayNineTests {
 
         PyramidFactory pyramidFactory = new PyramidFactory();
         Pyramid pyramid = pyramidFactory.createPyramid(startString);
-        pyramid.setListOfRowsUntilZero();
         for (int i = 0; i < listOfDifference.size(); i++) {
             assertEquals(listOfDifference.get(i), pyramid.differencesBetweenValuesInList(pyramidFactory.getListOfIntegerFromString(startString)).get(i));
         }
@@ -31,14 +31,18 @@ public class DayNineTests {
 
         PyramidFactory pyramidFactory = new PyramidFactory();
         Pyramid pyramid = pyramidFactory.createPyramid(startString);
-        pyramid.setListOfRowsUntilZero();
 
-        for (int i = 0; i < pyramidListExpected.size(); i++) {
-            List<Integer> currentListExpected = pyramidListExpected.get(i);
+        for (int i = 0; i < pyramid.getListOfRows().size(); i++) {
+            List<Integer> currentListExpected = pyramid.getListOfRows().get(i).integerList();
             for (int j = 0; j < currentListExpected.size(); j++) {
+                System.out.print(pyramid.getListOfRows().get(i).integerList().get(j) + " ");
                 assertEquals(currentListExpected.get(j), pyramid.getListOfRows().get(i).integerList().get(j));
             }
+            System.out.println(" ");
         }
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println(pyramid.resultList());
     }
 
     @Test
@@ -52,5 +56,17 @@ public class DayNineTests {
         for (int i = 0; i < resultColumn.size(); i++) {
             assertEquals(resultColumn.get(i), pyramid.resultList().get(i));
         }
+    }
+
+    @Test
+    public void verifyTotalSumAllHighestValues() {
+        List<String> list = List.of("0 3 6 9 12 15",
+                "1 3 6 10 15 21",
+                "10 13 16 21 30 45");
+
+        DayNine dayNine = new DayNine();
+
+        assertEquals(114, dayNine.sumOfHighestValueFromEachPyramid(list));
+
     }
 }
