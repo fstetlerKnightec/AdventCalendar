@@ -5,7 +5,6 @@ import java.util.List;
 
 public class PyramidFactory {
 
-
     public Pyramid createPyramid(String startString) {
         Pyramid pyramid = new Pyramid(new Row(getListOfIntegerFromString(startString)));
         pyramid.setListOfRowsUntilZero();

@@ -10,9 +10,9 @@ import java.util.List;
 
 public class DayNine implements PrintSolution {
 
-    PyramidFactory pyramidFactory = new PyramidFactory();
+    private final PyramidFactory pyramidFactory = new PyramidFactory();
 
-    public long sumOfHighestValueFromEachPyramid(List<String> listOfStrings, boolean isPartTwo) {
+    public int sumOfHighestValueFromEachPyramid(List<String> listOfStrings, boolean isPartTwo) {
         List<Pyramid> listOfPyramids = new ArrayList<>();
         List<Integer> listOfAllHighestValues = new ArrayList<>();
 
@@ -20,7 +20,7 @@ public class DayNine implements PrintSolution {
             listOfPyramids.add(pyramidFactory.createPyramid(listOfStrings.get(i)));
             listOfAllHighestValues.add(listOfPyramids.get(i).resultList(isPartTwo).getFirst());
         }
-        return listOfAllHighestValues.stream().mapToLong(Integer::longValue).sum();
+        return listOfAllHighestValues.stream().mapToInt(Integer::intValue).sum();
 
     }
 

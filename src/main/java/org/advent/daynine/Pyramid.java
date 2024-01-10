@@ -16,27 +16,20 @@ public class Pyramid {
         Row row = startRow;
         listOfRows.add(row);
         while (!listOfRows.getLast().integerList().stream().allMatch(value -> value == 0)) {
-            row = new Row(differencesBetweenValuesInList(row.integerList()));
+            row = new Row(row.differencesBetweenValuesInList(row.integerList()));
             listOfRows.add(row);
         }
-    }
-
-    public List<Integer> differencesBetweenValuesInList(List<Integer> listOfIntegers) {
-        List<Integer> newList = new ArrayList<>();
-        for (int i = 0; i < listOfIntegers.size() - 1; i++) {
-            newList.add(listOfIntegers.get(i + 1) - listOfIntegers.get(i));
-        }
-        return newList;
     }
 
     public List<Integer> resultList(boolean isPartTwo) {
         List<Integer> result = new ArrayList<>();
         result.add(0);
         for (int i = listOfRows.size() - 1; i > 0; i--) {
+            List<Integer> lastRowInList = listOfRows.get(i - 1).integerList();
             if (isPartTwo) {
-                result.add(0, listOfRows.get(i - 1).integerList().getFirst() - result.getFirst());
+                result.add(0, lastRowInList.getFirst() - result.getFirst());
             } else {
-                result.add(0, listOfRows.get(i - 1).integerList().getLast() + result.getFirst());
+                result.add(0, lastRowInList.getLast() + result.getFirst());
             }
         }
         return result;

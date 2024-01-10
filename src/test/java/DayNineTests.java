@@ -1,6 +1,7 @@
 import org.advent.daynine.DayNine;
 import org.advent.daynine.Pyramid;
 import org.advent.daynine.PyramidFactory;
+import org.advent.daynine.Row;
 import org.junit.Test;
 
 import java.util.List;
@@ -15,8 +16,13 @@ public class DayNineTests {
 
         PyramidFactory pyramidFactory = new PyramidFactory();
         Pyramid pyramid = pyramidFactory.createPyramid(startString);
+        List<Integer> listOfIntegers = pyramidFactory.getListOfIntegerFromString(startString);
+
+        Row firstRowInPyramid = pyramid.getListOfRows().getFirst();
         for (int i = 0; i < listOfDifference.size(); i++) {
-            assertEquals(listOfDifference.get(i), pyramid.differencesBetweenValuesInList(pyramidFactory.getListOfIntegerFromString(startString)).get(i));
+            assertEquals(
+                    listOfDifference.get(i),
+                    firstRowInPyramid.differencesBetweenValuesInList(listOfIntegers).get(i));
         }
     }
 
@@ -35,12 +41,11 @@ public class DayNineTests {
         for (int i = 0; i < pyramid.getListOfRows().size(); i++) {
             List<Integer> currentListExpected = pyramid.getListOfRows().get(i).integerList();
             for (int j = 0; j < currentListExpected.size(); j++) {
-                System.out.print(pyramid.getListOfRows().get(i).integerList().get(j) + " ");
-//                assertEquals(pyramidListExpected.get(i).get(j), pyramid.getListOfRows().get(i).integerList().get(j));
+                assertEquals(
+                        pyramidListExpected.get(i).get(j),
+                        currentListExpected.get(j));
             }
-            System.out.println(" ");
         }
-        System.out.println(pyramid.resultList(false));
     }
 
     @Test
@@ -52,7 +57,9 @@ public class DayNineTests {
         Pyramid pyramid = pyramidFactory.createPyramid(startString);
 
         for (int i = 0; i < resultColumn.size(); i++) {
-            assertEquals(resultColumn.get(i), pyramid.resultList(false).get(i));
+            assertEquals(
+                    resultColumn.get(i),
+                    pyramid.resultList(false).get(i));
         }
     }
 
@@ -63,9 +70,10 @@ public class DayNineTests {
                 "10 13 16 21 30 45");
 
         DayNine dayNine = new DayNine();
-        assertEquals(114, dayNine.sumOfHighestValueFromEachPyramid(list, false));
+        assertEquals(
+                114,
+                dayNine.sumOfHighestValueFromEachPyramid(list, false));
     }
-
 
     @Test
     public void verifyResultColumnForPyramidPartTwo() {
@@ -76,9 +84,9 @@ public class DayNineTests {
         Pyramid pyramid = pyramidFactory.createPyramid(startString);
 
         for (int i = 0; i < resultColumn.size(); i++) {
-            assertEquals(resultColumn.get(i), pyramid.resultList(true).get(i));
+            assertEquals(
+                    resultColumn.get(i),
+                    pyramid.resultList(true).get(i));
         }
     }
-
-
 }
