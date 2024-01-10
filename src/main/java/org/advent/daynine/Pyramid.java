@@ -29,6 +29,15 @@ public class Pyramid {
         return newList;
     }
 
+    public List<Integer> resultForPartTwo()  {
+        List<Integer> result = new ArrayList<>();
+        result.add(0);
+        for (int i = listOfRows.size() - 1; i > 0; i--) {
+            result.add(0, - result.getFirst() + listOfRows.get(i - 1).integerList().getFirst());
+        }
+        return result;
+    }
+
     public List<Integer> resultList() {
         List<Integer> result = new ArrayList<>();
         result.add(0);

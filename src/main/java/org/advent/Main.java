@@ -53,6 +53,7 @@ public class Main {
         // DAY NINE OUTPUT
         DayNine dayNine = new DayNine();
         dayNine.printPartOne();
+        dayNine.printPartTwo();
 
     }
 }

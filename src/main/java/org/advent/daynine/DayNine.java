@@ -24,6 +24,18 @@ public class DayNine implements PrintSolution {
 
     }
 
+    public long sumOfHighestValueForPartTwo(List<String> listOfStrings) {
+        List<Pyramid> listOfPyramids = new ArrayList<>();
+        List<Integer> listOfAllHighestValues = new ArrayList<>();
+
+        for (int i = 0; i < listOfStrings.size(); i++) {
+            listOfPyramids.add(pyramidFactory.createPyramid(listOfStrings.get(i)));
+            listOfAllHighestValues.add(listOfPyramids.get(i).resultForPartTwo().getFirst());
+        }
+
+        return listOfAllHighestValues.stream().mapToLong(Integer::longValue).sum();
+    }
+
     private List<String> listOfStringsFromFile() {
         List<String> listOfStrings;
         try {
@@ -44,6 +56,6 @@ public class DayNine implements PrintSolution {
 
     @Override
     public void printPartTwo() throws IOException {
-
+        System.out.println("The total sum of all highest values from each pyramid in part two is " + sumOfHighestValueForPartTwo(listOfStringsFromFile()));
     }
 }
