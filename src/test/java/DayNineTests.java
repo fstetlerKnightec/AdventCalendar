@@ -40,7 +40,7 @@ public class DayNineTests {
             }
             System.out.println(" ");
         }
-        System.out.println(pyramid.resultForPartTwo());
+        System.out.println(pyramid.resultList(false));
     }
 
     @Test
@@ -52,7 +52,7 @@ public class DayNineTests {
         Pyramid pyramid = pyramidFactory.createPyramid(startString);
 
         for (int i = 0; i < resultColumn.size(); i++) {
-            assertEquals(resultColumn.get(i), pyramid.resultList().get(i));
+            assertEquals(resultColumn.get(i), pyramid.resultList(false).get(i));
         }
     }
 
@@ -63,7 +63,7 @@ public class DayNineTests {
                 "10 13 16 21 30 45");
 
         DayNine dayNine = new DayNine();
-        assertEquals(114, dayNine.sumOfHighestValueFromEachPyramid(list));
+        assertEquals(114, dayNine.sumOfHighestValueFromEachPyramid(list, false));
     }
 
 
@@ -76,7 +76,7 @@ public class DayNineTests {
         Pyramid pyramid = pyramidFactory.createPyramid(startString);
 
         for (int i = 0; i < resultColumn.size(); i++) {
-            assertEquals(resultColumn.get(i), pyramid.resultForPartTwo().get(i));
+            assertEquals(resultColumn.get(i), pyramid.resultList(true).get(i));
         }
     }
 

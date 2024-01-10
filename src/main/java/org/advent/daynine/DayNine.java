@@ -12,28 +12,16 @@ public class DayNine implements PrintSolution {
 
     PyramidFactory pyramidFactory = new PyramidFactory();
 
-    public long sumOfHighestValueFromEachPyramid(List<String> listOfStrings) {
+    public long sumOfHighestValueFromEachPyramid(List<String> listOfStrings, boolean isPartTwo) {
         List<Pyramid> listOfPyramids = new ArrayList<>();
         List<Integer> listOfAllHighestValues = new ArrayList<>();
 
         for (int i = 0; i < listOfStrings.size(); i++) {
             listOfPyramids.add(pyramidFactory.createPyramid(listOfStrings.get(i)));
-            listOfAllHighestValues.add(listOfPyramids.get(i).resultList().getFirst());
+            listOfAllHighestValues.add(listOfPyramids.get(i).resultList(isPartTwo).getFirst());
         }
         return listOfAllHighestValues.stream().mapToLong(Integer::longValue).sum();
 
-    }
-
-    public long sumOfHighestValueForPartTwo(List<String> listOfStrings) {
-        List<Pyramid> listOfPyramids = new ArrayList<>();
-        List<Integer> listOfAllHighestValues = new ArrayList<>();
-
-        for (int i = 0; i < listOfStrings.size(); i++) {
-            listOfPyramids.add(pyramidFactory.createPyramid(listOfStrings.get(i)));
-            listOfAllHighestValues.add(listOfPyramids.get(i).resultForPartTwo().getFirst());
-        }
-
-        return listOfAllHighestValues.stream().mapToLong(Integer::longValue).sum();
     }
 
     private List<String> listOfStringsFromFile() {
@@ -51,11 +39,11 @@ public class DayNine implements PrintSolution {
         System.out.println(" ");
         System.out.println(this.getClass().getSimpleName() + " ---------------------------");
         System.out.println();
-        System.out.println("The total sum of all highest values from each pyramid in part one is " + sumOfHighestValueFromEachPyramid(listOfStringsFromFile()));
+        System.out.println("The total sum of all highest values from each pyramid in part one is " + sumOfHighestValueFromEachPyramid(listOfStringsFromFile(), false));
     }
 
     @Override
     public void printPartTwo() throws IOException {
-        System.out.println("The total sum of all highest values from each pyramid in part two is " + sumOfHighestValueForPartTwo(listOfStringsFromFile()));
+        System.out.println("The total sum of all highest values from each pyramid in part two is " + sumOfHighestValueFromEachPyramid(listOfStringsFromFile(), true));
     }
 }

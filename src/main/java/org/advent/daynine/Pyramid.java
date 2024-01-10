@@ -29,23 +29,19 @@ public class Pyramid {
         return newList;
     }
 
-    public List<Integer> resultForPartTwo()  {
+    public List<Integer> resultList(boolean isPartTwo) {
         List<Integer> result = new ArrayList<>();
         result.add(0);
         for (int i = listOfRows.size() - 1; i > 0; i--) {
-            result.add(0, - result.getFirst() + listOfRows.get(i - 1).integerList().getFirst());
+            if (isPartTwo) {
+                result.add(0, listOfRows.get(i - 1).integerList().getFirst() - result.getFirst());
+            } else {
+                result.add(0, listOfRows.get(i - 1).integerList().getLast() + result.getFirst());
+            }
         }
         return result;
     }
 
-    public List<Integer> resultList() {
-        List<Integer> result = new ArrayList<>();
-        result.add(0);
-        for (int i = listOfRows.size() - 1; i > 0; i--) {
-            result.add(0, result.getFirst() + listOfRows.get(i - 1).integerList().getLast());
-        }
-        return result;
-    }
     public List<Row> getListOfRows() {
         return listOfRows;
     }
