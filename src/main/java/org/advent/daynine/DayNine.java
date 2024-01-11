@@ -5,7 +5,6 @@ import org.advent.Util;
 
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 public class DayNine implements PrintSolution {
@@ -16,29 +15,23 @@ public class DayNine implements PrintSolution {
         List<Pyramid> listOfPyramids = createListOfPyramids(listOfStrings);
         setPyramidRowUntilZero(listOfPyramids);
         List<Integer> highestValues = addAllHighestValuesFromPyramidToList(listOfPyramids, isPartTwo);
-        return highestValues.stream().mapToInt(Integer::intValue).sum();
+        return addValuesFromListTogether(highestValues);
+    }
+
+    private int addValuesFromListTogether(List<Integer> values) {
+        return values.stream().mapToInt(Integer::intValue).sum();
     }
 
     private List<Integer> addAllHighestValuesFromPyramidToList(List<Pyramid> listOfPyramids, boolean isPartTwo) {
-        List<Integer> listOfAllHighestValues = new ArrayList<>();
-        for (Pyramid pyramid : listOfPyramids) {
-            listOfAllHighestValues.add(pyramid.resultList(isPartTwo).getFirst());
-        }
-        return listOfAllHighestValues;
+        return listOfPyramids.stream().map(p -> p.resultList(isPartTwo).getFirst()).toList();
     }
 
     private void setPyramidRowUntilZero(List<Pyramid> listOfPyramids) {
-        for (Pyramid pyramid : listOfPyramids) {
-            pyramid.setListOfRowsUntilZero();
-        }
+        listOfPyramids.forEach(Pyramid::setListOfRowsUntilZero);
     }
 
     private List<Pyramid> createListOfPyramids(List<String> listOfStrings) {
-        List<Pyramid> listOfPyramids = new ArrayList<>();
-        for (String listOfString : listOfStrings) {
-            listOfPyramids.add(pyramidFactory.createPyramid(listOfString));
-        }
-        return listOfPyramids;
+        return listOfStrings.stream().map(pyramidFactory::createPyramid).toList();
     }
 
     private List<String> listOfStringsFromFile() {
@@ -51,10 +44,14 @@ public class DayNine implements PrintSolution {
         return listOfStrings;
     }
 
+    private String getClassName() {
+        return this.getClass().getSimpleName();
+    }
+
     @Override
     public void printPartOne() throws IOException {
         System.out.println(" ");
-        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
+        System.out.println(getClassName() + " ---------------------------");
         System.out.println();
         System.out.println("The total sum of all highest values from each pyramid in part one is " + sumOfHighestValueFromEachPyramid(listOfStringsFromFile(), false));
     }

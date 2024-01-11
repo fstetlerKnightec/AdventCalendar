@@ -9,6 +9,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DayNineTests {
+
     @Test
     public void verifyDifferenceBetweenList() {
         String startString = "0 3 6 9 12 15";
@@ -18,8 +19,9 @@ public class DayNineTests {
         Pyramid pyramid = pyramidFactory.createPyramid(startString);
         pyramid.setListOfRowsUntilZero();
         List<Integer> listOfIntegers = pyramid.getListOfRows().getFirst().integerList();
+        List<Row> listOfRows = pyramid.getListOfRows();
 
-        Row firstRowInPyramid = pyramid.getListOfRows().getFirst();
+        Row firstRowInPyramid = listOfRows.getFirst();
         for (int i = 0; i < listOfDifference.size(); i++) {
             assertEquals(
                     listOfDifference.get(i),
@@ -39,9 +41,10 @@ public class DayNineTests {
         PyramidFactory pyramidFactory = new PyramidFactory();
         Pyramid pyramid = pyramidFactory.createPyramid(startString);
         pyramid.setListOfRowsUntilZero();
+        List<Row> listOfRows = pyramid.getListOfRows();
 
         for (int i = 0; i < pyramid.getListOfRows().size(); i++) {
-            List<Integer> currentListExpected = pyramid.getListOfRows().get(i).integerList();
+            List<Integer> currentListExpected = listOfRows.get(i).integerList();
             for (int j = 0; j < currentListExpected.size(); j++) {
                 assertEquals(
                         pyramidListExpected.get(i).get(j),
@@ -85,7 +88,7 @@ public class DayNineTests {
 
         PyramidFactory pyramidFactory = new PyramidFactory();
         Pyramid pyramid = pyramidFactory.createPyramid(startString);
-        pyramid.setListOfRowsUntilZero();;
+        pyramid.setListOfRowsUntilZero();
 
         for (int i = 0; i < resultColumn.size(); i++) {
             assertEquals(
