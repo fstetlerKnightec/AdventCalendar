@@ -13,8 +13,8 @@ public class Pyramid {
 
     public void setListOfRowsUntilZero() {
         Row row = listOfRows.getLast();
-        while (!listOfRows.getLast().integerList().stream().allMatch(value -> value == 0)) {
-            row = new Row(row.differencesBetweenValuesInList(row.integerList()));
+        while (allValuesInLastRowIsNotZero()) {
+            row = newRowWithDifferenceFromPrevious(row);
             listOfRows.add(row);
         }
     }
@@ -31,6 +31,14 @@ public class Pyramid {
             }
         }
         return result;
+    }
+
+    private boolean allValuesInLastRowIsNotZero() {
+        return !listOfRows.getLast().integerList().stream().allMatch(value -> value == 0);
+    }
+
+    private Row newRowWithDifferenceFromPrevious(Row row) {
+        return new Row(row.differencesBetweenValuesInList(row.integerList()));
     }
 
     public List<Row> getListOfRows() {

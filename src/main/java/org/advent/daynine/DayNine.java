@@ -19,7 +19,7 @@ public class DayNine implements PrintSolution {
         return highestValues.stream().mapToInt(Integer::intValue).sum();
     }
 
-    public List<Integer> addAllHighestValuesFromPyramidToList(List<Pyramid> listOfPyramids, boolean isPartTwo) {
+    private List<Integer> addAllHighestValuesFromPyramidToList(List<Pyramid> listOfPyramids, boolean isPartTwo) {
         List<Integer> listOfAllHighestValues = new ArrayList<>();
         for (Pyramid pyramid : listOfPyramids) {
             listOfAllHighestValues.add(pyramid.resultList(isPartTwo).getFirst());
@@ -27,13 +27,13 @@ public class DayNine implements PrintSolution {
         return listOfAllHighestValues;
     }
 
-    public void setPyramidRowUntilZero(List<Pyramid> listOfPyramids) {
+    private void setPyramidRowUntilZero(List<Pyramid> listOfPyramids) {
         for (Pyramid pyramid : listOfPyramids) {
             pyramid.setListOfRowsUntilZero();
         }
     }
 
-    public List<Pyramid> createListOfPyramids(List<String> listOfStrings) {
+    private List<Pyramid> createListOfPyramids(List<String> listOfStrings) {
         List<Pyramid> listOfPyramids = new ArrayList<>();
         for (String listOfString : listOfStrings) {
             listOfPyramids.add(pyramidFactory.createPyramid(listOfString));
