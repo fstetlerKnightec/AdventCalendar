@@ -13,15 +13,32 @@ public class DayNine implements PrintSolution {
     private final PyramidFactory pyramidFactory = new PyramidFactory();
 
     public int sumOfHighestValueFromEachPyramid(List<String> listOfStrings, boolean isPartTwo) {
-        List<Pyramid> listOfPyramids = new ArrayList<>();
+        List<Pyramid> listOfPyramids = createListOfPyramids(listOfStrings);
+        setPyramidRowUntilZero(listOfPyramids);
+        List<Integer> highestValues = addAllHighestValuesFromPyramidToList(listOfPyramids, isPartTwo);
+        return highestValues.stream().mapToInt(Integer::intValue).sum();
+    }
+
+    public List<Integer> addAllHighestValuesFromPyramidToList(List<Pyramid> listOfPyramids, boolean isPartTwo) {
         List<Integer> listOfAllHighestValues = new ArrayList<>();
-
-        for (int i = 0; i < listOfStrings.size(); i++) {
-            listOfPyramids.add(pyramidFactory.createPyramid(listOfStrings.get(i)));
-            listOfAllHighestValues.add(listOfPyramids.get(i).resultList(isPartTwo).getFirst());
+        for (Pyramid pyramid : listOfPyramids) {
+            listOfAllHighestValues.add(pyramid.resultList(isPartTwo).getFirst());
         }
-        return listOfAllHighestValues.stream().mapToInt(Integer::intValue).sum();
+        return listOfAllHighestValues;
+    }
 
+    public void setPyramidRowUntilZero(List<Pyramid> listOfPyramids) {
+        for (Pyramid pyramid : listOfPyramids) {
+            pyramid.setListOfRowsUntilZero();
+        }
+    }
+
+    public List<Pyramid> createListOfPyramids(List<String> listOfStrings) {
+        List<Pyramid> listOfPyramids = new ArrayList<>();
+        for (String listOfString : listOfStrings) {
+            listOfPyramids.add(pyramidFactory.createPyramid(listOfString));
+        }
+        return listOfPyramids;
     }
 
     private List<String> listOfStringsFromFile() {

@@ -16,7 +16,8 @@ public class DayNineTests {
 
         PyramidFactory pyramidFactory = new PyramidFactory();
         Pyramid pyramid = pyramidFactory.createPyramid(startString);
-        List<Integer> listOfIntegers = pyramidFactory.getListOfIntegerFromString(startString);
+        pyramid.setListOfRowsUntilZero();
+        List<Integer> listOfIntegers = pyramid.getListOfRows().getFirst().integerList();
 
         Row firstRowInPyramid = pyramid.getListOfRows().getFirst();
         for (int i = 0; i < listOfDifference.size(); i++) {
@@ -37,6 +38,7 @@ public class DayNineTests {
 
         PyramidFactory pyramidFactory = new PyramidFactory();
         Pyramid pyramid = pyramidFactory.createPyramid(startString);
+        pyramid.setListOfRowsUntilZero();
 
         for (int i = 0; i < pyramid.getListOfRows().size(); i++) {
             List<Integer> currentListExpected = pyramid.getListOfRows().get(i).integerList();
@@ -55,6 +57,7 @@ public class DayNineTests {
 
         PyramidFactory pyramidFactory = new PyramidFactory();
         Pyramid pyramid = pyramidFactory.createPyramid(startString);
+        pyramid.setListOfRowsUntilZero();
 
         for (int i = 0; i < resultColumn.size(); i++) {
             assertEquals(
@@ -82,6 +85,7 @@ public class DayNineTests {
 
         PyramidFactory pyramidFactory = new PyramidFactory();
         Pyramid pyramid = pyramidFactory.createPyramid(startString);
+        pyramid.setListOfRowsUntilZero();;
 
         for (int i = 0; i < resultColumn.size(); i++) {
             assertEquals(
