@@ -11,14 +11,6 @@ public class Pyramid {
         listOfRows.add(startRow);
     }
 
-    public void setListOfRowsUntilZero() {
-        Row row = listOfRows.getLast();
-        while (allValuesInLastRowIsNotZero()) {
-            row = newRowWithDifferenceFromPrevious(row);
-            listOfRows.add(row);
-        }
-    }
-
     public List<Integer> resultList(boolean isPartTwo) {
         List<Integer> result = new ArrayList<>();
         result.add(0);
@@ -31,6 +23,14 @@ public class Pyramid {
             }
         }
         return result;
+    }
+
+    public void setListOfRowsUntilZero() {
+        Row row = listOfRows.getLast();
+        while (allValuesInLastRowIsNotZero()) {
+            row = newRowWithDifferenceFromPrevious(row);
+            listOfRows.add(row);
+        }
     }
 
     private boolean allValuesInLastRowIsNotZero() {
