@@ -49,5 +49,7 @@ public class Main {
         dayEight.printPartOne();
         dayEight.printPartTwo();
 
+        System.out.println("hey");
+
     }
 }
