@@ -7,6 +7,9 @@ public enum CoordinateDirection {
     LEFT (-1, 0),
     RIGHT (1, 0);
 
+
+    //    public
+
     private int x;
     private int y;
     private CoordinateDirection(int x, int y) {
@@ -14,4 +17,11 @@ public enum CoordinateDirection {
         this.y = y;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 }

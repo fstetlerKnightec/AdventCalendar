@@ -18,13 +18,15 @@ public class DayTen implements PrintSolution {
 //        divide step by 2 and return
 //    }
 
+//    F J - | 7 L
+
     public void numberOfStepsToReachFurthestAway() {
         List<String> strings = getStringsFromFile();
-        GridOfPipes gridOfPipes = new GridOfPipes(strings);
+        GridOfPipes gridOfPipes = new GridOfPipes();
+        gridOfPipes.createGrid(strings);
 
-        Position currentPosition = gridOfPipes.getPositionOfS();
-
-        currentPosition = gridOfPipes.setNextPositionOnPipePath(currentPosition);
+        Position currentPosition = gridOfPipes.findFirstValidStepFromS();
+        System.out.println(currentPosition.character());
 
 
 //        System.out.println("x position is = " + gridOfPipes.getPositionOfS().xPosition);

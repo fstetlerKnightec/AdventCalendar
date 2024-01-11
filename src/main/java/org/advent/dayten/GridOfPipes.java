@@ -5,43 +5,65 @@ import java.util.List;
 
 public class GridOfPipes {
 
-    private final List<String> listOfStrings;
 
-    public GridOfPipes(List<String> listOfStrings) {
-        this.listOfStrings = listOfStrings;
+//    add field of grid here from grid()
+    private List<List<Position>> grid;
+    private Position startPosition;
+
+    public GridOfPipes() {
+
     }
 
-    public List<List<Character>> grid() {
-        List<List<Character>> grid = new ArrayList<>();
+
+    public void createGrid(List<String> listOfStrings) {
+        List<List<Position>> grid = new ArrayList<>();
         for (int i = 0; i < listOfStrings.size(); i++) {
-            List<Character> characters = new ArrayList<>();
+            List<Position> rowPositions = new ArrayList<>();
             String currentLine = listOfStrings.get(i);
             for (int j = 0; j < currentLine.length(); j++) {
-                characters.add(currentLine.charAt(j));
+                Position currentPosition = new Position(j, i, currentLine.charAt(j));
+                rowPositions.add(currentPosition);
+                if (currentLine.charAt(j) == 'S') {
+                    startPosition = currentPosition;
+                }
             }
-            grid.add(characters);
+            grid.add(rowPositions);
         }
-        return grid;
+        this.grid = grid;
+    }
+
+
+    public Position getPositionFromGrid(int x, int y) {
+        return grid.get(y).get(x);
+    }
+
+    public Position findFirstValidStepFromS() {
+        Position positionCandidate = getPositionStep(startPosition, CoordinateDirection.UP);
+        if (List.of('|', 'F', '7').contains(positionCandidate.character())) {
+            return positionCandidate;
+        }
+        positionCandidate = getPositionStep(startPosition, CoordinateDirection.RIGHT);
+        if (List.of('-', '7', 'J').contains(positionCandidate.character())) {
+            return positionCandidate;
+        }
+        positionCandidate = getPositionStep(startPosition, CoordinateDirection.DOWN);
+        if (List.of('|', 'J', 'L').contains(positionCandidate.character())) {
+            return positionCandidate;
+        }
+        positionCandidate = getPositionStep(startPosition, CoordinateDirection.LEFT);
+        return positionCandidate;
+    }
+
+
+
+
+    private Position getPositionStep(Position currentPosition, CoordinateDirection direction) {
+        int x = currentPosition.nextX(direction);
+        int y = currentPosition.nextY(direction);
+        return getPositionFromGrid(x, y);
     }
 
     public Position getPositionOfS() {
-        List<List<Character>> grid = grid();
-        for (int i = 0; i < grid.size(); i++) {
-            List<Character> currentRow = grid.get(i);
-            for (int j = 0; j < currentRow.size(); j++) {
-                if (currentRow.get(j).equals('S')) {
-                    return new Position(j, i);
-                }
-            }
-        }
-        return null;
-    }
-
-    public Character getCharacterFromGrid(Position position) {
-        return grid().get(position.yPosition).get(position.xPosition);
-    }
-
-    public Position setNextPositionOnPipePath(Position currentPosition) {
-
+        return startPosition;
     }
 }

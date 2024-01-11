@@ -1,29 +1,13 @@
 package org.advent.dayten;
 
-public class Position {
+public record Position(int xPosition, int yPosition, char character) {
 
-    public int xPosition;
-
-    public int yPosition;
-
-    public Position(int xPosition, int yPosition) {
-        this.xPosition = xPosition;
-        this.yPosition = yPosition;
+    public int nextX(CoordinateDirection coordinateDirection) {
+        return coordinateDirection.getX() + xPosition;
     }
 
-    public int getxPosition() {
-        return xPosition;
+    public int nextY(CoordinateDirection coordinateDirection) {
+        return coordinateDirection.getY() + yPosition;
     }
 
-    public void setxPosition(int xPosition) {
-        this.xPosition = xPosition;
-    }
-
-    public int getyPosition() {
-        return yPosition;
-    }
-
-    public void setyPosition(int yPosition) {
-        this.yPosition = yPosition;
-    }
 }
