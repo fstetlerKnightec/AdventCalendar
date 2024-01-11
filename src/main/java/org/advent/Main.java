@@ -5,6 +5,7 @@ import org.advent.dayeight.DayEight;
 import org.advent.dayfour.DayFour;
 import org.advent.dayone.DayOne;
 import org.advent.daysix.DaySix;
+import org.advent.dayten.DayTen;
 import org.advent.daythree.DayThree;
 import org.advent.daytwo.DayTwo;
 
@@ -48,6 +49,12 @@ public class Main {
         DayEight dayEight = new DayEight();
         dayEight.printPartOne();
         dayEight.printPartTwo();
+
+        // DAY TEN OUTPUT
+        DayTen dayTen = new DayTen();
+        dayTen.printPartOne();
+        dayTen.printPartTwo();
+
 
     }
 }
