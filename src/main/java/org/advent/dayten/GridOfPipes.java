@@ -39,15 +39,15 @@ public class GridOfPipes {
 
     public Position findFirstValidStepFromS() {
         Position positionCandidate = getPositionStep(startPosition, CoordinateDirection.UP);
-        if (List.of('|', 'F', '7').contains(positionCandidate.character())) {
+        if (List.of('|', 'F', '7').contains(positionCandidate.currentCharacter())) {
             return positionCandidate;
         }
         positionCandidate = getPositionStep(startPosition, CoordinateDirection.RIGHT);
-        if (List.of('-', '7', 'J').contains(positionCandidate.character())) {
+        if (List.of('-', '7', 'J').contains(positionCandidate.currentCharacter())) {
             return positionCandidate;
         }
         positionCandidate = getPositionStep(startPosition, CoordinateDirection.DOWN);
-        if (List.of('|', 'J', 'L').contains(positionCandidate.character())) {
+        if (List.of('|', 'J', 'L').contains(positionCandidate.currentCharacter())) {
             return positionCandidate;
         }
         positionCandidate = getPositionStep(startPosition, CoordinateDirection.LEFT);
