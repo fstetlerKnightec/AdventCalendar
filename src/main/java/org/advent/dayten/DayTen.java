@@ -10,19 +10,7 @@ import java.util.List;
 
 public class DayTen implements PrintSolution {
 
-//    public int numberOfStepsToReachFurthestAway(List<String> strings) {
-//        createPipeGridNetOfStrings
-//        find coordinates of startposition
-//        check all positions around and see if a certain symbol, update the coordinate to that position
-//        repeat while excluding the previous coordinate from loop, updating stepCount along the way
-//        do until youre back at S
-//        divide step by 2 and return
-//    }
-
-//    F J - | 7 L
-
-    public List<Position> listOfPositionsToReachS() {
-        List<String> strings = getStringsFromFile();
+    public List<Position> listOfPositionsToReachS(List<String> strings) {
         GridOfPipes gridOfPipes = new GridOfPipes();
         gridOfPipes.createGrid(strings);
 
@@ -43,11 +31,9 @@ public class DayTen implements PrintSolution {
         return listOfPositions;
     }
 
-
-    public int numberOfStepsToReachFurthestAwayFromS() {
-        return (listOfPositionsToReachS().size() - 1) / 2;
+    public int numberOfStepsToReachFurthestAwayFromS(List<String> strings) {
+        return (listOfPositionsToReachS(strings).size() - 1) / 2;
     }
-
 
     private List<String> getStringsFromFile() {
         List<String> allStrings;
@@ -63,7 +49,7 @@ public class DayTen implements PrintSolution {
     public void printPartOne() throws IOException {
         System.out.println(" ");
         System.out.println(this.getClass().getSimpleName() + " ---------------------------");
-        System.out.println("Number of steps to reach furthest away = " + numberOfStepsToReachFurthestAwayFromS());
+        System.out.println("Number of steps to reach furthest away = " + numberOfStepsToReachFurthestAwayFromS(getStringsFromFile()));
 
     }
 

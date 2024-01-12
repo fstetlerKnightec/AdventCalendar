@@ -4,16 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GridOfPipes {
-
-
-//    add field of grid here from grid()
     private List<List<Position>> grid;
     private Position startPosition;
-
-    public GridOfPipes() {
-
-    }
-
 
     public void createGrid(List<String> listOfStrings) {
         List<List<Position>> grid = new ArrayList<>();
@@ -30,11 +22,6 @@ public class GridOfPipes {
             grid.add(rowPositions);
         }
         this.grid = grid;
-    }
-
-
-    public Position getPositionFromGrid(int x, int y) {
-        return grid.get(y).get(x);
     }
 
     public Position findFirstValidStepFromS() {
@@ -62,5 +49,9 @@ public class GridOfPipes {
 
     public Position getPositionOfS() {
         return startPosition;
+    }
+
+    public Position getPositionFromGrid(int x, int y) {
+        return grid.get(y).get(x);
     }
 }

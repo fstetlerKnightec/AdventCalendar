@@ -1,15 +1,13 @@
-import org.advent.dayten.CoordinateDirection;
+import org.advent.dayten.DayTen;
 import org.advent.dayten.GridOfPipes;
 import org.advent.dayten.Position;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DayTenTests {
-
 
     @Test
     public void verifyPositionOfS() {
@@ -26,9 +24,7 @@ public class DayTenTests {
 
         assertEquals(1, position.xPosition());
         assertEquals(1, position.yPosition());
-
     }
-
 
     @Test
     public void verifyFirstValidStepFromGrid() {
@@ -45,7 +41,6 @@ public class DayTenTests {
 
         assertEquals(2, position.xPosition());
         assertEquals(1, position.yPosition());
-
     }
 
     @Test
@@ -59,26 +54,10 @@ public class DayTenTests {
 
         GridOfPipes gridOfPipes = new GridOfPipes();
         gridOfPipes.createGrid(strings);
+        DayTen dayTen = new DayTen();
 
+        int numberOfSteps = dayTen.numberOfStepsToReachFurthestAwayFromS(strings);
 
-        Position position = gridOfPipes.findFirstValidStepFromS();
-        Position previousPosition = gridOfPipes.getPositionOfS();
-        List<Position> listOfPositions = new ArrayList<>();
-        listOfPositions.add(previousPosition);
-        listOfPositions.add(position);
-        int count = 1;
-        while (position.character() != 'S') {
-            CoordinateDirection direction = position.nextStep(previousPosition);
-            char nextCharacter = gridOfPipes.getPositionFromGrid(position.nextX(direction), position.nextY(direction)).character();
-            previousPosition = position;
-            position = new Position(position.nextX(direction), position.nextY(direction), nextCharacter);
-            listOfPositions.add(position);
-            count += 1;
-        }
-
-        listOfPositions.stream().forEach(System.out::println);
-        System.out.println(listOfPositions.size());
-        System.out.println(count);
-
+        assertEquals(4, numberOfSteps);
     }
 }

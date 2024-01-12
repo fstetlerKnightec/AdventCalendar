@@ -10,18 +10,6 @@ public record Position(int xPosition, int yPosition, char character) {
         return coordinateDirection.getY() + yPosition;
     }
 
-    public boolean previousPositionWasAbove(Position previousPosition) {
-        return previousPosition.yPosition == yPosition() - 1;
-    }
-
-    public boolean previousPositionWasToLeft(Position previousPosition) {
-        return previousPosition.xPosition == xPosition() - 1;
-    }
-
-    public boolean previousPositionWasBelow(Position previousPosition) {
-        return previousPosition.yPosition == yPosition() + 1;
-    }
-
     public CoordinateDirection nextStep(Position previousPosition) {
 
         if (character == 'L') {
@@ -67,6 +55,18 @@ public record Position(int xPosition, int yPosition, char character) {
         }
 
         return null;
+    }
+
+    private boolean previousPositionWasAbove(Position previousPosition) {
+        return previousPosition.yPosition == yPosition() - 1;
+    }
+
+    private boolean previousPositionWasToLeft(Position previousPosition) {
+        return previousPosition.xPosition == xPosition() - 1;
+    }
+
+    private boolean previousPositionWasBelow(Position previousPosition) {
+        return previousPosition.yPosition == yPosition() + 1;
     }
 
 }
