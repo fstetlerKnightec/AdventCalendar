@@ -54,9 +54,6 @@ public class GridOfPipes {
         return positionCandidate;
     }
 
-
-
-
     private Position getPositionStep(Position currentPosition, CoordinateDirection direction) {
         int x = currentPosition.nextX(direction);
         int y = currentPosition.nextY(direction);

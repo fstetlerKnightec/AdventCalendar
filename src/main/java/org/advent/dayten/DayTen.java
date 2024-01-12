@@ -24,10 +24,13 @@ public class DayTen implements PrintSolution {
         List<String> strings = getStringsFromFile();
         GridOfPipes gridOfPipes = new GridOfPipes();
         gridOfPipes.createGrid(strings);
+//        System.out.println(gridOfPipes.getPositionOfS());
 
+        Position previousPosition = gridOfPipes.getPositionOfS();
         Position currentPosition = gridOfPipes.findFirstValidStepFromS();
-        System.out.println(currentPosition.character());
 
+        CoordinateDirection direction = currentPosition.nextStep(previousPosition);
+        System.out.println(direction);
 
 //        System.out.println("x position is = " + gridOfPipes.getPositionOfS().xPosition);
 //        System.out.println("y position is = " + gridOfPipes.getPositionOfS().yPosition);
