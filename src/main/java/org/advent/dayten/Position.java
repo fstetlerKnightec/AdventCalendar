@@ -12,57 +12,28 @@ public record Position(int xPosition, int yPosition, char character) {
 
     public CoordinateDirection nextStep(Position previousPosition) {
 
+//        return CoordinateDirection.getDirection(character, previousPosition);
+
         if (character == 'L') {
-            if (previousPositionWasAbove(previousPosition)) {
-                return CoordinateDirection.RIGHT;
-            }
-            return CoordinateDirection.UP;
+            return CoordinateDirection.getDirection('L', previousPosition, xPosition, yPosition);
         }
 
         if (character == '-') {
-            if (previousPositionWasToLeft(previousPosition)) {
-                return CoordinateDirection.RIGHT;
-            }
-            return CoordinateDirection.LEFT;
+            return CoordinateDirection.getDirection('-', previousPosition, xPosition, yPosition);
         }
 
         if (character == '7') {
-            if (previousPositionWasToLeft(previousPosition)) {
-                return CoordinateDirection.DOWN;
-            }
-            return CoordinateDirection.LEFT;
+            return CoordinateDirection.getDirection('7', previousPosition, xPosition, yPosition);
         }
 
         if (character == '|') {
-            if (previousPositionWasAbove(previousPosition)) {
-                return CoordinateDirection.DOWN;
-            }
-            return CoordinateDirection.UP;
+            return CoordinateDirection.getDirection('|', previousPosition, xPosition, yPosition);
         }
 
         if (character == 'J') {
-            if (previousPositionWasToLeft(previousPosition)) {
-                return CoordinateDirection.UP;
-            }
-            return CoordinateDirection.LEFT;
+            return CoordinateDirection.getDirection('J', previousPosition, xPosition, yPosition);
         }
 
-        if (previousPositionWasBelow(previousPosition)) {
-            return CoordinateDirection.RIGHT;
-        }
-        return CoordinateDirection.DOWN;
+        return CoordinateDirection.getDirection('F', previousPosition, xPosition, yPosition);
     }
-
-    private boolean previousPositionWasAbove(Position previousPosition) {
-        return previousPosition.yPosition == yPosition() - 1;
-    }
-
-    private boolean previousPositionWasToLeft(Position previousPosition) {
-        return previousPosition.xPosition == xPosition() - 1;
-    }
-
-    private boolean previousPositionWasBelow(Position previousPosition) {
-        return previousPosition.yPosition == yPosition() + 1;
-    }
-
 }
