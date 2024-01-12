@@ -23,14 +23,6 @@ public class DayTen implements PrintSolution {
 
     }
 
-    public List<Position> listOfPositionsToReachS(List<String> strings) {
-        GridOfPipes grid = grid(strings);
-
-        Position previousPosition = grid.getPositionOfS();
-        Position position = grid.findFirstValidStepFromS();
-        return loopThroughPositions(grid, position, previousPosition);
-    }
-
     public List<Position> loopThroughPositions(GridOfPipes grid, Position position, Position previousPosition) {
         List<Position> listOfPositions = new ArrayList<>(Arrays.asList(previousPosition, position));
         while (position.character() != 'S') {
@@ -44,12 +36,16 @@ public class DayTen implements PrintSolution {
         return listOfPositions;
     }
 
-    private Character getNextCharacter(GridOfPipes grid, Position position, CoordinateDirection direction) {
-        return grid.getPositionFromGrid(position.nextX(direction), position.nextY(direction)).character();
-    }
-
     public int numberOfStepsToReachFurthestAwayFromS(List<String> strings) {
         return (listOfPositionsToReachS(strings).size() - 1) / 2;
+    }
+
+    private List<Position> listOfPositionsToReachS(List<String> strings) {
+        GridOfPipes grid = grid(strings);
+
+        Position previousPosition = grid.getPositionOfS();
+        Position position = grid.findFirstValidStepFromS();
+        return loopThroughPositions(grid, position, previousPosition);
     }
 
     private GridOfPipes grid(List<String> strings) {
@@ -66,5 +62,9 @@ public class DayTen implements PrintSolution {
             throw new RuntimeException(e);
         }
         return allStrings;
+    }
+
+    private Character getNextCharacter(GridOfPipes grid, Position position, CoordinateDirection direction) {
+        return grid.getPositionFromGrid(position.nextX(direction), position.nextY(direction)).character();
     }
 }
