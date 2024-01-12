@@ -47,14 +47,10 @@ public record Position(int xPosition, int yPosition, char character) {
             return CoordinateDirection.LEFT;
         }
 
-        if (character == 'F') {
-            if (previousPositionWasBelow(previousPosition)) {
-                return CoordinateDirection.RIGHT;
-            }
-            return CoordinateDirection.DOWN;
+        if (previousPositionWasBelow(previousPosition)) {
+            return CoordinateDirection.RIGHT;
         }
-
-        return null;
+        return CoordinateDirection.DOWN;
     }
 
     private boolean previousPositionWasAbove(Position previousPosition) {

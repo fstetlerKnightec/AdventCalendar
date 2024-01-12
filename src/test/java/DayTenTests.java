@@ -19,7 +19,7 @@ public class DayTenTests {
                 ".....");
 
         GridOfPipes gridOfPipes = new GridOfPipes();
-        gridOfPipes.createGrid(strings);
+        gridOfPipes.setUpGrid(strings);
         Position position = gridOfPipes.getPositionOfS();
 
         assertEquals(1, position.xPosition());
@@ -36,7 +36,7 @@ public class DayTenTests {
                 ".....");
 
         GridOfPipes gridOfPipes = new GridOfPipes();
-        gridOfPipes.createGrid(strings);
+        gridOfPipes.setUpGrid(strings);
         Position position = gridOfPipes.findFirstValidStepFromS();
 
         assertEquals(2, position.xPosition());
@@ -53,7 +53,7 @@ public class DayTenTests {
                 ".....");
 
         GridOfPipes gridOfPipes = new GridOfPipes();
-        gridOfPipes.createGrid(strings);
+        gridOfPipes.setUpGrid(strings);
         DayTen dayTen = new DayTen();
 
         int numberOfSteps = dayTen.numberOfStepsToReachFurthestAwayFromS(strings);

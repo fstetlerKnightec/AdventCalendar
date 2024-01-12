@@ -7,7 +7,7 @@ public class GridOfPipes {
     private List<List<Position>> grid;
     private Position startPosition;
 
-    public void createGrid(List<String> listOfStrings) {
+    public void setUpGrid(List<String> listOfStrings) {
         List<List<Position>> grid = new ArrayList<>();
         for (int i = 0; i < listOfStrings.size(); i++) {
             List<Position> rowPositions = new ArrayList<>();
