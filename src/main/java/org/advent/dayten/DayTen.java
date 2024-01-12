@@ -5,6 +5,7 @@ import org.advent.Util;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DayTen implements PrintSolution {
@@ -20,64 +21,32 @@ public class DayTen implements PrintSolution {
 
 //    F J - | 7 L
 
-    public void numberOfStepsToReachFurthestAway() {
+    public List<Position> listOfPositionsToReachS() {
         List<String> strings = getStringsFromFile();
         GridOfPipes gridOfPipes = new GridOfPipes();
         gridOfPipes.createGrid(strings);
-//        System.out.println(gridOfPipes.getPositionOfS());
 
         Position previousPosition = gridOfPipes.getPositionOfS();
-        Position currentPosition = gridOfPipes.findFirstValidStepFromS();
+        Position position = gridOfPipes.findFirstValidStepFromS();
 
-        CoordinateDirection direction = currentPosition.nextStep(previousPosition);
-        System.out.println(previousPosition.character());
-        System.out.println(currentPosition);
-        System.out.println(direction);
-        currentPosition = new Position(
-                currentPosition.nextX(direction),
-                currentPosition.nextY(direction),
-                gridOfPipes.getPositionFromGrid(
-                                currentPosition.nextX(direction),
-                                currentPosition.nextY(direction))
-                        .character());
-        previousPosition = currentPosition;
-        System.out.println(currentPosition);
+        List<Position> listOfPositions = new ArrayList<>();
+        listOfPositions.add(previousPosition);
+        listOfPositions.add(position);
+        while (position.character() != 'S') {
+            CoordinateDirection direction = position.nextStep(previousPosition);
+            char nextCharacter = gridOfPipes.getPositionFromGrid(position.nextX(direction), position.nextY(direction)).character();
+            previousPosition = position;
+            position = new Position(position.nextX(direction), position.nextY(direction), nextCharacter);
+            listOfPositions.add(position);
+        }
 
-        System.out.println(" ");
-
-        direction = currentPosition.nextStep(previousPosition);
-        System.out.println(direction);
-        currentPosition = new Position(
-                currentPosition.nextX(direction),
-                currentPosition.nextY(direction),
-                gridOfPipes.getPositionFromGrid(
-                                currentPosition.nextX(direction),
-                                currentPosition.nextY(direction))
-                        .character());
-        System.out.println(currentPosition);
-        previousPosition = currentPosition;
-
-        System.out.println(" ");
-
-        direction = currentPosition.nextStep(previousPosition);
-        System.out.println(direction);
-        currentPosition = new Position(
-                currentPosition.nextX(direction),
-                currentPosition.nextY(direction),
-                gridOfPipes.getPositionFromGrid(
-                                currentPosition.nextX(direction),
-                                currentPosition.nextY(direction))
-                        .character());
-        System.out.println(currentPosition);
-
-
-
-//        System.out.println("x position is = " + gridOfPipes.getPositionOfS().xPosition);
-//        System.out.println("y position is = " + gridOfPipes.getPositionOfS().yPosition);
-//        System.out.println(gridOfPipes.getCharacterFromGrid(new Position(0,1)));
+        return listOfPositions;
     }
 
 
+    public int numberOfStepsToReachFurthestAwayFromS() {
+        return (listOfPositionsToReachS().size() - 1) / 2;
+    }
 
 
     private List<String> getStringsFromFile() {
@@ -92,7 +61,10 @@ public class DayTen implements PrintSolution {
 
     @Override
     public void printPartOne() throws IOException {
-        numberOfStepsToReachFurthestAway();
+        System.out.println(" ");
+        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
+        System.out.println("Number of steps to reach furthest away = " + numberOfStepsToReachFurthestAwayFromS());
+
     }
 
     @Override
