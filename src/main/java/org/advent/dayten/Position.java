@@ -1,6 +1,6 @@
 package org.advent.dayten;
 
-public record Position(int xPosition, int yPosition, char currentCharacter) {
+public record Position(int xPosition, int yPosition, char character) {
 
     public int nextX(CoordinateDirection coordinateDirection) {
         return coordinateDirection.getX() + xPosition;
@@ -24,42 +24,42 @@ public record Position(int xPosition, int yPosition, char currentCharacter) {
 
     public CoordinateDirection nextStep(Position previousPosition) {
 
-        if (currentCharacter == 'L') {
+        if (character == 'L') {
             if (previousPositionWasAbove(previousPosition)) {
                 return CoordinateDirection.RIGHT;
             }
             return CoordinateDirection.UP;
         }
 
-        if (currentCharacter == '-') {
+        if (character == '-') {
             if (previousPositionWasToLeft(previousPosition)) {
                 return CoordinateDirection.RIGHT;
             }
             return CoordinateDirection.LEFT;
         }
 
-        if (currentCharacter == '7') {
+        if (character == '7') {
             if (previousPositionWasToLeft(previousPosition)) {
                 return CoordinateDirection.DOWN;
             }
             return CoordinateDirection.LEFT;
         }
 
-        if (currentCharacter == '|') {
+        if (character == '|') {
             if (previousPositionWasAbove(previousPosition)) {
                 return CoordinateDirection.DOWN;
             }
             return CoordinateDirection.UP;
         }
 
-        if (currentCharacter == 'J') {
+        if (character == 'J') {
             if (previousPositionWasToLeft(previousPosition)) {
                 return CoordinateDirection.UP;
             }
             return CoordinateDirection.LEFT;
         }
 
-        if (currentCharacter == 'F') {
+        if (character == 'F') {
             if (previousPositionWasBelow(previousPosition)) {
                 return CoordinateDirection.RIGHT;
             }

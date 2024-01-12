@@ -30,7 +30,47 @@ public class DayTen implements PrintSolution {
         Position currentPosition = gridOfPipes.findFirstValidStepFromS();
 
         CoordinateDirection direction = currentPosition.nextStep(previousPosition);
+        System.out.println(previousPosition.character());
+        System.out.println(currentPosition);
         System.out.println(direction);
+        currentPosition = new Position(
+                currentPosition.nextX(direction),
+                currentPosition.nextY(direction),
+                gridOfPipes.getPositionFromGrid(
+                                currentPosition.nextX(direction),
+                                currentPosition.nextY(direction))
+                        .character());
+        previousPosition = currentPosition;
+        System.out.println(currentPosition);
+
+        System.out.println(" ");
+
+        direction = currentPosition.nextStep(previousPosition);
+        System.out.println(direction);
+        currentPosition = new Position(
+                currentPosition.nextX(direction),
+                currentPosition.nextY(direction),
+                gridOfPipes.getPositionFromGrid(
+                                currentPosition.nextX(direction),
+                                currentPosition.nextY(direction))
+                        .character());
+        System.out.println(currentPosition);
+        previousPosition = currentPosition;
+
+        System.out.println(" ");
+
+        direction = currentPosition.nextStep(previousPosition);
+        System.out.println(direction);
+        currentPosition = new Position(
+                currentPosition.nextX(direction),
+                currentPosition.nextY(direction),
+                gridOfPipes.getPositionFromGrid(
+                                currentPosition.nextX(direction),
+                                currentPosition.nextY(direction))
+                        .character());
+        System.out.println(currentPosition);
+
+
 
 //        System.out.println("x position is = " + gridOfPipes.getPositionOfS().xPosition);
 //        System.out.println("y position is = " + gridOfPipes.getPositionOfS().yPosition);

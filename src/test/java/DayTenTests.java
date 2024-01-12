@@ -61,10 +61,75 @@ public class DayTenTests {
         Position position = gridOfPipes.findFirstValidStepFromS();
         Position previousPosition = gridOfPipes.getPositionOfS();
 
-        CoordinateDirection direction = position.nextStep(previousPosition);
-        System.out.println(previousPosition);
-        System.out.println(position);
-        System.out.println(direction);
+//        int count = 0;
+//        CoordinateDirection direction
+//        while (position.character() != 'S') {
+//            CoordinateDirection direction = position.nextStep(previousPosition);
+//            System.out.println(direction);
+//            char nextCharacter = gridOfPipes.getPositionFromGrid(position.nextX(direction), position.yPosition()).character();
+//            previousPosition = position;
+//            position = new Position(position.nextX(direction), position.nextY(direction), nextCharacter);
+//            count += 1;
+//            System.out.println(position.character());
+//        }
+//
+//        System.out.println(count);
 
+
+        CoordinateDirection direction = position.nextStep(previousPosition);
+        System.out.println("prev = " + previousPosition);
+        System.out.println("pos = " + position);
+        System.out.println("dir = " + direction);
+        char nextCharacter = gridOfPipes.getPositionFromGrid(position.nextX(direction), position.yPosition()).character();
+        previousPosition = position;
+        position = new Position(position.nextX(direction), position.nextY(direction), nextCharacter);
+        System.out.println("next pos = " + position);
+
+        System.out.println(" ");
+
+
+        direction = position.nextStep(previousPosition);
+        System.out.println("prev = " + previousPosition);
+        System.out.println("pos = " + position);
+        System.out.println("dir = " + direction);
+        nextCharacter = gridOfPipes.getPositionFromGrid(position.nextX(direction), position.nextY(direction)).character();
+        previousPosition = position;
+        position = new Position(position.nextX(direction), position.nextY(direction), nextCharacter);
+        System.out.println("next pos = " + position);
+
+        System.out.println(" ");
+
+        direction = position.nextStep(previousPosition);
+        System.out.println("prev = " + previousPosition);
+        System.out.println("pos = " + position);
+        System.out.println("dir = " + direction);
+        nextCharacter = gridOfPipes.getPositionFromGrid(position.nextX(direction), position.nextY(direction)).character();
+        previousPosition = position;
+        position = new Position(position.nextX(direction), position.nextY(direction), nextCharacter);
+        System.out.println("next pos = " + position);
+
+        System.out.println(" ");
+
+        direction = position.nextStep(previousPosition);
+        System.out.println("prev = " + previousPosition);
+        System.out.println("pos = " + position);
+        System.out.println("dir = " + direction);
+        nextCharacter = gridOfPipes.getPositionFromGrid(position.nextX(direction), position.nextY(direction)).character();
+        previousPosition = position;
+        position = new Position(position.nextX(direction), position.nextY(direction), nextCharacter);
+        System.out.println("next pos = " + position);
+
+        System.out.println(" ");
+
+        direction = position.nextStep(previousPosition);
+        System.out.println("prev = " + previousPosition);
+        System.out.println("pos = " + position);
+        System.out.println("dir = " + direction);
+        nextCharacter = gridOfPipes.getPositionFromGrid(position.nextX(direction), position.nextY(direction)).character();
+        previousPosition = position;
+        position = new Position(position.nextX(direction), position.nextY(direction), nextCharacter);
+        System.out.println("next pos = " + position);
+//
+//        System.out.println(" ");
     }
 }
