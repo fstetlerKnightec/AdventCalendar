@@ -12,5 +12,6 @@ public record Position(int xPosition, int yPosition, char character) {
 
     public CoordinateDirection nextStep(Position previousPosition) {
         return CoordinateDirection.getDirection(character, previousPosition, xPosition, yPosition);
+
     }
 }

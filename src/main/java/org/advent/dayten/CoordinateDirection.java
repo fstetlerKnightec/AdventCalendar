@@ -17,55 +17,55 @@ public enum CoordinateDirection {
 
     public static CoordinateDirection getDirection(char c, Position position, int x, int y) {
         if (c == 'L') {
-            if (DOWN.previousPositionWasAbove(position, x, y)) {
+            if (previousPositionWasAbove(position, x, y)) {
                 return RIGHT;
             }
             return UP;
         }
 
         if (c == '-') {
-            if (DOWN.previousPositionWasToLeft(position, x, y)) {
+            if (previousPositionWasToLeft(position, x, y)) {
                 return CoordinateDirection.RIGHT;
             }
             return CoordinateDirection.LEFT;
         }
 
         if (c == '7') {
-            if (DOWN.previousPositionWasToLeft(position, x, y)) {
+            if (previousPositionWasToLeft(position, x, y)) {
                 return CoordinateDirection.DOWN;
             }
             return CoordinateDirection.LEFT;
         }
 
         if (c == '|') {
-            if (DOWN.previousPositionWasAbove(position, x, y)) {
+            if (previousPositionWasAbove(position, x, y)) {
                 return CoordinateDirection.DOWN;
             }
             return CoordinateDirection.UP;
         }
 
         if (c == 'J') {
-            if (DOWN.previousPositionWasToLeft(position, x, y)) {
+            if (previousPositionWasToLeft(position, x, y)) {
                 return CoordinateDirection.UP;
             }
             return CoordinateDirection.LEFT;
         }
 
-        if (DOWN.previousPositionWasBelow(position, x, y)) {
+        if (previousPositionWasBelow(position, x, y)) {
             return CoordinateDirection.RIGHT;
         }
         return CoordinateDirection.DOWN;
     }
 
-    private boolean previousPositionWasAbove(Position previousPosition, int x, int y) {
+    private static boolean previousPositionWasAbove(Position previousPosition, int x, int y) {
         return previousPosition.yPosition() == y - 1;
     }
 
-    private boolean previousPositionWasToLeft(Position previousPosition, int x, int y) {
+    private static boolean previousPositionWasToLeft(Position previousPosition, int x, int y) {
         return previousPosition.xPosition() == x - 1;
     }
 
-    private boolean previousPositionWasBelow(Position previousPosition, int x, int y) {
+    private static boolean previousPositionWasBelow(Position previousPosition, int x, int y) {
         return previousPosition.yPosition() == y + 1;
     }
 
