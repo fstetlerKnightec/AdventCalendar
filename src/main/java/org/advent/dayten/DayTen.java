@@ -44,7 +44,7 @@ public class DayTen implements PrintSolution {
         return listOfPositions;
     }
 
-    public Character getNextCharacter(GridOfPipes grid, Position position, CoordinateDirection direction) {
+    private Character getNextCharacter(GridOfPipes grid, Position position, CoordinateDirection direction) {
         return grid.getPositionFromGrid(position.nextX(direction), position.nextY(direction)).character();
     }
 
