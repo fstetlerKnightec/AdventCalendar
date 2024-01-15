@@ -14,7 +14,8 @@ public class GridOfPipes {
             List<Position> rowPositions = new ArrayList<>();
             String currentLine = listOfStrings.get(i);
             for (int j = 0; j < currentLine.length(); j++) {
-                Position currentPosition = new Position(j, i, currentLine.charAt(j));
+                Coordinate currentCoordinate = new Coordinate(j, i);
+                Position currentPosition = new Position(currentCoordinate, currentLine.charAt(j));
                 rowPositions.add(currentPosition);
                 if (currentLine.charAt(j) == 'S') {
                     startPosition = currentPosition;

@@ -1,13 +1,13 @@
 package org.advent.dayten;
 
-public record Position(int xPosition, int yPosition, char character) {
+public record Position(Coordinate coordinate, char character) {
 
     public int nextX(Direction coordinateDirection) {
-        return coordinateDirection.getX() + xPosition;
+        return coordinateDirection.getX() + coordinate().x;
     }
 
     public int nextY(Direction coordinateDirection) {
-        return coordinateDirection.getY() + yPosition;
+        return coordinateDirection.getY() + coordinate().y;
     }
 
     public Direction nextStep(Position previousPosition) {
@@ -17,7 +17,8 @@ public record Position(int xPosition, int yPosition, char character) {
 
     public Direction getDirectionToGoFromPipe(Position previousCoordinate) {
         Pipe pipe = getDirectionFromCharacter(character);
-        if (previousCoordinate.xPosition() == nextX(pipe.getOneDirection()) && previousCoordinate.yPosition() == nextY(pipe.getOneDirection())) {
+        if (previousCoordinate.coordinate().x == nextX(pipe.getOneDirection())
+                && previousCoordinate.coordinate().y == nextY(pipe.getOneDirection())) {
             return pipe.getOtherDirection();
         }
         return pipe.getOneDirection();
