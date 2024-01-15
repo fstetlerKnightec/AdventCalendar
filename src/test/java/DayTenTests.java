@@ -22,8 +22,8 @@ public class DayTenTests {
         gridOfPipes.setUpGrid(strings);
         Position position = gridOfPipes.getPositionOfS();
 
-        assertEquals(1, position.coordinate().getX());
-        assertEquals(1, position.coordinate().getY());
+        assertEquals(1, position.coordinate().x());
+        assertEquals(1, position.coordinate().y());
     }
 
     @Test
@@ -39,8 +39,8 @@ public class DayTenTests {
         gridOfPipes.setUpGrid(strings);
         Position position = gridOfPipes.findFirstValidStepFromS();
 
-        assertEquals(2, position.coordinate().getX());
-        assertEquals(1, position.coordinate().getY());
+        assertEquals(2, position.coordinate().x());
+        assertEquals(1, position.coordinate().y());
     }
 
     @Test

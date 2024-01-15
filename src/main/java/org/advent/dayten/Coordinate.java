@@ -1,20 +1,5 @@
 package org.advent.dayten;
 
-public class Coordinate {
+public record Coordinate(int x, int y) {
 
-    int x;
-    int y;
-
-    public Coordinate(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
 }

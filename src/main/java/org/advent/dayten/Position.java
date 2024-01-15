@@ -4,22 +4,20 @@ import static org.advent.dayten.Pipe.getDirectionFromCharacter;
 
 public record Position(Coordinate coordinate, char character) {
 
-    public int nextX(Direction coordinateDirection) {
-        return coordinateDirection.getX() + coordinate().getX();
+    public int nextX(Direction direction) {
+        return direction.getX() + coordinate().x();
     }
 
-    public int nextY(Direction coordinateDirection) {
-        return coordinateDirection.getY() + coordinate().getY();
+    public int nextY(Direction direction) {
+        return direction.getY() + coordinate().y();
     }
 
     public Direction nextDirection(Position previousPosition) {
-        return getDirectionToGoFromPipe(previousPosition);
-    }
-
-    public Direction getDirectionToGoFromPipe(Position previousCoordinate) {
         Pipe pipe = getDirectionFromCharacter(character);
-        if (previousCoordinate.coordinate().getX() == nextX(pipe.getOneDirection())
-                && previousCoordinate.coordinate().getY() == nextY(pipe.getOneDirection())) {
+        Coordinate previousCoordinate = previousPosition.coordinate();
+        Direction direction = pipe.getOneDirection();
+        if (previousCoordinate.x() == nextX(direction)
+                && previousCoordinate.y() == nextY(direction)) {
             return pipe.getOtherDirection();
         }
         return pipe.getOneDirection();

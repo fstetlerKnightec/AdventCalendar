@@ -14,10 +14,10 @@ public enum Direction {
     }
 
     public int getX() {
-        return coordinate.getX();
+        return coordinate.x();
     }
 
     public int getY() {
-        return coordinate.getY();
+        return coordinate.y();
     }
 }
