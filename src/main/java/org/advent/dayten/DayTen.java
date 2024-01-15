@@ -28,19 +28,6 @@ public class DayTen implements PrintSolution {
 
     }
 
-    public List<Position> loopThroughPositions(GridOfPipes grid, Position position, Position previousPosition) {
-        List<Position> listOfPositions = new ArrayList<>(Arrays.asList(previousPosition, position));
-        while (position.character() != 'S') {
-            Direction direction = position.nextStep(previousPosition);
-            assert direction != null;
-            char nextCharacter = getNextCharacter(grid, position, direction);
-            previousPosition = position;
-            position = new Position(position.nextX(direction), position.nextY(direction), nextCharacter);
-            listOfPositions.add(position);
-        }
-        return listOfPositions;
-    }
-
     public int numberOfStepsToReachFurthestAwayFromS(List<String> strings) {
         return (listOfPositionsToReachS(strings).size() - 1) / 2;
     }
@@ -50,7 +37,7 @@ public class DayTen implements PrintSolution {
 
         Position previousPosition = grid.getPositionOfS();
         Position position = grid.findFirstValidStepFromS();
-        return loopThroughPositions(grid, position, previousPosition);
+        return grid.loopThroughPositions(position, previousPosition);
     }
 
     private GridOfPipes grid(List<String> strings) {
@@ -67,9 +54,5 @@ public class DayTen implements PrintSolution {
             throw new RuntimeException(e);
         }
         return allStrings;
-    }
-
-    private Character getNextCharacter(GridOfPipes grid, Position position, Direction direction) {
-        return grid.getPositionFromGrid(position.nextX(direction), position.nextY(direction)).character();
     }
 }
