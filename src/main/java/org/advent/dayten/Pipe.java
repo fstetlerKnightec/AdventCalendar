@@ -9,29 +9,38 @@ public enum Pipe {
     HOR_PIPE(Direction.LEFT, Direction.RIGHT),
     VERT_PIPE(Direction.DOWN, Direction.UP);
 
+    private final Direction oneDirection;
+    private final Direction otherDirection;
 
-    private Direction oneDirection;
-    private Direction otherDirection;
-
-    private Pipe(Direction oneDirection, Direction otherDirection) {
+    Pipe(Direction oneDirection, Direction otherDirection) {
         this.oneDirection = oneDirection;
         this.otherDirection = otherDirection;
+    }
+
+    public static Pipe getDirectionFromCharacter(char character) {
+        if (character == '7') {
+            return Pipe.SEVEN_PIPE;
+        }
+        if (character == 'L') {
+            return Pipe.L_PIPE;
+        }
+        if (character == 'F') {
+            return Pipe.F_PIPE;
+        }
+        if (character == 'J') {
+            return Pipe.J_PIPE;
+        }
+        if (character == '-') {
+            return Pipe.HOR_PIPE;
+        }
+        return Pipe.VERT_PIPE;
     }
 
     public Direction getOneDirection() {
         return oneDirection;
     }
 
-    public void setOneDirection(Direction oneDirection) {
-        this.oneDirection = oneDirection;
-    }
-
     public Direction getOtherDirection() {
         return otherDirection;
     }
-
-    public void setOtherDirection(Direction otherDirection) {
-        this.otherDirection = otherDirection;
-    }
-
 }

@@ -1,5 +1,7 @@
 package org.advent.dayten;
 
+import static org.advent.dayten.Pipe.getDirectionFromCharacter;
+
 public record Position(Coordinate coordinate, char character) {
 
     public int nextX(Direction coordinateDirection) {
@@ -22,24 +24,5 @@ public record Position(Coordinate coordinate, char character) {
             return pipe.getOtherDirection();
         }
         return pipe.getOneDirection();
-    }
-
-    public Pipe getDirectionFromCharacter(char character) {
-        if (character == '7') {
-            return Pipe.SEVEN_PIPE;
-        }
-        if (character == 'L') {
-            return Pipe.L_PIPE;
-        }
-        if (character == 'F') {
-            return Pipe.F_PIPE;
-        }
-        if (character == 'J') {
-            return Pipe.J_PIPE;
-        }
-        if (character == '-') {
-            return Pipe.HOR_PIPE;
-        }
-        return Pipe.VERT_PIPE;
     }
 }
