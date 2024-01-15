@@ -31,14 +31,14 @@ public class DayTen implements PrintSolution {
     }
 
     private List<Position> listOfPositionsToReachS(List<String> strings) {
-        GridOfPipes grid = grid(strings);
+        GridOfPipes grid = startGrid(strings);
 
         Position previousPosition = grid.getPositionOfS();
         Position position = grid.findFirstValidStepFromS();
         return grid.loopThroughPositionsToFindS(position, previousPosition);
     }
 
-    private GridOfPipes grid(List<String> strings) {
+    private GridOfPipes startGrid(List<String> strings) {
         GridOfPipes gridOfPipes = new GridOfPipes();
         gridOfPipes.setUpGrid(strings);
         return gridOfPipes;

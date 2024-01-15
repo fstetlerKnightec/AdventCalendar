@@ -60,11 +60,11 @@ public class GridOfPipes {
         return getPositionFromGrid(x, y);
     }
 
-    public Position getPositionOfS() {
-        return startPosition;
+    private Position getPositionFromGrid(int x, int y) {
+        return grid.get(y).get(x);
     }
 
-    public Position getPositionFromGrid(int x, int y) {
-        return grid.get(y).get(x);
+    public Position getPositionOfS() {
+        return startPosition;
     }
 }
