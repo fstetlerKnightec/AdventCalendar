@@ -34,29 +34,4 @@ public enum Pipe {
         this.otherDirection = otherDirection;
     }
 
-//    public Direction getDirectionToGoFromPipe(Pipe pipe, Position currentCoordinate, Position previousCoordinate) {
-//        if (previousCoordinate.xPosition() == currentCoordinate.nextX(pipe.oneDirection)) {
-//            return pipe.otherDirection;
-//        }
-//        return oneDirection;
-//    }
-
-//    public Pipe getDirectionFromCharacter(char character) {
-//        if (character == '7') {
-//            return SEVEN_PIPE;
-//        }
-//        if (character == 'L') {
-//            return L_PIPE;
-//        }
-//        if (character == 'F') {
-//            return F_PIPE;
-//        }
-//        if (character == 'J') {
-//            return J_PIPE;
-//        }
-//        if (character == '-') {
-//            return HOR_PIPE;
-//        }
-//        return VERT_PIPE;
-//    }
 }
