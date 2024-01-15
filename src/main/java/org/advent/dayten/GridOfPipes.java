@@ -25,21 +25,15 @@ public class GridOfPipes {
         this.grid = grid;
     }
 
-    public List<Position> loopThroughPositions(Position position, Position previousPosition) {
+    public List<Position> loopThroughPositionsToFindS(Position position, Position previousPosition) {
         List<Position> listOfPositions = new ArrayList<>(Arrays.asList(previousPosition, position));
         while (position.character() != 'S') {
             Direction direction = position.nextStep(previousPosition);
-            assert direction != null;
-            char nextCharacter = getNextCharacter(position, direction);
             previousPosition = position;
-            position = new Position(position.nextX(direction), position.nextY(direction), nextCharacter);
+            position = getPositionFromGrid(position.nextX(direction), position.nextY(direction));
             listOfPositions.add(position);
         }
         return listOfPositions;
-    }
-
-    private Character getNextCharacter(Position position, Direction direction) {
-        return getPositionFromGrid(position.nextX(direction), position.nextY(direction)).character();
     }
 
     public Position findFirstValidStepFromS() {

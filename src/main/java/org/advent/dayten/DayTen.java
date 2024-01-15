@@ -5,8 +5,6 @@ import org.advent.Util;
 
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class DayTen implements PrintSolution {
@@ -37,7 +35,7 @@ public class DayTen implements PrintSolution {
 
         Position previousPosition = grid.getPositionOfS();
         Position position = grid.findFirstValidStepFromS();
-        return grid.loopThroughPositions(position, previousPosition);
+        return grid.loopThroughPositionsToFindS(position, previousPosition);
     }
 
     private GridOfPipes grid(List<String> strings) {
