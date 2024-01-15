@@ -12,9 +12,8 @@ public record Position(Coordinate coordinate, char character) {
         return coordinateDirection.getY() + coordinate().getY();
     }
 
-    public Direction nextStep(Position previousPosition) {
+    public Direction nextDirection(Position previousPosition) {
         return getDirectionToGoFromPipe(previousPosition);
-
     }
 
     public Direction getDirectionToGoFromPipe(Position previousCoordinate) {

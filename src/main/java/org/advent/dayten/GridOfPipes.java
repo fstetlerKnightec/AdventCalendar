@@ -29,7 +29,7 @@ public class GridOfPipes {
     public List<Position> loopThroughPositionsToFindS(Position position, Position previousPosition) {
         List<Position> listOfPositions = new ArrayList<>(Arrays.asList(previousPosition, position));
         while (position.character() != 'S') {
-            Direction direction = position.nextStep(previousPosition);
+            Direction direction = position.nextDirection(previousPosition);
             previousPosition = position;
             position = getPositionFromGrid(position.nextX(direction), position.nextY(direction));
             listOfPositions.add(position);
@@ -38,23 +38,23 @@ public class GridOfPipes {
     }
 
     public Position findFirstValidStepFromS() {
-        Position positionCandidate = getPositionStep(startPosition, Direction.UP);
+        Position positionCandidate = getPositionAfterStep(startPosition, Direction.UP);
         if (List.of('|', 'F', '7').contains(positionCandidate.character())) {
             return positionCandidate;
         }
-        positionCandidate = getPositionStep(startPosition, Direction.RIGHT);
+        positionCandidate = getPositionAfterStep(startPosition, Direction.RIGHT);
         if (List.of('-', '7', 'J').contains(positionCandidate.character())) {
             return positionCandidate;
         }
-        positionCandidate = getPositionStep(startPosition, Direction.DOWN);
+        positionCandidate = getPositionAfterStep(startPosition, Direction.DOWN);
         if (List.of('|', 'J', 'L').contains(positionCandidate.character())) {
             return positionCandidate;
         }
-        positionCandidate = getPositionStep(startPosition, Direction.LEFT);
+        positionCandidate = getPositionAfterStep(startPosition, Direction.LEFT);
         return positionCandidate;
     }
 
-    private Position getPositionStep(Position currentPosition, Direction direction) {
+    private Position getPositionAfterStep(Position currentPosition, Direction direction) {
         int x = currentPosition.nextX(direction);
         int y = currentPosition.nextY(direction);
         return getPositionFromGrid(x, y);
