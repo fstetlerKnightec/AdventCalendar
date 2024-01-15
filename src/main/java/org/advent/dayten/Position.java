@@ -20,6 +20,6 @@ public record Position(Coordinate coordinate, char character) {
                 && previousCoordinate.y() == nextY(direction)) {
             return pipe.getOtherDirection();
         }
-        return pipe.getOneDirection();
+        return direction;
     }
 }
