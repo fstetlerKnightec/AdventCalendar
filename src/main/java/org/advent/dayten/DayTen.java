@@ -31,7 +31,7 @@ public class DayTen implements PrintSolution {
     public List<Position> loopThroughPositions(GridOfPipes grid, Position position, Position previousPosition) {
         List<Position> listOfPositions = new ArrayList<>(Arrays.asList(previousPosition, position));
         while (position.character() != 'S') {
-            CoordinateDirection direction = position.nextStep(previousPosition);
+            Direction direction = position.nextStep(previousPosition);
             assert direction != null;
             char nextCharacter = getNextCharacter(grid, position, direction);
             previousPosition = position;
@@ -69,7 +69,7 @@ public class DayTen implements PrintSolution {
         return allStrings;
     }
 
-    private Character getNextCharacter(GridOfPipes grid, Position position, CoordinateDirection direction) {
+    private Character getNextCharacter(GridOfPipes grid, Position position, Direction direction) {
         return grid.getPositionFromGrid(position.nextX(direction), position.nextY(direction)).character();
     }
 }

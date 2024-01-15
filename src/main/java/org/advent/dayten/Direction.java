@@ -1,6 +1,6 @@
 package org.advent.dayten;
 
-public enum CoordinateDirection {
+public enum Direction {
 
     UP(0, -1),
     DOWN(0, 1),
@@ -10,12 +10,12 @@ public enum CoordinateDirection {
     private final int x;
     private final int y;
 
-    CoordinateDirection(int x, int y) {
+    Direction(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public static CoordinateDirection getDirection(char c, Position position, int x, int y) {
+    public static Direction getDirection(char c, Position position, int x, int y) {
         if (c == 'L') {
             if (previousPositionWasAbove(position, x, y)) {
                 return RIGHT;
@@ -25,36 +25,36 @@ public enum CoordinateDirection {
 
         if (c == '-') {
             if (previousPositionWasToLeft(position, x, y)) {
-                return CoordinateDirection.RIGHT;
+                return Direction.RIGHT;
             }
-            return CoordinateDirection.LEFT;
+            return Direction.LEFT;
         }
 
         if (c == '7') {
             if (previousPositionWasToLeft(position, x, y)) {
-                return CoordinateDirection.DOWN;
+                return Direction.DOWN;
             }
-            return CoordinateDirection.LEFT;
+            return Direction.LEFT;
         }
 
         if (c == '|') {
             if (previousPositionWasAbove(position, x, y)) {
-                return CoordinateDirection.DOWN;
+                return Direction.DOWN;
             }
-            return CoordinateDirection.UP;
+            return Direction.UP;
         }
 
         if (c == 'J') {
             if (previousPositionWasToLeft(position, x, y)) {
-                return CoordinateDirection.UP;
+                return Direction.UP;
             }
-            return CoordinateDirection.LEFT;
+            return Direction.LEFT;
         }
 
         if (previousPositionWasBelow(position, x, y)) {
-            return CoordinateDirection.RIGHT;
+            return Direction.RIGHT;
         }
-        return CoordinateDirection.DOWN;
+        return Direction.DOWN;
     }
 
     private static boolean previousPositionWasAbove(Position previousPosition, int x, int y) {

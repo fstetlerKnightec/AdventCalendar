@@ -25,23 +25,23 @@ public class GridOfPipes {
     }
 
     public Position findFirstValidStepFromS() {
-        Position positionCandidate = getPositionStep(startPosition, CoordinateDirection.UP);
+        Position positionCandidate = getPositionStep(startPosition, Direction.UP);
         if (List.of('|', 'F', '7').contains(positionCandidate.character())) {
             return positionCandidate;
         }
-        positionCandidate = getPositionStep(startPosition, CoordinateDirection.RIGHT);
+        positionCandidate = getPositionStep(startPosition, Direction.RIGHT);
         if (List.of('-', '7', 'J').contains(positionCandidate.character())) {
             return positionCandidate;
         }
-        positionCandidate = getPositionStep(startPosition, CoordinateDirection.DOWN);
+        positionCandidate = getPositionStep(startPosition, Direction.DOWN);
         if (List.of('|', 'J', 'L').contains(positionCandidate.character())) {
             return positionCandidate;
         }
-        positionCandidate = getPositionStep(startPosition, CoordinateDirection.LEFT);
+        positionCandidate = getPositionStep(startPosition, Direction.LEFT);
         return positionCandidate;
     }
 
-    private Position getPositionStep(Position currentPosition, CoordinateDirection direction) {
+    private Position getPositionStep(Position currentPosition, Direction direction) {
         int x = currentPosition.nextX(direction);
         int y = currentPosition.nextY(direction);
         return getPositionFromGrid(x, y);

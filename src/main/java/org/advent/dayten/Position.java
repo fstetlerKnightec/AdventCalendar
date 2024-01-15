@@ -2,16 +2,16 @@ package org.advent.dayten;
 
 public record Position(int xPosition, int yPosition, char character) {
 
-    public int nextX(CoordinateDirection coordinateDirection) {
+    public int nextX(Direction coordinateDirection) {
         return coordinateDirection.getX() + xPosition;
     }
 
-    public int nextY(CoordinateDirection coordinateDirection) {
+    public int nextY(Direction coordinateDirection) {
         return coordinateDirection.getY() + yPosition;
     }
 
-    public CoordinateDirection nextStep(Position previousPosition) {
-        return CoordinateDirection.getDirection(character, previousPosition, xPosition, yPosition);
+    public Direction nextStep(Position previousPosition) {
+        return Direction.getDirection(character, previousPosition, xPosition, yPosition);
 
     }
 }
