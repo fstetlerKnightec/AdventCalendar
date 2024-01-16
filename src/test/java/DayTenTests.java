@@ -64,7 +64,7 @@ public class DayTenTests {
     }
 
     @Test
-    public void verifyNextStepFromPosition() {
+    public void verifyNumberOfInsideLoop() {
         List<String> strings = List.of(
                 "...........",
                 ".S-------7.",
@@ -81,6 +81,7 @@ public class DayTenTests {
         grid.setUpGridWithPositionOfS(strings);
         grid.setFirstValidStepFromS();
         grid.setLoopThroughPositionsToFindS();
+
 
 
     }

@@ -19,7 +19,15 @@ public class DayTen implements PrintSolution {
     public void printPartOne() throws IOException {
         System.out.println(" ");
         System.out.println(this.getClass().getSimpleName() + " ---------------------------");
-//        System.out.println("Number of steps to reach furthest away = " + grid.numberOfStepsToReachFurthestAwayFromS(getStringsFromFile()));
+        System.out.println("Number of steps to reach furthest away = " + startGrid().numberOfStepsToReachFurthestAwayFromS());
+    }
+
+    private GridOfPipes startGrid() {
+        GridOfPipes gridOfPipes = new GridOfPipes();
+        gridOfPipes.setUpGridWithPositionOfS(getStringsFromFile());
+        gridOfPipes.setFirstValidStepFromS();
+        gridOfPipes.setLoopThroughPositionsToFindS();
+        return gridOfPipes;
     }
 
     @Override
@@ -28,15 +36,6 @@ public class DayTen implements PrintSolution {
     }
 
 
-
-//
-//    private GridOfPipes startGrid(List<String> strings) {
-//        GridOfPipes gridOfPipes = new GridOfPipes();
-//        gridOfPipes.setUpGridWithPositionOfS(strings);
-//        gridOfPipes.setFirstValidStepFromS();
-//        gridOfPipes.
-//        return gridOfPipes;
-//    }
 
     private List<String> getStringsFromFile() {
         List<String> allStrings;
