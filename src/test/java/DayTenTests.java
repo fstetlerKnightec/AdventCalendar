@@ -1,6 +1,5 @@
 import org.advent.dayten.DayTen;
 import org.advent.dayten.GridOfPipes;
-import org.advent.dayten.Position;
 import org.junit.Test;
 
 import java.util.List;
@@ -19,11 +18,12 @@ public class DayTenTests {
                 ".....");
 
         GridOfPipes gridOfPipes = new GridOfPipes();
-        gridOfPipes.setUpGrid(strings);
-        Position position = gridOfPipes.getPositionOfS();
+        gridOfPipes.setUpGridWithPositionOfS(strings);
+        gridOfPipes.setFirstValidStepFromS();
+        gridOfPipes.setLoopThroughPositionsToFindS();
 
-        assertEquals(1, position.coordinate().x());
-        assertEquals(1, position.coordinate().y());
+        assertEquals(1, gridOfPipes.getPositionOfS().coordinate().x());
+        assertEquals(1, gridOfPipes.getPositionOfS().coordinate().y());
     }
 
     @Test
@@ -35,13 +35,15 @@ public class DayTenTests {
                 ".L-J.",
                 ".....");
 
-        GridOfPipes gridOfPipes = new GridOfPipes();
-        gridOfPipes.setUpGrid(strings);
-        Position position = gridOfPipes.findFirstValidStepFromS();
+        GridOfPipes grid = new GridOfPipes();
+        grid.setUpGridWithPositionOfS(strings);
+        grid.setFirstValidStepFromS();
+        grid.setLoopThroughPositionsToFindS();
 
-        assertEquals(2, position.coordinate().x());
-        assertEquals(1, position.coordinate().y());
+        assertEquals(2, grid.firstValidPosition.coordinate().x());
+        assertEquals(1, grid.firstValidPosition.coordinate().y());
     }
+
 
     @Test
     public void verifyNextStepFromPosition() {
@@ -52,12 +54,34 @@ public class DayTenTests {
                 ".L-J.",
                 ".....");
 
-        GridOfPipes gridOfPipes = new GridOfPipes();
-        gridOfPipes.setUpGrid(strings);
-        DayTen dayTen = new DayTen();
+        GridOfPipes grid = new GridOfPipes();
+        grid.setUpGridWithPositionOfS(strings);
+        grid.setFirstValidStepFromS();
+        grid.setLoopThroughPositionsToFindS();
 
-        int numberOfSteps = dayTen.numberOfStepsToReachFurthestAwayFromS(strings);
-
+        int numberOfSteps = grid.numberOfStepsToReachFurthestAwayFromS();
         assertEquals(4, numberOfSteps);
+    }
+
+    @Test
+    public void verifyNextStepFromPosition() {
+        List<String> strings = List.of(
+                "...........",
+                ".S-------7.",
+                ".|F-----7|.",
+                ".||.....||.",
+                ".||.....||.",
+                ".|L-7.F-J|.",
+                ".|..|.|..|.",
+                ".L--J.L--J.",
+                "..........."
+        );
+
+        GridOfPipes grid = new GridOfPipes();
+        grid.setUpGridWithPositionOfS(strings);
+        grid.setFirstValidStepFromS();
+        grid.setLoopThroughPositionsToFindS();
+
+
     }
 }

@@ -5,10 +5,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GridOfPipes {
-    private List<List<Position>> grid;
-    private Position startPosition;
+    public List<List<Position>> grid;
+    public Position startPosition;
+    public Position firstValidPosition;
+    public List<Position> positionsToS;
 
-    public void setUpGrid(List<String> listOfStrings) {
+    public void setUpGridWithPositionOfS(List<String> listOfStrings) {
         List<List<Position>> grid = new ArrayList<>();
         for (int i = 0; i < listOfStrings.size(); i++) {
             List<Position> rowPositions = new ArrayList<>();
@@ -26,7 +28,13 @@ public class GridOfPipes {
         this.grid = grid;
     }
 
-    public List<Position> loopThroughPositionsToFindS(Position position, Position previousPosition) {
+    public int numberOfStepsToReachFurthestAwayFromS() {
+        return (positionsToS.size() - 1) / 2;
+    }
+
+    public void setLoopThroughPositionsToFindS() {
+        Position position = firstValidPosition;
+        Position previousPosition = startPosition;
         List<Position> listOfPositions = new ArrayList<>(Arrays.asList(previousPosition, position));
         while (position.character() != 'S') {
             Direction direction = position.nextDirection(previousPosition);
@@ -34,24 +42,27 @@ public class GridOfPipes {
             position = getPositionFromGrid(position.nextX(direction), position.nextY(direction));
             listOfPositions.add(position);
         }
-        return listOfPositions;
+        positionsToS = listOfPositions;
     }
 
-    public Position findFirstValidStepFromS() {
+    public void setFirstValidStepFromS() {
         Position positionCandidate = getPositionAfterStep(startPosition, Direction.UP);
         if (List.of('|', 'F', '7').contains(positionCandidate.character())) {
-            return positionCandidate;
+            firstValidPosition = positionCandidate;
+            return;
         }
         positionCandidate = getPositionAfterStep(startPosition, Direction.RIGHT);
         if (List.of('-', '7', 'J').contains(positionCandidate.character())) {
-            return positionCandidate;
+            firstValidPosition = positionCandidate;
+            return;
         }
         positionCandidate = getPositionAfterStep(startPosition, Direction.DOWN);
         if (List.of('|', 'J', 'L').contains(positionCandidate.character())) {
-            return positionCandidate;
+            firstValidPosition = positionCandidate;
+            return;
         }
         positionCandidate = getPositionAfterStep(startPosition, Direction.LEFT);
-        return positionCandidate;
+        firstValidPosition = positionCandidate;
     }
 
     private Position getPositionAfterStep(Position currentPosition, Direction direction) {
