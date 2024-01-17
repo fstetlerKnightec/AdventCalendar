@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Column {
 
-    public List<Position> positions;
+    private List<Position> positions;
 
     public List<Position> getPositions() {
         return positions;

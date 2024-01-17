@@ -35,6 +35,6 @@ public class DayElevenTests {
         List<Position> rowWithG = galaxy.getRows().get(1).getPositions();
 
         assertEquals(rowWithG.get(7), columnWithG.get(1));
-        assertEquals('2', rowWithG.get(7).character);
+        assertEquals('2', rowWithG.get(7).getCharacter());
     }
 }
