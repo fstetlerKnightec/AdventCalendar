@@ -35,8 +35,6 @@ public class DayTen implements PrintSolution {
 
     }
 
-
-
     private List<String> getStringsFromFile() {
         List<String> allStrings;
         try {

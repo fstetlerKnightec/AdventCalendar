@@ -1,8 +1,8 @@
 package org.advent.dayten;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class GridOfPipes {
     public List<List<Position>> grid;
@@ -43,6 +43,40 @@ public class GridOfPipes {
             listOfPositions.add(position);
         }
         positionsToS = listOfPositions;
+    }
+
+    public int numberOfDotsInsidePath() {
+        int numberOfDots = 0;
+
+//        for (int j = 0; j < grid.size(); j++) {
+
+            List<Position> currentRow = grid.get(0);
+
+            boolean insideLoop = false;
+            for (int i = 0; i < currentRow.size() - 1; i++) {
+                Position currentPosition = currentRow.get(i);
+
+                int index = positionsToS.indexOf(currentPosition);
+
+                if (positionsToS.contains(currentPosition)) {
+                    if (index >= 0) {
+                        if (positionsToS.indexOf(currentRow.get(i)) + 1 != positionsToS.indexOf(currentRow.get(i + 1))) {
+                            insideLoop = !insideLoop;
+
+                        }
+                    }
+                }
+
+                if (insideLoop) {
+                    if (currentRow.get(i).character() == '.') {
+                        numberOfDots += 1;
+                    }
+                }
+            }
+//        }
+
+        System.out.println(numberOfDots);
+        return numberOfDots;
     }
 
     public void setFirstValidStepFromS() {
