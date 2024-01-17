@@ -8,15 +8,19 @@ public class Space {
     public List<Row> rows = new ArrayList<>();
     public List<Column> columns = new ArrayList<>();
 
+    public void expandSpaceBesideEmptyRow() {
+
+
+
+
+    }
+
     public void makeRows(List<String> strings) {
         for (int i = 0; i < strings.size(); i++) {
             Row row = new Row();
             List<Position> positions = new ArrayList<>();
             for (int j = 0; j < strings.get(i).length(); j++) {
-                Position position = new Position();
-                position.setCoordinate(new Coordinate(j, i));
-                position.setCharacter(strings.get(i).charAt(j));
-                position.setGalaxy(position.getCharacter() == '#');
+                Position position = new Position(new Coordinate(j, i), strings.get(i).charAt(j));
                 positions.add(position);
             }
             row.setPositions(positions);

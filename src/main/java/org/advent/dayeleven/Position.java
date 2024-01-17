@@ -8,9 +8,14 @@ public class Position {
 
     public char character;
 
+    public Position(Coordinate coordinate, char character) {
+        this.coordinate = coordinate;
+        this.character = character;
+    }
+
 
     public boolean isGalaxy() {
-        return isGalaxy;
+        return character == '#';
     }
 
     public void setGalaxy(boolean isGalaxy) {

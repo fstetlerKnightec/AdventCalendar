@@ -57,7 +57,7 @@ public class DayElevenTests {
         Space space = new Space();
 
         space.makeRows(strings);
-//        space.addRowOfDotsOfRowDoesntHave();
+        space.expandSpaceBesideEmptyRow();
         space.makeColumnsFromExistingRows();
 
 
