@@ -1,7 +1,5 @@
-import org.advent.dayeleven.Column;
-import org.advent.dayeleven.Galaxy;
+import org.advent.dayeleven.Space;
 import org.advent.dayeleven.Position;
-import org.advent.dayeleven.Row;
 import org.junit.Test;
 
 import java.util.List;
@@ -26,15 +24,45 @@ public class DayElevenTests {
                 "8...9....."
         );
 
-        Galaxy galaxy = new Galaxy();
+        Space space = new Space();
 
-        galaxy.makeRows(strings);
-        galaxy.makeColumnsFromExistingRows();
+        space.makeRows(strings);
+        space.makeColumnsFromExistingRows();
 
-        List<Position> columnWithG = galaxy.getColumns().get(7).getPositions();
-        List<Position> rowWithG = galaxy.getRows().get(1).getPositions();
+        List<Position> columnWithG = space.getColumns().get(7).getPositions();
+        List<Position> rowWithG = space.getRows().get(1).getPositions();
 
-        assertEquals(rowWithG.get(7), columnWithG.get(1));
-        assertEquals('2', rowWithG.get(7).getCharacter());
+        char charOnRow = rowWithG.get(7).getCharacter();
+        char charOnColumn = columnWithG.get(1).getCharacter();
+
+        assertEquals(charOnRow, charOnColumn);
+        assertEquals('2', charOnRow);
     }
+
+    @Test
+    public void testInsertLineOnColumnOrRowWithNospace() {
+        List<String> strings = List.of(
+                "...#......",
+                ".......#..",
+                "#.........",
+                "..........",
+                "......#...",
+                ".#........",
+                ".........#",
+                "..........",
+                ".......#..",
+                "#...#....."
+        );
+
+        Space space = new Space();
+
+        space.makeRows(strings);
+//        space.addRowOfDotsOfRowDoesntHave();
+        space.makeColumnsFromExistingRows();
+
+
+
+    }
+
+
 }

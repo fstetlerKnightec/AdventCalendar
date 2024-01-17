@@ -13,8 +13,8 @@ public class Position {
         return isGalaxy;
     }
 
-    public void setGalaxy(boolean galaxy) {
-        isGalaxy = galaxy;
+    public void setGalaxy(boolean isGalaxy) {
+        this.isGalaxy = isGalaxy;
     }
 
     public Coordinate getCoordinate() {

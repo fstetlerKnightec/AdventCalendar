@@ -3,11 +3,10 @@ package org.advent.dayeleven;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Galaxy {
+public class Space {
 
     public List<Row> rows = new ArrayList<>();
     public List<Column> columns = new ArrayList<>();
-
 
     public void makeRows(List<String> strings) {
         for (int i = 0; i < strings.size(); i++) {
