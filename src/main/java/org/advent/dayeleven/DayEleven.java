@@ -9,7 +9,6 @@ import java.util.List;
 
 public class DayEleven implements PrintSolution {
 
-    Space space = new Space();
 
     @Override
     public void printPartOne() throws IOException {
@@ -23,6 +22,8 @@ public class DayEleven implements PrintSolution {
 
 
     public long solutionForPartOne() {
+        Space space = new Space();
+
         space.makeRows(getStringsFromFile(), 2);
         space.makeColumnsFromExistingRows(2);
 
@@ -32,6 +33,8 @@ public class DayEleven implements PrintSolution {
     }
 
     public long solutionForPartTwo() {
+        Space space = new Space();
+
         space.makeRows(getStringsFromFile(), 1000000);
         space.makeColumnsFromExistingRows(1000000);
 

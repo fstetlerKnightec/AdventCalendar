@@ -45,6 +45,7 @@ public class Space {
         long startX = startColumn.getPositions().getFirst().getCoordinate().getX();
         for (long i = startX; i < startX + numberOfXStepsBetweenPos; i++) {
             countedSteps += updatedColumn.getWidth();
+            System.out.println(updatedColumn.getWidth());
 
 
             long finalI = i;

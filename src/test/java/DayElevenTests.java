@@ -153,8 +153,8 @@ public class DayElevenTests {
         ));
 
         Space space = new Space();
-        space.makeRows(strings, 100);
-        space.makeColumnsFromExistingRows(100);
+        space.makeRows(strings, 1000000);
+        space.makeColumnsFromExistingRows(1000000);
 
         List<Position> positions = space.galaxyPositions();
 
