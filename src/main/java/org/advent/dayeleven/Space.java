@@ -2,6 +2,7 @@ package org.advent.dayeleven;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Space {
 
@@ -10,18 +11,18 @@ public class Space {
 
     public void makeRows(List<String> strings, int widthExpander) {
         for (int i = 0; i < strings.size(); i++) {
-            int width = getWidthOfRow(strings.get(i), widthExpander);
-            Row row = new Row(width);
             List<Position> positions = loopStringAndCreatePositions(strings, i);
-            row.setPositions(positions);
-            row.setRowNumber(positions.getFirst().getCoordinate().getY());
+            Row row = new Row(
+                    positions,
+                    getWidthOfRow(strings.get(i), widthExpander),
+                    positions.getFirst().getCoordinate().getY());
             rows.add(row);
         }
     }
 
     public void makeColumnsFromExistingRows(int widthExpander) {
         for (int i = 0; i < rows.getFirst().getPositions().size(); i++) {
-            Column column = new Column();
+            Column column = new Column(loopRowsAndCreateColumnsWithPositions(i));
             column.setPositions(loopRowsAndCreateColumnsWithPositions(i));
             column.setWidth(getWidthFromColumn(column, widthExpander));
             column.setColumnNumber(column.getPositions().getFirst().getCoordinate().getX());
@@ -74,18 +75,12 @@ public class Space {
         return countedSteps;
     }
 
-
     public int getWidthFromColumn(Column column, int widthExpander) {
         return column.getPositions().stream().anyMatch(pos -> pos.getCharacter() == '#') ? 1 : widthExpander;
-
     }
 
     public List<Position> loopRowsAndCreateColumnsWithPositions(int i) {
-        List<Position> positions = new ArrayList<>();
-        for (Row row : rows) {
-            positions.add(row.getPositions().get(i));
-        }
-        return positions;
+        return rows.stream().map(row -> row.getPositions().get(i)).collect(Collectors.toList());
     }
 
     public List<Position> loopStringAndCreatePositions(List<String> strings, int i) {

@@ -10,8 +10,10 @@ public class Row {
 
     private final int width;
 
-    public Row(int width) {
+    public Row(List<Position> positions, int width, int rowNumber) {
+        this.positions = positions;
         this.width = width;
+        this.rowNumber = rowNumber;
     }
 
     public int getRowNumber() {

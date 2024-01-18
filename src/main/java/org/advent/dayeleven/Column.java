@@ -6,6 +6,11 @@ public class Column {
 
     private List<Position> positions;
 
+    public Column(List<Position> positions) {
+        this.positions = positions;
+
+    }
+
     private int columnNumber;
 
     private int width;
