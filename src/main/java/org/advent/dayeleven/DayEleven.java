@@ -13,7 +13,7 @@ public class DayEleven implements PrintSolution {
 
     @Override
     public void printPartOne() throws IOException {
-        System.out.println(getStringsFromFile().get(0));
+        System.out.println(solutionForPartOne());
     }
 
     @Override
@@ -22,10 +22,14 @@ public class DayEleven implements PrintSolution {
     }
 
 
-//    public int solutionForPartOne() {
-//
-//
-//    }
+    public int solutionForPartOne() {
+        space.makeRows(getStringsFromFile());
+        space.makeColumnsFromExistingRows();
+
+        List<Position> positions = space.galaxyPositions();
+
+        return space.loopPositionsAndFindSum(positions);
+    }
 
 
 
