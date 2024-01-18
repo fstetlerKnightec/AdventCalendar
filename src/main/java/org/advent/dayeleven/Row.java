@@ -6,7 +6,7 @@ public class Row {
 
     private List<Position> positions;
 
-    private int width;
+    private final int width;
 
     public Row(int width) {
         this.width = width;
