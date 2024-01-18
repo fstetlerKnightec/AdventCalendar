@@ -50,7 +50,6 @@ public class Space {
             int finalI = i;
             updatedColumn = columns.stream().filter(c -> c.getColumnNumber() == finalI + 1).findFirst().orElseThrow();
         }
-        System.out.println("X = " + countedSteps);
         return countedSteps;
     }
 
@@ -74,8 +73,6 @@ public class Space {
             int finalI = i;
             updatedRow = rows.stream().filter(r -> r.getRowNumber() == finalI + 1).findFirst().orElseThrow();
         }
-        System.out.println("Y = " + countedSteps);
-
         return countedSteps;
     }
 
@@ -98,13 +95,41 @@ public class Space {
         List<Position> positions = new ArrayList<>();
         for (int j = 0; j < strings.size(); j++) {
             Position position = new Position(new Coordinate(j, i), strings.get(i).charAt(j));
+            position.setGalaxy(position.getCharacter() == '#');
             positions.add(position);
         }
         return positions;
     }
 
+    public List<Position> galaxyPositions() {
+        List<Position> galaxyPositions = new ArrayList<>();
+        for (int i = 0; i < rows.size(); i++) {
+            for (int j = 0; j < rows.get(i).getPositions().size(); j++) {
+                if (rows.get(i).getPositions().get(j).isGalaxy()) {
+                    galaxyPositions.add(rows.get(i).getPositions().get(j));
+                }
+            }
+        }
+        return galaxyPositions;
+    }
+
     public int getWidthOfRow(String currentString) {
         return currentString.contains("#") ? 1 : 2;
+    }
+
+    public int loopPositionsAndFindSum(List<Position> positions) {
+        int steps = 0;
+        Position basePosition = positions.get(0);
+        for (int j = 0; j < positions.size(); j++) {
+            Position toPosition = positions.get(j);
+            if (!toPosition.equals(basePosition)) {
+                steps = (minimumXStepsBetweenTwoCoordinates(basePosition, toPosition) + minimumYStepsBetweenTwoCoordinates(basePosition, toPosition));
+                System.out.println(steps);
+            }
+        }
+
+
+        return 1;
     }
 
     public List<Row> getRows() {

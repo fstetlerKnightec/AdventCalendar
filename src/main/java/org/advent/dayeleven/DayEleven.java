@@ -8,6 +8,9 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class DayEleven implements PrintSolution {
+
+    Space space = new Space();
+
     @Override
     public void printPartOne() throws IOException {
         System.out.println(getStringsFromFile().get(0));
@@ -17,6 +20,14 @@ public class DayEleven implements PrintSolution {
     public void printPartTwo() throws IOException {
 
     }
+
+
+//    public int solutionForPartOne() {
+//
+//
+//    }
+
+
 
     private List<String> getStringsFromFile() {
         List<String> allStrings;

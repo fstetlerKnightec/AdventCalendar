@@ -106,6 +106,31 @@ public class DayElevenTests {
         int totalSteps = stepsX + stepsY;
 
         assertEquals(13, totalSteps);
+    }
+
+    @Test
+    public void verifySumOfAllMinimumStepsBetweenGalaxies() {
+        List<String> strings = new ArrayList<>(Arrays.asList(
+                "...#......",
+                ".......#..",
+                "#.........",
+                "..........",
+                "......#...",
+                ".#........",
+                ".........#",
+                "..........",
+                ".......#..",
+                "#...#....."
+        ));
+
+        Space space = new Space();
+        space.makeRows(strings);
+        space.makeColumnsFromExistingRows();
+
+        List<Position> positions = space.galaxyPositions();
+
+        int steps = space.loopPositionsAndFindSum(positions);
+
 
 
     }
