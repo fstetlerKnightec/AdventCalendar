@@ -4,7 +4,6 @@ import org.advent.PrintSolution;
 import org.advent.Util;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 

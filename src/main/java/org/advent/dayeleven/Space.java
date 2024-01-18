@@ -1,11 +1,10 @@
 package org.advent.dayeleven;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Space{
+public class Space {
 
     public List<Row> rows = new ArrayList<>();
     public List<Column> columns = new ArrayList<>();
@@ -30,7 +29,7 @@ public class Space{
     }
 
     public int getWidthFromColumn(Column column) {
-        return column.getPositions().stream().anyMatch(pos -> pos.getCharacter() == '#') ? 1: 2;
+        return column.getPositions().stream().anyMatch(pos -> pos.getCharacter() == '#') ? 1 : 2;
 
     }
 
