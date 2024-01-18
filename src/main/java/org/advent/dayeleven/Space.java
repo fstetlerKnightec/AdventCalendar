@@ -120,10 +120,9 @@ public class Space {
         List<Position> usedPosition = new ArrayList<>();
         for (long i = 0; i < positions.size(); i++) {
             Position basePosition = positions.get((int) i);
-            for (long j = 0; j < positions.size(); j++) {
-                Position toPosition = positions.get((int) j);
-                if (!toPosition.equals(basePosition) && !usedPosition.contains(toPosition)) {
-                    steps = (minimumXStepsBetweenTwoCoordinates(basePosition, toPosition) + minimumYStepsBetweenTwoCoordinates(basePosition, toPosition));
+            for (Position position : positions) {
+                if (!position.equals(basePosition) && !usedPosition.contains(position)) {
+                    steps = (minimumXStepsBetweenTwoCoordinates(basePosition, position) + minimumYStepsBetweenTwoCoordinates(basePosition, position));
                     sumOfSteps += steps;
                 }
             }
