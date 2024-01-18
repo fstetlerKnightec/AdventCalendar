@@ -6,19 +6,19 @@ public class Row {
 
     private List<Position> positions;
 
-    private long rowNumber;
+    private int rowNumber;
 
-    private final long width;
+    private final int width;
 
-    public Row(long width) {
+    public Row(int width) {
         this.width = width;
     }
 
-    public long getRowNumber() {
+    public int getRowNumber() {
         return rowNumber;
     }
 
-    public void setRowNumber(long rowNumber) {
+    public void setRowNumber(int rowNumber) {
         this.rowNumber = rowNumber;
     }
 
@@ -30,7 +30,7 @@ public class Row {
         this.positions = positions;
     }
 
-    public long getWidth() {
+    public int getWidth() {
         return width;
     }
 }

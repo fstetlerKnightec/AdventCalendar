@@ -6,9 +6,9 @@ public class Column {
 
     private List<Position> positions;
 
-    private long columnNumber;
+    private int columnNumber;
 
-    private long width;
+    private int width;
 
     public List<Position> getPositions() {
         return positions;
@@ -18,19 +18,19 @@ public class Column {
         this.positions = positions;
     }
 
-    public long getWidth() {
+    public int getWidth() {
         return width;
     }
 
-    public long getColumnNumber() {
+    public int getColumnNumber() {
         return columnNumber;
     }
 
-    public void setColumnNumber(long columnNumber) {
+    public void setColumnNumber(int columnNumber) {
         this.columnNumber = columnNumber;
     }
 
-    public void setWidth(long width) {
+    public void setWidth(int width) {
         this.width = width;
     }
 }
