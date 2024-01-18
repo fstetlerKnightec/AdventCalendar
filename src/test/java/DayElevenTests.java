@@ -131,6 +131,7 @@ public class DayElevenTests {
 
         int steps = space.loopPositionsAndFindSum(positions);
 
+        assertEquals(374, steps);
 
 
     }

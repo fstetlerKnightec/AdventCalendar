@@ -118,18 +118,22 @@ public class Space {
     }
 
     public int loopPositionsAndFindSum(List<Position> positions) {
-        int steps = 0;
-        Position basePosition = positions.get(0);
-        for (int j = 0; j < positions.size(); j++) {
-            Position toPosition = positions.get(j);
-            if (!toPosition.equals(basePosition)) {
-                steps = (minimumXStepsBetweenTwoCoordinates(basePosition, toPosition) + minimumYStepsBetweenTwoCoordinates(basePosition, toPosition));
-                System.out.println(steps);
+        int steps;
+        int sumOfSteps = 0;
+        List<Position> usedPosition = new ArrayList<>();
+        for (int i = 0; i < positions.size(); i++) {
+            Position basePosition = positions.get(i);
+            for (int j = 0; j < positions.size(); j++) {
+                Position toPosition = positions.get(j);
+                if (!toPosition.equals(basePosition) && !usedPosition.contains(toPosition)) {
+                    steps = (minimumXStepsBetweenTwoCoordinates(basePosition, toPosition) + minimumYStepsBetweenTwoCoordinates(basePosition, toPosition));
+                    sumOfSteps += steps;
+                }
             }
+            usedPosition.add(basePosition);
         }
 
-
-        return 1;
+        return sumOfSteps;
     }
 
     public List<Row> getRows() {
