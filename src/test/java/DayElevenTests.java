@@ -2,6 +2,8 @@ import org.advent.dayeleven.Space;
 import org.advent.dayeleven.Position;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -41,7 +43,7 @@ public class DayElevenTests {
 
     @Test
     public void testInsertLineOnColumnOrRowWithNospace() {
-        List<String> strings = List.of(
+        List<String> strings = new ArrayList<>(Arrays.asList(
                 "...#......",
                 ".......#..",
                 "#.........",
@@ -52,17 +54,13 @@ public class DayElevenTests {
                 "..........",
                 ".......#..",
                 "#...#....."
-        );
+        ));
 
         Space space = new Space();
 
         space.makeRows(strings);
-        space.expandSpaceBesideEmptyRow();
         space.makeColumnsFromExistingRows();
-
-
+        System.out.println(space.getColumns().get(5).getWidth());
 
     }
-
-
 }

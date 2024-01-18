@@ -6,6 +6,8 @@ public class Column {
 
     private List<Position> positions;
 
+    private int width;
+
     public List<Position> getPositions() {
         return positions;
     }
@@ -14,5 +16,11 @@ public class Column {
         this.positions = positions;
     }
 
+    public int getWidth() {
+        return width;
+    }
 
+    public void setWidth(int width) {
+        this.width = width;
+    }
 }
