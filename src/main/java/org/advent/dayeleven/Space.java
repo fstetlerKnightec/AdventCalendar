@@ -20,7 +20,7 @@ public class Space {
     }
 
     public void makeColumnsFromExistingRows(int widthExpander) {
-        for (long i = 0; i < rows.getFirst().getPositions().size(); i++) {
+        for (int i = 0; i < rows.getFirst().getPositions().size(); i++) {
             Column column = new Column();
             column.setPositions(loopRowsAndCreateColumnsWithPositions(i));
             column.setWidth(getWidthFromColumn(column, widthExpander));
@@ -80,10 +80,10 @@ public class Space {
 
     }
 
-    public List<Position> loopRowsAndCreateColumnsWithPositions(long i) {
+    public List<Position> loopRowsAndCreateColumnsWithPositions(int i) {
         List<Position> positions = new ArrayList<>();
         for (Row row : rows) {
-            positions.add(row.getPositions().get((int) i));
+            positions.add(row.getPositions().get(i));
         }
         return positions;
     }
@@ -118,17 +118,15 @@ public class Space {
         long steps;
         long sumOfSteps = 0;
         List<Position> usedPosition = new ArrayList<>();
-        for (long i = 0; i < positions.size(); i++) {
-            Position basePosition = positions.get((int) i);
-            for (Position position : positions) {
-                if (!position.equals(basePosition) && !usedPosition.contains(position)) {
-                    steps = (minimumXStepsBetweenTwoCoordinates(basePosition, position) + minimumYStepsBetweenTwoCoordinates(basePosition, position));
+        for (Position startPosition : positions) {
+            for (Position toPosition : positions) {
+                if (!toPosition.equals(startPosition) && !usedPosition.contains(toPosition)) {
+                    steps = (minimumXStepsBetweenTwoCoordinates(startPosition, toPosition) + minimumYStepsBetweenTwoCoordinates(startPosition, toPosition));
                     sumOfSteps += steps;
                 }
+                usedPosition.add(startPosition);
             }
-            usedPosition.add(basePosition);
         }
-
         return sumOfSteps;
     }
 
