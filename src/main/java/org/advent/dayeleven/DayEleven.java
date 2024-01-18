@@ -43,8 +43,6 @@ public class DayEleven implements PrintSolution {
         return space.loopPositionsAndFindSum(positions);
     }
 
-
-
     private List<String> getStringsFromFile() {
         List<String> allStrings;
         try {

@@ -21,7 +21,7 @@ public class Space {
     }
 
     public void makeColumnsFromExistingRows(int widthExpander) {
-        for (int i = 0; i < rows.getFirst().getPositions().size(); i++) {
+        for (int i = 0; i < rows.getFirst().positions().size(); i++) {
             Column column = new Column(loopRowsAndCreateColumnsWithPositions(i));
             column.setPositions(loopRowsAndCreateColumnsWithPositions(i));
             column.setWidth(getWidthFromColumn(column, widthExpander));
@@ -56,21 +56,21 @@ public class Space {
 
         Row startRow;
         if (pos1.getCoordinate().getY() > pos2.getCoordinate().getY()) {
-            startRow = rows.stream().filter(c -> c.getPositions().contains(pos2)).findAny().orElseThrow();
+            startRow = rows.stream().filter(c -> c.positions().contains(pos2)).findAny().orElseThrow();
         } else {
-            startRow = rows.stream().filter(c -> c.getPositions().contains(pos1)).findAny().orElseThrow();;
+            startRow = rows.stream().filter(c -> c.positions().contains(pos1)).findAny().orElseThrow();;
         }
 
         int numberOfYStepsBetweenPos = Math.abs(pos1.getCoordinate().getY() - pos2.getCoordinate().getY());
 
         Row updatedRow = startRow;
         int countedSteps = 0;
-        int startY = startRow.getPositions().getFirst().getCoordinate().getY();
+        int startY = startRow.positions().getFirst().getCoordinate().getY();
         for (int i = startY; i < startY + numberOfYStepsBetweenPos; i++) {
-            countedSteps += updatedRow.getWidth();
+            countedSteps += updatedRow.width();
 
             int finalI = i;
-            updatedRow = rows.stream().filter(r -> r.getRowNumber() == finalI + 1).findFirst().orElseThrow();
+            updatedRow = rows.stream().filter(r -> r.rowNumber() == finalI + 1).findFirst().orElseThrow();
         }
         return countedSteps;
     }
@@ -80,7 +80,7 @@ public class Space {
     }
 
     public List<Position> loopRowsAndCreateColumnsWithPositions(int i) {
-        return rows.stream().map(row -> row.getPositions().get(i)).collect(Collectors.toList());
+        return rows.stream().map(row -> row.positions().get(i)).collect(Collectors.toList());
     }
 
     public List<Position> loopStringAndCreatePositions(List<String> strings, int i) {
@@ -96,9 +96,9 @@ public class Space {
     public List<Position> galaxyPositions() {
         List<Position> galaxyPositions = new ArrayList<>();
         for (Row row : rows) {
-            for (int j = 0; j < row.getPositions().size(); j++) {
-                if (row.getPositions().get(j).isGalaxy()) {
-                    galaxyPositions.add(row.getPositions().get(j));
+            for (int j = 0; j < row.positions().size(); j++) {
+                if (row.positions().get(j).isGalaxy()) {
+                    galaxyPositions.add(row.positions().get(j));
                 }
             }
         }

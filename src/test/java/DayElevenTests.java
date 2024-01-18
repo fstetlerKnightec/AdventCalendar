@@ -32,7 +32,7 @@ public class DayElevenTests {
         space.makeColumnsFromExistingRows(2);
 
         List<Position> columnWithG = space.getColumns().get(7).getPositions();
-        List<Position> rowWithG = space.getRows().get(1).getPositions();
+        List<Position> rowWithG = space.getRows().get(1).positions();
 
         char charOnRow = rowWithG.get(7).getCharacter();
         char charOnColumn = columnWithG.get(1).getCharacter();
@@ -70,8 +70,8 @@ public class DayElevenTests {
         assertEquals(1, column1.getWidth());
         assertEquals(2, column2.getWidth());
 
-        assertEquals(1, row1.getWidth());
-        assertEquals(2, row2.getWidth());
+        assertEquals(1, row1.width());
+        assertEquals(2, row2.width());
     }
 
     @Test
@@ -94,10 +94,10 @@ public class DayElevenTests {
         space.makeRows(strings, 2);
         space.makeColumnsFromExistingRows(2);
 
-        Position pos1 = space.getRows().get(1).getPositions().get(7);
+        Position pos1 = space.getRows().get(1).positions().get(7);
 
 //        System.out.prlongln(space.getRows().get(6).getPositions().get(9));
-        Position pos2 = space.getRows().get(5).getPositions().get(1);
+        Position pos2 = space.getRows().get(5).positions().get(1);
 
 
         long stepsX = space.minimumXStepsBetweenTwoCoordinates(pos1, pos2);

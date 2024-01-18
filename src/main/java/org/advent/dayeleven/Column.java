@@ -5,15 +5,12 @@ import java.util.List;
 public class Column {
 
     private List<Position> positions;
+    private int columnNumber;
+    private int width;
 
     public Column(List<Position> positions) {
         this.positions = positions;
-
     }
-
-    private int columnNumber;
-
-    private int width;
 
     public List<Position> getPositions() {
         return positions;
