@@ -75,7 +75,7 @@ public class DayElevenTests {
     }
 
     @Test
-    public void verifyMinimumStepsBetweenGalaxyInLineZeroAndLineFour() {
+    public void verifyMinimumStepsBetweenGalaxyInRowOneAndRowFive() {
         List<String> strings = new ArrayList<>(Arrays.asList(
                 "...#......",
                 ".......#..",
@@ -94,15 +94,18 @@ public class DayElevenTests {
         space.makeRows(strings);
         space.makeColumnsFromExistingRows();
 
-        Position pos1 = space.getRows().get(2).getPositions().get(0);
+        Position pos1 = space.getRows().get(1).getPositions().get(7);
 
 //        System.out.println(space.getRows().get(6).getPositions().get(9));
-        Position pos2 = space.getRows().get(6).getPositions().get(9);
+        Position pos2 = space.getRows().get(5).getPositions().get(1);
 
 
-        int steps = space.minimumXStepsBetweenTwoCoordinates(pos1, pos2);
+        int stepsX = space.minimumXStepsBetweenTwoCoordinates(pos1, pos2);
         int stepsY = space.minimumYStepsBetweenTwoCoordinates(pos1, pos2);
 
+        int totalSteps = stepsX + stepsY;
+
+        assertEquals(13, totalSteps);
 
 
     }
