@@ -18,6 +18,15 @@ public class DayEleven implements PrintSolution {
 
     }
 
+//    public int getSolutionForPartOne() {
+//        Space space = new Space();
+//
+//        space.makeRows(getStringsFromFile());
+//        space.makeColumnsFromExistingRows();
+//
+//
+//    }
+
     private List<String> getStringsFromFile() {
         List<String> allStrings;
         try {
