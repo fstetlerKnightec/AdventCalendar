@@ -13,18 +13,27 @@ public class DayEleven implements PrintSolution {
 
     @Override
     public void printPartOne() throws IOException {
-        System.out.println(solutionForPartOne());
+        System.out.println("part one = " + solutionForPartOne());
     }
 
     @Override
     public void printPartTwo() throws IOException {
-
+        System.out.println("part two = " + solutionForPartTwo());
     }
 
 
-    public int solutionForPartOne() {
-        space.makeRows(getStringsFromFile());
-        space.makeColumnsFromExistingRows();
+    public long solutionForPartOne() {
+        space.makeRows(getStringsFromFile(), 2);
+        space.makeColumnsFromExistingRows(2);
+
+        List<Position> positions = space.galaxyPositions();
+
+        return space.loopPositionsAndFindSum(positions);
+    }
+
+    public long solutionForPartTwo() {
+        space.makeRows(getStringsFromFile(), 1000000);
+        space.makeColumnsFromExistingRows(1000000);
 
         List<Position> positions = space.galaxyPositions();
 

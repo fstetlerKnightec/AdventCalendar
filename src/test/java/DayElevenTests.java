@@ -28,8 +28,8 @@ public class DayElevenTests {
 
         Space space = new Space();
 
-        space.makeRows(strings);
-        space.makeColumnsFromExistingRows();
+        space.makeRows(strings, 2);
+        space.makeColumnsFromExistingRows(2);
 
         List<Position> columnWithG = space.getColumns().get(7).getPositions();
         List<Position> rowWithG = space.getRows().get(1).getPositions();
@@ -58,8 +58,8 @@ public class DayElevenTests {
 
         Space space = new Space();
 
-        space.makeRows(strings);
-        space.makeColumnsFromExistingRows();
+        space.makeRows(strings, 2);
+        space.makeColumnsFromExistingRows(2);
 
         Column column1 = space.getColumns().get(1);
         Column column2 = space.getColumns().get(2);
@@ -91,19 +91,19 @@ public class DayElevenTests {
 
         Space space = new Space();
 
-        space.makeRows(strings);
-        space.makeColumnsFromExistingRows();
+        space.makeRows(strings, 2);
+        space.makeColumnsFromExistingRows(2);
 
         Position pos1 = space.getRows().get(1).getPositions().get(7);
 
-//        System.out.println(space.getRows().get(6).getPositions().get(9));
+//        System.out.prlongln(space.getRows().get(6).getPositions().get(9));
         Position pos2 = space.getRows().get(5).getPositions().get(1);
 
 
-        int stepsX = space.minimumXStepsBetweenTwoCoordinates(pos1, pos2);
-        int stepsY = space.minimumYStepsBetweenTwoCoordinates(pos1, pos2);
+        long stepsX = space.minimumXStepsBetweenTwoCoordinates(pos1, pos2);
+        long stepsY = space.minimumYStepsBetweenTwoCoordinates(pos1, pos2);
 
-        int totalSteps = stepsX + stepsY;
+        long totalSteps = stepsX + stepsY;
 
         assertEquals(13, totalSteps);
     }
@@ -124,14 +124,43 @@ public class DayElevenTests {
         ));
 
         Space space = new Space();
-        space.makeRows(strings);
-        space.makeColumnsFromExistingRows();
+        space.makeRows(strings, 2);
+        space.makeColumnsFromExistingRows(2);
 
         List<Position> positions = space.galaxyPositions();
 
-        int steps = space.loopPositionsAndFindSum(positions);
+        long steps = space.loopPositionsAndFindSum(positions);
 
         assertEquals(374, steps);
+
+
+    }
+
+
+    @Test
+    public void verifySumOfAllMinimumStepsBetweenGalaxiesForPartTwo() {
+        List<String> strings = new ArrayList<>(Arrays.asList(
+                "...#......",
+                ".......#..",
+                "#.........",
+                "..........",
+                "......#...",
+                ".#........",
+                ".........#",
+                "..........",
+                ".......#..",
+                "#...#....."
+        ));
+
+        Space space = new Space();
+        space.makeRows(strings, 100);
+        space.makeColumnsFromExistingRows(100);
+
+        List<Position> positions = space.galaxyPositions();
+
+        long steps = space.loopPositionsAndFindSum(positions);
+
+        assertEquals(8410, steps);
 
 
     }
