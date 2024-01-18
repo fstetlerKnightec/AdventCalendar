@@ -88,10 +88,10 @@ public class Space {
         return positions;
     }
 
-    public List<Position> loopStringAndCreatePositions(List<String> strings, long i) {
+    public List<Position> loopStringAndCreatePositions(List<String> strings, int i) {
         List<Position> positions = new ArrayList<>();
         for (int j = 0; j < strings.size(); j++) {
-            Position position = new Position(new Coordinate((int) j, (int) i), strings.get((int) i).charAt((int) j));
+            Position position = new Position(new Coordinate(j, i), strings.get(i).charAt(j));
             position.setGalaxy(position.getCharacter() == '#');
             positions.add(position);
         }
@@ -100,10 +100,10 @@ public class Space {
 
     public List<Position> galaxyPositions() {
         List<Position> galaxyPositions = new ArrayList<>();
-        for (int i = 0; i < rows.size(); i++) {
-            for (int j = 0; j < rows.get((int) i).getPositions().size(); j++) {
-                if (rows.get((int) i).getPositions().get((int) j).isGalaxy()) {
-                    galaxyPositions.add(rows.get((int) i).getPositions().get((int) j));
+        for (Row row : rows) {
+            for (int j = 0; j < row.getPositions().size(); j++) {
+                if (row.getPositions().get(j).isGalaxy()) {
+                    galaxyPositions.add(row.getPositions().get(j));
                 }
             }
         }
@@ -137,15 +137,7 @@ public class Space {
         return rows;
     }
 
-    public void setRows(List<Row> rows) {
-        this.rows = rows;
-    }
-
     public List<Column> getColumns() {
         return columns;
-    }
-
-    public void setColumns(List<Column> columns) {
-        this.columns = columns;
     }
 }
