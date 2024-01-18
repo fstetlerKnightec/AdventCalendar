@@ -60,7 +60,6 @@ public class DayElevenTests {
 
         space.makeRows(strings);
         space.makeColumnsFromExistingRows();
-        System.out.println(space.getColumns().get(5).getWidth());
-
+        System.out.println(space.getColumns().get(0).getPositions().get(2).getCoordinate().getX());
     }
 }
