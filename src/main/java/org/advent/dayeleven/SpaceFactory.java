@@ -29,9 +29,7 @@ public class SpaceFactory {
         List<Column> columns = new ArrayList<>();
         for (int i = 0; i < rows.getFirst().positions().size(); i++) {
             Column column = new Column(
-                    loopRowsAndCreateColumnsWithPositions(rows, i));
-            column.setWidth(widthExpander);
-            column.setColumnNumber(column.getPositions().getFirst().getCoordinate().getX());
+                    loopRowsAndCreateColumnsWithPositions(rows, i), widthExpander);
             columns.add(column);
         }
         return columns;
@@ -41,8 +39,8 @@ public class SpaceFactory {
         // cant make stream since I need j as coordinate for making coordinate
         List<Position> positions = new ArrayList<>();
         for (int j = 0; j < strings.size(); j++) {
-            Position position = new Position(new Coordinate(j, i), strings.get(i).charAt(j));
-            position.setGalaxy(position.isGalaxy());
+            char currentChar = strings.get(i).charAt(j);
+            Position position = new Position(new Coordinate(j, i), currentChar);
             positions.add(position);
         }
         return positions;
@@ -55,5 +53,4 @@ public class SpaceFactory {
     private int getWidthOfRow(String currentString, int widthExpander) {
         return currentString.contains("#") ? 1 : widthExpander;
     }
-
 }

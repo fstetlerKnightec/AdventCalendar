@@ -2,9 +2,10 @@ package org.advent.dayeleven;
 
 public class Position {
 
-    public boolean isGalaxy;
-    public Coordinate coordinate;
-    public char character;
+    // making this into a record SIGNIFICANTLY increases run time, from about 33 seconds to more than a minute. Curious.
+
+    public final Coordinate coordinate;
+    public final char character;
 
     public Position(Coordinate coordinate, char character) {
         this.coordinate = coordinate;
@@ -12,11 +13,8 @@ public class Position {
     }
 
     public boolean isGalaxy() {
-        return character == '#';
-    }
-
-    public void setGalaxy(boolean isGalaxy) {
-        this.isGalaxy = isGalaxy;
+        return character == '#'; // is this allowed by simply not setting isGalaxy in the field, but only
+        // calling isGalaxy depending on another field. Less constructor work and field assignment
     }
 
     public Coordinate getCoordinate() {

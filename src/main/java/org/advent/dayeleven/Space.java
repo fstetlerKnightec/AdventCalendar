@@ -15,7 +15,7 @@ public class Space {
     }
 
     public long minimumXStepsBetweenTwoCoordinates(Position pos1, Position pos2) {
-
+        // left for later, try to combine with the other minimumYSteps
         Column startColumn;
         if (pos1.getCoordinate().getX() > pos2.getCoordinate().getX()) {
             startColumn = columns.stream().filter(c -> c.getPositions().contains(pos2)).findAny().orElseThrow();
@@ -37,7 +37,7 @@ public class Space {
     }
 
     public long minimumYStepsBetweenTwoCoordinates(Position pos1, Position pos2) {
-
+        // left for later
         Row startRow;
         if (pos1.getCoordinate().getY() > pos2.getCoordinate().getY()) {
             startRow = rows.stream().filter(c -> c.positions().contains(pos2)).findAny().orElseThrow();
@@ -78,14 +78,6 @@ public class Space {
             }
         }
         return sumOfSteps;
-    }
-
-    public void setRows(List<Row> rows) {
-        this.rows = rows;
-    }
-
-    public void setColumns(List<Column> columns) {
-        this.columns = columns;
     }
 
     public List<Row> getRows() {
