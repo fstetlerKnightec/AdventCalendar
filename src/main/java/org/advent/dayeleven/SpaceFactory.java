@@ -19,7 +19,7 @@ public class SpaceFactory {
             Row row = new Row(
                     positions,
                     getWidthOfRow(strings.get(i), widthExpander),
-                    positions.getFirst().getCoordinate().getY());
+                    positions.getFirst().coordinate().getY());
             rows.add(row);
         }
         return rows;

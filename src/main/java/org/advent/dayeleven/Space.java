@@ -17,19 +17,19 @@ public class Space {
     public long minimumXStepsBetweenTwoCoordinates(Position pos1, Position pos2) {
         // left for later, try to combine with the other minimumYSteps
         Column startColumn;
-        if (pos1.getCoordinate().getX() > pos2.getCoordinate().getX()) {
-            startColumn = columns.stream().filter(c -> c.getPositions().contains(pos2)).findAny().orElseThrow();
+        if (pos1.coordinate().getX() > pos2.coordinate().getX()) {
+            startColumn = columns.stream().filter(c -> c.positions().contains(pos2)).findAny().orElseThrow();
         } else {
-            startColumn = columns.stream().filter(c -> c.getPositions().contains(pos1)).findAny().orElseThrow();
+            startColumn = columns.stream().filter(c -> c.positions().contains(pos1)).findAny().orElseThrow();
         }
 
-        int numberOfXStepsBetweenPos = Math.abs(pos1.getCoordinate().getX() - pos2.getCoordinate().getX());
+        int numberOfXStepsBetweenPos = Math.abs(pos1.coordinate().getX() - pos2.coordinate().getX());
 
         Column updatedColumn = startColumn;
         int countedSteps = 0;
-        int startX = startColumn.getPositions().getFirst().getCoordinate().getX();
+        int startX = startColumn.positions().getFirst().coordinate().getX();
         for (int i = startX; i < startX + numberOfXStepsBetweenPos; i++) {
-            countedSteps += updatedColumn.getWidth();
+            countedSteps += updatedColumn.width();
             int finalI = i;
             updatedColumn = columns.stream().filter(c -> c.getColumnNumber() == finalI + 1).findFirst().orElseThrow();
         }
@@ -39,17 +39,17 @@ public class Space {
     public long minimumYStepsBetweenTwoCoordinates(Position pos1, Position pos2) {
         // left for later
         Row startRow;
-        if (pos1.getCoordinate().getY() > pos2.getCoordinate().getY()) {
+        if (pos1.coordinate().getY() > pos2.coordinate().getY()) {
             startRow = rows.stream().filter(c -> c.positions().contains(pos2)).findAny().orElseThrow();
         } else {
             startRow = rows.stream().filter(c -> c.positions().contains(pos1)).findAny().orElseThrow();
         }
 
-        int numberOfYStepsBetweenPos = Math.abs(pos1.getCoordinate().getY() - pos2.getCoordinate().getY());
+        int numberOfYStepsBetweenPos = Math.abs(pos1.coordinate().getY() - pos2.coordinate().getY());
 
         Row updatedRow = startRow;
         int countedSteps = 0;
-        int startY = startRow.positions().getFirst().getCoordinate().getY();
+        int startY = startRow.positions().getFirst().coordinate().getY();
         for (int i = startY; i < startY + numberOfYStepsBetweenPos; i++) {
             countedSteps += updatedRow.width();
 

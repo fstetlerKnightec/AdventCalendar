@@ -26,11 +26,11 @@ public class DayElevenTests {
 
         Space space = spaceFactory.spaceCreator(strings, 2);
 
-        List<Position> columnWithG = space.getColumns().get(7).getPositions();
+        List<Position> columnWithG = space.getColumns().get(7).positions();
         List<Position> rowWithG = space.getRows().get(1).positions();
 
-        char charOnRow = rowWithG.get(7).getCharacter();
-        char charOnColumn = columnWithG.get(1).getCharacter();
+        char charOnRow = rowWithG.get(7).character();
+        char charOnColumn = columnWithG.get(1).character();
 
         assertEquals(charOnRow, charOnColumn);
         assertEquals('2', charOnRow);
@@ -58,8 +58,8 @@ public class DayElevenTests {
         Row row1 = space.getRows().get(2);
         Row row2 = space.getRows().get(3);
 
-        assertEquals(1, column1.getWidth());
-        assertEquals(2, column2.getWidth());
+        assertEquals(1, column1.width());
+        assertEquals(2, column2.width());
 
         assertEquals(1, row1.width());
         assertEquals(2, row2.width());
