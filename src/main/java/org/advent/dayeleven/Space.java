@@ -22,15 +22,15 @@ public class Space {
 
     public void makeColumnsFromExistingRows(int widthExpander) {
         for (int i = 0; i < rows.getFirst().positions().size(); i++) {
-            Column column = new Column(loopRowsAndCreateColumnsWithPositions(i));
-            column.setPositions(loopRowsAndCreateColumnsWithPositions(i));
+            Column column = new Column(
+                    loopRowsAndCreateColumnsWithPositions(i));
             column.setWidth(getWidthFromColumn(column, widthExpander));
             column.setColumnNumber(column.getPositions().getFirst().getCoordinate().getX());
             columns.add(column);
         }
     }
 
-    public int minimumXStepsBetweenTwoCoordinates(Position pos1, Position pos2) {
+    public long minimumXStepsBetweenTwoCoordinates(Position pos1, Position pos2) {
 
         Column startColumn;
         if (pos1.getCoordinate().getX() > pos2.getCoordinate().getX()) {
@@ -52,7 +52,7 @@ public class Space {
         return countedSteps;
     }
 
-    public int minimumYStepsBetweenTwoCoordinates(Position pos1, Position pos2) {
+    public long minimumYStepsBetweenTwoCoordinates(Position pos1, Position pos2) {
 
         Row startRow;
         if (pos1.getCoordinate().getY() > pos2.getCoordinate().getY()) {
@@ -75,24 +75,6 @@ public class Space {
         return countedSteps;
     }
 
-    public int getWidthFromColumn(Column column, int widthExpander) {
-        return column.getPositions().stream().anyMatch(pos -> pos.getCharacter() == '#') ? 1 : widthExpander;
-    }
-
-    public List<Position> loopRowsAndCreateColumnsWithPositions(int i) {
-        return rows.stream().map(row -> row.positions().get(i)).collect(Collectors.toList());
-    }
-
-    public List<Position> loopStringAndCreatePositions(List<String> strings, int i) {
-        List<Position> positions = new ArrayList<>();
-        for (int j = 0; j < strings.size(); j++) {
-            Position position = new Position(new Coordinate(j, i), strings.get(i).charAt(j));
-            position.setGalaxy(position.getCharacter() == '#');
-            positions.add(position);
-        }
-        return positions;
-    }
-
     public List<Position> galaxyPositions() {
         List<Position> galaxyPositions = new ArrayList<>();
         for (Row row : rows) {
@@ -103,10 +85,6 @@ public class Space {
             }
         }
         return galaxyPositions;
-    }
-
-    public int getWidthOfRow(String currentString, int widthExpander) {
-        return currentString.contains("#") ? 1 : widthExpander;
     }
 
     public long loopPositionsAndFindSum(List<Position> positions) {
@@ -123,6 +101,28 @@ public class Space {
             }
         }
         return sumOfSteps;
+    }
+
+    private int getWidthFromColumn(Column column, int widthExpander) {
+        return column.getPositions().stream().anyMatch(pos -> pos.getCharacter() == '#') ? 1 : widthExpander;
+    }
+
+    private List<Position> loopStringAndCreatePositions(List<String> strings, int i) {
+        List<Position> positions = new ArrayList<>();
+        for (int j = 0; j < strings.size(); j++) {
+            Position position = new Position(new Coordinate(j, i), strings.get(i).charAt(j));
+            position.setGalaxy(position.getCharacter() == '#');
+            positions.add(position);
+        }
+        return positions;
+    }
+
+    private List<Position> loopRowsAndCreateColumnsWithPositions(int i) {
+        return rows.stream().map(row -> row.positions().get(i)).collect(Collectors.toList());
+    }
+
+    private int getWidthOfRow(String currentString, int widthExpander) {
+        return currentString.contains("#") ? 1 : widthExpander;
     }
 
     public List<Row> getRows() {
