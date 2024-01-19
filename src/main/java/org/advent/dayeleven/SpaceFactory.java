@@ -18,7 +18,9 @@ public class SpaceFactory {
             List<Position> positions = loopStringAndCreatePositions(strings, i);
             Row row = new Row(
                     positions,
-                    getWidthOfRow(strings.get(i), widthExpander),
+                    getWidthOfRow(
+                            strings.get(i),
+                            widthExpander),
                     positions.getFirst().coordinate().getY());
             rows.add(row);
         }
@@ -29,7 +31,8 @@ public class SpaceFactory {
         List<Column> columns = new ArrayList<>();
         for (int i = 0; i < rows.getFirst().positions().size(); i++) {
             Column column = new Column(
-                    loopRowsAndCreateColumnsWithPositions(rows, i), widthExpander);
+                    loopRowsAndCreateColumnsWithPositions(rows, i),
+                    widthExpander);
             columns.add(column);
         }
         return columns;

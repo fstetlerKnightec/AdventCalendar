@@ -23,14 +23,13 @@ public class DayEleven implements PrintSolution {
         System.out.println("Sum of shortest paths between galaxies with empty space a million = " + solutionForPartTwo());
     }
 
-
-    public long solutionForPartOne() {
+    private long solutionForPartOne() {
         Space space = spaceFactory.spaceCreator(getStringsFromFile(), 2);
         List<Position> positions = space.galaxyPositions();
         return space.loopPositionsAndFindSum(positions);
     }
 
-    public long solutionForPartTwo() {
+    private long solutionForPartTwo() {
         Space space = spaceFactory.spaceCreator(getStringsFromFile(), 1000000);
         List<Position> positions = space.galaxyPositions();
         return space.loopPositionsAndFindSum(positions);
@@ -45,5 +44,4 @@ public class DayEleven implements PrintSolution {
         }
         return allStrings;
     }
-
 }

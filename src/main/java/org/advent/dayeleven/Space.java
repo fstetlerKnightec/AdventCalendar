@@ -52,7 +52,6 @@ public class Space {
         int startY = startRow.positions().getFirst().coordinate().getY();
         for (int i = startY; i < startY + numberOfYStepsBetweenPos; i++) {
             countedSteps += updatedRow.width();
-
             int finalI = i;
             updatedRow = rows.stream().filter(r -> r.rowNumber() == finalI + 1).findFirst().orElseThrow();
         }
