@@ -58,11 +58,11 @@ public class DayElevenTests {
         Row row1 = space.getRows().get(2);
         Row row2 = space.getRows().get(3);
 
-        assertEquals(1, column1.width());
-        assertEquals(2, column2.width());
+        assertEquals(1, column1.getWidth());
+        assertEquals(2, column2.getWidth());
 
-        assertEquals(1, row1.width());
-        assertEquals(2, row2.width());
+        assertEquals(1, row1.getWidth());
+        assertEquals(2, row2.getWidth());
     }
 
     @Test

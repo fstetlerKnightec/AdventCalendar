@@ -15,13 +15,9 @@ public class SpaceFactory {
     public List<Row> makeRows(List<String> strings, int widthExpander) {
         List<Row> rows = new ArrayList<>();
         for (int i = 0; i < strings.size(); i++) {
-            List<Position> positions = loopStringAndCreatePositions(strings, i);
             Row row = new Row(
-                    positions,
-                    getWidthOfRow(
-                            strings.get(i),
-                            widthExpander),
-                    positions.getFirst().coordinate().getY());
+                    loopStringAndCreatePositions(strings, i),
+                    getWidthOfRow(strings.get(i), widthExpander));
             rows.add(row);
         }
         return rows;
@@ -39,7 +35,6 @@ public class SpaceFactory {
     }
 
     private List<Position> loopStringAndCreatePositions(List<String> strings, int i) {
-        // cant make stream since I need j as coordinate for making coordinate
         List<Position> positions = new ArrayList<>();
         for (int j = 0; j < strings.size(); j++) {
             char currentChar = strings.get(i).charAt(j);

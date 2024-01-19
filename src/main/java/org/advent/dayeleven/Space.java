@@ -29,7 +29,7 @@ public class Space {
         int countedSteps = 0;
         int startX = startColumn.positions().getFirst().coordinate().getX();
         for (int i = startX; i < startX + numberOfXStepsBetweenPos; i++) {
-            countedSteps += updatedColumn.width();
+            countedSteps += updatedColumn.getWidth();
             int finalI = i;
             updatedColumn = columns.stream().filter(c -> c.getColumnNumber() == finalI + 1).findFirst().orElseThrow();
         }
@@ -51,9 +51,9 @@ public class Space {
         int countedSteps = 0;
         int startY = startRow.positions().getFirst().coordinate().getY();
         for (int i = startY; i < startY + numberOfYStepsBetweenPos; i++) {
-            countedSteps += updatedRow.width();
+            countedSteps += updatedRow.getWidth();
             int finalI = i;
-            updatedRow = rows.stream().filter(r -> r.rowNumber() == finalI + 1).findFirst().orElseThrow();
+            updatedRow = rows.stream().filter(r -> r.getRowNumber() == finalI + 1).findFirst().orElseThrow();
         }
         return countedSteps;
     }
