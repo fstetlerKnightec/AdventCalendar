@@ -2,33 +2,12 @@ package org.advent.dayeleven;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Space {
 
-    public List<Row> rows = new ArrayList<>();
-    public List<Column> columns = new ArrayList<>();
+    public List<Row> rows;
 
-    public void makeRows(List<String> strings, int widthExpander) {
-        for (int i = 0; i < strings.size(); i++) {
-            List<Position> positions = loopStringAndCreatePositions(strings, i);
-            Row row = new Row(
-                    positions,
-                    getWidthOfRow(strings.get(i), widthExpander),
-                    positions.getFirst().getCoordinate().getY());
-            rows.add(row);
-        }
-    }
-
-    public void makeColumnsFromExistingRows(int widthExpander) {
-        for (int i = 0; i < rows.getFirst().positions().size(); i++) {
-            Column column = new Column(
-                    loopRowsAndCreateColumnsWithPositions(i));
-            column.setWidth(getWidthFromColumn(column, widthExpander));
-            column.setColumnNumber(column.getPositions().getFirst().getCoordinate().getX());
-            columns.add(column);
-        }
-    }
+    public List<Column> columns;
 
     public long minimumXStepsBetweenTwoCoordinates(Position pos1, Position pos2) {
 
@@ -36,7 +15,7 @@ public class Space {
         if (pos1.getCoordinate().getX() > pos2.getCoordinate().getX()) {
             startColumn = columns.stream().filter(c -> c.getPositions().contains(pos2)).findAny().orElseThrow();
         } else {
-            startColumn = columns.stream().filter(c -> c.getPositions().contains(pos1)).findAny().orElseThrow();;
+            startColumn = columns.stream().filter(c -> c.getPositions().contains(pos1)).findAny().orElseThrow();
         }
 
         int numberOfXStepsBetweenPos = Math.abs(pos1.getCoordinate().getX() - pos2.getCoordinate().getX());
@@ -58,7 +37,7 @@ public class Space {
         if (pos1.getCoordinate().getY() > pos2.getCoordinate().getY()) {
             startRow = rows.stream().filter(c -> c.positions().contains(pos2)).findAny().orElseThrow();
         } else {
-            startRow = rows.stream().filter(c -> c.positions().contains(pos1)).findAny().orElseThrow();;
+            startRow = rows.stream().filter(c -> c.positions().contains(pos1)).findAny().orElseThrow();
         }
 
         int numberOfYStepsBetweenPos = Math.abs(pos1.getCoordinate().getY() - pos2.getCoordinate().getY());
@@ -103,26 +82,12 @@ public class Space {
         return sumOfSteps;
     }
 
-    private int getWidthFromColumn(Column column, int widthExpander) {
-        return column.getPositions().stream().anyMatch(pos -> pos.getCharacter() == '#') ? 1 : widthExpander;
+    public void setRows(List<Row> rows) {
+        this.rows = rows;
     }
 
-    private List<Position> loopStringAndCreatePositions(List<String> strings, int i) {
-        List<Position> positions = new ArrayList<>();
-        for (int j = 0; j < strings.size(); j++) {
-            Position position = new Position(new Coordinate(j, i), strings.get(i).charAt(j));
-            position.setGalaxy(position.getCharacter() == '#');
-            positions.add(position);
-        }
-        return positions;
-    }
-
-    private List<Position> loopRowsAndCreateColumnsWithPositions(int i) {
-        return rows.stream().map(row -> row.positions().get(i)).collect(Collectors.toList());
-    }
-
-    private int getWidthOfRow(String currentString, int widthExpander) {
-        return currentString.contains("#") ? 1 : widthExpander;
+    public void setColumns(List<Column> columns) {
+        this.columns = columns;
     }
 
     public List<Row> getRows() {

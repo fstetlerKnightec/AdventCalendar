@@ -9,6 +9,7 @@ import java.util.List;
 
 public class DayEleven implements PrintSolution {
 
+    SpaceFactory spaceFactory = new SpaceFactory();
 
     @Override
     public void printPartOne() throws IOException {
@@ -22,24 +23,14 @@ public class DayEleven implements PrintSolution {
 
 
     public long solutionForPartOne() {
-        Space space = new Space();
-
-        space.makeRows(getStringsFromFile(), 2);
-        space.makeColumnsFromExistingRows(2);
-
+        Space space = spaceFactory.spaceCreator(getStringsFromFile(), 2);
         List<Position> positions = space.galaxyPositions();
-
         return space.loopPositionsAndFindSum(positions);
     }
 
     public long solutionForPartTwo() {
-        Space space = new Space();
-
-        space.makeRows(getStringsFromFile(), 1000000);
-        space.makeColumnsFromExistingRows(1000000);
-
+        Space space = spaceFactory.spaceCreator(getStringsFromFile(), 1000000);
         List<Position> positions = space.galaxyPositions();
-
         return space.loopPositionsAndFindSum(positions);
     }
 

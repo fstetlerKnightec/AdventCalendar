@@ -1,7 +1,4 @@
-import org.advent.dayeleven.Column;
-import org.advent.dayeleven.Row;
-import org.advent.dayeleven.Space;
-import org.advent.dayeleven.Position;
+import org.advent.dayeleven.*;
 import org.junit.Test;
 
 import java.util.*;
@@ -10,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DayElevenTests {
 
+    public SpaceFactory spaceFactory = new SpaceFactory();
     @Test
     public void verifyColumnAndRowPositionIsTheSame() {
 
@@ -26,10 +24,7 @@ public class DayElevenTests {
                 "8...9....."
         );
 
-        Space space = new Space();
-
-        space.makeRows(strings, 2);
-        space.makeColumnsFromExistingRows(2);
+        Space space = spaceFactory.spaceCreator(strings, 2);
 
         List<Position> columnWithG = space.getColumns().get(7).getPositions();
         List<Position> rowWithG = space.getRows().get(1).positions();
@@ -56,11 +51,7 @@ public class DayElevenTests {
                 "#...#....."
         ));
 
-        Space space = new Space();
-
-        space.makeRows(strings, 2);
-        space.makeColumnsFromExistingRows(2);
-
+        Space space = spaceFactory.spaceCreator(strings, 2);
         Column column1 = space.getColumns().get(1);
         Column column2 = space.getColumns().get(2);
 
@@ -89,20 +80,12 @@ public class DayElevenTests {
                 "#...#....."
         ));
 
-        Space space = new Space();
-
-        space.makeRows(strings, 2);
-        space.makeColumnsFromExistingRows(2);
-
+        Space space = spaceFactory.spaceCreator(strings, 2);
         Position pos1 = space.getRows().get(1).positions().get(7);
-
-//        System.out.prlongln(space.getRows().get(6).getPositions().get(9));
         Position pos2 = space.getRows().get(5).positions().get(1);
-
 
         long stepsX = space.minimumXStepsBetweenTwoCoordinates(pos1, pos2);
         long stepsY = space.minimumYStepsBetweenTwoCoordinates(pos1, pos2);
-
         long totalSteps = stepsX + stepsY;
 
         assertEquals(13, totalSteps);
@@ -123,17 +106,10 @@ public class DayElevenTests {
                 "#...#....."
         ));
 
-        Space space = new Space();
-        space.makeRows(strings, 2);
-        space.makeColumnsFromExistingRows(2);
-
+        Space space = spaceFactory.spaceCreator(strings, 2);
         List<Position> positions = space.galaxyPositions();
-
         long steps = space.loopPositionsAndFindSum(positions);
-
         assertEquals(374, steps);
-
-
     }
 
 
@@ -152,14 +128,9 @@ public class DayElevenTests {
                 "#...#....."
         ));
 
-        Space space = new Space();
-        space.makeRows(strings, 1000000);
-        space.makeColumnsFromExistingRows(1000000);
-
+        Space space = spaceFactory.spaceCreator(strings, 100);
         List<Position> positions = space.galaxyPositions();
-
         long steps = space.loopPositionsAndFindSum(positions);
-
         assertEquals(8410, steps);
 
 

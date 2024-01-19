@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Column {
 
-    private List<Position> positions;
+    private final List<Position> positions;
     private int columnNumber;
     private int width;
 
@@ -14,10 +14,6 @@ public class Column {
 
     public List<Position> getPositions() {
         return positions;
-    }
-
-    public void setPositions(List<Position> positions) {
-        this.positions = positions;
     }
 
     public int getWidth() {
