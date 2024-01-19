@@ -16,6 +16,10 @@ public class Column {
         return positions;
     }
 
+    private int getWidthFromColumn(int widthExpander) {
+        return getPositions().stream().anyMatch(pos -> pos.getCharacter() == '#') ? 1 : widthExpander;
+    }
+
     public int getWidth() {
         return width;
     }
@@ -29,6 +33,6 @@ public class Column {
     }
 
     public void setWidth(int width) {
-        this.width = width;
+        this.width = getWidthFromColumn(width); // IS THIS ALLOWED
     }
 }

@@ -13,12 +13,14 @@ public class DayEleven implements PrintSolution {
 
     @Override
     public void printPartOne() throws IOException {
-        System.out.println("part one = " + solutionForPartOne());
+        System.out.println(" ");
+        System.out.println(this.getClass().getSimpleName() + " ---------------------------");
+        System.out.println("Sum of shortest paths between galaxies with empty space two = " + solutionForPartOne());
     }
 
     @Override
     public void printPartTwo() throws IOException {
-        System.out.println("part two = " + solutionForPartTwo());
+        System.out.println("Sum of shortest paths between galaxies with empty space a million = " + solutionForPartTwo());
     }
 
 

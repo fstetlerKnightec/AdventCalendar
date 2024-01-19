@@ -2,12 +2,17 @@ package org.advent.dayeleven;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Space {
 
     public List<Row> rows;
-
     public List<Column> columns;
+
+    public Space(List<Row> rows, List<Column> columns) {
+        this.rows = rows;
+        this.columns = columns;
+    }
 
     public long minimumXStepsBetweenTwoCoordinates(Position pos1, Position pos2) {
 
@@ -55,15 +60,8 @@ public class Space {
     }
 
     public List<Position> galaxyPositions() {
-        List<Position> galaxyPositions = new ArrayList<>();
-        for (Row row : rows) {
-            for (int j = 0; j < row.positions().size(); j++) {
-                if (row.positions().get(j).isGalaxy()) {
-                    galaxyPositions.add(row.positions().get(j));
-                }
-            }
-        }
-        return galaxyPositions;
+        return rows.stream().flatMap(row ->
+                row.positions().stream()).filter(Position::isGalaxy).collect(Collectors.toList());
     }
 
     public long loopPositionsAndFindSum(List<Position> positions) {
