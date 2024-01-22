@@ -16,29 +16,10 @@ public class Space {
         this.columns = columns;
     }
 
-    private RowCol getStartRowCol(Position pos1, Position pos2, List<RowCol> rowColList, ToIntFunction<Position> posOp) {
-        if (posOp.applyAsInt(pos1) > posOp.applyAsInt(pos2)) {
-            return rowColList.stream().filter(c -> c.positions().contains(pos2)).findAny().orElseThrow();
-        }
-        return rowColList.stream().filter(c -> c.positions().contains(pos1)).findAny().orElseThrow();
-    }
-
     public long minimumStepsBetweenTwoPositions(Position pos1, Position pos2, List<RowCol> rowColList, ToIntFunction<Position> posOp) {
         RowCol startRowCol = getStartRowCol(pos1, pos2, rowColList, posOp);
         int numberOfStepsBetweenPos = Math.abs(posOp.applyAsInt(pos1) - posOp.applyAsInt(pos2));
         return countedStepsBetweenPositions(startRowCol, numberOfStepsBetweenPos, rowColList);
-    }
-
-    private int countedStepsBetweenPositions(RowCol startRowCol, int numberOfStepsBetweenPos, List<RowCol> rowColList) {
-        RowCol updatedColumn = startRowCol;
-        int countedSteps = 0;
-        int start = startRowCol.getRowColNumber();
-        for (int i = start; i < start + numberOfStepsBetweenPos; i++) {
-            countedSteps += updatedColumn.getWidth();
-            int finalI = i;
-            updatedColumn = rowColList.stream().filter(c -> c.getRowColNumber() == finalI + 1).findFirst().orElseThrow();
-        }
-        return countedSteps;
     }
 
     public List<Position> galaxyPositions() {
@@ -64,6 +45,25 @@ public class Space {
             }
         }
         return sumOfSteps;
+    }
+
+    private int countedStepsBetweenPositions(RowCol startRowCol, int numberOfStepsBetweenPos, List<RowCol> rowColList) {
+        RowCol updatedColumn = startRowCol;
+        int countedSteps = 0;
+        int start = startRowCol.getRowColNumber();
+        for (int i = start; i < start + numberOfStepsBetweenPos; i++) {
+            countedSteps += updatedColumn.getWidth();
+            int finalI = i;
+            updatedColumn = rowColList.stream().filter(c -> c.getRowColNumber() == finalI + 1).findFirst().orElseThrow();
+        }
+        return countedSteps;
+    }
+
+    private RowCol getStartRowCol(Position pos1, Position pos2, List<RowCol> rowColList, ToIntFunction<Position> posOp) {
+        if (posOp.applyAsInt(pos1) > posOp.applyAsInt(pos2)) {
+            return rowColList.stream().filter(c -> c.positions().contains(pos2)).findAny().orElseThrow();
+        }
+        return rowColList.stream().filter(c -> c.positions().contains(pos1)).findAny().orElseThrow();
     }
 
 
