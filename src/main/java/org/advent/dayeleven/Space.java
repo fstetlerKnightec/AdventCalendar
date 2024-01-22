@@ -1,7 +1,9 @@
 package org.advent.dayeleven;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Space {
@@ -66,7 +68,7 @@ public class Space {
     public long loopPositionsAndFindSum(List<Position> positions) {
         long steps;
         long sumOfSteps = 0;
-        List<Position> usedPosition = new ArrayList<>();
+        Set<Position> usedPosition = new HashSet<>();
         for (Position startPosition : positions) {
             for (Position toPosition : positions) {
                 if (!toPosition.equals(startPosition) && !usedPosition.contains(toPosition)) {
