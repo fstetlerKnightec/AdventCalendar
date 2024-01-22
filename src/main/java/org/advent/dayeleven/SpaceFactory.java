@@ -7,13 +7,13 @@ import java.util.stream.Collectors;
 public class SpaceFactory {
 
     public Space spaceCreator(List<String> strings, int widthExpander) {
-        List<Row> rows = makeRows(strings, widthExpander);
-        List<Column> columns = makeColumnsFromExistingRows(rows, widthExpander);
+        List<RowCol> rows = makeRows(strings, widthExpander);
+        List<RowCol> columns = makeColumnsFromExistingRows(rows, widthExpander);
         return new Space(rows, columns);
     }
 
-    public List<Row> makeRows(List<String> strings, int widthExpander) {
-        List<Row> rows = new ArrayList<>();
+    public List<RowCol> makeRows(List<String> strings, int widthExpander) {
+        List<RowCol> rows = new ArrayList<>();
         for (int i = 0; i < strings.size(); i++) {
             Row row = new Row(
                     loopStringAndCreatePositions(strings, i),
@@ -23,8 +23,8 @@ public class SpaceFactory {
         return rows;
     }
 
-    public List<Column> makeColumnsFromExistingRows(List<Row> rows, int widthExpander) {
-        List<Column> columns = new ArrayList<>();
+    public List<RowCol> makeColumnsFromExistingRows(List<RowCol> rows, int widthExpander) {
+        List<RowCol> columns = new ArrayList<>();
         for (int i = 0; i < rows.getFirst().positions().size(); i++) {
             Column column = new Column(
                     loopRowsAndCreateColumnsWithPositions(rows, i),
@@ -44,7 +44,7 @@ public class SpaceFactory {
         return positions;
     }
 
-    private List<Position> loopRowsAndCreateColumnsWithPositions(List<Row> rows, int i) {
+    private List<Position> loopRowsAndCreateColumnsWithPositions(List<RowCol> rows, int i) {
         return rows.stream().map(row -> row.positions().get(i)).collect(Collectors.toList());
     }
 

@@ -1,61 +1,42 @@
 package org.advent.dayeleven;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
 
 public class Space {
 
-    public List<Row> rows;
-    public List<Column> columns;
+    public List<RowCol> rows;
+    public List<RowCol> columns;
 
-    public Space(List<Row> rows, List<Column> columns) {
+    public Space(List<RowCol> rows, List<RowCol> columns) {
         this.rows = rows;
         this.columns = columns;
     }
 
-    public long minimumXStepsBetweenTwoCoordinates(Position pos1, Position pos2) {
-        // left for later, try to combine with the other minimumYSteps
-        Column startColumn;
-        if (pos1.coordinate().getX() > pos2.coordinate().getX()) {
-            startColumn = columns.stream().filter(c -> c.positions().contains(pos2)).findAny().orElseThrow();
-        } else {
-            startColumn = columns.stream().filter(c -> c.positions().contains(pos1)).findAny().orElseThrow();
+    private RowCol getStartRowCol(Position pos1, Position pos2, List<RowCol> rowColList, ToIntFunction<Position> posOp) {
+        if (posOp.applyAsInt(pos1) > posOp.applyAsInt(pos2)) {
+            return rowColList.stream().filter(c -> c.positions().contains(pos2)).findAny().orElseThrow();
         }
-
-        int numberOfXStepsBetweenPos = Math.abs(pos1.coordinate().getX() - pos2.coordinate().getX());
-
-        Column updatedColumn = startColumn;
-        int countedSteps = 0;
-        int startX = startColumn.positions().getFirst().coordinate().getX();
-        for (int i = startX; i < startX + numberOfXStepsBetweenPos; i++) {
-            countedSteps += updatedColumn.getWidth();
-            int finalI = i;
-            updatedColumn = columns.stream().filter(c -> c.getColumnNumber() == finalI + 1).findFirst().orElseThrow();
-        }
-        return countedSteps;
+        return rowColList.stream().filter(c -> c.positions().contains(pos1)).findAny().orElseThrow();
     }
 
-    public long minimumYStepsBetweenTwoCoordinates(Position pos1, Position pos2) {
-        // left for later
-        Row startRow;
-        if (pos1.coordinate().getY() > pos2.coordinate().getY()) {
-            startRow = rows.stream().filter(c -> c.positions().contains(pos2)).findAny().orElseThrow();
-        } else {
-            startRow = rows.stream().filter(c -> c.positions().contains(pos1)).findAny().orElseThrow();
-        }
+    public long minimumStepsBetweenTwoPositions(Position pos1, Position pos2, List<RowCol> rowColList, ToIntFunction<Position> posOp) {
+        RowCol startRowCol = getStartRowCol(pos1, pos2, rowColList, posOp);
+        int numberOfStepsBetweenPos = Math.abs(posOp.applyAsInt(pos1) - posOp.applyAsInt(pos2));
+        return countedStepsBetweenPositions(startRowCol, numberOfStepsBetweenPos, rowColList);
+    }
 
-        int numberOfYStepsBetweenPos = Math.abs(pos1.coordinate().getY() - pos2.coordinate().getY());
-
-        Row updatedRow = startRow;
+    private int countedStepsBetweenPositions(RowCol startRowCol, int numberOfStepsBetweenPos, List<RowCol> rowColList) {
+        RowCol updatedColumn = startRowCol;
         int countedSteps = 0;
-        int startY = startRow.positions().getFirst().coordinate().getY();
-        for (int i = startY; i < startY + numberOfYStepsBetweenPos; i++) {
-            countedSteps += updatedRow.getWidth();
+        int start = startRowCol.getRowColNumber();
+        for (int i = start; i < start + numberOfStepsBetweenPos; i++) {
+            countedSteps += updatedColumn.getWidth();
             int finalI = i;
-            updatedRow = rows.stream().filter(r -> r.getRowNumber() == finalI + 1).findFirst().orElseThrow();
+            updatedColumn = rowColList.stream().filter(c -> c.getRowColNumber() == finalI + 1).findFirst().orElseThrow();
         }
         return countedSteps;
     }
@@ -69,10 +50,14 @@ public class Space {
         long steps;
         long sumOfSteps = 0;
         Set<Position> usedPosition = new HashSet<>();
+        ToIntFunction<Position> posX = p -> p.coordinate().x();
+        ToIntFunction<Position> posY = p -> p.coordinate().y();
+
         for (Position startPosition : positions) {
             for (Position toPosition : positions) {
                 if (!toPosition.equals(startPosition) && !usedPosition.contains(toPosition)) {
-                    steps = (minimumXStepsBetweenTwoCoordinates(startPosition, toPosition) + minimumYStepsBetweenTwoCoordinates(startPosition, toPosition));
+                    steps = (minimumStepsBetweenTwoPositions(startPosition, toPosition, columns, posX)
+                            + minimumStepsBetweenTwoPositions(startPosition, toPosition, rows, posY));
                     sumOfSteps += steps;
                 }
                 usedPosition.add(startPosition);
@@ -81,11 +66,12 @@ public class Space {
         return sumOfSteps;
     }
 
-    public List<Row> getRows() {
+
+    public List<RowCol> getRows() {
         return rows;
     }
 
-    public List<Column> getColumns() {
+    public List<RowCol> getColumns() {
         return columns;
     }
 }

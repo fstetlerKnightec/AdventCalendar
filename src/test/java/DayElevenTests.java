@@ -2,6 +2,7 @@ import org.advent.dayeleven.*;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.function.ToIntFunction;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -52,11 +53,11 @@ public class DayElevenTests {
         ));
 
         Space space = spaceFactory.spaceCreator(strings, 2);
-        Column column1 = space.getColumns().get(1);
-        Column column2 = space.getColumns().get(2);
+        RowCol column1 = space.getColumns().get(1);
+        RowCol column2 = space.getColumns().get(2);
 
-        Row row1 = space.getRows().get(2);
-        Row row2 = space.getRows().get(3);
+        RowCol row1 = space.getRows().get(2);
+        RowCol row2 = space.getRows().get(3);
 
         assertEquals(1, column1.getWidth());
         assertEquals(2, column2.getWidth());
@@ -84,8 +85,11 @@ public class DayElevenTests {
         Position pos1 = space.getRows().get(1).positions().get(7);
         Position pos2 = space.getRows().get(5).positions().get(1);
 
-        long stepsX = space.minimumXStepsBetweenTwoCoordinates(pos1, pos2);
-        long stepsY = space.minimumYStepsBetweenTwoCoordinates(pos1, pos2);
+        ToIntFunction<Position> posX = p -> p.coordinate().x();
+        ToIntFunction<Position> posY = p -> p.coordinate().y();
+
+        long stepsX = space.minimumStepsBetweenTwoPositions(pos1, pos2, space.columns, posX);
+        long stepsY = space.minimumStepsBetweenTwoPositions(pos1, pos2, space.rows, posY);
         long totalSteps = stepsX + stepsY;
 
         assertEquals(13, totalSteps);
