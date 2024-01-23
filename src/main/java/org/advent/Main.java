@@ -9,6 +9,7 @@ import org.advent.dayone.DayOne;
 import org.advent.daysix.DaySix;
 import org.advent.dayten.DayTen;
 import org.advent.daythree.DayThree;
+import org.advent.daytwelve.DayTwelve;
 import org.advent.daytwo.DayTwo;
 
 import java.io.IOException;
@@ -61,10 +62,13 @@ public class Main {
 //        dayTen.printPartOne();
 //        dayTen.printPartTwo();
 
+//        DayEleven dayEleven = new DayEleven();
+//        dayEleven.printPartOne();
+//        dayEleven.printPartTwo();
 
-        DayEleven dayEleven = new DayEleven();
-        dayEleven.printPartOne();
-        dayEleven.printPartTwo();
+        DayTwelve dayTwelve = new DayTwelve();
+        dayTwelve.printPartOne();
+        dayTwelve.printPartTwo();
 
     }
 }
