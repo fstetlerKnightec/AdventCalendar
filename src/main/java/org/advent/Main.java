@@ -2,6 +2,7 @@ package org.advent;
 
 import org.advent.daySeven.DaySeven;
 import org.advent.dayeight.DayEight;
+import org.advent.dayeleven.DayEleven;
 import org.advent.dayfour.DayFour;
 import org.advent.daynine.DayNine;
 import org.advent.dayone.DayOne;
@@ -56,9 +57,14 @@ public class Main {
 //        dayNine.printPartOne();
 //        dayNine.printPartTwo();
 
-        DayTen dayTen = new DayTen();
-        dayTen.printPartOne();
-        dayTen.printPartTwo();
+//        DayTen dayTen = new DayTen();
+//        dayTen.printPartOne();
+//        dayTen.printPartTwo();
+
+
+        DayEleven dayEleven = new DayEleven();
+        dayEleven.printPartOne();
+        dayEleven.printPartTwo();
 
     }
 }
