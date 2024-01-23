@@ -5,17 +5,36 @@ import org.advent.Util;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DayTwelve implements PrintSolution {
     @Override
-    public void printPartOne() throws IOException {
-
+    public void printPartOne() {
+        System.out.println(getStringsFromFile().getFirst());
     }
 
     @Override
-    public void printPartTwo() throws IOException {
+    public void printPartTwo() {
 
+    }
+
+    public List<Integer> getSetupRuleFromString(String s) {
+        String sub = s.split(" ")[1];
+        sub = sub.replaceAll(",", "");
+        return sub.chars().mapToObj(c -> Character.valueOf((char) c)).toList();
+    }
+
+    public List<Character> getOriginalArrangementFromString(String s) {
+        String sub = s.split(" ")[0];
+        return sub.chars().mapToObj(c -> (char) c).toList();
+    }
+
+
+    public List<Row> getRows(List<String> strings) {
+        return strings.stream().map(s ->
+                new Row(getSetupRuleFromString(s), getOriginalArrangementFromString(s))).toList();
     }
 
 
